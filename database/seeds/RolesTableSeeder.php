@@ -12,13 +12,13 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         \Illuminate\Support\Facades\DB::table('roles')->insert([
-            ['id'=>\App\Enums\UserType::superadmin,'title' => 'admin', 'desc' => 'Administrator Of System', 'created_at' => now(), 'updated_at' => now()],
-            ['id'=>\App\Enums\UserType::owner,'title' => 'owner', 'desc' => 'Buyer of service', 'created_at' => now(), 'updated_at' => now()],
-            ['id'=>\App\Enums\UserType::financial,'title' => 'financial', 'desc' => 'Buyer of service', 'created_at' => now(), 'updated_at' => now()],
-            ['id'=>\App\Enums\UserType::protection,'title' => 'protection', 'desc' => 'Buyer of service', 'created_at' => now(), 'updated_at' => now()],
-            ['id'=>\App\Enums\UserType::successor,'title' => 'successor', 'desc' => 'Buyer of service', 'created_at' => now(), 'updated_at' => now()],
-            ['id'=>\App\Enums\UserType::master,'title' => 'master', 'desc' => 'Buyer of service', 'created_at' => now(), 'updated_at' => now()],
-            ['id'=>\App\Enums\UserType::support,'title' => 'support', 'desc' => 'Buyer of service', 'created_at' => now(), 'updated_at' => now()]
+            ['id'=>\App\Enums\UserType::superadmin,'title' => 'superadmin', 'desc' => 'Administrator Of System', 'created_at' => now(), 'updated_at' => now()],
+            ['id'=>\App\Enums\UserType::owner,'title' => 'owner', 'desc' => 'Owner of Requests', 'created_at' => now(), 'updated_at' => now()],
+            ['id'=>\App\Enums\UserType::financial,'title' => 'financial', 'desc' => 'Financial user', 'created_at' => now(), 'updated_at' => now()],
+            ['id'=>\App\Enums\UserType::protection,'title' => 'protection', 'desc' => 'Protection user', 'created_at' => now(), 'updated_at' => now()],
+            ['id'=>\App\Enums\UserType::successor,'title' => 'successor', 'desc' => 'Successor user', 'created_at' => now(), 'updated_at' => now()],
+            ['id'=>\App\Enums\UserType::master,'title' => 'master', 'desc' => 'Master user', 'created_at' => now(), 'updated_at' => now()],
+            ['id'=>\App\Enums\UserType::support,'title' => 'support', 'desc' => 'Support user', 'created_at' => now(), 'updated_at' => now()]
         ]);
 
         \Illuminate\Support\Facades\DB::table('role_user')->insert([

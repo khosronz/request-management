@@ -18,6 +18,13 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::get('/superadmin', 'HomeController@superadminindex')->name('superadmin.index');
+Route::get('/master', 'HomeController@masterindex')->name('master.index');
+Route::get('/successor', 'HomeController@successorindex')->name('successor.index');
+Route::get('/owner', 'HomeController@ownerindex')->name('owner.index');
+Route::get('/protection', 'HomeController@protectionindex')->name('protection.index');
+Route::get('/financial', 'HomeController@financialindex')->name('financial.index');
+Route::get('/support', 'HomeController@supportindex')->name('support.index');
 Route::get('/home', 'HomeController@index');
 
 

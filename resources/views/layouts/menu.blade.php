@@ -1,3 +1,38 @@
+<li class="nav-item {{ Request::is('financial*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('financial.index') !!}">
+        <i class="nav-icon icon-grid"></i>
+        <span>@lang('Financial Dashboard')</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('protection*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('protection.index') !!}">
+        <i class="nav-icon icon-grid"></i>
+        <span>@lang('Protection Dashboard')</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('owner*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('owner.index') !!}">
+        <i class="nav-icon icon-grid"></i>
+        <span>@lang('Owner Dashboard')</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('support*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('support.index') !!}">
+        <i class="nav-icon icon-grid"></i>
+        <span>@lang('Support Dashboard')</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('successor*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('successor.index') !!}">
+        <i class="nav-icon icon-grid"></i>
+        <span>@lang('Successor Dashboard')</span>
+    </a>
+</li>
+
+
+
+
+
 <li class="nav-item {{ Request::is('organizations*') ? 'active' : '' }}">
     <a class="nav-link" href="{!! route('organizations.index') !!}">
         <i class="nav-icon icon-grid"></i>

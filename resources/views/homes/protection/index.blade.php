@@ -19,9 +19,9 @@
                                              <i class="icon-settings"></i>
                                          </button>
                                          <div class="dropdown-menu dropdown-menu-right">
-                                             <a class="dropdown-item" href="#">Action</a>
-                                             <a class="dropdown-item" href="#">Another action</a>
-                                             <a class="dropdown-item" href="#">Something else here</a>
+                                             <a class="dropdown-item" href="#">@lang('Action')</a>
+                                             <a class="dropdown-item" href="#">@lang('Another action')</a>
+                                             <a class="dropdown-item" href="#">@lang('Something else here')</a>
                                          </div>
                                      </div>
                                      <div class="text-value">9.823</div>
@@ -56,9 +56,9 @@
                                              <i class="icon-settings"></i>
                                          </button>
                                          <div class="dropdown-menu dropdown-menu-right">
-                                             <a class="dropdown-item" href="#">Action</a>
-                                             <a class="dropdown-item" href="#">Another action</a>
-                                             <a class="dropdown-item" href="#">Something else here</a>
+                                             <a class="dropdown-item" href="#">@lang('Action')</a>
+                                             <a class="dropdown-item" href="#">@lang('Another action')</a>
+                                             <a class="dropdown-item" href="#">@lang('Something else here')</a>
                                          </div>
                                      </div>
                                      <div class="text-value">9.823</div>
@@ -78,9 +78,9 @@
                                              <i class="icon-settings"></i>
                                          </button>
                                          <div class="dropdown-menu dropdown-menu-right">
-                                             <a class="dropdown-item" href="#">Action</a>
-                                             <a class="dropdown-item" href="#">Another action</a>
-                                             <a class="dropdown-item" href="#">Something else here</a>
+                                             <a class="dropdown-item" href="#">@lang('Action')</a>
+                                             <a class="dropdown-item" href="#">@lang('Another action')</a>
+                                             <a class="dropdown-item" href="#">@lang('Something else here')</a>
                                          </div>
                                      </div>
                                      <div class="text-value">9.823</div>

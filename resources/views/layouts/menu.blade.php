@@ -28,6 +28,12 @@
         <span>@lang('Successor Dashboard')</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('master*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('master.index') !!}">
+        <i class="nav-icon icon-grid"></i>
+        <span>@lang('Master Dashboard')</span>
+    </a>
+</li>
 
 
 

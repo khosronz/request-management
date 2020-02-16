@@ -2,4 +2,4 @@ php artisan infyom:api_scaffold Equipment --fieldsFile=samples/equipment.json --
 php artisan infyom:rollback Equipment api_scaffold
 
 git config --global user.email "email@example.com"
-git config --global user.name "ghader"
+git config --global user.name "username"

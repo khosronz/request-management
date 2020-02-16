@@ -11,7 +11,7 @@ $factory->define(Order::class, function (Faker $faker) {
         'title' => $faker->word,
         'verified' => $faker->word,
         'desc' => $faker->text,
-        'user_id' => $faker->randomDigitNotNull,
+        'user_id' => $faker->word,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

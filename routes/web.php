@@ -63,3 +63,6 @@ Route::resource('messages', 'MessageController');
 
 
 
+
+
+Route::resource('equipment', 'EquipmentController');

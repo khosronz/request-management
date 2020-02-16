@@ -75,3 +75,9 @@
 
 
 
+<li class="nav-item {{ Request::is('equipment*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('equipment.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Equipment')</span>
+    </a>
+</li>

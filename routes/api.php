@@ -56,3 +56,6 @@ Route::resource('messages', 'MessageAPIController');
 
 
 
+
+
+Route::resource('equipment', 'EquipmentAPIController');

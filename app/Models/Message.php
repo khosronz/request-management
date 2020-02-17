@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version November 12, 2019, 5:18 am +0330
  *
  * @property \App\Models\Ticket ticket
- * @property \App\Models\User user
+ * @property \App\User user
  * @property string title
  * @property string status
  * @property integer ticket_id

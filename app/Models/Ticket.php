@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property \App\Models\Severity severity
  * @property \App\Models\Organization organization
- * @property \App\Models\User user
+ * @property \App\User user
  * @property string title
  * @property string status
  * @property integer severity_id

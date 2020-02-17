@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version February 16, 2020, 12:43 pm +0330
  *
- * @property \App\Models\User user
+ * @property \App\User user
  * @property string title
  * @property string verified
  * @property string desc
@@ -61,6 +61,6 @@ class Order extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
+        return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }
 }

@@ -23,7 +23,7 @@ class CreateOrderdetailsTable extends Migration
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('equipment_id')->references('id')->on('equipments');
+            $table->foreign('equipment_id')->references('id')->on('equipment');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('user_id')->references('id')->on('users');
         });

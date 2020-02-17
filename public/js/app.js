@@ -95200,9 +95200,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\khosro\Desktop\tahlilyar-app\tahlilyar-backend\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\khosro\Desktop\tahlilyar-app\tahlilyar-backend\resources\sass\datatables_css.scss */"./resources/sass/datatables_css.scss");
-module.exports = __webpack_require__(/*! C:\Users\khosro\Desktop\tahlilyar-app\tahlilyar-backend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\khosro\Desktop\request-management\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\khosro\Desktop\request-management\resources\sass\datatables_css.scss */"./resources/sass/datatables_css.scss");
+module.exports = __webpack_require__(/*! C:\Users\khosro\Desktop\request-management\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

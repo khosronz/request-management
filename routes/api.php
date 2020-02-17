@@ -63,3 +63,11 @@ Route::resource('equipment', 'EquipmentAPIController');
 Route::resource('orders', 'OrderAPIController');
 
 Route::resource('orderdetails', 'OrderdetailAPIController');
+
+Route::resource('telltypes', 'TelltypeAPIController');
+
+Route::resource('factorytells', 'FactorytellAPIController');
+
+Route::resource('factoryaddresses', 'FactoryaddressAPIController');
+
+Route::resource('factories', 'FactoryAPIController');

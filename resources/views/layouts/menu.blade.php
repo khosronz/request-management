@@ -93,3 +93,27 @@
         <span>@lang('Orderdetails')</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('telltypes*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('telltypes.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Telltypes')</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('factorytells*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('factorytells.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Factorytells')</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('factoryaddresses*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('factoryaddresses.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Factoryaddresses')</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('factories*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('factories.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Factories')</span>
+    </a>
+</li>

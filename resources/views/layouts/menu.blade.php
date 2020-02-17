@@ -87,3 +87,9 @@
         <span>@lang('Orders')</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('orderdetails*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('orderdetails.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Orderdetails')</span>
+    </a>
+</li>

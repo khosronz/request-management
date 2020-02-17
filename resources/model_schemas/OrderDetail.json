@@ -12,8 +12,20 @@
         "inView": true
     },
     {
-        "name": "user_id",
-        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
+        "name": "status",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "equipment_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,equipments,id",
         "htmlType": "text",
         "validations": "",
         "searchable": false,
@@ -24,11 +36,23 @@
         "inView": true
     },
     {
-        "name": "product_id",
-        "dbType": "bigInteger:unsigned:default,0:foreign,products,id",
+        "name": "num",
+        "dbType": "integer:unsigned:default,0",
         "htmlType": "text",
         "validations": "",
         "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "unit_price",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
         "fillable": true,
         "primary": false,
         "inForm": true,
@@ -48,71 +72,11 @@
         "inView": true
     },
     {
-        "name": "dns",
-        "dbType": "string",
+        "name": "user_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
         "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "ip",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "dns_ip_status",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "status",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "start_time",
-        "dbType": "dateTime",
-        "htmlType": "date",
         "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "end_time",
-        "dbType": "dateTime",
-        "htmlType": "date",
-        "validations": "",
-        "searchable": true,
+        "searchable": false,
         "fillable": true,
         "primary": false,
         "inForm": true,
@@ -145,14 +109,14 @@
     },
     {
         "type": "relation",
-        "relation": "mt1,User,user_id,id"
-    },
-    {
-        "type": "relation",
-        "relation": "mt1,Product,product_id,id"
+        "relation": "mt1,Equipment,equipment_id,id"
     },
     {
         "type": "relation",
         "relation": "mt1,Order,order_id,id"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,User,user_id,id"
     }
 ]

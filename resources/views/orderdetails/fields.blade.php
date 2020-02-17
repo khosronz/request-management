@@ -1,8 +1,15 @@
-<!-- Status Field -->
+<!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('status', __('Status').':') !!}
-    {!! Form::text('status', null, ['class' => 'form-control']) !!}
+    {!! Form::label('user_id', __('User Id').':') !!}
+    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
 </div>
+
+<!-- Order Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('order_id', __('Order Id').':') !!}
+    {!! Form::text('order_id', null, ['class' => 'form-control']) !!}
+</div>
+
 
 <!-- Equipment Id Field -->
 <div class="form-group col-sm-6">
@@ -22,16 +29,10 @@
     {!! Form::text('unit_price', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Order Id Field -->
+<!-- Status Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('order_id', __('Order Id').':') !!}
-    {!! Form::text('order_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', __('User Id').':') !!}
-    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('status', __('Status').':') !!}
+    {!! Form::text('status', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

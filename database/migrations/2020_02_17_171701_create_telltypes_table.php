@@ -14,7 +14,7 @@ class CreateTelltypesTable extends Migration
     public function up()
     {
         Schema::create('telltypes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->text('desc');
             $table->timestamps();

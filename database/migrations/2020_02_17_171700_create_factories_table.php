@@ -14,7 +14,7 @@ class CreateFactoriesTable extends Migration
     public function up()
     {
         Schema::create('factories', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->text('desc');
             $table->timestamps();

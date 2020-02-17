@@ -14,7 +14,7 @@ class CreateFactoryaddressesTable extends Migration
     public function up()
     {
         Schema::create('factoryaddresses', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->bigInteger('factory_id')->unsigned()->default(0);
             $table->text('desc');
             $table->timestamps();

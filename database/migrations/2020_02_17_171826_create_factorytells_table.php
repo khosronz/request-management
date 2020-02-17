@@ -14,7 +14,7 @@ class CreateFactorytellsTable extends Migration
     public function up()
     {
         Schema::create('factorytells', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('tellnumber');
             $table->text('desc');

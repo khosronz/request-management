@@ -70,3 +70,11 @@ Route::resource('equipment', 'EquipmentController');
 Route::resource('orders', 'OrderController');
 
 Route::resource('orderdetails', 'OrderdetailController');
+
+Route::resource('telltypes', 'TelltypeController');
+
+Route::resource('factorytells', 'FactorytellController');
+
+Route::resource('factoryaddresses', 'FactoryaddressController');
+
+Route::resource('factories', 'FactoryController');

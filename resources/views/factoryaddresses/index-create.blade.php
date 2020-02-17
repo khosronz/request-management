@@ -7,13 +7,13 @@
                         <div class="card-header">
                             <a class="card-link" data-toggle="collapse" href="#collapseOne">
                                 <i class="fa fa-plus-square fa-lg mr-2"></i>
-                                <strong>@lang('Create Equipment')</strong>
+                                <strong>@lang('Create Factoryaddress')</strong>
                             </a>
                         </div>
                         <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
-                            {!! Form::open(['route' => 'equipment.store']) !!}
+                            {!! Form::open(['route' => 'factoryaddresses.store']) !!}
 
-                            @include('equipment.fields')
+                            @include('factoryaddresses.fields')
 
                             {!! Form::close() !!}
                         </div>

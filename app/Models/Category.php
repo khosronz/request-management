@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version November 11, 2019, 5:47 pm +0330
  *
- * @property \App\Models\User user
+ * @property \App\User user
  * @property string title
  * @property string desc
  * @property integer category_visits

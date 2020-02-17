@@ -61,3 +61,5 @@ Route::resource('messages', 'MessageAPIController');
 Route::resource('equipment', 'EquipmentAPIController');
 
 Route::resource('orders', 'OrderAPIController');
+
+Route::resource('orderdetails', 'OrderdetailAPIController');

@@ -11,16 +11,29 @@
         "inIndex": false
     },
     {
-        "name": "user_id",
-        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
+        "name": "status",
+        "dbType": "string",
         "htmlType": "text",
-        "relation": "mt1,User,user_id,id"
+        "validations": "required",
+        "searchable": true
     },
     {
-        "name": "product_id",
-        "dbType": "bigInteger:unsigned:default,0:foreign,products,id",
+        "name": "equipment_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,equipments,id",
         "htmlType": "text",
-        "relation": "mt1,Product,product_id,id"
+        "relation": "mt1,Equipment,equipment_id,id"
+    },
+    {
+        "name": "num",
+        "dbType": "integer:unsigned:default,0",
+        "htmlType": "text"
+    },
+    {
+        "name": "unit_price",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
     },
     {
         "name": "order_id",
@@ -29,44 +42,10 @@
         "relation": "mt1,Order,order_id,id"
     },
     {
-        "name": "dns",
-        "dbType": "string",
+        "name": "user_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
         "htmlType": "text",
-        "validations": "required",
-        "searchable": true
-    },
-    {
-        "name": "ip",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true
-    },
-    {
-        "name": "dns_ip_status",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true
-    },
-    {
-        "name": "status",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true
-    },
-    {
-        "name": "start_time",
-        "dbType": "dateTime",
-        "htmlType": "date",
-        "searchable": true
-    },
-    {
-        "name": "end_time",
-        "dbType": "dateTime",
-        "htmlType": "date",
-        "searchable": true
+        "relation": "mt1,User,user_id,id"
     },
     {
         "name": "created_at",

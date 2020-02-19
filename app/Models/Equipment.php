@@ -31,19 +31,8 @@ class Equipment extends Model
         'title',
         'desc',
         'product_visits',
-        'user_id'
-    ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'title' => 'string',
-        'desc' => 'string',
-        'product_visits' => 'integer',
-        'user_id' => 'integer'
+        'user_id',
+        'category_id'
     ];
 
     /**
@@ -56,10 +45,30 @@ class Equipment extends Model
     ];
 
     /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'title' => 'string',
+        'desc' => 'string',
+        'product_visits' => 'integer',
+        'user_id' => 'integer',
+        'category_id' => 'integer'
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function user()
     {
         return $this->belongsTo(\App\User::class, 'user_id', 'id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function category()
+    {
+        return $this->belongsTo(\App\Models\Category::class, 'category_id', 'id');
     }
 }

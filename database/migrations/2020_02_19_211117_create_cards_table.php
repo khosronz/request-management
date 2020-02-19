@@ -19,7 +19,7 @@ class CreateCardsTable extends Migration
             $table->integer('num')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('equipment_id')->references('id')->on('equipments');
+            $table->foreign('equipment_id')->references('id')->on('equipment');
         });
     }
 

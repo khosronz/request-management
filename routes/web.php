@@ -78,3 +78,5 @@ Route::resource('factorytells', 'FactorytellController');
 Route::resource('factoryaddresses', 'FactoryaddressController');
 
 Route::resource('factories', 'FactoryController');
+
+Route::resource('cards', 'CardController');

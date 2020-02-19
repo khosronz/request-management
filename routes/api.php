@@ -71,3 +71,5 @@ Route::resource('factorytells', 'FactorytellAPIController');
 Route::resource('factoryaddresses', 'FactoryaddressAPIController');
 
 Route::resource('factories', 'FactoryAPIController');
+
+Route::resource('cards', 'CardAPIController');

@@ -2,9 +2,9 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">@lang('Orders')</li>
+        <li class="breadcrumb-item">@lang('Cards')</li>
     </ol>
-    @include('orders.index-create')
+    @include('cards.index-create')
 
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -14,12 +14,12 @@
                      <div class="card">
                          <div class="card-header">
                              <i class="fa fa-align-justify"></i>
-                             @lang('orders')
+                             @lang('cards')
                          </div>
                          <div class="card-body">
-                             @include('orders.table')
+                             @include('cards.table')
                               <div class="pull-left mr-3" dir="ltr">
-        @include('coreui-templates::common.paginate', ['records' => $orders])
+        @include('coreui-templates::common.paginate', ['records' => $cards])
 
                               </div>
                          </div>

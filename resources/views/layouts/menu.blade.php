@@ -117,3 +117,9 @@
         <span>@lang('Factories')</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('cards*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('cards.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Cards')</span>
+    </a>
+</li>

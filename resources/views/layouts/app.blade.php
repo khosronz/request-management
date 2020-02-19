@@ -5,17 +5,17 @@
     <title>{{config('app.name')}}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
-{{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">--}}
-{{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">--}}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
 <!-- Theme style -->
-{{--<link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">--}}
+<link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
 <!-- Ionicons -->
-    {{--<link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">--}}
-    {{--<link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/free.min.css">--}}
-    {{--<link rel="stylesheet" href="{{asset('css/free.css')}}">--}}
-    {{--<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">--}}
-    {{--<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">--}}
-    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">--}}
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/free.min.css">
+    <link rel="stylesheet" href="{{asset('css/free.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{ asset('assets/Iransans/main.css') }}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
@@ -37,13 +37,14 @@
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
-                <i class="icon-bell"></i>
+{{--                <i class="icon-bell"></i>--}}
                 <span class="badge badge-pill badge-danger">5</span>
             </a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" style="margin-right: 10px" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">
+                <img class="img-circle" src="{{asset('images/Userpic/profile.png')}}"  width="50" height="50">
                 {!! Auth::user()->name !!}
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -52,7 +53,8 @@
                 </div>
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-envelope-o"></i> @lang('Messages')
-                    <span class="badge badge-success">{{count(\App\Models\Message::where('status',\App\Enums\StatusType::enabled)->get())}}</span>
+                    <span
+                        class="badge badge-success">{{count(\App\Models\Message::where('status',\App\Enums\StatusType::enabled)->get())}}</span>
                 </a>
                 <div class="dropdown-header text-center">
                     <strong>@lang('Settings')</strong>
@@ -101,7 +103,5 @@
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>--}}
 {{--<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>--}}
 @yield('scripts')
-
 <script src="{{asset('js/app.js')}}"></script>
-
 </html>

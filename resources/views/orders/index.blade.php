@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@extends('layouts.all-custom')
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">@lang('Orders')</li>
@@ -28,5 +28,6 @@
              </div>
          </div>
     </div>
+    @include('orders.wizard')
 @endsection
 

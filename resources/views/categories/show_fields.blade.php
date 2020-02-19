@@ -25,18 +25,18 @@
 <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', __('User Id').':') !!}
-    <p>{!! $category->user->name !!}</p>
+    <p>{!! $category->user_id !!}</p>
 </div>
 
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', __('Created At').':') !!}
-    <p>{!! jdate($category->created_at) !!}</p>
+    <p>{!! $category->created_at !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', __('Updated At').':') !!}
-    <p>{!! jdate($category->updated_at) !!}</p>
+    <p>{!! $category->updated_at !!}</p>
 </div>
 

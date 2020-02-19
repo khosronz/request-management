@@ -11,7 +11,8 @@ $factory->define(Equipment::class, function (Faker $faker) {
         'title' => $faker->word,
         'desc' => $faker->text,
         'product_visits' => $faker->randomDigitNotNull,
-        'user_id' => $faker->word,
+        'user_id' => \App\Enums\UserType::master,
+        'category_id' => rand(1,10),
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

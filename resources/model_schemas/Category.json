@@ -49,7 +49,7 @@
     },
     {
         "name": "user_id",
-        "dbType": "integer:unsigned:default,0:foreign,users,id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
         "htmlType": "text",
         "validations": "",
         "searchable": false,

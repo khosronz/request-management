@@ -38,6 +38,7 @@ Route::resource('severities', 'SeverityController');
 Route::get('products/{id}/attributes', 'ProductController@attributes')->name('products.attributes');
 
 
+Route::get('categories/{id}/showproducts', 'CategoryController@showproducts')->name('categories.showproducts');
 Route::resource('categories', 'CategoryController');
 
 

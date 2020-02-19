@@ -83,6 +83,11 @@ class CategoryController extends AppBaseController
         return view('categories.show')->with('category', $category);
     }
 
+    public function showproducts($id)
+    {
+        dd($id);
+    }
+
     /**
      * Show the form for editing the specified Category.
      *

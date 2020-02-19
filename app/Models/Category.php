@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Category
  * @package App\Models
- * @version November 11, 2019, 5:47 pm +0330
+ * @version February 19, 2020, 10:26 am +0330
  *
- * @property \App\User user
+ * @property \App\Models\User user
  * @property string title
  * @property string desc
  * @property integer category_visits
@@ -60,6 +60,6 @@ class Category extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\User::class, 'user_id', 'id');
+        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
     }
 }

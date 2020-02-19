@@ -18,9 +18,11 @@ class CreateEquipmentTable extends Migration
             $table->string('title');
             $table->text('desc');
             $table->integer('product_visits');
+            $table->bigInteger('category_id')->unsigned()->default(0);
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

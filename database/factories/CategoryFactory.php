@@ -11,7 +11,7 @@ $factory->define(Category::class, function (Faker $faker) {
         'title' => $faker->word,
         'desc' => $faker->text,
         'category_visits' => $faker->randomDigitNotNull,
-        'user_id' => $faker->randomDigitNotNull,
+        'user_id' => \App\Enums\UserType::master,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

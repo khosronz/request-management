@@ -13,7 +13,7 @@
                 <td>{!! $category->title !!}</td>
             <td>{!! $category->desc !!}</td>
             <td>{!! $category->category_visits !!}</td>
-            <td>{!! $category->user->name !!}</td>
+            <td>{!! $category->user_id !!}</td>
                 <td>
                     {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

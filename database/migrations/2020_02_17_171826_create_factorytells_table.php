@@ -17,7 +17,7 @@ class CreateFactorytellsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('tellnumber');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->bigInteger('factory_id')->unsigned()->default(0);
             $table->bigInteger('telltype_id')->unsigned()->default(0);
             $table->timestamps();

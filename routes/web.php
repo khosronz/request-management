@@ -82,3 +82,6 @@ Route::resource('factoryaddresses', 'FactoryaddressController');
 Route::resource('factories', 'FactoryController');
 
 Route::resource('cards', 'CardController');
+
+
+Route::resource('media', 'MediaController');

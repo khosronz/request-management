@@ -10,16 +10,22 @@
     {!! Form::textarea('desc', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Category Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('category_id', __('Category Id').':') !!}
+    {!! Form::select('category_id', \App\Models\Category::Pluck('title','id'),null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Product Visits Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('product_visits', __('Product Visits').':') !!}
-    {!! Form::number('product_visits', null, ['class' => 'form-control']) !!}
+    {!! Form::number('product_visits', 0, ['class' => 'form-control']) !!}
 </div>
 
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('user_id', __('User Id').':') !!}
-    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::text('user_id', \Illuminate\Support\Facades\Auth::id(), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

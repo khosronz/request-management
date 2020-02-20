@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('verified');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();

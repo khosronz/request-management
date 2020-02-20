@@ -51,7 +51,9 @@
 <script src="{{asset('build/js/custom.min.js')}}"></script>
 <!-- Dropzone.js -->
 <script src="{{asset('vendors/dropzone/dist/min/dropzone.min.js')}}"></script>
-
+<!-- ecommerce -->
+<link rel="stylesheet" href="{{ asset('assets/css/ecommerce.css') }}"/>
+<script src="{{ asset('assets/js/ecommerce.js') }}"></script>
 <!-- Custom Theme Scripts -->
 <script>
 

@@ -5,6 +5,7 @@
         <th>@lang('Desc')</th>
         <th>@lang('Product Visits')</th>
         <th>@lang('User Id')</th>
+        <th>@lang('Category Id')</th>
             <th colspan="3">@lang('Action')</th>
         </thead>
         <tbody>
@@ -13,7 +14,8 @@
                 <td>{!! $equipment->title !!}</td>
             <td>{!! $equipment->desc !!}</td>
             <td>{!! $equipment->product_visits !!}</td>
-            <td>{!! $equipment->user_id !!}</td>
+            <td>{!! $equipment->user->name !!}</td>
+            <td>{!! $equipment->category->title !!}</td>
                 <td>
                     {!! Form::open(['route' => ['equipment.destroy', $equipment->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

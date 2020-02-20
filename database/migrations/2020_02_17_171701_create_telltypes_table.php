@@ -16,7 +16,7 @@ class CreateTelltypesTable extends Migration
         Schema::create('telltypes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

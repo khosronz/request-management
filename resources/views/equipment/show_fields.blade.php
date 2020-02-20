@@ -25,7 +25,13 @@
 <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', __('User Id').':') !!}
-    <p>{!! $equipment->user_id !!}</p>
+    <p>{!! $equipment->user->name !!}</p>
+</div>
+
+<!-- Category Id Field -->
+<div class="form-group">
+    {!! Form::label('category_id', __('Category Id').':') !!}
+    <p>{!! $equipment->category->title !!}</p>
 </div>
 
 <!-- Created At Field -->

@@ -16,7 +16,7 @@ class CreateFactoryaddressesTable extends Migration
         Schema::create('factoryaddresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('factory_id')->unsigned()->default(0);
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('factory_id')->references('id')->on('factories');

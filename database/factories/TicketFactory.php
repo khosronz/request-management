@@ -9,10 +9,10 @@ $factory->define(Ticket::class, function (Faker $faker) {
 
     return [
         'title' => $faker->word,
-        'status' => $faker->word,
-        'severity_id' => $faker->word,
-        'organization_id' => $faker->word,
-        'user_id' => $faker->word,
+        'status' => 1,
+        'severity_id' => rand(1,3),
+        'organization_id' => rand(1,6),
+        'user_id' => rand(1,7),
         'desc' => $faker->text,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')

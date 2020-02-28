@@ -42,7 +42,7 @@ class TicketRepository extends BaseRepository
 
     public function findByUserId($id)
     {
-        $result = Ticket::where('user_id','=',$id);
+        $result = Ticket::where('user_id','=',$id)->orderBy('created_at', 'DESC');
 
         return $result;
     }

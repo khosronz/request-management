@@ -12,10 +12,10 @@ use BenSampo\Enum\Enum;
 final class UserType extends Enum
 {
     const superadmin = 1;
-    const owner = 3;
-    const financial = 4;
-    const protection = 5;
-    const successor = 6;
-    const master = 7;
-    const support = 8;
+    const owner = 2;
+    const financial = 3;
+    const protection = 4;
+    const successor = 5;
+    const master = 6;
+    const support = 7;
 }

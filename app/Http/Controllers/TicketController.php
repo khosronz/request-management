@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TicketStatus;
 use App\Http\Requests\CreateTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Repositories\TicketRepository;
@@ -150,9 +151,11 @@ class TicketController extends AppBaseController
             return redirect(route('tickets.index'));
         }
 
-        $this->ticketRepository->delete($id);
+        $ticket = $this->ticketRepository->update(['status'=>TicketStatus::close], $id);
 
-        Flash::success(__('Ticket').' '.__('deleted successfully.'));
+//        $this->ticketRepository->delete($id);
+
+        Flash::success(__('Ticket').' '.__('Closed successfully.'));
 
         return redirect(route('tickets.index'));
     }

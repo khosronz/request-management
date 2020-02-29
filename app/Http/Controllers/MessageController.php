@@ -60,7 +60,8 @@ class MessageController extends AppBaseController
 
         Flash::success(__('Message').' '.__('saved successfully.'));
 
-        return redirect(route('messages.index'));
+        return back();
+//        return redirect(route('messages.index'));
     }
 
     /**

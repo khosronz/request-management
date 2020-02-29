@@ -9,7 +9,7 @@ $factory->define(Ticket::class, function (Faker $faker) {
 
     return [
         'title' => $faker->word,
-        'status' => 1,
+        'status' => \App\Enums\TicketStatus::open,
         'severity_id' => rand(1,3),
         'organization_id' => rand(1,6),
         'user_id' => rand(1,7),

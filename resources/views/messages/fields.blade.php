@@ -5,21 +5,23 @@
 </div>
 
 <!-- Status Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('status', __('Status').':') !!}
     {!! Form::select('status', [\App\Enums\TicketStatus::open => 'باز',\App\Enums\TicketStatus::close => 'بسته'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ticket Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('ticket_id', __('Ticket Id').':') !!}
-    {!! Form::select('ticket_id', \App\Models\Ticket::pluck('title','id'),null, ['class' => 'form-control']) !!}
+    {!! Form::text('ticket_id', $ticket->id ?? '', ['class' => 'form-control']) !!}
+{{--    {!! Form::select('ticket_id', \App\Models\Ticket::pluck('title','id'),null, ['class' => 'form-control']) !!}--}}
 </div>
 
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('user_id', __('User Id').':') !!}
-    {!! Form::select('user_id', \App\User::pluck('name','id'),null, ['class' => 'form-control']) !!}
+    {!! Form::text('user_id', \Illuminate\Support\Facades\Auth::id(), ['class' => 'form-control']) !!}
+{{--    {!! Form::select('user_id', \App\User::pluck('name','id'),null, ['class' => 'form-control']) !!}--}}
 </div>
 
 <!-- Desc Field -->

@@ -113,12 +113,12 @@
         <span>@lang('Tickets')</span>
     </a>
 </li>
-<li class="nav-item {{ Request::is('messages*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('messages.index') !!}">
-        <i class="nav-icon cui-paper-plane"></i>
-        <span>@lang('Messages')</span>
-    </a>
-</li>
+{{--<li class="nav-item {{ Request::is('messages*') ? 'active' : '' }}">--}}
+    {{--<a class="nav-link" href="{!! route('messages.index') !!}">--}}
+        {{--<i class="nav-icon cui-paper-plane"></i>--}}
+        {{--<span>@lang('Messages')</span>--}}
+    {{--</a>--}}
+{{--</li>--}}
 <li class="nav-item {{ Request::is('orders*') ? 'active' : '' }}">
     <a class="nav-link" href="{!! route('orders.index') !!}">
         <i class="nav-icon icon-cursor"></i>

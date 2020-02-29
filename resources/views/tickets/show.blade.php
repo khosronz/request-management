@@ -18,11 +18,16 @@
                                   <a href="{!! route('tickets.index') !!}" class="btn btn-ghost-light">@lang('Back')</a>
                              </div>
                              <div class="card-body">
-                                 @include('tickets.show_fields')
+                                 <div class="row">
+
+                                     @include('tickets.show_fields')
+                                 </div>
                              </div>
                          </div>
                      </div>
                  </div>
           </div>
     </div>
+    @include('messages.index-create')
+    @include('tickets.show-table-messages')
 @endsection

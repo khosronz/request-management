@@ -3,12 +3,20 @@
     {!! Form::label('title', __('Title').':') !!}
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Status Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('status', __('Status').':') !!}
-    {!! Form::select('status', [\App\Enums\TicketStatus::open => 'باز',\App\Enums\TicketStatus::close => 'بسته'] ,null, ['class' => 'form-control']) !!}
-</div>
+@if(Request::is('tickets'))
+    <!-- Status Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('status', __('Status').':') !!}
+        {!! Form::select('status', [\App\Enums\TicketStatus::open => 'باز'] ,null, ['class' => 'form-control']) !!}
+    </div>
+@endif
+@if(Request::is('tickets/{id}/edit'))
+    <!-- Status Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('status', __('Status').':') !!}
+        {!! Form::select('status', [\App\Enums\TicketStatus::open => 'باز'] ,null, ['class' => 'form-control']) !!}
+    </div>
+@endif
 
 <!-- Severity Id Field -->
 <div class="form-group col-sm-6">
@@ -23,9 +31,10 @@
 </div>
 
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('user_id', __('User Id').':') !!}
-    {!! Form::select('user_id', \App\User::pluck('name','id'),null, ['class' => 'form-control']) !!}
+    {!! Form::text('user_id', \Illuminate\Support\Facades\Auth::id(), ['class' => 'form-control']) !!}
+{{--    {!! Form::select('user_id', \App\User::pluck('name','id'),null, ['class' => 'form-control']) !!}--}}
 </div>
 
 <!-- Desc Field -->

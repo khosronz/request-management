@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -22,6 +24,31 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user=Auth::user();
+        switch ($user){
+            case $user->isSuperadmin():
+                return view('homes.superadmin.index');
+                break;
+            case $user->isMaster():
+                return view('homes.master.index');
+                break;
+            case $user->isOwner():
+                return view('homes.owner.index');
+                break;
+            case $user->isFinancial():
+                return view('homes.financial.index');
+                break;
+            case $user->isProtection():
+                return view('homes.protection.index');
+                break;
+            case $user->isSuccessor():
+                return view('homes.successor.index');
+                break;
+            case $user->isSupport():
+                return view('homes.support.index');
+                break;
+        }
+
         return view('home');
     }
 

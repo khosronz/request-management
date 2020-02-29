@@ -38,6 +38,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function tickets()
+    {
+        return $this->hasMany('App\Models\Ticket');
+    }
+
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role', 'role_user', 'user_id', 'role_id');

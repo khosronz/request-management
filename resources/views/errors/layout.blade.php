@@ -10,6 +10,9 @@
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
+        <link rel="stylesheet" href="{{ asset('assets/Iransans/main.css') }}">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -53,5 +56,6 @@
                 </div>
             </div>
         </div>
+        <script src="{{asset('js/app.js')}}"></script>
     </body>
 </html>

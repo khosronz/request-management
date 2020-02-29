@@ -15,7 +15,9 @@
                          <div class="card">
                              <div class="card-header">
                                  <strong>@lang('Details')</strong>
-                                  <a href="{!! route('messages.index') !!}" class="btn btn-ghost-light">@lang('Back')</a>
+                                  <a href="{!! route('tickets.index') !!}" class="btn btn-success"><i class="fa fa-arrow-left"></i> @lang('Back to my tickets')</a>
+                                 <a href="{!! route('tickets.show', [$message->ticket_id]) !!}" class='btn btn-ghost-success'><i
+                                             class="fa fa-undo"></i></a>
                              </div>
                              <div class="card-body">
                                  @include('messages.show_fields')

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index');
 
 
 Auth::routes(['verify' => true]);
@@ -27,9 +25,7 @@ Route::get('/financial', 'HomeController@financialindex')->name('financial.index
 Route::get('/support', 'HomeController@supportindex')->name('support.index');
 Route::get('/home', 'HomeController@index');
 
-
 Route::resource('organizations', 'OrganizationController');
-
 
 Route::resource('roles', 'RoleController');
 
@@ -37,14 +33,8 @@ Route::resource('severities', 'SeverityController');
 
 Route::get('products/{id}/attributes', 'ProductController@attributes')->name('products.attributes');
 
-
 Route::get('categories/{id}/showproducts', 'CategoryController@showproducts')->name('categories.showproducts');
 Route::resource('categories', 'CategoryController');
-
-
-
-
-
 
 Route::resource('tickets', 'TicketController');
 

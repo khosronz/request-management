@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrganizationUserRequest;
 use App\Http\Requests\UpdateOrganizationUserRequest;
+use App\Models\OrganizationUser;
 use App\Repositories\OrganizationUserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -56,11 +57,21 @@ class OrganizationUserController extends AppBaseController
     {
         $input = $request->all();
 
-        $organizationUser = $this->organizationUserRepository->create($input);
+        $organizationUser=OrganizationUser::where([
+            ['user_id','=',$input['user_id']],
+            ['organization_id','=',$input['organization_id']],
+        ])->first();
 
-        Flash::success(__('Organization User').' '.__('saved successfully.'));
+        if (empty($organizationUser)){
+            $organizationUser = $this->organizationUserRepository->create($input);
 
-        return redirect(route('organizationUsers.index'));
+            Flash::success(__('Organization User').' '.__('saved successfully.'));
+        } else {
+            Flash::warning(__('Organization User').' '.__('already saved and relation saved.'));
+        }
+
+        return back();
+//        return redirect(route('organizationUsers.index'));
     }
 
     /**
@@ -147,10 +158,11 @@ class OrganizationUserController extends AppBaseController
             return redirect(route('organizationUsers.index'));
         }
 
-        $this->organizationUserRepository->delete($id);
+        $this->organizationUserRepository->forceDelete($id);
 
         Flash::success(__('Organization User').' '.__('deleted successfully.'));
 
-        return redirect(route('organizationUsers.index'));
+        return back();
+//        return redirect(route('organizationUsers.index'));
     }
 }

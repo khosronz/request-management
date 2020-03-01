@@ -5,9 +5,9 @@
 </div>
 
 <!-- Organization Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('organization_id', __('Organization Id').':') !!}
-    {!! Form::select('organization_id', \App\Models\Organization::pluck('title','id') ,null, ['class' => 'form-control']) !!}
+    {!! Form::text('organization_id', $organization->id, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

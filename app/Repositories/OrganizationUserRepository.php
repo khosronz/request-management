@@ -37,4 +37,13 @@ class OrganizationUserRepository extends BaseRepository
     {
         return OrganizationUser::class;
     }
+
+    public function forceDelete($id)
+    {
+        $query = $this->model->newQuery();
+
+        $model = $query->findOrFail($id);
+
+        return $model->forceDelete();
+    }
 }

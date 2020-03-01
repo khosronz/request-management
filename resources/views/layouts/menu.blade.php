@@ -65,12 +65,12 @@
                 <span>@lang('Media')</span>
             </a>
         </li>
-        <li class="nav-item {{ Request::is('organizationUsers*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('organizationUsers.index') !!}">
-                <i class="nav-icon icon-cursor"></i>
-                <span>@lang('Organization Users')</span>
-            </a>
-        </li>
+        {{--<li class="nav-item {{ Request::is('organizationUsers*') ? 'active' : '' }}">--}}
+            {{--<a class="nav-link" href="{!! route('organizationUsers.index') !!}">--}}
+                {{--<i class="nav-icon icon-cursor"></i>--}}
+                {{--<span>@lang('Organization Users')</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
     </ul>
 </li>
  {{--Dashboards--}}

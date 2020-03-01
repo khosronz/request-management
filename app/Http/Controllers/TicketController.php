@@ -32,11 +32,21 @@ class TicketController extends AppBaseController
     public function index(Request $request)
     {
 //        $tickets = $this->ticketRepository->find()->paginate(5);
+        $organizations = Auth::user()->organizations;
+        $organization_ids=[];
+        foreach ($organizations as $organization){
+            array_push($organization_ids,$organization->id);
+        }
+
+//        dd($organization_ids);
         $tickets = $this->ticketRepository->findByUserId(Auth::id())->paginate(5);
+        $orgtickets = $this->ticketRepository->findByOrganizationId($organization_ids)->paginate(5);
+//        dd($orgtickets);
 
 
         return view('tickets.index')
-            ->with('tickets', $tickets);
+            ->with('tickets', $tickets)
+            ->with('orgtickets', $orgtickets);
     }
 
     /**

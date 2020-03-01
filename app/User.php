@@ -48,6 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\Models\Role', 'role_user', 'user_id', 'role_id');
     }
 
+    public function organizations()
+    {
+        return $this->belongsToMany('App\Models\Organization', 'organization_users', 'user_id', 'organization_id');
+    }
+
     public function isSuperadmin()
     {
         foreach ($this->roles as $role){

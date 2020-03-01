@@ -28,7 +28,7 @@
     @include('organization_users.index-create')
 
     @php
-        $organizationUsers=\App\Models\OrganizationUser::paginate(10);
+        $organizationUsers=\App\Models\OrganizationUser::where('organization_id','=',$organization->id)->paginate(10);
     @endphp
 
     <div class="container-fluid">

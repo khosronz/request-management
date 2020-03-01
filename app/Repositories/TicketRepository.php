@@ -46,4 +46,11 @@ class TicketRepository extends BaseRepository
 
         return $result;
     }
+
+    public function findByOrganizationId($organization_ids)
+    {
+        $result = Ticket::whereIn('organization_id',$organization_ids)->orderBy('created_at', 'DESC');
+
+        return $result;
+    }
 }

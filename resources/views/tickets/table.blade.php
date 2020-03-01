@@ -2,7 +2,6 @@
     <table class="table table-responsive table-bordered table-striped" id="tickets-table"
            style="display: block;overflow-x: auto; white-space: nowrap;">
         <thead>
-        <th colspan="3">@lang('Action')</th>
         <th>@lang('Title')</th>
         <th>@lang('Status')</th>
         <th>@lang('Severity Id')</th>
@@ -10,10 +9,18 @@
         <th>@lang('User Id')</th>
         <th>@lang('Desc')</th>
         <th>@lang('New Messages')</th>
+        <th colspan="3">@lang('Action')</th>
         </thead>
         <tbody>
         @foreach($tickets as $ticket)
             <tr>
+                <td>{!! $ticket->title !!}</td>
+                <td>{!! $ticket->status ? 'باز' : 'بسته' !!}</td>
+                <td>{!! $ticket->severity->title !!}</td>
+                <td>{!! $ticket->organization->title !!}</td>
+                <td>{!! $ticket->user->name !!}</td>
+                <td>{!! $ticket->desc !!}</td>
+                <td>{!! count($ticket->messages->where('status',\App\Enums\StatusType::enabled)) !!}</td>
                 <td>
                     {!! Form::open(['route' => ['tickets.destroy', $ticket->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -27,13 +34,6 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
-                <td>{!! $ticket->title !!}</td>
-                <td>{!! $ticket->status ? 'باز' : 'بسته' !!}</td>
-                <td>{!! $ticket->severity->title !!}</td>
-                <td>{!! $ticket->organization->title !!}</td>
-                <td>{!! $ticket->user->name !!}</td>
-                <td>{!! $ticket->desc !!}</td>
-                <td>{!! count($ticket->messages->where('status',\App\Enums\StatusType::enabled)) !!}</td>
             </tr>
         @endforeach
         </tbody>

@@ -94,6 +94,6 @@ class Ticket extends Model
      **/
     public function messages()
     {
-        return $this->hasMany('App\Models\Message','ticket_id','id');
+        return $this->hasMany('App\Models\Message','ticket_id','id')->orderBy('created_at','DESC');
     }
 }

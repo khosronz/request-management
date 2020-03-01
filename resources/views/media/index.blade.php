@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@extends('layouts.all-custom')
+
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">@lang('Orders')</li>
+        <li class="breadcrumb-item">@lang('Media')</li>
     </ol>
     @include('orders.index-create')
 
@@ -13,14 +13,14 @@
                  <div class="col-lg-12">
                      <div class="card">
                          <div class="card-header">
-                             <i class="fa fa-align-justify"></i>
-                             @lang('orders')
+                             <i class="fa fa-align-justify ml-1"></i>
+                             @lang('Media')
                          </div>
                          <div class="card-body">
-                             @include('orders.table')
+                             @include('media.table')
                               <div class="pull-left mr-3" dir="ltr">
 
-        @include('coreui-templates::common.paginate', ['records' => $orders])
+        @include('coreui-templates::common.paginate', ['records' => $media])
 
                               </div>
                          </div>
@@ -29,6 +29,5 @@
              </div>
          </div>
     </div>
-    @include('orders.wizard')
 @endsection
 

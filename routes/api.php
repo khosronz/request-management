@@ -73,3 +73,5 @@ Route::resource('factoryaddresses', 'FactoryaddressAPIController');
 Route::resource('factories', 'FactoryAPIController');
 
 Route::resource('cards', 'CardAPIController');
+
+Route::resource('media', 'MediaAPIController');

@@ -10,12 +10,12 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
 <!-- Ionicons -->
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/free.min.css">
-    <link rel="stylesheet" href="{{asset('css/free.css')}}">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
+    {{--<link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">--}}
+    {{--<link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/free.min.css">--}}
+    {{--<link rel="stylesheet" href="{{asset('css/free.css')}}">--}}
+    {{--<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">--}}
+    {{--<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">--}}
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">--}}
     <link rel="stylesheet" href="{{ asset('assets/Iransans/main.css') }}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>

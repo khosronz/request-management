@@ -59,6 +59,12 @@
                 <span>@lang('Categories')</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('media*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('media.index') !!}">
+                <i class="nav-icon icon-cursor"></i>
+                <span>@lang('Media')</span>
+            </a>
+        </li>
     </ul>
 </li>
  {{--Dashboards--}}
@@ -135,11 +141,5 @@
     <a class="nav-link" href="{!! route('cards.index') !!}">
         <i class="nav-icon icon-cursor"></i>
         <span>@lang('Cards')</span>
-    </a>
-</li>
-<li class="nav-item {{ Request::is('media*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('media.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>@lang('Media')</span>
     </a>
 </li>

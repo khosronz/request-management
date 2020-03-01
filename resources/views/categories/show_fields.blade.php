@@ -31,12 +31,12 @@
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', __('Created At').':') !!}
-    <p>{!! $category->created_at !!}</p>
+    <p>{!! jdate($category->created_at) !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', __('Updated At').':') !!}
-    <p>{!! $category->updated_at !!}</p>
+    <p>{!! jdate($category->updated_at) !!}</p>
 </div>
 

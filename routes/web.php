@@ -75,3 +75,5 @@ Route::resource('cards', 'CardController');
 
 
 Route::resource('media', 'MediaController');
+
+Route::resource('organizationUsers', 'OrganizationUserController');

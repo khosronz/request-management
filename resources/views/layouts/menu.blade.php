@@ -65,6 +65,12 @@
                 <span>@lang('Media')</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('organizationUsers*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('organizationUsers.index') !!}">
+                <i class="nav-icon icon-cursor"></i>
+                <span>@lang('Organization Users')</span>
+            </a>
+        </li>
     </ul>
 </li>
  {{--Dashboards--}}
@@ -131,15 +137,16 @@
         <span>@lang('Orders')</span>
     </a>
 </li>
-<li class="nav-item {{ Request::is('orderdetails*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('orderdetails.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>@lang('Orderdetails')</span>
-    </a>
-</li>
-<li class="nav-item {{ Request::is('cards*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('cards.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>@lang('Cards')</span>
-    </a>
-</li>
+{{--<li class="nav-item {{ Request::is('orderdetails*') ? 'active' : '' }}">--}}
+    {{--<a class="nav-link" href="{!! route('orderdetails.index') !!}">--}}
+        {{--<i class="nav-icon icon-cursor"></i>--}}
+        {{--<span>@lang('Orderdetails')</span>--}}
+    {{--</a>--}}
+{{--</li>--}}
+{{--<li class="nav-item {{ Request::is('cards*') ? 'active' : '' }}">--}}
+    {{--<a class="nav-link" href="{!! route('cards.index') !!}">--}}
+        {{--<i class="nav-icon icon-cursor"></i>--}}
+        {{--<span>@lang('Cards')</span>--}}
+    {{--</a>--}}
+{{--</li>--}}
+

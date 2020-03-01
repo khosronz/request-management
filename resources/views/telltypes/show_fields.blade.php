@@ -19,12 +19,12 @@
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', __('Created At').':') !!}
-    <p>{!! $telltype->created_at !!}</p>
+    <p>{!! jdate($telltype->created_at) !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', __('Updated At').':') !!}
-    <p>{!! $telltype->updated_at !!}</p>
+    <p>{!! jdate($telltype->updated_at) !!}</p>
 </div>
 

@@ -37,12 +37,12 @@
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', __('Created At').':') !!}
-    <p>{!! $factorytell->created_at !!}</p>
+    <p>{!! jdate($factorytell->created_at) !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', __('Updated At').':') !!}
-    <p>{!! $factorytell->updated_at !!}</p>
+    <p>{!! jdate($factorytell->updated_at) !!}</p>
 </div>
 

@@ -14,16 +14,21 @@
                          @include('homes.owner.status.cards')
 
                      </div>
-                     <div class="card">
-                         <div class="card-header">
-                             <i class="fa fa-align-justify ml-1"></i>
-                             @lang('Owner Dashboard')
-                         </div>
-                         <div class="card-body">
+                     <div class="row">
+                         <div id="accordion" class="col-sm-6">
+                             <div class="animated fadeIn">
 
+                                 @include('homes.owner.status.profile')
+                             </div>
                          </div>
+                         <div id="accordion" class="col-sm-6">
+                             <div class="animated fadeIn">
+                                 @include('homes.owner.status.notation')
+                             </div>
+                         </div>
+
                      </div>
-                  </div>
+                 </div>
              </div>
          </div>
     </div>

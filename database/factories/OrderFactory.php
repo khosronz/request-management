@@ -9,9 +9,9 @@ $factory->define(Order::class, function (Faker $faker) {
 
     return [
         'title' => $faker->word,
-        'verified' => $faker->word,
+        'verified' => rand(1,12),
         'desc' => $faker->text,
-        'user_id' => $faker->word,
+        'user_id' => \App\Enums\UserType::owner,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

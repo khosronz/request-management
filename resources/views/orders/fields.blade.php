@@ -7,7 +7,7 @@
 <!-- Verified Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('verified', __('Verified').':') !!}
-    {!! Form::text('verified', null, ['class' => 'form-control']) !!}
+    {!! Form::select('verified', getVerificationStatusArray() ,null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Desc Field -->
@@ -16,11 +16,20 @@
     {!! Form::textarea('desc', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', __('User Id').':') !!}
-    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
-</div>
+@if(Request::is('orders'))
+    <!-- User Id Field -->
+    <div class="form-group col-sm-6 sr-only">
+        {!! Form::label('user_id', __('User Id').':') !!}
+        {!! Form::text('user_id', \Illuminate\Support\Facades\Auth::id(), ['class' => 'form-control']) !!}
+    </div>
+@endif
+@if(Request::is('orders/*/edit'))
+    <!-- User Id Field -->
+    <div class="form-group col-sm-6 sr-only">
+        {!! Form::label('user_id', __('User Id').':') !!}
+        {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
+    </div>
+@endif
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

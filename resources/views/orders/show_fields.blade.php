@@ -13,7 +13,7 @@
 <!-- Verified Field -->
 <div class="form-group">
     {!! Form::label('verified', __('Verified').':') !!}
-    <p>{!! $order->verified !!}</p>
+    <p>{!! verificationStatus($order->verified) !!}</p>
 </div>
 
 <!-- Desc Field -->
@@ -25,7 +25,7 @@
 <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', __('User Id').':') !!}
-    <p>{!! $order->user_id !!}</p>
+    <p>{!! $order->user->name !!}</p>
 </div>
 
 <!-- Created At Field -->

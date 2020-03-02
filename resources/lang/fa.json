@@ -250,6 +250,8 @@
   "user_ip": "آی پی کاربر",
   "message": "پیام",
   "date": "زمان",
+  "Date": "زمان",
+  "Date ordered": "زمان ثبت سفارش",
   "Create Message": "افزودن پیام",
   "Send Message": "ارسال پیام",
   "SMS": "پیامک",

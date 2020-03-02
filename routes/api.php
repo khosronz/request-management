@@ -33,30 +33,12 @@ Route::resource('severities', 'SeverityAPIController');
 
 Route::get('products/{id}/attributes', 'ProductAPIController@attributes')->name('api.products.attributes');
 
-
+Route::get('categories/{id}/equipment', 'CategoryAPIController@showByCategoryId');
 Route::resource('categories', 'CategoryAPIController');
-
-
-
-
 
 Route::resource('tickets', 'TicketAPIController');
 
 Route::resource('messages', 'MessageAPIController');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::resource('equipment', 'EquipmentAPIController');
 

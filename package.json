@@ -27,7 +27,7 @@
         "bootstrap": "^4.4.1",
         "bootstrap-datepicker": "^1.9.0",
         "bootstrap-datetimepicker": "0.0.7",
-        "bootstrap-vue": "^2.0.4",
+        "bootstrap-vue": "^2.5.0",
         "chart.js": "^2.9.3",
         "coreui": "^0.4.2-alpha2",
         "datatables-bootstrap": "0.0.1",

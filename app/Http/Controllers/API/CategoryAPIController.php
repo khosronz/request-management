@@ -5,9 +5,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateCategoryAPIRequest;
 use App\Http\Requests\API\UpdateCategoryAPIRequest;
 use App\Models\Category;
+use App\Models\Equipment;
 use App\Repositories\CategoryRepository;
+use App\Repositories\EquipmentRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 /**
@@ -19,10 +22,12 @@ class CategoryAPIController extends AppBaseController
 {
     /** @var  CategoryRepository */
     private $categoryRepository;
+    private $equipmentRepository;
 
-    public function __construct(CategoryRepository $categoryRepo)
+    public function __construct(CategoryRepository $categoryRepo,EquipmentRepository $equipmentRepo )
     {
         $this->categoryRepository = $categoryRepo;
+        $this->equipmentRepository = $equipmentRepo;
     }
 
     /**
@@ -78,6 +83,22 @@ class CategoryAPIController extends AppBaseController
         }
 
         return $this->sendResponse($category->toArray(), 'Category retrieved successfully');
+    }
+
+    public function showByCategoryId($id)
+    {
+        /** @var Equipment $equipment */
+        $category = $this->categoryRepository->find($id);
+
+        if (empty($category)) {
+            return $this->sendError('Equipment not found');
+        }
+
+//        $equipments = $this->equipmentRepository->find($id);
+        $equipments = Equipment::where('category_id','=',$category->id)->get();
+//        dd($equipments);
+
+        return $this->sendResponse($equipments->toArray(), 'Equipment retrieved successfully');
     }
 
     /**

@@ -1,7 +1,7 @@
 <div class="table-responsive-sm">
     <table class="table table-responsive table-bordered table-striped" id="orderdetails-table" style="display: block;overflow-x: auto; white-space: nowrap;">
         <thead>
-            <th>@lang('Status')</th>
+            <th class="sr-only">@lang('Status')</th>
         <th>@lang('Equipment Id')</th>
         <th>@lang('Num')</th>
         <th>@lang('Unit Price')</th>
@@ -12,12 +12,12 @@
         <tbody>
         @foreach($orderdetails as $orderdetail)
             <tr>
-                <td>{!! $orderdetail->status !!}</td>
-            <td>{!! $orderdetail->equipment_id !!}</td>
+                <td class="sr-only">{!! $orderdetail->status ? 'فعال' : 'غیرفعال' !!}</td>
+            <td>{!! $orderdetail->equipment->title !!}</td>
             <td>{!! $orderdetail->num !!}</td>
             <td>{!! $orderdetail->unit_price !!}</td>
-            <td>{!! $orderdetail->order_id !!}</td>
-            <td>{!! $orderdetail->user_id !!}</td>
+            <td>{!! $orderdetail->order->title !!}</td>
+            <td>{!! $orderdetail->user->name !!}</td>
                 <td>
                     {!! Form::open(['route' => ['orderdetails.destroy', $orderdetail->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

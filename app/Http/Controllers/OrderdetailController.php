@@ -60,7 +60,8 @@ class OrderdetailController extends AppBaseController
 
         Flash::success(__('Orderdetail').' '.__('saved successfully.'));
 
-        return redirect(route('orderdetails.index'));
+        return back();
+//        return redirect(route('orderdetails.index'));
     }
 
     /**

@@ -7,6 +7,7 @@
         <th>@lang('Severity Id')</th>
         <th>@lang('Organization Id')</th>
         <th>@lang('User Id')</th>
+        <th>@lang('date')</th>
         <th>@lang('Desc')</th>
         <th>@lang('New Messages')</th>
         <th colspan="3">@lang('Action')</th>
@@ -19,6 +20,7 @@
                 <td>{!! $ticket->severity->title !!}</td>
                 <td>{!! $ticket->organization->title !!}</td>
                 <td>{!! $ticket->user->name !!}</td>
+                <td>{!! jdate($ticket->created_at) !!}</td>
                 <td>{!! $ticket->desc !!}</td>
                 <td>{!! count($ticket->messages->where('status',\App\Enums\StatusType::enabled)) !!}</td>
                 <td>

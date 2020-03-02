@@ -19,6 +19,7 @@
                                     <th>@lang('Status')</th>
                                     <th>@lang('Ticket Id')</th>
                                     <th>@lang('User Id')</th>
+                                    <th>@lang('date')</th>
                                     <th>@lang('Desc')</th>
                                     <th colspan="3">@lang('Action')</th>
                                     </thead>
@@ -32,6 +33,7 @@
                                             <td>{!! $message->status ? 'باز' : 'بسته' !!}</td>
                                             <td>{!! $message->ticket->title !!}</td>
                                             <td>{!! $message->user->name !!}</td>
+                                            <td>{!! jdate($message->created_at) !!}</td>
                                             <td>{!! $message->desc !!}</td>
                                             <td>
                                                 {!! Form::open(['route' => ['messages.destroy', $message->id], 'method' => 'delete']) !!}

@@ -7,6 +7,7 @@
         <th>@lang('Ticket Id')</th>
         <th>@lang('User Id')</th>
         <th>@lang('Desc')</th>
+        <th>@lang('date')</th>
         <th colspan="3">@lang('Action')</th>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
                 <td>{!! $message->ticket->title !!}</td>
                 <td>{!! $message->user->name !!}</td>
                 <td>{!! $message->desc !!}</td>
+                <td>{!! jdate($message->created_at) !!}</td>
                 <td>
                     {!! Form::open(['route' => ['messages.destroy', $message->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

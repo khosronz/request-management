@@ -1,7 +1,7 @@
 <!-- Factory Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('factory_id', __('Factory Id').':') !!}
-    {!! Form::text('factory_id', null, ['class' => 'form-control']) !!}
+    {!! Form::text('factory_id', $factory->id, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Desc Field -->

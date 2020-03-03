@@ -11,6 +11,9 @@ class FactoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $factories = factory(App\Models\Factory::class, 15)->create();
+        $telltypes=factory(App\Models\Telltype::class, 3)->create();
+        $factories = factory(App\Models\Factory::class, 10)->create();
+        $factoytells = factory(App\Models\Factorytell::class, 100)->create();
+        $factoryaddress = factory(App\Models\Factoryaddress::class, 100)->create();
     }
 }

@@ -1,14 +1,14 @@
 <div class="table-responsive-sm">
     <table class="table table-responsive table-bordered table-striped" id="factoryaddresses-table" style="display: block;overflow-x: auto; white-space: nowrap;">
         <thead>
-            <th>@lang('Factory Id')</th>
+            {{--<th>@lang('Factory Id')</th>--}}
         <th>@lang('Desc')</th>
             <th colspan="3">@lang('Action')</th>
         </thead>
         <tbody>
         @foreach($factoryaddresses as $factoryaddress)
             <tr>
-                <td>{!! $factoryaddress->factory_id !!}</td>
+                {{--<td>{!! $factoryaddress->factory->title !!}</td>--}}
             <td>{!! $factoryaddress->desc !!}</td>
                 <td>
                     {!! Form::open(['route' => ['factoryaddresses.destroy', $factoryaddress->id], 'method' => 'delete']) !!}

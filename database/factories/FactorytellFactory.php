@@ -9,10 +9,10 @@ $factory->define(Factorytell::class, function (Faker $faker) {
 
     return [
         'title' => $faker->word,
-        'tellnumber' => $faker->word,
+        'tellnumber' => $faker->phoneNumber,
         'desc' => $faker->text,
-        'factory_id' => $faker->word,
-        'telltype_id' => $faker->word,
+        'factory_id' => rand(1,10),
+        'telltype_id' => rand(1,3),
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

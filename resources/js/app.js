@@ -40,7 +40,7 @@ Vue.use(BootstrapVue);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('multiple-select-component', require('./components/MultipleSelectComponent.vue').default);
-Vue.component('order-table-component', require('./components/OrderTableComponent.vue').default);
+// Vue.component('order-table-component', require('./components/OrderTableComponent.vue').default);
 Vue.component('order-table-filtered-component', require('./components/OrderTableFilteredComponent.vue').default);
 
 /**

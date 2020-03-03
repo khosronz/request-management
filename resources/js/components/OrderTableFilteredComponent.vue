@@ -3,6 +3,22 @@
         <!-- User Interface controls -->
         <b-row>
             <b-col lg="6" class="my-1">
+
+                <b-form-select  @change="onChange($event)" v-model="selected" class="mb-3">
+                    <!-- This slot appears above the options from 'options' prop -->
+                    <template v-slot:first>
+                        <b-form-select-option :value="null" disabled>-- انتخاب کنید --</b-form-select-option>
+                    </template>
+
+                        <!-- These options will appear after the ones from 'options' prop -->
+                    <b-form-select-option v-for="category in options" :key="category.id" :value="category.id">{{category.title}}</b-form-select-option>
+                </b-form-select>
+
+
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col lg="6" class="my-1">
                 <b-form-group
                         label="مرتب سازی"
                         label-cols-sm="3"
@@ -163,9 +179,17 @@
 <script>
     import axios from 'axios';
     export default {
-        props: ['category_id'],
+//        props: ['category_id'],
         data() {
             return {
+                selected: null,
+                options: [
+                    { value: null, text: 'Please select an option' },
+                    { value: 'a', text: 'This is First option' },
+                    { value: 'b', text: 'Selected Option' },
+                    { value: { C: '3PO' }, text: 'This is an option with object value' },
+                    { value: 'd', text: 'This one is disabled', disabled: true }
+                ],
                 items: [],
                 fields: [
                     { key: 'title', label: 'دسته بندی تجهیز', sortable: true, sortDirection: 'desc' },
@@ -200,12 +224,29 @@
             }
         },
         mounted() {
-            let category_id = 2;
-            this.getItems(category_id);
-            // Set the initial number of items
+            this.getCategories();
             this.totalRows = this.items.length;
+//            this.getItems(this.category_id);
         },
         methods: {
+            onChange(event){
+                console.log(this.selected);
+                this.getItems(this.selected);
+
+            },
+            getCategories() {
+                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
+                axios.get('http://project7.test/api/categories')
+                    .then(response => {
+                        console.log(response.data.data);
+                        this.options = response.data.data;
+                        this.selected=null;
+                    })
+                    .catch(e => {
+                        // this.errors.push(e)
+                        console.log(e);
+                    });
+            },
             getItems(category_id) {
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                 axios.get('http://project7.test/api/categories/' + category_id+'/equipment')

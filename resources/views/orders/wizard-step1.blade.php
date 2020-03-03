@@ -8,9 +8,11 @@
 
 <div class="container">
     <div class="row">
+
         <div class="col-sm-12">
             {{--<order-table-component></order-table-component>--}}
             <order-table-filtered-component></order-table-filtered-component>
         </div>
     </div>
 </div>
+

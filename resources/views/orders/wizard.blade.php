@@ -160,12 +160,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- /page content -->
-                <div class="pull-left mr-3" dir="ltr">
+                {{--<!-- /page content -->--}}
+                {{--<div class="pull-left mr-3" dir="ltr">--}}
 
-                    @include('coreui-templates::common.paginate', ['records' => $orders])
+                    {{--@include('coreui-templates::common.paginate', ['records' => $orders])--}}
 
-                </div>
+                {{--</div>--}}
 
             </div>
         </div>

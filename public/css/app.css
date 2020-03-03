@@ -4195,7 +4195,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 @media (prefers-reduced-motion: reduce) {
     .custom-control-label::before, .custom-file-label, .custom-select {
         -webkit-transition: none;
-        transition: none
+        transition: none;
     }
 }
 

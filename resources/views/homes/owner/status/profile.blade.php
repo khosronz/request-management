@@ -6,6 +6,7 @@
         </a>
     </div>
     <div class="card-body collapse" id="collapseTwo" data-parent="#accordion">
+
         {{--{!! Form::open(['route' => 'categories.store']) !!}--}}
 
         {{--@include('categories.fields')--}}

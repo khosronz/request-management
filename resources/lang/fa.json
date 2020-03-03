@@ -640,5 +640,10 @@
   "Enable Trigger": "رخداد را فعال کنید تا از این پس برای این آیتم این رخداد نشان داده شود. ",
   "User saved successfully.": "اطلاعات حساب شما با موفقیت تغییر یافتند.",
   "You are not authorized in this system.": "دسترسی شما به این سیستم غیرمجاز است. لطفا مجددا وارد گردید.",
-  "AttributeProductValues": "مقادیر ویژگی محصول"
+  "AttributeProductValues": "مقادیر ویژگی محصول",
+  "Membership history": "تاریخ عضویت",
+  "Date Update date": "تاریخ آخرین بروز رسانی",
+  "About me": "درباره من",
+  "phone mobile": "موبایل",
+  "security": "امنیتی"
 }

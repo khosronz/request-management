@@ -27,9 +27,20 @@
     {!! Form::label('url', __('Url').':') !!}
     {!! Form::text('url', null, ['class' => 'form-control']) !!}
 </div>
-
+<!-- Upload File -->
+<div>
+    <?php
+    echo Form::open(array('url' => '/uploadfile','files'=>'true'));
+    echo 'لطفا فایل را برای بارگزاری انتخاب نمائید.';
+    echo Form::file('image');
+    echo Form::submit('بارگزاری فایل');
+    echo Form::close();
+    ?>
+</div>
+<br><br>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('media.index') !!}" class="btn btn-default">@lang('Cancel')</a>
 </div>
+

@@ -10,10 +10,11 @@
                                 <strong>@lang('Create Media')</strong>
                             </a>
                         </div>
-                        <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
-                            {!! Form::open(['route' => 'medias.store']) !!}
 
-                            @include('medias.fields')
+                        <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
+                            {!! Form::open(['route' => 'media.store']) !!}
+
+                            @include('media.fields')
 
                             {!! Form::close() !!}
                         </div>

@@ -16,6 +16,12 @@
                 <span>@lang('Roles')</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('users.index') !!}">
+                <i class="nav-icon fa fa-university"></i>
+                <span>@lang('Users')</span>
+            </a>
+        </li>
         <li class="nav-item {{ Request::is('severities*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('severities.index') !!}">
                 <i class="nav-icon icon-layers"></i>

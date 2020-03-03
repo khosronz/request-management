@@ -41,22 +41,6 @@ Route::resource('tickets', 'TicketController');
 Route::resource('messages', 'MessageController');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::resource('equipment', 'EquipmentController');
 
 Route::resource('orders', 'OrderController');
@@ -76,4 +60,5 @@ Route::resource('cards', 'CardController');
 
 Route::resource('media', 'MediaController');
 
+Route::resource('users', 'UserController');
 Route::resource('organizationUsers', 'OrganizationUserController');

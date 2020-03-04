@@ -6,6 +6,7 @@
         <th>@lang('Email')</th>
         <th>@lang('Fname')</th>
         <th>@lang('Lname')</th>
+        <th>@lang('Desc')</th>
         <th>@lang('Factory')</th>
         <th>@lang('Province')</th>
         <th>@lang('City')</th>
@@ -24,6 +25,7 @@
                 <td>{!! $user->email !!}</td>
                 <td>{!! $user->fname !!}</td>
                 <td>{!! $user->lname !!}</td>
+                <td>{!! $user->desc !!}</td>
                 <td>{!! $user->factory !!}</td>
                 <td>{!! $user->province !!}</td>
                 <td>{!! $user->city !!}</td>

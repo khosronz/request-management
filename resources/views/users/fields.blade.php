@@ -25,6 +25,11 @@
         {!! Form::label('lname', __('Lname').':') !!}
         {!! Form::text('lname', null, ['class' => 'form-control']) !!}
     </div>
+    <!-- Desc Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('desc', __('Desc').':') !!}
+        {!! Form::textarea('desc', null, ['class' => 'form-control']) !!}
+    </div>
     <!-- Factory Field -->
     <div class="form-group col-sm-3">
         {!! Form::label('factory', __('Factory').':') !!}

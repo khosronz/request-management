@@ -22,6 +22,10 @@
         <p>{!! $user->lname!!}</p>
     </div>
     <div class="form-group col-sm-3">
+        {!! Form::label('desc', __('Desc').':') !!}
+        <p>{!! $user->desc!!}</p>
+    </div>
+    <div class="form-group col-sm-3">
         {!! Form::label('factory', __('Factory').':') !!}
         <p>{!! $user->factory!!}</p>
     </div>

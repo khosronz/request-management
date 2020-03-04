@@ -55,6 +55,25 @@
 <link rel="stylesheet" href="{{ asset('assets/css/ecommerce.css') }}"/>
 <script src="{{ asset('assets/js/ecommerce.js') }}"></script>
 <!-- Custom Theme Scripts -->
+
+
+<!-- Favicon-->
+<link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon">
+<!-- Plugins Core Css -->
+{{--<link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet">--}}
+{{--<link href="{{asset('assets/js/bundles/materialize-rtl/materialize-rtl.min.css')}}" rel="stylesheet">--}}
+<!-- Custom Css -->
+<link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
+<!-- You can choose a theme from css/styles instead of get all themes -->
+{{--<link href="{{asset('assets/css/styles/all-themes.css')}}" rel="stylesheet" />--}}
+
+
+{{--<script src="{{asset('assets/js/app.min.js')}}"></script>--}}
+{{--<!-- Custom Js -->--}}
+{{--<script src="{{asset('assets/js/admin.js')}}"></script>--}}
+
+
+
 <script>
 
     Dropzone.options.myAwesomeDropzone = {

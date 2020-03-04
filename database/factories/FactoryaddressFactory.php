@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Factoryaddress::class, function (Faker $faker) {
 
     return [
-        'factory_id' => $faker->word,
+        'factory_id' => rand(1,10),
         'desc' => $faker->text,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')

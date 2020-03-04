@@ -1,10 +1,10 @@
 @extends('layouts.app')
+@extends('layouts.all-custom')
 
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">@lang('Owner Dashboard')</li>
     </ol>
-
     <div class="container-fluid">
         <div class="animated fadeIn">
              @include('flash::message')
@@ -24,6 +24,11 @@
                          <div id="accordion" class="col-sm-6">
                              <div class="animated fadeIn">
                                  @include('homes.owner.status.notation')
+                             </div>
+                         </div>
+                         <div>
+                             <div class="animated fadeIn">
+                             @include('homes.profile')
                              </div>
                          </div>
 

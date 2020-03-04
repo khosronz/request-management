@@ -41,22 +41,6 @@ Route::resource('tickets', 'TicketController');
 Route::resource('messages', 'MessageController');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::resource('equipment', 'EquipmentController');
 
 Route::resource('orders', 'OrderController');
@@ -79,4 +63,7 @@ Route::resource('media', 'MediaController');
 //    $path=$request->file('photo')->store('photos');
 //    dd($path);
 //});
+
+Route::patch('users/{id}/updatePassword', 'UserController@updatePassword')->name('users.updatePassword');
+Route::resource('users', 'UserController');
 Route::resource('organizationUsers', 'OrganizationUserController');

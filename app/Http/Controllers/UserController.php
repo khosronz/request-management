@@ -6,16 +6,18 @@ use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Laracasts\Flash\Flash;
 
 class UserController extends Controller
 {
     /** @var  UserRepository */
-    private $categoryRepository;
+    private $userRepository;
 
-    public function __construct(UserRepository $categoryRepo)
+    public function __construct(UserRepository $userRepo)
     {
-        $this->categoryRepository = $categoryRepo;
+        $this->userRepository = $userRepo;
     }
 
     /**
@@ -27,7 +29,7 @@ class UserController extends Controller
     {
         $users = $this->userRepository->paginate(5);
 
-        return view('home')
+        return view('users.index')
             ->with('users', $users);
     }
 
@@ -38,7 +40,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -49,7 +51,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['password']=Hash::make($input['password']);
+
+        $user = $this->userRepository->create($input);
+
+        Flash::success(__('User').' '.__('saved successfully.'));
+
+        return redirect(route('users.index'));
     }
 
     /**
@@ -60,7 +69,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Flash::error(__('User').' '.__('not found.'));
+
+            return redirect(route('users.index'));
+        }
+
+        return view('users.show')->with('user', $user);
     }
 
     /**
@@ -71,7 +88,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Flash::error(__('User').' '.__('not found.'));
+
+            return redirect(route('users.index'));
+        }
+
+        return view('users.edit')->with('user', $user);
     }
 
     /**
@@ -81,9 +106,46 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Flash::error(__('User').' '.__('not found.'));
+
+            return redirect(route('users.index'));
+        }
+        $input = $request->all();
+        if (!empty($input['password'])){
+            $input['password']=Hash::make($input['password']);
+        }
+
+        $user = $this->userRepository->update($input, $id);
+
+        Flash::success(__('User').' '.__('updated successfully.'));
+
+        return redirect(route('users.index'));
+    }
+
+    public function updatePassword($id, Request $request)
+    {
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Flash::error(__('User').' '.__('not found.'));
+
+            return back();
+        }
+        $input = $request->all();
+        if (!empty($input['password'])){
+            $input['password']=Hash::make($input['password']);
+        }
+
+        $user = $this->userRepository->update($input, $id);
+
+        Flash::success(__('User').' '.__('updated successfully.'));
+
+        return back();
     }
 
     /**
@@ -94,6 +156,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Flash::error(__('User').' '.__('not found.'));
+
+            return redirect(route('users.index'));
+        }
+
+        $this->userRepository->delete($id);
+
+        Flash::success(__('User').' '.__('deleted successfully.'));
+
+        return redirect(route('users.index'));
     }
 }

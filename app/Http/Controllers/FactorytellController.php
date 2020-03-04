@@ -60,7 +60,8 @@ class FactorytellController extends AppBaseController
 
         Flash::success(__('Factorytell').' '.__('saved successfully.'));
 
-        return redirect(route('factorytells.index'));
+        return back();
+//        return redirect(route('factorytells.index'));
     }
 
     /**
@@ -125,7 +126,8 @@ class FactorytellController extends AppBaseController
 
         Flash::success(__('Factorytell').' '.__('updated successfully.'));
 
-        return redirect(route('factorytells.index'));
+        return back();
+//        return redirect(route('factorytells.index'));
     }
 
     /**
@@ -151,6 +153,7 @@ class FactorytellController extends AppBaseController
 
         Flash::success(__('Factorytell').' '.__('deleted successfully.'));
 
-        return redirect(route('factorytells.index'));
+        return back();
+//        return redirect(route('factorytells.index'));
     }
 }

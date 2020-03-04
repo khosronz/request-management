@@ -13,7 +13,15 @@ import "moment/moment";
 import "./bootstrap-datetimepicker.min";
 import "@coreui/coreui/dist/js/coreui.min";
 
-import BootstrapVue from 'bootstrap-vue'
+// app.js
+import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 window.Vue = require('vue');
 // Vue.use(require('vue-jalali-moment'));
@@ -31,7 +39,9 @@ Vue.use(BootstrapVue);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('multiple-select-component', require('./components/MultipleSelectComponent.vue').default);
+// Vue.component('multiple-select-component', require('./components/MultipleSelectComponent.vue').default);
+// Vue.component('order-table-component', require('./components/OrderTableComponent.vue').default);
+Vue.component('order-table-filtered-component', require('./components/OrderTableFilteredComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

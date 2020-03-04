@@ -49,5 +49,15 @@ class Factory extends Model
         'title' => 'required'
     ];
 
+    public function factorytells()
+    {
+        return $this->hasMany('App\Models\Factorytell');
+    }
+
+    public function factoryaddresses()
+    {
+        return $this->hasMany('App\Models\Factoryaddress');
+    }
+
     
 }

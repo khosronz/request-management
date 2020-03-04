@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateEquipmentAPIRequest;
 use App\Http\Requests\API\UpdateEquipmentAPIRequest;
 use App\Models\Equipment;
+use App\Repositories\CategoryRepository;
 use App\Repositories\EquipmentRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -19,10 +20,12 @@ class EquipmentAPIController extends AppBaseController
 {
     /** @var  EquipmentRepository */
     private $equipmentRepository;
+    private $categoryRepository;
 
-    public function __construct(EquipmentRepository $equipmentRepo)
+    public function __construct(EquipmentRepository $equipmentRepo, CategoryRepository $categoryRepo)
     {
         $this->equipmentRepository = $equipmentRepo;
+        $this->categoryRepository = $categoryRepo;
     }
 
     /**

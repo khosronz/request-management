@@ -60,7 +60,8 @@ class FactoryaddressController extends AppBaseController
 
         Flash::success(__('Factoryaddress').' '.__('saved successfully.'));
 
-        return redirect(route('factoryaddresses.index'));
+        return back();
+//        return redirect(route('factoryaddresses.index'));
     }
 
     /**
@@ -125,7 +126,8 @@ class FactoryaddressController extends AppBaseController
 
         Flash::success(__('Factoryaddress').' '.__('updated successfully.'));
 
-        return redirect(route('factoryaddresses.index'));
+        return back();
+//        return redirect(route('factoryaddresses.index'));
     }
 
     /**

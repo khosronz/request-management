@@ -8,6 +8,7 @@ use App\Repositories\MediaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Storage;
 use Response;
 
 class MediaController extends AppBaseController
@@ -55,6 +56,16 @@ class MediaController extends AppBaseController
     public function store(CreateMediaRequest $request)
     {
         $input = $request->all();
+        //dd($input);
+        if ($request->hasFile('media_file')) {
+            $media_file = $request->file('media_file');
+            $filename = $media_file->getClientOriginalName();
+            $extension = $media_file->getClientOriginalExtension();
+            $picture = date('His') . '-' . $filename;
+            $media_file->move(public_path('img'), $picture);
+            $input['url'] = '/img/'.$picture;
+            echo 'Image Uploaded Successfully';
+        }
 
         $media = $this->mediaRepository->create($input);
 
@@ -73,14 +84,12 @@ class MediaController extends AppBaseController
     public function show($id)
     {
         $media = $this->mediaRepository->find($id);
-
         if (empty($media)) {
             Flash::error(__('Media').' '.__('not found.'));
-
             return redirect(route('media.index'));
         }
-
         return view('media.show')->with('media', $media);
+
     }
 
     /**
@@ -116,17 +125,37 @@ class MediaController extends AppBaseController
         $media = $this->mediaRepository->find($id);
 
         if (empty($media)) {
-            Flash::error(__('Media').' '.__('not found.'));
+            Flash::error(__('Media') . ' ' . __('not found.'));
 
             return redirect(route('media.index'));
         }
+        $old_filename = $media->url;
+        $input = $request->all();
+        //dd($input);
+        if (file_exists(public_path() . $old_filename)) {
+            if ($request->hasFile('media_file')) {
+                $media_file = $request->file('media_file');
+                $filename = $media_file->getClientOriginalName();
+                $picture = date('His') . '-' . $filename;
+                $media_file->move(public_path('img'), $picture);
+                $input['url'] = '/img/' . $picture;
+                echo 'Image Uploaded Successfully';
+            }
 
-        $media = $this->mediaRepository->update($request->all(), $id);
-
-        Flash::success(__('Media').' '.__('updated successfully.'));
-
+        }else{
+            if ($request->hasFile('media_file')) {
+                $media_file = $request->file('media_file');
+                $filename = $media_file->getClientOriginalName();
+                $picture = date('His') . '-' . $filename;
+                $media_file->move(public_path('img'), $picture);
+                $input['url'] = '/img/' . $picture;
+                echo 'Image Uploaded Successfully';
+            }
+        }
+        $this->mediaRepository->update($input,$id);
         return redirect(route('media.index'));
     }
+
 
     /**
      * Remove the specified Media from storage.

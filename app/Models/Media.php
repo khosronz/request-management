@@ -22,7 +22,7 @@ class Media extends Model
     use SoftDeletes;
 
     public $table = 'media';
-    
+
 
     protected $dates = ['deleted_at'];
 

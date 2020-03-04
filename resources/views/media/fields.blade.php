@@ -1,7 +1,7 @@
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('user_id', __('User Id').':') !!}
-    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::text('user_id', \Illuminate\Support\Facades\Auth::id(), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Title Field -->
@@ -21,15 +21,16 @@
     {!! Form::label('alt', __('Alt').':') !!}
     {!! Form::text('alt', null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Url Field -->
+<!-- Upload  Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('url', __('Url').':') !!}
-    {!! Form::text('url', null, ['class' => 'form-control']) !!}
+    <label for="media_file">{{__('Media file').':'}}</label>
+    <input id="media_file"  name="media_file" type="file" class="form-control-file">
 </div>
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('media.index') !!}" class="btn btn-default">@lang('Cancel')</a>
 </div>
+

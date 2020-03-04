@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">@lang('Media')</li>
     </ol>
-    @include('orders.index-create')
+    @include('media.index-create')
 
     <div class="container-fluid">
         <div class="animated fadeIn">

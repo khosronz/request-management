@@ -59,6 +59,11 @@ Route::resource('cards', 'CardController');
 
 Route::resource('media', 'MediaController');
 
+//Route::post('processupload',function (Request $request){
+//    $path=$request->file('photo')->store('photos');
+//    dd($path);
+//});
+
 Route::patch('users/{id}/updatePassword', 'UserController@updatePassword')->name('users.updatePassword');
 Route::resource('users', 'UserController');
 Route::resource('organizationUsers', 'OrganizationUserController');

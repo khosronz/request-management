@@ -18,10 +18,8 @@
                               <strong>@lang('Edit Media')</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($media, ['route' => ['media.update', $media->id], 'method' => 'patch']) !!}
-
+                             {!! Form::model($media, ['route' => ['media.update', $media->id],'enctype'=>"multipart/form-data", 'method' => 'patch']) !!}
                               @include('media.fields')
-
                               {!! Form::close() !!}
                             </div>
                         </div>

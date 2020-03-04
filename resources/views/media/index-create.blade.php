@@ -12,7 +12,7 @@
                         </div>
 
                         <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
-                            {!! Form::open(['route' => 'media.store','enctype'=>"multipart/form-data"]) !!}
+                                    {!! Form::open(['route' => 'media.store','enctype'=>"multipart/form-data"]) !!}
 
                             @include('media.fields')
 

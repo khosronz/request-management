@@ -56,7 +56,7 @@ class MediaController extends AppBaseController
     public function store(CreateMediaRequest $request)
     {
         $input = $request->all();
-        dd($input);
+        //dd($input);
         if ($request->hasFile('media_file')) {
             $media_file = $request->file('media_file');
             $filename = $media_file->getClientOriginalName();
@@ -131,7 +131,7 @@ class MediaController extends AppBaseController
         }
         $old_filename = $media->url;
         $input = $request->all();
-        dd($input);
+        //dd($input);
         if (file_exists(public_path() . $old_filename)) {
             if ($request->hasFile('media_file')) {
                 $media_file = $request->file('media_file');

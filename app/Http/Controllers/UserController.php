@@ -127,6 +127,27 @@ class UserController extends Controller
         return redirect(route('users.index'));
     }
 
+    public function updatePassword($id, Request $request)
+    {
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Flash::error(__('User').' '.__('not found.'));
+
+            return back();
+        }
+        $input = $request->all();
+        if (!empty($input['password'])){
+            $input['password']=Hash::make($input['password']);
+        }
+
+        $user = $this->userRepository->update($input, $id);
+
+        Flash::success(__('User').' '.__('updated successfully.'));
+
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

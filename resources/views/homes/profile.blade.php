@@ -210,19 +210,27 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            <strong>@lang('Settings')</strong> @lang('security')</h2>
+                            <strong>@lang('Settings')</strong> @lang('security')
+                        </h2>
                     </div>
                     <div class="body">
-                        <div class="form-group">
-                            <input type="text" value="{{\Illuminate\Support\Facades\Auth::user()->name}}" class="form-control" placeholder="نام کاربری" disabled>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="رمزعبور فعلی">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="رمزعبور جذید">
-                        </div>
-                        <button class="btn btn-info btn-round">ذخیره تغییرات</button>
+                        @php
+                            $user=\Illuminate\Support\Facades\Auth::user();
+                        @endphp
+                        {!! Form::model($user, ['route' => ['users.updatePassword', $user->id], 'method' => 'patch']) !!}
+                            <div class="form-group">
+                                <input name="name" type="text" value="{{$user->name}}" class="form-control" placeholder="نام کاربری" disabled/>
+                            </div>
+                            <div class="form-group">
+                                <input name="password" type="password" class="form-control" placeholder="رمزعبور فعلی"/>
+                            </div>
+                            <div class="form-group">
+                                <input name="password_confirmation" type="password" class="form-control" placeholder="رمزعبور جذید"/>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-round">ذخیره تغییرات</button>
+
+                        {!! Form::close() !!}
+
                     </div>
                 </div>
                 <div class="card">

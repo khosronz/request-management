@@ -18,6 +18,7 @@
                                   <a href="{!! route('media.index') !!}" class="btn btn-ghost-light">@lang('Back')</a>
                              </div>
                              <div class="card-body">
+                                 <img src="{{asset($media->url)}}" alt="Logo" width="400px" height="300px" >
                                  @include('media.show_fields')
                              </div>
                          </div>

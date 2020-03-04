@@ -73,7 +73,10 @@ Route::resource('factories', 'FactoryController');
 
 Route::resource('cards', 'CardController');
 
-
 Route::resource('media', 'MediaController');
 
+//Route::post('processupload',function (Request $request){
+//    $path=$request->file('photo')->store('photos');
+//    dd($path);
+//});
 Route::resource('organizationUsers', 'OrganizationUserController');

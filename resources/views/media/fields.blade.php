@@ -1,7 +1,7 @@
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('user_id', __('User Id').':') !!}
-    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::text('user_id', \Illuminate\Support\Facades\Auth::id(), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Title Field -->
@@ -21,23 +21,13 @@
     {!! Form::label('alt', __('Alt').':') !!}
     {!! Form::text('alt', null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Url Field -->
+<!-- Upload  Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('url', __('Url').':') !!}
-    {!! Form::text('url', null, ['class' => 'form-control']) !!}
+    <label for="media_file">{{__('Media file').':'}}</label>
+    <input id="media_file"  name="media_file" type="file" class="form-control-file">
 </div>
-<!-- Upload File -->
-<div>
-    <?php
-    echo Form::open(array('url' => '/uploadfile','files'=>'true'));
-    echo 'لطفا فایل را برای بارگزاری انتخاب نمائید.';
-    echo Form::file('image');
-    echo Form::submit('بارگزاری فایل');
-    echo Form::close();
-    ?>
-</div>
-<br><br>
+
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}

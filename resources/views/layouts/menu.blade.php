@@ -156,3 +156,9 @@
     {{--</a>--}}
 {{--</li>--}}
 
+<li class="nav-item {{ Request::is('roleUsers*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('roleUsers.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Role Users')</span>
+    </a>
+</li>

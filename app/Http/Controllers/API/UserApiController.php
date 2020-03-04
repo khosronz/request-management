@@ -124,7 +124,7 @@ class UserApiController extends AppBaseController
             'api_token' => Str::random(60)
         ]);
 
-        \Illuminate\Support\Facades\DB::table('role_user')->insertGetId([
+        \Illuminate\Support\Facades\DB::table('role_users')->insertGetId([
             'role_id' => \App\Enums\UserType::user, 'user_id' => $user->id,
         ]);
 

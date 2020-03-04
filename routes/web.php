@@ -67,3 +67,6 @@ Route::resource('media', 'MediaController');
 Route::patch('users/{id}/updatePassword', 'UserController@updatePassword')->name('users.updatePassword');
 Route::resource('users', 'UserController');
 Route::resource('organizationUsers', 'OrganizationUserController');
+
+
+Route::resource('roleUsers', 'RoleUserController');

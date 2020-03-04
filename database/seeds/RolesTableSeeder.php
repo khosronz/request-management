@@ -21,7 +21,7 @@ class RolesTableSeeder extends Seeder
             ['id'=>\App\Enums\UserType::support,'title' => 'support', 'desc' => 'Support user', 'created_at' => now(), 'updated_at' => now()]
         ]);
 
-        \Illuminate\Support\Facades\DB::table('role_user')->insert([
+        \Illuminate\Support\Facades\DB::table('role_users')->insert([
             ['role_id' => \App\Enums\UserType::superadmin, 'user_id' => \App\User::where('id',\App\Enums\UserType::superadmin)->first()->id],
             ['role_id' => \App\Enums\UserType::owner, 'user_id' => \App\User::where('id',\App\Enums\UserType::owner)->first()->id],
             ['role_id' => \App\Enums\UserType::master, 'user_id' => \App\User::where('id',\App\Enums\UserType::master)->first()->id],

@@ -59,3 +59,5 @@ Route::resource('cards', 'CardAPIController');
 Route::resource('media', 'MediaAPIController');
 
 Route::resource('organization_users', 'OrganizationUserAPIController');
+
+Route::resource('role_users', 'RoleUserAPIController');

@@ -28,7 +28,7 @@
 
      @include('users.index-create-user-role')
      @php
-         $roles=$user->roles;
+         $roleUsers=\App\Models\RoleUser::where('user_id','=',$user->id)->get();
      @endphp
 
      <div id="accordion">
@@ -44,7 +44,7 @@
                                  </a>
                              </div>
                              <div class="card-body collapse" id="collapseTable" data-parent="#accordion">
-                                 @include('roles.table')
+                                 @include('role_users.table')
                              </div>
                          </div>
                      </div>

@@ -4,6 +4,8 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">@lang('Role Users')</li>
     </ol>
+    @include('role_users.index-create')
+
     <div class="container-fluid">
         <div class="animated fadeIn">
              @include('flash::message')
@@ -13,7 +15,6 @@
                          <div class="card-header">
                              <i class="fa fa-align-justify ml-1"></i>
                              @lang('RoleUsers')
-                             <a class="pull-right" href="{!! route('roleUsers.create') !!}"><i class="fa fa-plus-square fa-lg mr-2"></i></a>
                          </div>
                          <div class="card-body">
                              @include('role_users.table')

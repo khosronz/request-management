@@ -60,7 +60,8 @@ class RoleUserController extends AppBaseController
 
         Flash::success(__('Role User').' '.__('saved successfully.'));
 
-        return redirect(route('roleUsers.index'));
+        return back();
+//        return redirect(route('roleUsers.index'));
     }
 
     /**
@@ -125,7 +126,8 @@ class RoleUserController extends AppBaseController
 
         Flash::success(__('Role User').' '.__('updated successfully.'));
 
-        return redirect(route('roleUsers.index'));
+        return back();
+//        return redirect(route('roleUsers.index'));
     }
 
     /**
@@ -151,6 +153,7 @@ class RoleUserController extends AppBaseController
 
         Flash::success(__('Role User').' '.__('deleted successfully.'));
 
-        return redirect(route('roleUsers.index'));
+        return back();
+//        return redirect(route('roleUsers.index'));
     }
 }

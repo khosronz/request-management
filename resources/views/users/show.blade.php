@@ -25,6 +25,8 @@
                  </div>
           </div>
     </div>
+
+     @include('users.index-create-user-role')
      @php
          $roles=$user->roles;
      @endphp
@@ -36,12 +38,12 @@
                      <div class="col-lg-12">
                          <div class="card">
                              <div class="card-header">
-                                 <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                 <a class="card-link" data-toggle="collapse" href="#collapseTable">
                                      <i class="fa fa-plus-square fa-lg mr-2"></i>
                                      <strong>@lang('User Roles')</strong>
                                  </a>
                              </div>
-                             <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
+                             <div class="card-body collapse" id="collapseTable" data-parent="#accordion">
                                  @include('roles.table')
                              </div>
                          </div>

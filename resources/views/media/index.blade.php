@@ -20,7 +20,7 @@
                              @include('media.table')
                               <div class="pull-left mr-3" dir="ltr">
 
-        @include('coreui-templates::common.paginate', ['records' => $media])
+        @include('coreui-templates::common.paginate', ['records' => $medias])
 
                               </div>
                          </div>

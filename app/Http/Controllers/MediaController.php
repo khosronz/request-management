@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
+use App\Models\Media;
 use App\Repositories\MediaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Response;
 
@@ -30,10 +32,12 @@ class MediaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $media = $this->mediaRepository->paginate(10);
+//        $medias = $this->mediaRepository->paginate(10);
+//        $medias = Auth::user()->medias;
+        $medias = Media::where('user_id','=',Auth::id())->paginate(10);
 
         return view('media.index')
-            ->with('media', $media);
+            ->with('medias', $medias);
     }
 
     /**

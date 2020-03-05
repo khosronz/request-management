@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TicketsTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
         $this->call(FactoriesTableSeeder::class);
+        $this->call(MediasTableSeeder::class);
     }
 }

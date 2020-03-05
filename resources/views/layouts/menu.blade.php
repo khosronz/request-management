@@ -168,3 +168,9 @@
         <span>@lang('Role Users')</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('protectionCategories*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('protectionCategories.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Protection Categories')</span>
+    </a>
+</li>

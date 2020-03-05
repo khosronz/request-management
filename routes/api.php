@@ -61,3 +61,5 @@ Route::resource('media', 'MediaAPIController');
 Route::resource('organization_users', 'OrganizationUserAPIController');
 
 Route::resource('role_users', 'RoleUserAPIController');
+
+Route::resource('protection_categories', 'ProtectionCategoryAPIController');

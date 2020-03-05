@@ -121,6 +121,12 @@
                 <span>@lang('Master Dashboard')</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('supplier*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('supplier.index') !!}">
+                <i class="nav-icon fa fa-angle-double-left"></i>
+                <span>@lang('Supplier Dashboard')</span>
+            </a>
+        </li>
 
     </ul>
 </li>

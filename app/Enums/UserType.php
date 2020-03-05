@@ -18,4 +18,5 @@ final class UserType extends Enum
     const successor = 5;
     const master = 6;
     const support = 7;
+    const supplier = 8;
 }

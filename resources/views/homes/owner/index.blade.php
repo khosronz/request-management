@@ -33,6 +33,26 @@
                          </div>
 
                      </div>
+                     <div class="row">
+                         <div class="col-lg-12">
+
+                             <div class="card">
+                                 <div class="card-header">
+                                     <i class="fa fa-align-justify"></i>
+                                     @lang('My Orders')
+                                 </div>
+                                 <div class="card-body">
+                                     @include('homes.owner.orders.table')
+                                     <div class="pull-left mr-3" dir="ltr">
+
+                                         @include('coreui-templates::common.paginate', ['records' => $orders])
+
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div>
                  </div>
              </div>
          </div>

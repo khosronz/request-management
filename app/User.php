@@ -122,4 +122,13 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return false;
     }
+    public function isSupplier()
+    {
+        foreach ($this->roles as $role){
+            if ($role->id === UserType::supplier){
+                return true;
+            }
+        }
+        return false;
+    }
 }

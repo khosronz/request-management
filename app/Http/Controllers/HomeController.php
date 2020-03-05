@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Order;
+use App\Repositories\OrderRepository;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -12,8 +14,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    private $orderRepository;
+    public function __construct(OrderRepository $orderRepo)
     {
+        $this->orderRepository = $orderRepo;
         $this->middleware(['auth' => 'verified']);
     }
 
@@ -47,6 +51,9 @@ class HomeController extends Controller
             case $user->isSupport():
                 return view('homes.support.index');
                 break;
+            case $user->iSupplier():
+                return view('homes.supplier.index');
+                break;
         }
 
         return view('home');
@@ -54,47 +61,62 @@ class HomeController extends Controller
 
     public function ownercreate()
     {
-        return view('homes.owner.create-orders');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.owner.create-orders')->with('orders',$orders);
     }
 
     public function superadminindex()
     {
-        return view('homes.superadmin.index');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.superadmin.index')->with('orders',$orders);
     }
 
     public function masterindex()
     {
-        return view('homes.master.index');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.master.index')->with('orders',$orders);
     }
 
     public function successorindex()
     {
-        return view('homes.successor.index');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.successor.index')->with('orders',$orders);
     }
 
     public function supportindex()
     {
-        return view('homes.support.index');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.support.index')->with('orders',$orders);
     }
 
     public function ownerindex()
     {
-        return view('homes.owner.index');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.owner.index')->with('orders',$orders);
     }
 
     public function protectionindex()
     {
-        return view('homes.protection.index');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.protection.index')->with('orders',$orders);
     }
 
     public function financialindex()
     {
-        return view('homes.financial.index');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.financial.index')->with('orders',$orders);
     }
 
     public function support()
     {
-        return view('homes.financial.index');
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.financial.index')->with('orders',$orders);
+    }
+
+    public function supplierindex()
+    {
+        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        return view('homes.supplier.index')->with('orders',$orders);
     }
 
 }

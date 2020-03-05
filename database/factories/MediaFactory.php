@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Media::class, function (Faker $faker) {
 
     return [
-        'user_id' => rand(1,7),
+        'user_id' => rand(1,8),
         'title' => $faker->word,
         'desc' => $faker->text,
         'alt' => $faker->word,

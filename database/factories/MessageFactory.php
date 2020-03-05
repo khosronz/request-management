@@ -11,7 +11,7 @@ $factory->define(Message::class, function (Faker $faker) {
         'title' => $faker->word,
         'status' => rand(1,2),
         'ticket_id' => rand(1,100),
-        'user_id' => rand(1,7),
+        'user_id' => rand(1,8),
         'desc' => $faker->text,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')

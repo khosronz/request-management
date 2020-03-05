@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth'=>'verified']);
+        $this->middleware(['auth' => 'verified']);
     }
 
     /**
@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user=Auth::user();
-        switch ($user){
+        $user = Auth::user();
+        switch ($user) {
             case $user->isSuperadmin():
                 return view('homes.superadmin.index');
                 break;
@@ -50,6 +50,11 @@ class HomeController extends Controller
         }
 
         return view('home');
+    }
+
+    public function ownercreate()
+    {
+        return view('homes.owner.create-orders');
     }
 
     public function superadminindex()

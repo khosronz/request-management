@@ -131,24 +131,40 @@
     </ul>
 </li>
 
-<li class="nav-item {{ Request::is('tickets*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('tickets.index') !!}">
-        <i class="nav-icon fa fa-comments-o"></i>
-        <span>@lang('Tickets')</span>
-    </a>
-</li>
+ <li class="nav-item nav-dropdown">
+     <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer"></i>
+         @lang('Orders')
+     </a>
+     <ul class="nav-dropdown-items">
+
+         <li class="nav-item {{ Request::is('orders*') ? 'active' : '' }}">
+             <a class="nav-link" href="{!! route('orders.index') !!}">
+                 <i class="nav-icon fa fa-cart-arrow-down"></i>
+                 <span>@lang('Orders')</span>
+             </a>
+         </li>
+         <li class="nav-item {{ Request::is('owners/create*') ? 'active' : '' }}">
+             <a class="nav-link" href="{!! route('owner.create') !!}">
+                 <i class="nav-icon fa fa-cart-arrow-down"></i>
+                 <span>@lang('New Orders')</span>
+             </a>
+         </li>
+     </ul>
+ </li>
+
+
+ <li class="nav-item {{ Request::is('tickets*') ? 'active' : '' }}">
+     <a class="nav-link" href="{!! route('tickets.index') !!}">
+         <i class="nav-icon fa fa-comments-o"></i>
+         <span>@lang('Tickets')</span>
+     </a>
+ </li>
 {{--<li class="nav-item {{ Request::is('messages*') ? 'active' : '' }}">--}}
     {{--<a class="nav-link" href="{!! route('messages.index') !!}">--}}
         {{--<i class="nav-icon cui-paper-plane"></i>--}}
         {{--<span>@lang('Messages')</span>--}}
     {{--</a>--}}
 {{--</li>--}}
-<li class="nav-item {{ Request::is('orders*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('orders.index') !!}">
-        <i class="nav-icon fa fa-cart-arrow-down"></i>
-        <span>@lang('Orders')</span>
-    </a>
-</li>
 {{--<li class="nav-item {{ Request::is('orderdetails*') ? 'active' : '' }}">--}}
     {{--<a class="nav-link" href="{!! route('orderdetails.index') !!}">--}}
         {{--<i class="nav-icon icon-cursor"></i>--}}
@@ -162,15 +178,15 @@
     {{--</a>--}}
 {{--</li>--}}
 
-<li class="nav-item {{ Request::is('roleUsers*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('roleUsers.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>@lang('Role Users')</span>
-    </a>
-</li>
-<li class="nav-item {{ Request::is('protectionCategories*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('protectionCategories.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>@lang('Protection Categories')</span>
-    </a>
-</li>
+{{--<li class="nav-item {{ Request::is('roleUsers*') ? 'active' : '' }}">--}}
+    {{--<a class="nav-link" href="{!! route('roleUsers.index') !!}">--}}
+        {{--<i class="nav-icon icon-cursor"></i>--}}
+        {{--<span>@lang('Role Users')</span>--}}
+    {{--</a>--}}
+{{--</li>--}}
+{{--<li class="nav-item {{ Request::is('protectionCategories*') ? 'active' : '' }}">--}}
+    {{--<a class="nav-link" href="{!! route('protectionCategories.index') !!}">--}}
+        {{--<i class="nav-icon icon-cursor"></i>--}}
+        {{--<span>@lang('Protection Categories')</span>--}}
+    {{--</a>--}}
+{{--</li>--}}

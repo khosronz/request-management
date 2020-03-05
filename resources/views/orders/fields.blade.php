@@ -5,10 +5,15 @@
 </div>
 
 <!-- Verified Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('verified', __('Verified').':') !!}
-    {!! Form::select('verified', getVerificationStatusArray() ,null, ['class' => 'form-control']) !!}
+    {!! Form::text('verified', \App\Enums\VerifiedType::owner_waite, ['class' => 'form-control']) !!}
 </div>
+{{--<!-- Verified Field -->--}}
+{{--<div class="form-group col-sm-6">--}}
+    {{--{!! Form::label('verified', __('Verified').':') !!}--}}
+    {{--{!! Form::select('verified', getVerificationStatusArray() ,null, ['class' => 'form-control']) !!}--}}
+{{--</div>--}}
 
 <!-- Desc Field -->
 <div class="form-group col-sm-12 col-lg-12">

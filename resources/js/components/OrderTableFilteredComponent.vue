@@ -91,7 +91,7 @@
                         description="همه فیلترها را علامت بزنید تا همه داده ها فیلتر شوند"
                         class="mb-0">
                     <b-form-checkbox-group v-model="filterOn" class="mt-1">
-                        <b-form-checkbox value="title">دسته بندی تجهیز</b-form-checkbox>
+                        <b-form-checkbox value="title">نام تجهیز</b-form-checkbox>
                         <b-form-checkbox value="desc">توضیحات تجهیز</b-form-checkbox>
                         <b-form-checkbox value="category_id">شناسه دسته</b-form-checkbox>
                     </b-form-checkbox-group>
@@ -192,9 +192,9 @@
                 ],
                 items: [],
                 fields: [
-                    { key: 'title', label: 'دسته بندی تجهیز', sortable: true, sortDirection: 'desc' },
-                    { key: 'desc', label: 'توضیحات تجهیز', sortable: true, class: 'text-center' },
-                    { key: 'category_id', label: 'شناسه دسته', sortable: true},
+                    { key: 'title', label: 'نام تجهیز', sortable: true, sortDirection: 'desc' },
+                    // { key: 'desc', label: 'توضیحات تجهیز', sortable: true, class: 'text-center' },
+                    // { key: 'category_id', label: 'شناسه دسته', sortable: true},
                     { key: 'actions', label: 'عملیات' }
                 ],
                 totalRows: 1,

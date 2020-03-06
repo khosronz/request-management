@@ -317,7 +317,7 @@
             },
             resetInfoModal() {
                 this.infoModal.title = '';
-                this.infoModal.item = null;
+                this.infoModal.item = '{}';
                 this.infoModal.content = '';
             },
             onFiltered(filteredItems) {

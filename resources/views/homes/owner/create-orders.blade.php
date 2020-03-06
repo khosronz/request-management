@@ -18,7 +18,7 @@
                                      <strong>@lang('Create Order')</strong>
                                  </div>
                                  <div class="card-body">
-                                     <order-table-filtered-component></order-table-filtered-component>
+                                    <create-order-table-filtered-component :user_id="{{\Illuminate\Support\Facades\Auth::id()}}"></create-order-table-filtered-component>
                                  </div>
                              </div>
 

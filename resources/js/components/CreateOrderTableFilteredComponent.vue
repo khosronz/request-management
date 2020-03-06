@@ -182,6 +182,23 @@
             <p>{{infoModal.item.updated_at}}</p>
             <button @click="addToCart(infoModal.item.id)" class="alert alert-info"><i class="fa fa-plus"></i> افزودن به سبد درخواست
             </button>
+            <b-alert
+                    :show="dismissCountDown"
+                    dismissible
+                    variant="success"
+                    @dismissed="dismissCountDown=0"
+                    @dismiss-count-down="countDownChanged"
+            >
+                <!--<p>این پیام بعد از  {{ dismissCountDown }} ثانیه محو می گردد...</p>-->
+                <p>کالای مورد نظر به سبد خرید اضافه گردید.</p>
+                <p>{{ dismissCountDown }}زمان نمایش پیام :  </p>
+                <b-progress
+                        variant="success"
+                        :max="dismissSecs"
+                        :value="dismissCountDown"
+                        height="4px"
+                ></b-progress>
+            </b-alert>
         </b-modal>
     </b-container>
 </template>
@@ -193,6 +210,9 @@
         props: ['user_id'],
         data() {
             return {
+                dismissSecs: 3,
+                dismissCountDown: 0,
+                showDismissibleAlert: false,
                 selected: null,
                 options: [
                     {value: null, text: 'Please select an option'},
@@ -241,10 +261,17 @@
 //            this.getItems(this.category_id);
         },
         methods: {
+            countDownChanged(dismissCountDown) {
+                this.dismissCountDown = dismissCountDown
+            },
+            showAlert() {
+                this.dismissCountDown = this.dismissSecs
+            },
             addToCart(equipment_id) {
                 // this.getItems();
                 console.log('Added to cart');
                 this.addCartItems(equipment_id);
+                this.showAlert();
             },
             addCartItems(equipment_id) {
                 this.dataSend = {

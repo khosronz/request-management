@@ -14,7 +14,6 @@ use Response;
  * Class CardController
  * @package App\Http\Controllers\API
  */
-
 class CardAPIController extends AppBaseController
 {
     /** @var  CardRepository */
@@ -43,11 +42,11 @@ class CardAPIController extends AppBaseController
         return $this->sendResponse($cards->toArray(), 'Cards retrieved successfully');
     }
 
-    public function userCards($id,Request $request)
+    public function userCards($id, Request $request)
     {
-        $cards=Card::where('user_id','=',$id)->get();
+        $cards = Card::where('user_id', '=', $id)->get();
 
-        if (empty($cards)){
+        if (empty($cards)) {
             return $this->sendResponse($cards->toArray(), 'Do not have item in cart!');
         }
 
@@ -65,8 +64,20 @@ class CardAPIController extends AppBaseController
     public function store(CreateCardAPIRequest $request)
     {
         $input = $request->all();
+        $card = Card::where([
+            ['equipment_id', '=', $input['equipment_id']],
+            ['user_id', '=', $input['user_id']],
+        ])->first();
+        if (empty($card)) {
+            $card = $this->cardRepository->create($input);
+        } else {
+            $input['num']=$input['num']+$card->num;
+            $card = $this->cardRepository->update($input, $card->id);
+        }
 
-        $card = $this->cardRepository->create($input);
+        $card = Card::where(
+            'user_id', '=', $input['user_id']
+        )->get();
 
         return $this->sendResponse($card->toArray(), 'Card saved successfully');
     }

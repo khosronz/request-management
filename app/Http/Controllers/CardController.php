@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCardRequest;
 use App\Http\Requests\UpdateCardRequest;
+use App\Models\Card;
 use App\Repositories\CardRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class CardController extends AppBaseController
@@ -29,7 +31,8 @@ class CardController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $cards = $this->cardRepository->paginate(10);
+//        $cards = $this->cardRepository->paginate(10);
+        $cards = Card::where('user_id','=',Auth::id())->paginate(10);
 
         return view('cards.index')
             ->with('cards', $cards);

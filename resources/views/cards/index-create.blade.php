@@ -11,11 +11,7 @@
                             </a>
                         </div>
                         <div class="card-body collapse" id="collapseOne" data-parent="#accordion">
-                            {!! Form::open(['route' => 'cards.store']) !!}
-
-                            @include('cards.fields')
-
-                            {!! Form::close() !!}
+                            <create-order-table-filtered-component :user_id="{{\Illuminate\Support\Facades\Auth::id()}}"></create-order-table-filtered-component>
                         </div>
                     </div>
                 </div>

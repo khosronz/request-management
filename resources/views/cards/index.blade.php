@@ -17,6 +17,14 @@
                              @lang('cards')
                          </div>
                          <div class="card-body">
+                             <div class="container mb-2">
+                                 <div class="row">
+                                     <a class="btn btn-success" href="{!! route('cards.index') !!}">
+                                         <i class="fa fa-refresh"></i>
+                                         <span>@lang('Refresh Table Cart')</span>
+                                     </a>
+                                 </div>
+                             </div>
                              @include('cards.table')
                               <div class="pull-left mr-3" dir="ltr">
         @include('coreui-templates::common.paginate', ['records' => $cards])

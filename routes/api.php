@@ -42,6 +42,7 @@ Route::resource('messages', 'MessageAPIController');
 
 Route::resource('equipment', 'EquipmentAPIController');
 
+Route::get('orders/{id}/user', 'OrderAPIController@userOrders');
 Route::resource('orders', 'OrderAPIController');
 
 Route::resource('orderdetails', 'OrderdetailAPIController');
@@ -54,6 +55,7 @@ Route::resource('factoryaddresses', 'FactoryaddressAPIController');
 
 Route::resource('factories', 'FactoryAPIController');
 
+Route::get('cards/{id}/user', 'CardAPIController@userCards');
 Route::resource('cards', 'CardAPIController');
 
 Route::resource('media', 'MediaAPIController');

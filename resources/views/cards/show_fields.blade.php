@@ -10,6 +10,12 @@
     <p>{!! $card->equipment_id !!}</p>
 </div>
 
+<!-- User Id Field -->
+<div class="form-group">
+    {!! Form::label('user_id', __('User Id').':') !!}
+    <p>{!! $card->user_id !!}</p>
+</div>
+
 <!-- Num Field -->
 <div class="form-group">
     {!! Form::label('num', __('Num').':') !!}

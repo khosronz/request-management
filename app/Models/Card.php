@@ -27,6 +27,7 @@ class Card extends Model
 
     public $fillable = [
         'equipment_id',
+        'user_id',
         'num'
     ];
 
@@ -37,6 +38,7 @@ class Card extends Model
      */
     protected $casts = [
         'equipment_id' => 'integer',
+        'user_id' => 'integer',
         'num' => 'integer'
     ];
 
@@ -55,5 +57,9 @@ class Card extends Model
     public function equipment()
     {
         return $this->belongsTo(\App\Models\Equipment::class, 'equipment_id', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }
 }

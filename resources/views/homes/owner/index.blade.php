@@ -45,7 +45,7 @@
                                      @include('homes.owner.orders.table')
                                      <div class="pull-left mr-3" dir="ltr">
 
-                                         @include('coreui-templates::common.paginate', ['records' => $orders])
+{{--                                         @include('coreui-templates::common.paginate', ['records' => $orders])--}}
 
                                      </div>
                                  </div>

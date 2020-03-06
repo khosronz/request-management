@@ -1,7 +1,13 @@
 <!-- Equipment Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('equipment_id', __('Equipment Id').':') !!}
-    {!! Form::text('equipment_id', null, ['class' => 'form-control']) !!}
+    {!! Form::select('equipment_id', \App\Models\Equipment::pluck('title','id'), null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- User Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('user_id', __('User Id').':') !!}
+    {!! Form::select('user_id', \App\User::pluck('name','id'), null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Num Field -->

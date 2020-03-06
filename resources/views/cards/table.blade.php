@@ -2,13 +2,15 @@
     <table class="table table-responsive table-bordered table-striped" id="cards-table" style="display: block;overflow-x: auto; white-space: nowrap;">
         <thead>
             <th>@lang('Equipment Id')</th>
+            <th>@lang('User Id')</th>
         <th>@lang('Num')</th>
             <th colspan="3">@lang('Action')</th>
         </thead>
         <tbody>
         @foreach($cards as $card)
             <tr>
-                <td>{!! $card->equipment_id !!}</td>
+                <td>{!! $card->equipment->title !!}</td>
+                <td>{!! $card->user->name !!}</td>
             <td>{!! $card->num !!}</td>
                 <td>
                     {!! Form::open(['route' => ['cards.destroy', $card->id], 'method' => 'delete']) !!}

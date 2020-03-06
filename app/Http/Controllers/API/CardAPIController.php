@@ -43,6 +43,17 @@ class CardAPIController extends AppBaseController
         return $this->sendResponse($cards->toArray(), 'Cards retrieved successfully');
     }
 
+    public function userCards($id,Request $request)
+    {
+        $cards=Card::where('user_id','=',$id)->get();
+
+        if (empty($cards)){
+            return $this->sendResponse($cards->toArray(), 'Do not have item in cart!');
+        }
+
+        return $this->sendResponse($cards->toArray(), 'Cards retrieved successfully');
+    }
+
     /**
      * Store a newly created Card in storage.
      * POST /cards

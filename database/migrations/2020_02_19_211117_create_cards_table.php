@@ -17,9 +17,11 @@ class CreateCardsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('equipment_id')->unsigned()->default(0);
             $table->integer('num')->unsigned()->default(0);
+            $table->bigInteger('user_id')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('equipment_id')->references('id')->on('equipment');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

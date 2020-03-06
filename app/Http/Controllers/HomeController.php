@@ -31,28 +31,28 @@ class HomeController extends Controller
         $user = Auth::user();
         switch ($user) {
             case $user->isSuperadmin():
-                return view('homes.superadmin.index');
+                $this->superadminindex();
                 break;
             case $user->isMaster():
-                return view('homes.master.index');
+                $this->masterindex();
                 break;
             case $user->isOwner():
-                return view('homes.owner.index');
+                $this->ownerindex();
                 break;
             case $user->isFinancial():
-                return view('homes.financial.index');
+                $this->financialindex();
                 break;
             case $user->isProtection():
-                return view('homes.protection.index');
+                $this->protectionindex();
                 break;
             case $user->isSuccessor():
-                return view('homes.successor.index');
+                $this->successorindex();
                 break;
             case $user->isSupport():
-                return view('homes.support.index');
+                $this->support();
                 break;
             case $user->iSupplier():
-                return view('homes.supplier.index');
+                $this->supplierindex();
                 break;
         }
 
@@ -91,7 +91,8 @@ class HomeController extends Controller
 
     public function ownerindex()
     {
-        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+        $orders = Order::where('user_id','=',Auth::id())->get();
+//        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
         return view('homes.owner.index')->with('orders',$orders);
     }
 

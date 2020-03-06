@@ -192,7 +192,7 @@
                 ],
                 items: [],
                 fields: [
-                    { key: 'title', label: 'نام تجهیز', sortable: true, sortDirection: 'desc' },
+                    { key: 'title', label: 'عنوان سفارش', sortable: true, sortDirection: 'desc' },
                     // { key: 'desc', label: 'توضیحات تجهیز', sortable: true, class: 'text-center' },
                     // { key: 'category_id', label: 'شناسه دسته', sortable: true},
                     { key: 'actions', label: 'عملیات' }

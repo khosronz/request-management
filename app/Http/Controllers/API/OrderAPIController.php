@@ -43,6 +43,18 @@ class OrderAPIController extends AppBaseController
         return $this->sendResponse($orders->toArray(), 'Orders retrieved successfully');
     }
 
+    public function userOrders($id,Request $request)
+    {
+        $orders=Order::where('user_id','=',$id)->get();
+//        $orders = $this->orderRepository->all(
+//            $request->except(['skip', 'limit']),
+//            $request->get('skip'),
+//            $request->get('limit')
+//        );
+
+        return $this->sendResponse($orders->toArray(), 'Orders retrieved successfully');
+    }
+
     /**
      * Store a newly created Order in storage.
      * POST /orders

@@ -42,6 +42,7 @@ Vue.use(BootstrapVue);
 // Vue.component('multiple-select-component', require('./components/MultipleSelectComponent.vue').default);
 // Vue.component('order-table-component', require('./components/OrderTableComponent.vue').default);
 Vue.component('order-table-filtered-component', require('./components/OrderTableFilteredComponent.vue').default);
+Vue.component('main-order-table-filtered-component', require('./components/MainOrderTableFilteredComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

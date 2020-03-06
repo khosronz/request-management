@@ -1,10 +1,10 @@
 <template>
     <b-container fluid>
-        <!--<b-row>-->
-            <!--<b-col lg="6" class="my-1">-->
-                <!--<b-button @click="updateOrders()">بروزر</b-button>-->
-            <!--</b-col>-->
-        <!--</b-row>-->
+        <b-row>
+            <b-col lg="6" class="my-1">
+                <b-button @click="updateOrders()">بروزرسانی</b-button>
+            </b-col>
+        </b-row>
         <!-- User Interface controls -->
         <b-row>
             <b-col lg="6" class="my-1">
@@ -220,7 +220,7 @@
             <p>{{infoModal.item.user_id}}</p>
             <p>{{infoModal.item.created_at}}</p>
             <p>{{infoModal.item.updated_at}}</p>
-            <button @click="updateCart" class="alert alert-info" ><i class="fa fa-plus"></i> افزودن به سبد درخواست </button>
+            <!--<button @click="updateCart" class="alert alert-info" ><i class="fa fa-plus"></i> افزودن به سبد درخواست </button>-->
 
         </b-modal>
     </b-container>

@@ -65,9 +65,8 @@ class MediaController extends AppBaseController
             $media_file = $request->file('media_file');
             $filename = $media_file->getClientOriginalName();
             $extension = $media_file->getClientOriginalExtension();
-            $picture = date('His') . '-' . $filename;
-            $media_file->move(public_path('img'), $picture);
-            $input['url'] = '/img/'.$picture;
+            $media_file->move(public_path('img'), $filename);
+            $input['url'] = '/img/'.$filename;
             echo 'Image Uploaded Successfully';
         }
 
@@ -137,22 +136,20 @@ class MediaController extends AppBaseController
         $input = $request->all();
         //dd($input);
         if (file_exists(public_path() . $old_filename)) {
+            unlink(public_path().$old_filename);
             if ($request->hasFile('media_file')) {
                 $media_file = $request->file('media_file');
                 $filename = $media_file->getClientOriginalName();
-                $picture = date('His') . '-' . $filename;
-                $media_file->move(public_path('img'), $picture);
-                $input['url'] = '/img/' . $picture;
+                $media_file->move(public_path('img'), $filename);
+                $input['url'] = '/img/' . $filename;
                 echo 'Image Uploaded Successfully';
             }
-
         }else{
             if ($request->hasFile('media_file')) {
                 $media_file = $request->file('media_file');
                 $filename = $media_file->getClientOriginalName();
-                $picture = date('His') . '-' . $filename;
-                $media_file->move(public_path('img'), $picture);
-                $input['url'] = '/img/' . $picture;
+                $media_file->move(public_path('img'), $filename);
+                $input['url'] = '/img/' . $filename;
                 echo 'Image Uploaded Successfully';
             }
         }

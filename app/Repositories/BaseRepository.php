@@ -132,6 +132,7 @@ abstract class BaseRepository
      */
     public function create($input)
     {
+        dd($input);
         $model = $this->model->newInstance($input);
 
         $model->save();

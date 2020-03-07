@@ -45,6 +45,7 @@ Route::resource('messages', 'MessageController');
 
 Route::resource('equipment', 'EquipmentController');
 
+Route::get('orders/convertCardOrder', 'OrderController@convertCardOrder')->name('orders.convertCardOrder');
 Route::resource('orders', 'OrderController');
 
 Route::resource('orderdetails', 'OrderdetailController');

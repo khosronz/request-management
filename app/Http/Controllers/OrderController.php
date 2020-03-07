@@ -2,22 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\VerifiedType;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Card;
+use App\Models\Order;
+use App\Repositories\CardRepository;
+use App\Repositories\OrderdetailRepository;
 use App\Repositories\OrderRepository;
-use App\Http\Controllers\AppBaseController;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Response;
 
 class OrderController extends AppBaseController
 {
     /** @var  OrderRepository */
     private $orderRepository;
+    private $orderdetailRepository;
+    private $cardRepository;
 
-    public function __construct(OrderRepository $orderRepo)
+    public function __construct(OrderRepository $orderRepo, OrderdetailRepository $orderdetailRepo, CardRepository $cardRepo)
     {
         $this->orderRepository = $orderRepo;
+        $this->orderdetailRepository = $orderdetailRepo;
+        $this->cardRepository = $cardRepo;
     }
 
     /**
@@ -30,9 +43,11 @@ class OrderController extends AppBaseController
     public function index(Request $request)
     {
         $orders = $this->orderRepository->paginate(10);
+        $orders_not_paginate = $this->orderRepository->all();
 
         return view('orders.index')
-            ->with('orders', $orders);
+            ->with('orders', $orders)
+            ->with('orders_not_paginate', $orders_not_paginate);
     }
 
     /**
@@ -59,6 +74,66 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->create($input);
 
         Flash::success(__('Order').' '.__('saved successfully.'));
+
+        return redirect(route('orders.index'));
+    }
+
+    /**
+     * Store a newly created Order in storage.
+     *
+     * @param CreateOrderRequest $request
+     *
+     * @return Response
+     */
+    public function convertCardOrder()
+    {
+        $cards=Card::where('user_id','=',Auth::id())->get();
+
+        if (empty($cards)){
+            Flash::error(__('Cards').' '.__('Not is empty.|'));
+            return back();
+        } else {
+            DB::beginTransaction();
+            $order = [
+                'title'=>Str::uuid()->toString(),
+                'verified'=>VerifiedType::owner_waite,
+                'desc'=>'',
+                'user_id'=> Auth::id(),
+                'created_at'=> Date::now()->toString(),
+                'updated_at'=> Date::now()->toString(),
+            ];
+
+            $order = $this->orderRepository->create($order);
+//            dd($order);
+
+
+
+            foreach ($cards as $card){
+
+                $orderDetail = [
+                    'status'=>'1',
+                    'equipment_id'=>$card->equipment_id,
+                    'num'=>$card->num,
+                    'unit_price'=>null,
+                    'order_id'=>$order->id,
+                    'user_id'=>Auth::id(),
+                    'created_at'=> Date::now()->toString(),
+                    'updated_at'=> Date::now()->toString(),
+                ];
+//                dd($orderDetail);
+                $orderDetail = $this->orderdetailRepository->create($orderDetail);
+//                dd($orderDetail);
+            }
+
+            foreach ($cards as $card){
+                $this->cardRepository->delete($card->id);
+            }
+
+
+            Flash::success(__('Order').' '.__('saved successfully.'));
+            DB::commit();
+        }
+
 
         return redirect(route('orders.index'));
     }

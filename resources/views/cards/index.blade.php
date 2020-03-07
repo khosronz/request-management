@@ -19,10 +19,18 @@
                          <div class="card-body">
                              <div class="container mb-2">
                                  <div class="row">
-                                     <a class="btn btn-success" href="{!! route('cards.index') !!}">
-                                         <i class="fa fa-refresh"></i>
-                                         <span>@lang('Refresh Table Cart')</span>
-                                     </a>
+                                     <div class="col-sm-3">
+                                         <a class="btn btn-info text-white" href="{!! route('cards.index') !!}">
+                                             <i class="fa fa-refresh"></i>
+                                             <span>@lang('Refresh Table Cart')</span>
+                                         </a>
+                                     </div>
+                                     <div class="col-sm-3">
+                                         <a class="btn btn-success" href="{!! route('orders.convertCardOrder') !!}">
+                                             <i class="fa fa-first-order"></i>
+                                             <span>@lang('Convert cart to Order')</span>
+                                         </a>
+                                     </div>
                                  </div>
                              </div>
                              @include('cards.table')

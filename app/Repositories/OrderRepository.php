@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Order;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class OrderRepository
@@ -37,5 +38,36 @@ class OrderRepository extends BaseRepository
     public function model()
     {
         return Order::class;
+    }
+
+    /**
+     * Paginate records for scaffold.
+     *
+     * @param int $perPage
+     * @param array $columns
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function paginate($perPage, $columns = ['*'])
+    {
+        $query = $this->allQuery()->where('user_id','=',Auth::id())->orderBy('created_at','desc');
+
+        return $query->paginate($perPage, $columns);
+    }
+
+    /**
+     * Retrieve all records with given filter criteria
+     *
+     * @param array $search
+     * @param int|null $skip
+     * @param int|null $limit
+     * @param array $columns
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function all($search = [], $skip = null, $limit = null, $columns = ['*'])
+    {
+        $query = $this->allQuery($search, $skip, $limit)->where('user_id','=',Auth::id())->orderBy('created_at','desc');;
+
+        return $query->get($columns);
     }
 }

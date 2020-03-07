@@ -80,6 +80,15 @@ class TicketAPIController extends AppBaseController
         return $this->sendResponse($ticket->toArray(), 'Ticket retrieved successfully');
     }
 
+    public function userTickets($id)
+    {
+        $tickets=Ticket::where('user_id','=',$id)->orderBy('created_at','desc')->get();
+        if (empty($tickets)) {
+            return $this->sendError('Tickets not found');
+        }
+        return $this->sendResponse($tickets->toArray(), 'Tickets retrieved successfully');
+    }
+
     /**
      * Update the specified Ticket in storage.
      * PUT/PATCH /tickets/{id}

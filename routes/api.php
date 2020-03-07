@@ -36,6 +36,7 @@ Route::get('products/{id}/attributes', 'ProductAPIController@attributes')->name(
 Route::get('categories/{id}/equipment', 'CategoryAPIController@showByCategoryId');
 Route::resource('categories', 'CategoryAPIController');
 
+Route::get('tickets/{id}/user', 'TicketAPIController@userTickets');
 Route::resource('tickets', 'TicketAPIController');
 
 Route::resource('messages', 'MessageAPIController');

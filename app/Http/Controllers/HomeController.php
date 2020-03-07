@@ -31,28 +31,28 @@ class HomeController extends Controller
         $user = Auth::user();
         switch ($user) {
             case $user->isSuperadmin():
-                $this->superadminindex();
+                return $this->superadminindex();
                 break;
             case $user->isMaster():
-                $this->masterindex();
+                return $this->masterindex();
                 break;
             case $user->isOwner():
-                $this->ownerindex();
+                return $this->ownerindex();
                 break;
             case $user->isFinancial():
-                $this->financialindex();
+                return $this->financialindex();
                 break;
             case $user->isProtection():
-                $this->protectionindex();
+                return $this->protectionindex();
                 break;
             case $user->isSuccessor():
-                $this->successorindex();
+                return $this->successorindex();
                 break;
             case $user->isSupport():
-                $this->support();
+                return $this->support();
                 break;
             case $user->iSupplier():
-                $this->supplierindex();
+                return $this->supplierindex();
                 break;
         }
 

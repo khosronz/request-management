@@ -29,7 +29,7 @@
                              @if(\Illuminate\Support\Facades\Auth::user()->isOwner())
                                  <main-order-table-filtered-component :orders="{{$orders_not_paginate}}" :user_id="{{$user_id}}"></main-order-table-filtered-component>
                              @endif
-
+\
                          </div>
                      </div>
                   </div>

@@ -17,11 +17,13 @@ final class VerifiedType extends Enum
     const protection_waite = '4';
     const financial_waite = '5';
     const support_waite = '6';
+    const factory_waite = '7';
 
-    const owner_reject = '7';
-    const successor_reject = '8';
-    const master_reject = '9';
-    const protection_reject = '10';
-    const financial_reject = '11';
-    const support_reject = '12';
+    const owner_reject = '8';
+    const successor_reject = '9';
+    const master_reject = '10';
+    const protection_reject = '11';
+    const financial_reject = '12';
+    const support_reject = '13';
+    const factory_reject = '14';
 }

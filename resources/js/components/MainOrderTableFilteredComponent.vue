@@ -160,49 +160,37 @@
                             <li>
                                 <a href="#step-1">
                                     <span class="step_no">1</span>
-                                    <span class="step_descr">
-                                              قدم اول<br/>
-                                          </span>
+                                    <span class="step_descr">در اختیار ثبت کننده</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#step-2">
                                     <span class="step_no">2</span>
-                                    <span class="step_descr">
-                                              قدم اول<br/>
-                                          </span>
+                                    <span class="step_descr">در اختیار مسئول</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#step-3">
                                     <span class="step_no">3</span>
-                                    <span class="step_descr">
-                                              قدم اول<br/>
-                                          </span>
+                                    <span class="step_descr">در اختیار کارشناس</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#step-4">
                                     <span class="step_no">4</span>
-                                    <span class="step_descr">
-                                              قدم اول<br/>
-                                          </span>
+                                    <span class="step_descr">در اختیار کاربر خاص</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#step-5">
                                     <span class="step_no">5</span>
-                                    <span class="step_descr">
-                                              قدم اول<br/>
-                                          </span>
+                                    <span class="step_descr">در اختیار کاربر مالی</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#step-6">
-                                    <span class="step_no">5</span>
-                                    <span class="step_descr">
-                                              قدم اول<br/>
-                                          </span>
+                                    <span class="step_no">6</span>
+                                    <span class="step_descr">در اختیار تامین کننده</span>
                                 </a>
                             </li>
                         </ul>
@@ -275,25 +263,6 @@
         methods: {
             updateOrders(){
                 this.getItems();
-            },
-            updateCart(){
-                // this.getItems();
-                console.log('Added to cart');
-                this.getCartItems();
-            },
-            getCartItems(){
-                axios.get('http://project7.test/api/cards/' + this.user_id + '/user')
-                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
-                    .then(response => {
-                        console.log(response.data.data);
-                        this.cardItems = response.data.data;
-                        // Trigger pagination to update the number of buttons/pages due to filtering
-                        // this.onFiltered(this.items);
-                    })
-                    .catch(e => {
-                        // this.errors.push(e)
-                        console.log(e);
-                    });
             },
             getItems() {
                 axios.get('http://project7.test/api/orders/' + this.user_id + '/user')

@@ -152,47 +152,57 @@
             <template v-slot:row-details="row">
                 <b-card>
                     <!--<ul>-->
-                        <!--<li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>-->
+                    <!--<li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>-->
+                    <!--</ul>-->
+                    <!--<ul>-->
+                    <!--<li v-for="(value, key) in row.item['verified']" :key="key">{{ key }}: {{ value }}</li>-->
                     <!--</ul>-->
 
                     <div id="wizard" class="form_wizard wizard_horizontal">
                         <ul class="wizard_steps">
-                            <li>
-                                <a href="#step-1">
-                                    <span class="step_no">1</span>
+                            <!--<li v-for="(value, key) in row.item['verified']" :key="key">-->
+                            <!--<a href="#step-1">-->
+                            <!--<span class="step_no bg-primary text-white">value</span>-->
+                            <!--<span class="step_descr">در اختیار ثبت کننده</span>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                            <li v-for="(value, key) in [0,1,2,3,4,5,6,7]" :key="key">
+                                <a :href="'#step-'+value+1">
+                                    <span class="step_no bg-primary text-white" v-if="(value+1)==1">{{value + 1}}</span>
+                                    <span class="step_no" v-if="(value+1)!=1">{{value + 1}}</span>
                                     <span class="step_descr">در اختیار ثبت کننده</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#step-2">
-                                    <span class="step_no">2</span>
-                                    <span class="step_descr">در اختیار مسئول</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#step-3">
-                                    <span class="step_no">3</span>
-                                    <span class="step_descr">در اختیار کارشناس</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#step-4">
-                                    <span class="step_no">4</span>
-                                    <span class="step_descr">در اختیار کاربر خاص</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#step-5">
-                                    <span class="step_no">5</span>
-                                    <span class="step_descr">در اختیار کاربر مالی</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#step-6">
-                                    <span class="step_no">6</span>
-                                    <span class="step_descr">در اختیار تامین کننده</span>
-                                </a>
-                            </li>
+                            <!--<li>-->
+                            <!--<a href="#step-2">-->
+                            <!--<span class="step_no">2</span>-->
+                            <!--<span class="step_descr">در اختیار مسئول</span>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<a href="#step-3">-->
+                            <!--<span class="step_no">3</span>-->
+                            <!--<span class="step_descr">در اختیار کارشناس</span>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<a href="#step-4">-->
+                            <!--<span class="step_no">4</span>-->
+                            <!--<span class="step_descr">در اختیار کاربر خاص</span>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<a href="#step-5">-->
+                            <!--<span class="step_no">5</span>-->
+                            <!--<span class="step_descr">در اختیار کاربر مالی</span>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<a href="#step-6">-->
+                            <!--<span class="step_no">6</span>-->
+                            <!--<span class="step_descr">در اختیار تامین کننده</span>-->
+                            <!--</a>-->
+                            <!--</li>-->
                         </ul>
                     </div>
                 </b-card>
@@ -218,15 +228,15 @@
     import axios from 'axios';
 
     export default {
-        props: ['orders','user_id'],
+        props: ['orders', 'user_id'],
         data() {
             return {
                 items: [],
                 cardItems: [],
                 fields: [
                     {key: 'title', label: 'عنوان سفارش', sortable: true, sortDirection: 'desc'},
-                    { key: 'desc', label: 'توضیح سفارش', sortable: true, class: 'text-center' },
-                    { key: 'verified', label: 'وضعیت سفارش', sortable: true},
+                    {key: 'desc', label: 'توضیح سفارش', sortable: true, class: 'text-center'},
+                    {key: 'verified', label: 'وضعیت سفارش', sortable: true},
                     {key: 'actions', label: 'عملیات'}
                 ],
                 totalRows: 1,
@@ -257,7 +267,7 @@
             }
         },
         mounted() {
-            this.items=this.orders;
+            this.items = this.orders;
             this.totalRows = this.items.length;
         },
         methods: {

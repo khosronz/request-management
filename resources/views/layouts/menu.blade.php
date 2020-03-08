@@ -144,7 +144,7 @@
              </a>
          </li>
          <li class="nav-item {{ Request::is('owners/create*') ? 'active' : '' }}">
-             <a class="nav-link" href="{!! route('owner.create') !!}">
+             <a class="nav-link" href="{!! route('cards.index') !!}">
                  <i class="nav-icon fa fa-cart-arrow-down"></i>
                  <span>@lang('New Orders')</span>
              </a>

@@ -104,7 +104,6 @@ class OrderController extends AppBaseController
             ];
 
             $order = $this->orderRepository->create($order);
-//            dd($order);
 
 
 
@@ -120,9 +119,9 @@ class OrderController extends AppBaseController
                     'created_at'=> Date::now()->toString(),
                     'updated_at'=> Date::now()->toString(),
                 ];
-//                dd($orderDetail);
+
                 $orderDetail = $this->orderdetailRepository->create($orderDetail);
-//                dd($orderDetail);
+
             }
 
             foreach ($cards as $card){

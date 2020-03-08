@@ -151,58 +151,25 @@
 
             <template v-slot:row-details="row">
                 <b-card>
-                    <!--<ul>-->
-                    <!--<li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>-->
-                    <!--</ul>-->
-                    <!--<ul>-->
-                    <!--<li v-for="(value, key) in row.item['verified']" :key="key">{{ key }}: {{ value }}</li>-->
-                    <!--</ul>-->
 
                     <div id="wizard" class="form_wizard wizard_horizontal">
                         <ul class="wizard_steps">
-                            <!--<li v-for="(value, key) in row.item['verified']" :key="key">-->
-                            <!--<a href="#step-1">-->
-                            <!--<span class="step_no bg-primary text-white">value</span>-->
-                            <!--<span class="step_descr">در اختیار ثبت کننده</span>-->
-                            <!--</a>-->
-                            <!--</li>-->
-                            <li v-for="(value, key) in [0,1,2,3,4,5,6,7]" :key="key">
+                            <li v-for="(value, key) in [0,1,2,3,4,5,6]" :key="key">
                                 <a :href="'#step-'+value+1">
-                                    <span class="step_no bg-primary text-white" v-if="(value+1)==1">{{value + 1}}</span>
-                                    <span class="step_no" v-if="(value+1)!=1">{{value + 1}}</span>
-                                    <span class="step_descr">در اختیار ثبت کننده</span>
+                                    <span :class="'step_no'+getStatusColor(row.item.verified,value+1)">{{value+1}}</span>
+                                    <span class="step_descr">{{getStatus(value + 1)}}</span>
                                 </a>
                             </li>
-                            <!--<li>-->
-                            <!--<a href="#step-2">-->
-                            <!--<span class="step_no">2</span>-->
-                            <!--<span class="step_descr">در اختیار مسئول</span>-->
-                            <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                            <!--<a href="#step-3">-->
-                            <!--<span class="step_no">3</span>-->
-                            <!--<span class="step_descr">در اختیار کارشناس</span>-->
-                            <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                            <!--<a href="#step-4">-->
-                            <!--<span class="step_no">4</span>-->
-                            <!--<span class="step_descr">در اختیار کاربر خاص</span>-->
-                            <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                            <!--<a href="#step-5">-->
-                            <!--<span class="step_no">5</span>-->
-                            <!--<span class="step_descr">در اختیار کاربر مالی</span>-->
-                            <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                            <!--<a href="#step-6">-->
-                            <!--<span class="step_no">6</span>-->
-                            <!--<span class="step_descr">در اختیار تامین کننده</span>-->
-                            <!--</a>-->
-                            <!--</li>-->
+                        </ul>
+                        <ul class="wizard_steps">
+
+                            <li v-for="(value, key) in [7,8,9,10,11,12,13]" :key="key">
+                                <a :href="'#step-'+value+1">
+                                    <span :class="'step_no'+getStatusColor(row.item.verified,value+1)">{{value+1}}</span>
+                                    <!--<span class="step_no">{{value + 1}}</span>-->
+                                    <span class="step_descr">{{getStatus(value + 1)}}</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </b-card>
@@ -271,7 +238,66 @@
             this.totalRows = this.items.length;
         },
         methods: {
-            updateOrders(){
+            getStatus(status) {
+                let title = '';
+                switch (status) {
+                    case 1:
+                        title = 'در انتظار ثبت کننده';
+                        break;
+                    case 2:
+                        title = 'در انتظار مشئول';
+                        break;
+                    case 3:
+                        title = 'در انتظار کارشناس';
+                        break;
+                    case 4:
+                        title = 'در انتظار کاربرخاص';
+                        break;
+                    case 5:
+                        title = 'در انتظار کاربر مالی';
+                        break;
+                    case 6:
+                        title = 'در انتظار کاربر پشتیبانی';
+                        break;
+                    case 7:
+                        title = 'در انتظار تامین کننده';
+                        break;
+                    case 8:
+                        title = 'لغو شده توسط ثبت کننده';
+                        break;
+                    case 9:
+                        title = 'لغو شده توسط مشئول';
+                        break;
+                    case 10:
+                        title = 'لغو شده توسط کارشناس';
+                        break;
+                    case 11:
+                        title = 'لغو شده توسط کاربرخاص';
+                        break;
+                    case 12:
+                        title = 'لغو شده توسط کاربر مالی';
+                        break;
+                    case 13:
+                        title = 'لغو شده توسط کاربر پشتیبانی';
+                        break;
+                    case 14:
+                        title = 'لغو شده توسط تامین کننده';
+                        break;
+                }
+                return title;
+            },
+            getStatusColor(verified,status) {
+                let colorClass = '';
+                if (status == verified && (verified>=1 && verified<=7) ) {
+                    colorClass = ' bg-primary text-white';
+                } else if (status == verified && (verified>=8 && verified<=14) ) {
+                    colorClass = ' bg-danger text-white';
+                }  else {
+                    colorClass = ' bg-secondary text-white';
+                }
+                return colorClass;
+            },
+            updateOrders() {
                 this.getItems();
             },
             getItems() {

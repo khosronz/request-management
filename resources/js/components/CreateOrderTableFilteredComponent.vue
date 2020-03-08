@@ -4,6 +4,7 @@
         <b-row>
             <b-col lg="6" class="my-1">
 
+                <label>انتخاب دسته تجهیزات</label>
                 <b-form-select @change="onChange($event)" v-model="selected" class="mb-3">
                     <!-- This slot appears above the options from 'options' prop -->
                     <template v-slot:first>
@@ -153,13 +154,20 @@
             </template>
 
             <template v-slot:cell(actions)="row">
-                <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-                    اطلاعات بیشتر
-                </b-button>
-                <b-button size="sm" @click="row.toggleDetails">
-                    {{ row.detailsShowing ? 'مخفی' : 'نمایش' }}
-                    جزئیات
-                </b-button>
+                <b-row>
+                    <b-col sm="5" md="6" class="my-1">
+                        <b-button size="sm btn btn-ghost-success" @click="info(row.item, row.index, $event.target)"
+                                  class="mr-1">
+                            <!--اطلاعات بیشتر-->
+                            <i class="fa fa-eye"></i>
+                        </b-button>
+                    </b-col>
+                    <b-col sm="5" md="6" class="my-1">
+                        <b-button size="sm btn btn-ghost-success" @click="row.toggleDetails">
+                            <i class="fa fa-road"></i>
+                        </b-button>
+                    </b-col>
+                </b-row>
             </template>
 
             <template v-slot:row-details="row">

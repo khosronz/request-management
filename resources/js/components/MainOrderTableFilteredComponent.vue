@@ -81,7 +81,8 @@
                         class="mb-0">
                     <b-form-checkbox-group v-model="filterOn" class="mt-1">
                         <b-form-checkbox value="title">عنوان سفارش</b-form-checkbox>
-                        <b-form-checkbox value="desc">توضیح سفارش</b-form-checkbox>
+                        <b-form-checkbox value="created_at">تاریخ ایجاد سفارش</b-form-checkbox>
+                        <b-form-checkbox value="updated_at">آخرین تاریخ بررسی سفارش</b-form-checkbox>
                         <b-form-checkbox value="verified">وضعیت سفارش</b-form-checkbox>
                     </b-form-checkbox-group>
                 </b-form-group>
@@ -140,13 +141,20 @@
             </template>
 
             <template v-slot:cell(actions)="row">
-                <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-                    اطلاعات بیشتر
-                </b-button>
-                <b-button size="sm" @click="row.toggleDetails">
-                    {{ row.detailsShowing ? 'مخفی سازی' : 'نمایش' }}
-                    وضعیت
-                </b-button>
+                <b-row>
+                    <b-col sm="5" md="6" class="my-1">
+                        <b-button size="sm btn btn-ghost-success" @click="info(row.item, row.index, $event.target)"
+                                  class="mr-1">
+                            <!--اطلاعات بیشتر-->
+                            <i class="fa fa-eye"></i>
+                        </b-button>
+                    </b-col>
+                    <b-col sm="5" md="6" class="my-1">
+                        <b-button size="sm btn btn-ghost-success" @click="row.toggleDetails">
+                            <i class="fa fa-road"></i>
+                        </b-button>
+                    </b-col>
+                </b-row>
             </template>
 
             <template v-slot:row-details="row">
@@ -181,12 +189,13 @@
             <!--<pre>{{ infoModal.content }}</pre>-->
             <h2>{{infoModal.item.title}}</h2>
             <p>{{infoModal.item.desc}}</p>
-            <p>{{infoModal.item.verified}}</p>
-            <p>{{infoModal.item.user_id}}</p>
+            <!--<p>{{infoModal.item.user_id}}</p>-->
             <p>{{infoModal.item.created_at}}</p>
             <p>{{infoModal.item.updated_at}}</p>
             <!--<button @click="updateCart" class="alert alert-info" ><i class="fa fa-plus"></i> افزودن به سبد درخواست </button>-->
-
+            <a :href="'/orders/'+infoModal.item.id" :class="'btn btn-success'">
+                <i class="fa fa-eye"></i> مشاهده تمام جزئیات سفارش
+            </a>
         </b-modal>
     </b-container>
 </template>
@@ -202,8 +211,8 @@
                 cardItems: [],
                 fields: [
                     {key: 'title', label: 'عنوان سفارش', sortable: true, sortDirection: 'desc'},
-                    {key: 'desc', label: 'توضیح سفارش', sortable: true, class: 'text-center'},
-                    {key: 'verified', label: 'وضعیت سفارش', sortable: true},
+                    {key: 'created_at', label: 'تاریخ ایجاد سفارش', sortable: true, class: 'text-center'},
+                    {key: 'updated_at', label: 'آخرین تاریخ بررسی سفارش', sortable: true, class: 'text-center'},
                     {key: 'actions', label: 'عملیات'}
                 ],
                 totalRows: 1,
@@ -219,6 +228,7 @@
                     id: 'info-modal',
                     title: '',
                     item: "{}",
+                    // verified: "",
                     content: ''
                 }
             }
@@ -244,55 +254,97 @@
                     case 1:
                         title = 'در انتظار ثبت کننده';
                         break;
+                    case '1':
+                        title = 'در انتظار ثبت کننده';
+                        break;
                     case 2:
+                        title = 'در انتظار مشئول';
+                        break;
+                    case '2':
                         title = 'در انتظار مشئول';
                         break;
                     case 3:
                         title = 'در انتظار کارشناس';
                         break;
+                    case '3':
+                        title = 'در انتظار کارشناس';
+                        break;
                     case 4:
+                        title = 'در انتظار کاربرخاص';
+                        break;
+                    case '4':
                         title = 'در انتظار کاربرخاص';
                         break;
                     case 5:
                         title = 'در انتظار کاربر مالی';
                         break;
+                    case '5':
+                        title = 'در انتظار کاربر مالی';
+                        break;
                     case 6:
+                        title = 'در انتظار کاربر پشتیبانی';
+                        break;
+                    case '6':
                         title = 'در انتظار کاربر پشتیبانی';
                         break;
                     case 7:
                         title = 'در انتظار تامین کننده';
                         break;
+                    case '7':
+                        title = 'در انتظار تامین کننده';
+                        break;
                     case 8:
+                        title = 'لغو شده توسط ثبت کننده';
+                        break;
+                    case '8':
                         title = 'لغو شده توسط ثبت کننده';
                         break;
                     case 9:
                         title = 'لغو شده توسط مشئول';
                         break;
+                    case '9':
+                        title = 'لغو شده توسط مشئول';
+                        break;
                     case 10:
+                        title = 'لغو شده توسط کارشناس';
+                        break;
+                    case '10':
                         title = 'لغو شده توسط کارشناس';
                         break;
                     case 11:
                         title = 'لغو شده توسط کاربرخاص';
                         break;
+                    case '11':
+                        title = 'لغو شده توسط کاربرخاص';
+                        break;
                     case 12:
+                        title = 'لغو شده توسط کاربر مالی';
+                        break;
+                    case '12':
                         title = 'لغو شده توسط کاربر مالی';
                         break;
                     case 13:
                         title = 'لغو شده توسط کاربر پشتیبانی';
                         break;
+                    case '13':
+                        title = 'لغو شده توسط کاربر پشتیبانی';
+                        break;
                     case 14:
+                        title = 'لغو شده توسط تامین کننده';
+                        break;
+                    case '14':
                         title = 'لغو شده توسط تامین کننده';
                         break;
                 }
                 return title;
             },
-            getStatusColor(verified,status) {
+            getStatusColor(verified, status) {
                 let colorClass = '';
-                if (status == verified && (verified>=1 && verified<=7) ) {
+                if (status == verified && (verified >= 1 && verified <= 7)) {
                     colorClass = ' bg-primary text-white';
-                } else if (status == verified && (verified>=8 && verified<=14) ) {
+                } else if (status == verified && (verified >= 8 && verified <= 14)) {
                     colorClass = ' bg-danger text-white';
-                }  else {
+                } else {
                     colorClass = ' bg-secondary text-white';
                 }
                 return colorClass;

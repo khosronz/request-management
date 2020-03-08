@@ -45,7 +45,7 @@ class OrderAPIController extends AppBaseController
 
     public function userOrders($id,Request $request)
     {
-        $orders=Order::where('user_id','=',$id)->get();
+        $orders=Order::where('user_id','=',$id)->orderBy('created_at','desc')->get();
 //        $orders = $this->orderRepository->all(
 //            $request->except(['skip', 'limit']),
 //            $request->get('skip'),

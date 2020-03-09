@@ -10,6 +10,18 @@
                 <span>@lang('Organizations')</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('categories.index') !!}">
+                <i class="nav-icon fa fa-list-alt"></i>
+                <span>@lang('Categories')</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Request::is('equipment*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('equipment.index') !!}">
+                <i class="nav-icon fa fa-desktop"></i>
+                <span>@lang('Equipment')</span>
+            </a>
+        </li>
         <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('roles.index') !!}">
                 <i class="nav-icon icon-people"></i>
@@ -28,12 +40,6 @@
                 <span>@lang('Severities')</span>
             </a>
         </li>
-        <li class="nav-item {{ Request::is('equipment*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('equipment.index') !!}">
-                <i class="nav-icon fa fa-desktop"></i>
-                <span>@lang('Equipment')</span>
-            </a>
-        </li>
 
         <li class="nav-item {{ Request::is('telltypes*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('telltypes.index') !!}">
@@ -41,28 +47,22 @@
                 <span>@lang('Telltypes')</span>
             </a>
         </li>
-        <li class="nav-item {{ Request::is('factorytells*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('factorytells.index') !!}">
-                <i class="nav-icon fa fa-phone-square"></i>
-                <span>@lang('Factorytells')</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Request::is('factoryaddresses*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('factoryaddresses.index') !!}">
-                <i class="nav-icon fa  fa-map-marker"></i>
-                <span>@lang('Factoryaddresses')</span>
-            </a>
-        </li>
+        {{--<li class="nav-item {{ Request::is('factorytells*') ? 'active' : '' }}">--}}
+            {{--<a class="nav-link" href="{!! route('factorytells.index') !!}">--}}
+                {{--<i class="nav-icon fa fa-phone-square"></i>--}}
+                {{--<span>@lang('Factorytells')</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="nav-item {{ Request::is('factoryaddresses*') ? 'active' : '' }}">--}}
+            {{--<a class="nav-link" href="{!! route('factoryaddresses.index') !!}">--}}
+                {{--<i class="nav-icon fa  fa-map-marker"></i>--}}
+                {{--<span>@lang('Factoryaddresses')</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
         <li class="nav-item {{ Request::is('factories*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('factories.index') !!}">
                 <i class="nav-icon fa fa-briefcase"></i>
                 <span>@lang('Factories')</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('categories.index') !!}">
-                <i class="nav-icon fa fa-list-alt"></i>
-                <span>@lang('Categories')</span>
             </a>
         </li>
         <li class="nav-item {{ Request::is('media*') ? 'active' : '' }}">

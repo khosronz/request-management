@@ -1,5 +1,7 @@
-
-
+@php
+    $user_id=\Illuminate\Support\Facades\Auth::id();
+@endphp
+<main-order-table-filtered-component :orders="{{$orders_not_paginate}}" :user_id="{{$user_id}}"></main-order-table-filtered-component>
 {{--<main-order-table-filtered-component :orders="{{$orders}}" :user_id="{{\Illuminate\Support\Facades\Auth::id()}}"></main-order-table-filtered-component>--}}
 
 

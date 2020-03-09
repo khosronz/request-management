@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(ProductFeatures::class, function (Faker $faker) {
 
     return [
-        'title' => $faker->word,
+        'title' => \Ybazli\Faker\Facades\Faker::sentence(),
         'price' => $faker->word,
         'product_id' => $faker->word,
         'desc' => $faker->text,

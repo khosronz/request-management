@@ -8,8 +8,8 @@ use Faker\Generator as Faker;
 $factory->define(Category::class, function (Faker $faker) {
 
     return [
-        'title' => $faker->word,
-        'desc' => $faker->text,
+        'title' => \Ybazli\Faker\Facades\Faker::sentence(),
+        'desc' => \Ybazli\Faker\Facades\Faker::paragraph(),
         'category_visits' => $faker->randomDigitNotNull,
         'user_id' => \App\Enums\UserType::master,
         'created_at' => $faker->date('Y-m-d H:i:s'),

@@ -9,7 +9,7 @@ $factory->define(Factoryaddress::class, function (Faker $faker) {
 
     return [
         'factory_id' => rand(1,10),
-        'desc' => $faker->text,
+        'desc' => \Ybazli\Faker\Facades\Faker::address(),
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

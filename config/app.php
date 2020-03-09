@@ -170,6 +170,8 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Becker\Zabbix\ZabbixServiceProvider::class,
 
+        Ybazli\Faker\FakerServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -232,6 +234,8 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
+
+        'Faker' => Ybazli\Faker\Facades\Faker::class,
 
     ],
 

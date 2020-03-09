@@ -20,7 +20,12 @@
                              @lang('Supplier Dashboard')
                          </div>
                          <div class="card-body">
+                            @include('homes.supplier.orders.table')
+                             <div class="pull-left mr-3" dir="ltr">
 
+                                 @include('coreui-templates::common.paginate', ['records' => $orders])
+
+                             </div>
                          </div>
                      </div>
                   </div>

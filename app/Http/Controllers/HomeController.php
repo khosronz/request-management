@@ -141,8 +141,8 @@ class HomeController extends Controller
 
     public function supplierindex()
     {
-        $orders = Order::where('verified','=',VerifiedType::support_waite)
-            ->orWhere('verified','=',VerifiedType::support_reject)
+        $orders = Order::where('verified','=',VerifiedType::supplier_waite)
+            ->orWhere('verified','=',VerifiedType::supplier_reject)
             ->orderBy('created_at','desc')
             ->paginate(10);
         return view('homes.supplier.index')->with('orders',$orders);

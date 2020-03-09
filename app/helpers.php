@@ -206,7 +206,7 @@ if (!function_exists('getEndDate')) {
                 case \App\Enums\VerifiedType::support_waite:
                     $verify_status = 'در اختیار پشتیبانی';
                     break;
-                case \App\Enums\VerifiedType::factory_waite:
+                case \App\Enums\VerifiedType::supplier_waite:
                     $verify_status = 'در اختیار تامین کننده';
                     break;
                 case \App\Enums\VerifiedType::owner_reject:
@@ -227,7 +227,7 @@ if (!function_exists('getEndDate')) {
                 case \App\Enums\VerifiedType::support_reject:
                     $verify_status = 'مردود توسط پشتیبانی';
                     break;
-                case \App\Enums\VerifiedType::factory_reject:
+                case \App\Enums\VerifiedType::supplier_reject:
                     $verify_status = 'مردود توسط تامین کننده';
                     break;
             }

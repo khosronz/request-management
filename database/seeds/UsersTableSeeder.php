@@ -82,6 +82,16 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
                 'email_verified_at' => now()
             ],
+            [
+                'id' => \App\Enums\UserType::supplier,
+                'name' => 'supplier',
+                'email' => 'supplier@gmail.com',
+                'password' => bcrypt('1qaz!QAZ'),
+                'api_token' => \Illuminate\Support\Str::random(60),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'email_verified_at' => now()
+            ],
         ]);
     }
 }

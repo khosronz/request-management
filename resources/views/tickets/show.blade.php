@@ -15,7 +15,7 @@
                          <div class="card">
                              <div class="card-header">
                                  <strong>@lang('Details')</strong>
-                                  <a href="{!! route('tickets.index') !!}" class="btn btn-ghost-light">@lang('Back')</a>
+                                  <a href="{!! route('tickets.index') !!}" class="btn btn-ghost-info">@lang('Back')</a>
                              </div>
                              <div class="card-body">
                                  <div class="row">

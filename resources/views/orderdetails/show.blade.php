@@ -15,7 +15,7 @@
                          <div class="card">
                              <div class="card-header">
                                  <strong>@lang('Details')</strong>
-                                  <a href="{!! url()->previous() !!}" class="btn btn-ghost-light">@lang('Back')</a>
+                                  <a href="{!! url()->previous() !!}" class="btn btn-ghost-info">@lang('Back')</a>
                              </div>
                              <div class="card-body">
                                  @include('orderdetails.show_fields')

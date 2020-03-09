@@ -3,7 +3,7 @@
 @section('content')
      <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{!! route('orderdetails.index') !!}">@lang('Orderdetail')</a>
+                <a href="{!! url()->previous() !!}">@lang('Order')</a>
             </li>
             <li class="breadcrumb-item active">@lang('Detail')</li>
      </ol>
@@ -15,7 +15,7 @@
                          <div class="card">
                              <div class="card-header">
                                  <strong>@lang('Details')</strong>
-                                  <a href="{!! route('orderdetails.index') !!}" class="btn btn-ghost-light">@lang('Back')</a>
+                                  <a href="{!! url()->previous() !!}" class="btn btn-ghost-light">@lang('Back')</a>
                              </div>
                              <div class="card-body">
                                  @include('orderdetails.show_fields')

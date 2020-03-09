@@ -15,7 +15,7 @@
                          <div class="card">
                              <div class="card-header">
                                  <strong>@lang('Details')</strong>
-                                  <a href="{!! route('orders.index') !!}" class="btn btn-ghost-light">@lang('Back')</a>
+                                  <a href="{!! url()->previous() !!}" class="btn btn-ghost-light">@lang('Back')</a>
 {{--                                  <a href="{!! route('orders.index') !!}" class="btn btn-ghost-light">@lang('Back')</a>--}}
                              </div>
                              <div class="card-body">

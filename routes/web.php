@@ -75,3 +75,5 @@ Route::resource('organizationUsers', 'OrganizationUserController');
 Route::resource('roleUsers', 'RoleUserController');
 
 Route::resource('protectionCategories', 'ProtectionCategoryController');
+
+Route::resource('organizationCategories', 'OrganizationCategoryController');

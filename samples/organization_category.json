@@ -1,0 +1,53 @@
+[
+    {
+        "name": "id",
+        "dbType": "bigIncrements",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "user_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
+        "htmlType": "text",
+        "relation": "mt1,User,user_id,id"
+    },
+    {
+        "name": "category_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,categories,id",
+        "htmlType": "text",
+        "relation": "mt1,Category,category_id,id"
+    },
+    {
+        "name": "organization_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,organizations,id",
+        "htmlType": "text",
+        "relation": "mt1,Organization,organization_id,id"
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]

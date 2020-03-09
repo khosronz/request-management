@@ -16,6 +16,12 @@
                 <span>@lang('Categories')</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('organizationCategories*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('organizationCategories.index') !!}">
+                <i class="nav-icon icon-cursor"></i>
+                <span>@lang('Organization Categories')</span>
+            </a>
+        </li>
         <li class="nav-item {{ Request::is('equipment*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('equipment.index') !!}">
                 <i class="nav-icon fa fa-desktop"></i>

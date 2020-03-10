@@ -9,9 +9,9 @@
         <tbody>
         @foreach($prefactors as $prefactor)
             <tr>
-                <td>{!! $prefactor->user_id !!}</td>
-            <td>{!! $prefactor->order_id !!}</td>
-            <td>{!! $prefactor->factory_id !!}</td>
+                <td>{!! $prefactor->user->name !!}</td>
+            <td>{!! $prefactor->order->title !!}</td>
+            <td>{!! $prefactor->factory->title !!}</td>
                 <td>
                     {!! Form::open(['route' => ['prefactors.destroy', $prefactor->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

@@ -77,3 +77,9 @@ Route::resource('roleUsers', 'RoleUserController');
 Route::resource('protectionCategories', 'ProtectionCategoryController');
 
 Route::resource('organizationCategories', 'OrganizationCategoryController');
+
+Route::resource('prefactors', 'PrefactorController');
+
+
+
+Route::resource('prefactorDetails', 'PrefactorDetailController');

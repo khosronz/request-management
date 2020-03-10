@@ -1,0 +1,72 @@
+[
+    {
+        "name": "id",
+        "dbType": "bigIncrements",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "status",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "equipment_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,equipments,id",
+        "htmlType": "text",
+        "relation": "mt1,Equipment,equipment_id,id"
+    },
+    {
+        "name": "num",
+        "dbType": "integer:unsigned:default,0",
+        "htmlType": "text"
+    },
+    {
+        "name": "unit_price",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "prefactor_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,prefactors,id",
+        "htmlType": "text",
+        "relation": "mt1,Prefactor,prefactor_id,id"
+    },
+    {
+        "name": "user_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
+        "htmlType": "text",
+        "relation": "mt1,User,user_id,id"
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]

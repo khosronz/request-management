@@ -68,3 +68,9 @@ Route::resource('role_users', 'RoleUserAPIController');
 Route::resource('protection_categories', 'ProtectionCategoryAPIController');
 
 Route::resource('organization_categories', 'OrganizationCategoryAPIController');
+
+Route::resource('prefactors', 'PrefactorAPIController');
+
+
+
+Route::resource('prefactor_details', 'PrefactorDetailAPIController');

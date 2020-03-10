@@ -51,9 +51,9 @@ class HomeController extends Controller
                 return $this->successorindex();
                 break;
             case $user->isSupport():
-                return $this->support();
+                return $this->supportindex();
                 break;
-            case $user->iSupplier():
+            case $user->isSupplier():
                 return $this->supplierindex();
                 break;
         }
@@ -128,6 +128,20 @@ class HomeController extends Controller
             ->with('orders_not_paginate', $orders_not_paginate);
     }
 
+    public function supplierindex()
+    {
+        $orders = Order::where('verified', '=', VerifiedType::supplier_waite)
+            ->orWhere('verified', '=', VerifiedType::supplier_reject)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        $orders_not_paginate = Order::where('verified', '=', VerifiedType::supplier_waite)
+            ->orWhere('verified', '=', VerifiedType::supplier_reject)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('homes.supplier.index')->with('orders', $orders)
+            ->with('orders_not_paginate', $orders_not_paginate);
+    }
+
     public function ownerindex()
     {
         $orders = Order::where('user_id', '=', Auth::id())
@@ -169,32 +183,5 @@ class HomeController extends Controller
             ->with('orders_not_paginate', $orders_not_paginate);
     }
 
-    public function support()
-    {
-        $orders = Order::where('verified', '=', VerifiedType::support_waite)
-            ->orWhere('verified', '=', VerifiedType::support_reject)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-        $orders_not_paginate = Order::where('verified', '=', VerifiedType::support_waite)
-            ->orWhere('verified', '=', VerifiedType::support_reject)
-            ->orderBy('created_at', 'desc')
-            ->get();
-        return view('homes.financial.index')->with('orders', $orders)
-            ->with('orders_not_paginate', $orders_not_paginate);
-    }
-
-    public function supplierindex()
-    {
-        $orders = Order::where('verified', '=', VerifiedType::supplier_waite)
-            ->orWhere('verified', '=', VerifiedType::supplier_reject)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-        $orders_not_paginate = Order::where('verified', '=', VerifiedType::supplier_waite)
-            ->orWhere('verified', '=', VerifiedType::supplier_reject)
-            ->orderBy('created_at', 'desc')
-            ->get();
-        return view('homes.supplier.index')->with('orders', $orders)
-            ->with('orders_not_paginate', $orders_not_paginate);
-    }
 
 }

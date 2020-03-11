@@ -60,7 +60,6 @@ class MediaController extends AppBaseController
     public function store(CreateMediaRequest $request)
     {
         $input = $request->all();
-        //dd($input);
         if ($request->hasFile('media_file')) {
             $media_file = $request->file('media_file');
             $filename = $media_file->getClientOriginalName();
@@ -68,8 +67,9 @@ class MediaController extends AppBaseController
             $media_file->move(public_path('img'), $filename);
             $input['url'] = '/img/'.$filename;
             echo 'Image Uploaded Successfully';
+        } else {
+            $input['url']=isset($input['url']) ? $input['url'] : '';
         }
-
         $media = $this->mediaRepository->create($input);
 
         Flash::success(__('Media').' '.__('saved successfully.'));
@@ -134,9 +134,7 @@ class MediaController extends AppBaseController
         }
         $old_filename = $media->url;
         $input = $request->all();
-        //dd($input);
         if (file_exists(public_path() . $old_filename)) {
-            unlink(public_path().$old_filename);
             if ($request->hasFile('media_file')) {
                 $media_file = $request->file('media_file');
                 $filename = $media_file->getClientOriginalName();

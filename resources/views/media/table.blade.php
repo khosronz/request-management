@@ -11,13 +11,22 @@
         <th colspan="3">@lang('Action')</th>
         </thead>
         <tbody>
+{{--        @dd($medias)--}}
         @foreach($medias as $media)
             <tr>
-                @if (file_exists($media->url))
-                    <td><img src="{{asset($media->url)}}" alt="{{$media->alt}}" width="20px" height="20px"></td>
-                @else
-                    <td>@lang('Not have')</td>
-                @endif
+                <td>
+                    @if($media->url==='')
+                        @lang('Not have')
+
+                    @elseif (file_exists($media->url))
+                            <div><img src="{{asset(public_path().$media->url)}}" alt="{{$media->alt}}" width="70px" height="70px"></div>
+                    @elseif (file_exists(public_path().$media->url))
+                            <div><img src="{{asset($media->url)}}" alt="{{$media->alt}}" width="70px" height="70px"></div>
+                    @else
+                        @lang('Not have')
+                    @endif
+                    <p></p>
+                </td>
                 {{--<td>{!! $media->user->name !!}</td>--}}
                 <td>{!! $media->title !!}</td>
                 <td>{!! $media->alt !!}</td>

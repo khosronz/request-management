@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePrefactorRequest;
 use App\Http\Requests\UpdatePrefactorRequest;
+use App\Repositories\OrderRepository;
 use App\Repositories\PrefactorRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -14,10 +15,12 @@ class PrefactorController extends AppBaseController
 {
     /** @var  PrefactorRepository */
     private $prefactorRepository;
+    private $orderRepository;
 
-    public function __construct(PrefactorRepository $prefactorRepo)
+    public function __construct(PrefactorRepository $prefactorRepo,OrderRepository $orderRepo)
     {
         $this->prefactorRepository = $prefactorRepo;
+        $this->orderRepository = $orderRepo;
     }
 
     /**
@@ -43,6 +46,21 @@ class PrefactorController extends AppBaseController
     public function create()
     {
         return view('prefactors.create');
+    }
+
+
+    public function createByOrder($id)
+    {
+        $order=$this->orderRepository->find($id);
+
+        if (empty($order)) {
+            Flash::error(__('Order').' '.__('not found.'));
+
+            return back();
+        }
+
+        return view('prefactors.create')
+            ->with('order',$order);
     }
 
     /**

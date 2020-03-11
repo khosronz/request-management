@@ -2,6 +2,7 @@
     <table class="table table-responsive table-bordered table-striped" id="orders-table"
            style="display: block;overflow-x: auto; white-space: nowrap;">
         <thead>
+        <th colspan="1">@lang('Action Prefactor')</th>
         <th>@lang('Title')</th>
         <th>@lang('Verified')</th>
         <th>@lang('User Id')</th>
@@ -12,6 +13,11 @@
         <tbody>
         @foreach($orders as $order)
             <tr>
+                <td>
+                    <div class="btn-group">
+                        <a href="{!! route('prefactors.createByOrder', [$order->id]) !!}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
+                    </div>
+                </td>
                 <td>{!! $order->title !!}</td>
                 @if($order->verified < \App\Enums\VerifiedType::owner_reject )
                     <td class="text-info">{!! verificationStatus($order->verified) !!}</td>
@@ -25,8 +31,8 @@
                 <td>
                     {!! Form::open(['route' => ['orders.destroy', $order->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{!! route('orders.show', [$order->id]) !!}" class='btn btn-ghost-success'><i
-                                    class="fa fa-eye"></i></a>
+                        <a href="{!! route('orders.show', [$order->id]) !!}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
+                        <a href="{!! route('prefactors.createByOrder', [$order->id]) !!}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
                     </div>
                     {!! Form::close() !!}
                 </td>

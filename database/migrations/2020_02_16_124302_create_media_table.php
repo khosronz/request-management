@@ -19,7 +19,7 @@ class CreateMediaTable extends Migration
             $table->string('title');
             $table->text('desc');
             $table->string('alt');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');

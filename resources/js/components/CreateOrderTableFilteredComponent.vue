@@ -37,7 +37,7 @@
                             </template>
                         </b-form-select>
                         <b-form-select v-model="sortDesc" size="sm" :disabled="!sortBy" class="w-25">
-                            <option :value="false">سعودی</option>
+                            <option :value="false">صعودی</option>
                             <option :value="true">نزولی</option>
                         </b-form-select>
                     </b-input-group>

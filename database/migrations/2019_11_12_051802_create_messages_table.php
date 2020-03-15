@@ -16,7 +16,7 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('status')->default('1');
+            $table->string('status')->default(\App\Enums\MessageStatus::NOTREAD);
             $table->bigInteger('ticket_id')->unsigned()->default(0);
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->text('desc')->nullable();

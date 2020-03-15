@@ -81,7 +81,8 @@ class OrderdetailController extends AppBaseController
             return redirect(route('orderdetails.index'));
         }
 
-        return view('orderdetails.show')->with('orderdetail', $orderdetail);
+        return back();
+//        return view('orderdetails.show')->with('orderdetail', $orderdetail);
     }
 
     /**

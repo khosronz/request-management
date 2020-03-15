@@ -4,6 +4,7 @@
         <th>@lang('Id')</th>
         <th>@lang('Title')</th>
         <th>@lang('Desc')</th>
+        <th>@lang('Parent Id')</th>
         <th colspan="3">@lang('Action')</th>
         </thead>
         <tbody>
@@ -12,6 +13,7 @@
             <td>{!! $organization->id !!}</td>
             <td>{!! $organization->title !!}</td>
             <td>{!! $organization->desc !!}</td>
+            <td>{!! $organization->parent['title'] !!}</td>
                 <td>
                     {!! Form::open(['route' => ['organizations.destroy', $organization->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

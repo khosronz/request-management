@@ -26,7 +26,8 @@ class Organization extends Model
 
     public $fillable = [
         'title',
-        'desc'
+        'desc',
+        'parent_id'
     ];
 
     /**
@@ -48,5 +49,8 @@ class Organization extends Model
         'title' => 'required'
     ];
 
-    
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Organization', 'parent_id', 'id');
+    }
 }

@@ -17,6 +17,7 @@ class CreateOrganizationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('desc')->nullable();
+            $table->bigInteger('parent_id')->unsigned()->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

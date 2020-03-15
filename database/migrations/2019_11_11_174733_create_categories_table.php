@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->text('desc')->nullable();
             $table->bigInteger('category_visits')->default(0);
             $table->bigInteger('user_id')->unsigned()->default(0);
+            $table->bigInteger('parent_id')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');

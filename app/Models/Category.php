@@ -31,7 +31,8 @@ class Category extends Model
         'title',
         'desc',
         'category_visits',
-        'user_id'
+        'user_id',
+        'parent_id'
     ];
 
     /**
@@ -43,7 +44,8 @@ class Category extends Model
         'title' => 'string',
         'desc' => 'string',
         'category_visits' => 'integer',
-        'user_id' => 'integer'
+        'user_id' => 'integer',
+        'parent_id' => 'integer'
     ];
 
     /**
@@ -60,6 +62,11 @@ class Category extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
+        return $this->belongsTo(\App\User::class, 'user_id', 'id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Category', 'parent_id', 'id');
     }
 }

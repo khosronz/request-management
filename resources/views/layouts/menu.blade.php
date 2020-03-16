@@ -12,12 +12,14 @@
             </a>
         </li>
         @endcan
-        <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('categories.index') !!}">
-                <i class="nav-icon fa fa-list-alt"></i>
-                <span>@lang('Categories')</span>
-            </a>
-        </li>
+        @can('viewAny',\App\Models\Category::class)
+                <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{!! route('categories.index') !!}">
+                        <i class="nav-icon fa fa-list-alt"></i>
+                        <span>@lang('Categories')</span>
+                    </a>
+                </li>
+        @endcan
         <li class="nav-item {{ Request::is('organizationCategories*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('organizationCategories.index') !!}">
                 <i class="nav-icon icon-cursor"></i>

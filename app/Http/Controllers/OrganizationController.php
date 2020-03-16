@@ -18,7 +18,7 @@ class OrganizationController extends AppBaseController
 
     public function __construct(OrganizationRepository $organizationRepo)
     {
-        $this->authorizeResource(Organization::class,'organization');
+        $this->authorizeResource(Organization::class,'organizations');
         $this->organizationRepository = $organizationRepo;
     }
 

@@ -9,6 +9,11 @@
     {!! Form::label('verified', __('Verified').':') !!}
     {!! Form::text('verified', \App\Enums\VerifiedType::owner_waite, ['class' => 'form-control']) !!}
 </div>
+<!-- accept_status Field -->
+<div class="form-group col-sm-6 sr-only">
+    {!! Form::label('waite_status', __('Waite Status').':') !!}
+    {!! Form::text('waite_status', \App\Enums\VerifiedWaiteStatus::waite, ['class' => 'form-control']) !!}
+</div>
 {{--<!-- Verified Field -->--}}
 {{--<div class="form-group col-sm-6">--}}
     {{--{!! Form::label('verified', __('Verified').':') !!}--}}

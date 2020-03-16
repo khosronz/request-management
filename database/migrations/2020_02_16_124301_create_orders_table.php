@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('verified');
+            $table->string('waite_status')->default(\App\Enums\VerifiedWaiteStatus::waite);
             $table->text('desc')->nullable();
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->timestamps();

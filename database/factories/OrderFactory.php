@@ -9,7 +9,8 @@ $factory->define(Order::class, function (Faker $faker) {
 
     return [
         'title' => \Illuminate\Support\Str::uuid(),
-        'verified' => rand(1,14),
+        'verified' => rand(1,7),
+        'waite_status' => rand(1,2),
         'desc' => \Ybazli\Faker\Facades\Faker::paragraph(),
         'user_id' => \App\Enums\UserType::owner,
         'created_at' => $faker->date('Y-m-d H:i:s'),

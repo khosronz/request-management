@@ -164,17 +164,7 @@
                         <ul class="wizard_steps">
                             <li v-for="(value, key) in [0,1,2,3,4,5,6]" :key="key">
                                 <a :href="'#step-'+value+1">
-                                    <span :class="'step_no'+getStatusColor(row.item.verified,value+1)">{{value+1}}</span>
-                                    <span class="step_descr">{{getStatus(value + 1)}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="wizard_steps">
-
-                            <li v-for="(value, key) in [7,8,9,10,11,12,13]" :key="key">
-                                <a :href="'#step-'+value+1">
-                                    <span :class="'step_no'+getStatusColor(row.item.verified,value+1)">{{value+1}}</span>
-                                    <!--<span class="step_no">{{value + 1}}</span>-->
+                                    <span :class="'step_no'+getStatusColor(row.item.verified,value+1,row.item.waite_status)">{{value+1}}</span>
                                     <span class="step_descr">{{getStatus(value + 1)}}</span>
                                 </a>
                             </li>
@@ -250,99 +240,44 @@
         methods: {
             getStatus(status) {
                 let title = '';
+                let color = '';
                 switch (status) {
                     case 1:
-                        title = 'در انتظار ثبت کننده';
-                        break;
                     case '1':
-                        title = 'در انتظار ثبت کننده';
+                        title = 'توسط ثبت کننده';
                         break;
                     case 2:
-                        title = 'در انتظار مشئول';
-                        break;
                     case '2':
-                        title = 'در انتظار مشئول';
+                        title = 'توسط مسئول';
                         break;
                     case 3:
-                        title = 'در انتظار کارشناس';
-                        break;
                     case '3':
-                        title = 'در انتظار کارشناس';
+                        title = 'کارشناس';
                         break;
                     case 4:
-                        title = 'در انتظار کاربر بازرس';
-                        break;
                     case '4':
-                        title = 'در انتظار کاربر بازرس';
+                        title = 'بازرس';
                         break;
                     case 5:
-                        title = 'در انتظار کاربر مالی';
-                        break;
                     case '5':
-                        title = 'در انتظار کاربر مالی';
+                        title = 'کاربر مالی';
                         break;
                     case 6:
-                        title = 'در انتظار کاربر پشتیبانی';
-                        break;
                     case '6':
-                        title = 'در انتظار کاربر پشتیبانی';
+                        title = 'کاربر پشتیبانی';
                         break;
                     case 7:
-                        title = 'در انتظار تامین کننده';
-                        break;
                     case '7':
-                        title = 'در انتظار تامین کننده';
-                        break;
-                    case 8:
-                        title = 'لغو شده توسط ثبت کننده';
-                        break;
-                    case '8':
-                        title = 'لغو شده توسط ثبت کننده';
-                        break;
-                    case 9:
-                        title = 'لغو شده توسط مشئول';
-                        break;
-                    case '9':
-                        title = 'لغو شده توسط مشئول';
-                        break;
-                    case 10:
-                        title = 'لغو شده توسط کارشناس';
-                        break;
-                    case '10':
-                        title = 'لغو شده توسط کارشناس';
-                        break;
-                    case 11:
-                        title = 'لغو شده توسط کاربر بازرس';
-                        break;
-                    case '11':
-                        title = 'لغو شده توسط کاربر بازرس';
-                        break;
-                    case 12:
-                        title = 'لغو شده توسط کاربر مالی';
-                        break;
-                    case '12':
-                        title = 'لغو شده توسط کاربر مالی';
-                        break;
-                    case 13:
-                        title = 'لغو شده توسط کاربر پشتیبانی';
-                        break;
-                    case '13':
-                        title = 'لغو شده توسط کاربر پشتیبانی';
-                        break;
-                    case 14:
-                        title = 'لغو شده توسط تامین کننده';
-                        break;
-                    case '14':
-                        title = 'لغو شده توسط تامین کننده';
+                        title = 'تامین کننده';
                         break;
                 }
                 return title;
             },
-            getStatusColor(verified, status) {
+            getStatusColor(verified,value,waite_status) {
                 let colorClass = '';
-                if (status == verified && (verified >= 1 && verified <= 7)) {
+                if ((verified==value) &&(waite_status==1 || waite_status=='1')) {
                     colorClass = ' bg-primary text-white';
-                } else if (status == verified && (verified >= 8 && verified <= 14)) {
+                } else if ((verified==value) &&(waite_status==2 || waite_status=='2')) {
                     colorClass = ' bg-danger text-white';
                 } else {
                     colorClass = ' bg-secondary text-white';

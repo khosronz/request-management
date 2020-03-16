@@ -31,6 +31,7 @@ class Order extends Model
         'title',
         'verified',
         'desc',
+        'waite_status',
         'user_id'
     ];
 
@@ -42,6 +43,7 @@ class Order extends Model
     protected $casts = [
         'title' => 'string',
         'verified' => 'string',
+        'waite_status' => 'string',
         'desc' => 'string',
         'user_id' => 'integer'
     ];

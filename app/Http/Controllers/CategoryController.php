@@ -18,8 +18,8 @@ class CategoryController extends AppBaseController
 
     public function __construct(CategoryRepository $categoryRepo)
     {
+        $this->authorizeResource(Category::class);
         $this->categoryRepository = $categoryRepo;
-        $this->authorizeResource(Category::class, 'category');
     }
 
     /**

@@ -167,8 +167,16 @@
                                     <span :class="'step_no'+getStatusColor(row.item.verified,value+1,row.item.waite_status)">{{value+1}}</span>
                                     <span class="step_descr">{{getStatus(value + 1)}}</span>
                                 </a>
+
                             </li>
                         </ul>
+                        <p>
+                            <span class="text-black">راهنما: </span>
+                            <span class="bg-primary text-white">در انتظار تایید</span>
+                            <span class="bg-danger text-white">لغو شده</span>
+                            <span class="bg-secondary text-white">حالت های دیگر</span>
+                            <span class="bg-success text-white">تایید نهایی</span>
+                        </p>
                     </div>
                 </b-card>
             </template>

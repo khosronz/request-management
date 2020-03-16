@@ -1,5 +1,5 @@
 <div class="col-sm-6 col-lg-3">
-    <div class="card text-white bg-primary">
+    <div class="card text-white bg-warning">
         <div class="card-body pb-0">
             <div class="btn-group float-right">
                 <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +39,7 @@
 </div>
 
 <div class="col-sm-6 col-lg-3">
-    <div class="card text-white bg-warning">
+    <div class="card text-white bg-green">
         <div class="card-body pb-0">
             <div class="btn-group float-right">
                 <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

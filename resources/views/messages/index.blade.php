@@ -19,6 +19,7 @@
                          <div class="card-body">
                              @include('messages.table')
                               <div class="pull-left mr-3" dir="ltr">
+
                                      
         @include('coreui-templates::common.paginate', ['records' => $messages])
 

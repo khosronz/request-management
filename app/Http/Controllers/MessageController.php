@@ -30,7 +30,6 @@ class MessageController extends AppBaseController
     public function index(Request $request)
     {
         $messages = $this->messageRepository->paginate(5);
-
         return view('messages.index')
             ->with('messages', $messages);
     }

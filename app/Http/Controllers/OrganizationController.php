@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
+use App\Models\Organization;
 use App\Repositories\OrganizationRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -18,8 +19,8 @@ class OrganizationController extends AppBaseController
     public function __construct(OrganizationRepository $organizationRepo)
     {
         $this->organizationRepository = $organizationRepo;
+        $this->authorizeResource(Organization::class, 'organization');
     }
-
     /**
      * Display a listing of the Organization.
      *

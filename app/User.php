@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-         'name', 'email', 'password', 'fname','lname','factory','province','city','address1','address2','phone','pre_phone','country','desc','api_token'
+        'name', 'email', 'password', 'fname', 'lname', 'factory', 'province', 'city', 'address1', 'address2', 'phone', 'pre_phone', 'country', 'desc', 'api_token'
     ];
 
     /**
@@ -47,10 +47,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Models\Order');
     }
+
     public function cards()
     {
         return $this->hasMany('App\Models\Card');
     }
+
     public function medias()
     {
         return $this->hasMany('App\Models\Media');
@@ -68,73 +70,86 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isSuperadmin()
     {
-        foreach ($this->roles as $role){
-            if ($role->id === UserType::superadmin){
-                return true;
-            }
-        }
-        return false;
-    }
-    public function isMaster()
-    {
-        foreach ($this->roles as $role){
-            if ($role->id === UserType::master){
+        $roles = $this->roles;
+        foreach ($roles as $role) {
+            if ($role->id == UserType::superadmin) {
                 return true;
             }
         }
         return false;
     }
 
-    public function isOwner()
+    public
+    function isMaster()
     {
-        foreach ($this->roles as $role){
-            if ($role->id === UserType::owner){
-                return true;
-            }
-        }
-        return false;
-    }
-    public function isFinancial()
-    {
-        foreach ($this->roles as $role){
-            if ($role->id === UserType::financial){
+        foreach ($this->roles as $role) {
+            if ($role->id === UserType::master) {
                 return true;
             }
         }
         return false;
     }
 
-    public function isProtection()
+    public
+    function isOwner()
     {
-        foreach ($this->roles as $role){
-            if ($role->id === UserType::protection){
+        foreach ($this->roles as $role) {
+            if ($role->id === UserType::owner) {
                 return true;
             }
         }
         return false;
     }
-    public function isSuccessor()
+
+    public
+    function isFinancial()
     {
-        foreach ($this->roles as $role){
-            if ($role->id === UserType::successor){
+        foreach ($this->roles as $role) {
+            if ($role->id === UserType::financial) {
                 return true;
             }
         }
         return false;
     }
-    public function isSupport()
+
+    public
+    function isProtection()
     {
-        foreach ($this->roles as $role){
-            if ($role->id === UserType::support){
+        foreach ($this->roles as $role) {
+            if ($role->id === UserType::protection) {
                 return true;
             }
         }
         return false;
     }
-    public function isSupplier()
+
+    public
+    function isSuccessor()
     {
-        foreach ($this->roles as $role){
-            if ($role->id === UserType::supplier){
+        foreach ($this->roles as $role) {
+            if ($role->id === UserType::successor) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public
+    function isSupport()
+    {
+        foreach ($this->roles as $role) {
+            if ($role->id === UserType::support) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public
+    function isSupplier()
+    {
+        foreach ($this->roles as $role) {
+            if ($role->id === UserType::supplier) {
                 return true;
             }
         }

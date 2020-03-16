@@ -4,12 +4,14 @@
         @lang('Initial Information')
     </a>
     <ul class="nav-dropdown-items">
+        @can('viewAny',\App\Models\Organization::class)
         <li class="nav-item {{ Request::is('organizations*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('organizations.index') !!}">
                 <i class="nav-icon fa fa-university"></i>
                 <span>@lang('Organizations')</span>
             </a>
         </li>
+        @endcan
         <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('categories.index') !!}">
                 <i class="nav-icon fa fa-list-alt"></i>

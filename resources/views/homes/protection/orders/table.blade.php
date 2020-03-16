@@ -1,4 +1,4 @@
-<div class="table-responsive-sm">
+`<div class="table-responsive-sm">
     <table class="table table-responsive table-bordered table-striped" id="orders-table"
            style="display: block;overflow-x: auto; white-space: nowrap;">
         <thead>
@@ -13,11 +13,8 @@
         @foreach($orders as $order)
             <tr>
                 <td>{!! $order->title !!}</td>
-                @if($order->verified < \App\Enums\VerifiedType::owner_reject )
+                @if($order->verified < \App\Enums\VerifiedType::owner_waite )
                     <td class="text-info">{!! verificationStatus($order->verified) !!}</td>
-                @endif
-                @if($order->verified >= \App\Enums\VerifiedType::owner_reject )
-                    <td class="text-danger">{!! verificationStatus($order->verified) !!}</td>
                 @endif
                 <td>{!! $order->user->name !!}</td>
                 <td>{!! jdate($order->created_at) !!}</td>

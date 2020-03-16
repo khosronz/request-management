@@ -89,11 +89,11 @@ class HomeController extends Controller
     public function masterindex()
     {
         $orders = Order::where('verified', '=', VerifiedType::master_waite)
-            ->orWhere('verified', '=', VerifiedType::master_reject)
+            ->orWhere('verified', '=', VerifiedType::master_waite)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $orders_not_paginate = Order::where('verified', '=', VerifiedType::master_waite)
-            ->orWhere('verified', '=', VerifiedType::master_reject)
+            ->orWhere('verified', '=', VerifiedType::master_waite)
             ->orderBy('created_at', 'desc')
             ->get();
         return view('homes.master.index')->with('orders', $orders)
@@ -103,11 +103,11 @@ class HomeController extends Controller
     public function successorindex()
     {
         $orders = Order::where('verified', '=', VerifiedType::successor_waite)
-            ->orWhere('verified', '=', VerifiedType::successor_reject)
+            ->orWhere('verified', '=', VerifiedType::successor_waite)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $orders_not_paginate = Order::where('verified', '=', VerifiedType::successor_waite)
-            ->orWhere('verified', '=', VerifiedType::successor_reject)
+            ->orWhere('verified', '=', VerifiedType::successor_waite)
             ->orderBy('created_at', 'desc')
             ->get();
         return view('homes.successor.index')->with('orders', $orders)
@@ -117,11 +117,11 @@ class HomeController extends Controller
     public function supportindex()
     {
         $orders = Order::where('verified', '=', VerifiedType::support_waite)
-            ->orWhere('verified', '=', VerifiedType::support_reject)
+            ->orWhere('verified', '=', VerifiedType::support_waite)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $orders_not_paginate = Order::where('verified', '=', VerifiedType::support_waite)
-            ->orWhere('verified', '=', VerifiedType::support_reject)
+            ->orWhere('verified', '=', VerifiedType::support_waite)
             ->orderBy('created_at', 'desc')
             ->get();
         return view('homes.support.index')->with('orders', $orders)
@@ -131,11 +131,11 @@ class HomeController extends Controller
     public function supplierindex()
     {
         $orders = Order::where('verified', '=', VerifiedType::supplier_waite)
-            ->orWhere('verified', '=', VerifiedType::supplier_reject)
+            ->orWhere('verified', '=', VerifiedType::supplier_waite)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $orders_not_paginate = Order::where('verified', '=', VerifiedType::supplier_waite)
-            ->orWhere('verified', '=', VerifiedType::supplier_reject)
+            ->orWhere('verified', '=', VerifiedType::supplier_waite)
             ->orderBy('created_at', 'desc')
             ->get();
         return view('homes.supplier.index')->with('orders', $orders)
@@ -158,11 +158,11 @@ class HomeController extends Controller
     public function protectionindex()
     {
         $orders = Order::where('verified', '=', VerifiedType::protection_waite)
-            ->orWhere('verified', '=', VerifiedType::protection_reject)
+            ->orWhere('verified', '=', VerifiedType::protection_waite)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $orders_not_paginate=Order::where('verified', '=', VerifiedType::protection_waite)
-            ->orWhere('verified', '=', VerifiedType::protection_reject)
+            ->orWhere('verified', '=', VerifiedType::protection_waite)
             ->orderBy('created_at', 'desc')
             ->get();
         return view('homes.protection.index')->with('orders', $orders)
@@ -172,11 +172,11 @@ class HomeController extends Controller
     public function financialindex()
     {
         $orders = Order::where('verified', '=', VerifiedType::financial_waite)
-            ->orWhere('verified', '=', VerifiedType::financial_reject)
+            ->orWhere('verified', '=', VerifiedType::financial_waite)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         $orders_not_paginate = Order::where('verified', '=', VerifiedType::financial_waite)
-            ->orWhere('verified', '=', VerifiedType::financial_reject)
+            ->orWhere('verified', '=', VerifiedType::financial_waite)
             ->orderBy('created_at', 'desc')
             ->get();
         return view('homes.financial.index')->with('orders', $orders)

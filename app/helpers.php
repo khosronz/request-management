@@ -189,46 +189,25 @@ if (!function_exists('getEndDate')) {
             $verify_status = '';
             switch ($status) {
                 case \App\Enums\VerifiedType::owner_waite:
-                    $verify_status = 'در اختیار مالک';
+                    $verify_status = 'مالک';
                     break;
                 case \App\Enums\VerifiedType::successor_waite:
-                    $verify_status = 'در اختیار مسئول مالک';
+                    $verify_status = 'مسئول مالک';
                     break;
                 case \App\Enums\VerifiedType::master_waite:
-                    $verify_status = 'در اختیار کارشناس';
+                    $verify_status = 'کارشناس';
                     break;
                 case \App\Enums\VerifiedType::protection_waite:
-                    $verify_status = 'در اختیار بازرس';
+                    $verify_status = 'بازرس';
                     break;
                 case \App\Enums\VerifiedType::financial_waite:
-                    $verify_status = 'در اختیار مالی';
+                    $verify_status = 'مالی';
                     break;
                 case \App\Enums\VerifiedType::support_waite:
-                    $verify_status = 'در اختیار پشتیبانی';
+                    $verify_status = 'پشتیبانی';
                     break;
                 case \App\Enums\VerifiedType::supplier_waite:
-                    $verify_status = 'در اختیار تامین کننده';
-                    break;
-                case \App\Enums\VerifiedType::owner_reject:
-                    $verify_status = 'مردود توسط مالک';
-                    break;
-                case \App\Enums\VerifiedType::successor_reject:
-                    $verify_status = 'مردود توسط مسئول مالک';
-                    break;
-                case \App\Enums\VerifiedType::master_reject:
-                    $verify_status = 'مردود توسط کارشناس';
-                    break;
-                case \App\Enums\VerifiedType::protection_reject:
-                    $verify_status = 'مردود توسط بازرس';
-                    break;
-                case \App\Enums\VerifiedType::financial_reject:
-                    $verify_status = 'مردود توسط مالی';
-                    break;
-                case \App\Enums\VerifiedType::support_reject:
-                    $verify_status = 'مردود توسط پشتیبانی';
-                    break;
-                case \App\Enums\VerifiedType::supplier_reject:
-                    $verify_status = 'مردود توسط تامین کننده';
+                    $verify_status = 'تامین کننده';
                     break;
             }
             return $verify_status;
@@ -239,18 +218,12 @@ if (!function_exists('getEndDate')) {
         function getVerificationStatusArray()
         {
             return [
-                '1'=> 'در اختیار مالک',
-                '2'=> 'در اختیار مسئول مالک',
-                '3'=> 'در اختیار کارشناس',
-                '4'=> 'در اختیار بازرس',
-                '5'=> 'در اختیار مالی',
-                '6'=> 'در اختیار پشتیبانی',
-                '7'=> 'مردود توسط مالک',
-                '8'=> 'مردود توسط مسئول مالک',
-                '9'=> 'مردود توسط کارشناس',
-                '10'=> 'مردود توسط بازرس',
-                '11'=> 'مردود توسط مالی',
-                '12'=> 'مردود توسط پشتیبانی',
+                '1'=> 'مالک',
+                '2'=> 'مسئول مالک',
+                '3'=> 'کارشناس',
+                '4'=> 'بازرس',
+                '5'=> 'مالی',
+                '6'=> 'پشتیبانی'
             ];
         }
     }

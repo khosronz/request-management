@@ -25,7 +25,7 @@ Route::get('/protection', 'HomeController@protectionindex')->name('protection.in
 Route::get('/financial', 'HomeController@financialindex')->name('financial.index');
 Route::get('/support', 'HomeController@supportindex')->name('support.index');
 Route::get('/supplier', 'HomeController@supplierindex')->name('supplier.index');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('organizations', 'OrganizationController');
 

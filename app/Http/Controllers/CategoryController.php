@@ -9,6 +9,7 @@ use App\Repositories\CategoryRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class CategoryController extends AppBaseController
@@ -18,7 +19,7 @@ class CategoryController extends AppBaseController
 
     public function __construct(CategoryRepository $categoryRepo)
     {
-        $this->authorizeResource(Category::class,'categories');
+//        $this->authorizeResource(Category::class,'categories');
         $this->categoryRepository = $categoryRepo;
     }
 
@@ -31,10 +32,15 @@ class CategoryController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $categories = $this->categoryRepository->paginate(10);
 
-        return view('categories.index')
-            ->with('categories', $categories);
+        if(Auth::user()->can('viewAny',Category::class)){
+            $categories = $this->categoryRepository->paginate(10);
+
+            return view('categories.index')
+                ->with('categories', $categories);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -44,7 +50,11 @@ class CategoryController extends AppBaseController
      */
     public function create()
     {
-        return view('categories.create');
+        if(Auth::user()->can('create',Category::class)){
+            return view('categories.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -56,13 +66,18 @@ class CategoryController extends AppBaseController
      */
     public function store(CreateCategoryRequest $request)
     {
-        $input = $request->all();
 
-        $category = $this->categoryRepository->create($input);
+        if(Auth::user()->can('create',Category::class)){
+            $input = $request->all();
 
-        Flash::success(__('Category').' '.__('saved successfully.'));
+            $category = $this->categoryRepository->create($input);
 
-        return redirect(route('categories.index'));
+            Flash::success(__('Category').' '.__('saved successfully.'));
+
+            return redirect(route('categories.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -74,15 +89,19 @@ class CategoryController extends AppBaseController
      */
     public function show($id)
     {
-        $category = $this->categoryRepository->find($id);
+        if(Auth::user()->can('view',Category::class)){
+            $category = $this->categoryRepository->find($id);
 
-        if (empty($category)) {
-            Flash::error(__('Category').' '.__('not found.'));
+            if (empty($category)) {
+                Flash::error(__('Category').' '.__('not found.'));
 
-            return redirect(route('categories.index'));
+                return redirect(route('categories.index'));
+            }
+
+            return view('categories.show')->with('category', $category);
         }
-
-        return view('categories.show')->with('category', $category);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     public function showproducts($id)
@@ -99,15 +118,19 @@ class CategoryController extends AppBaseController
      */
     public function edit($id)
     {
-        $category = $this->categoryRepository->find($id);
+        if(Auth::user()->can('update',Category::class)){
+            $category = $this->categoryRepository->find($id);
 
-        if (empty($category)) {
-            Flash::error(__('Category').' '.__('not found.'));
+            if (empty($category)) {
+                Flash::error(__('Category').' '.__('not found.'));
 
-            return redirect(route('categories.index'));
+                return redirect(route('categories.index'));
+            }
+
+            return view('categories.edit')->with('category', $category);
         }
-
-        return view('categories.edit')->with('category', $category);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -120,19 +143,25 @@ class CategoryController extends AppBaseController
      */
     public function update($id, UpdateCategoryRequest $request)
     {
-        $category = $this->categoryRepository->find($id);
 
-        if (empty($category)) {
-            Flash::error(__('Category').' '.__('not found.'));
+        if(Auth::user()->can('update',Category::class)){
+
+            $category = $this->categoryRepository->find($id);
+
+            if (empty($category)) {
+                Flash::error(__('Category').' '.__('not found.'));
+
+                return redirect(route('categories.index'));
+            }
+
+            $category = $this->categoryRepository->update($request->all(), $id);
+
+            Flash::success(__('Category').' '.__('updated successfully.'));
 
             return redirect(route('categories.index'));
         }
-
-        $category = $this->categoryRepository->update($request->all(), $id);
-
-        Flash::success(__('Category').' '.__('updated successfully.'));
-
-        return redirect(route('categories.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -146,18 +175,22 @@ class CategoryController extends AppBaseController
      */
     public function destroy($id)
     {
-        $category = $this->categoryRepository->find($id);
+        if(Auth::user()->can('delete',Category::class)){
+            $category = $this->categoryRepository->find($id);
 
-        if (empty($category)) {
-            Flash::error(__('Category').' '.__('not found.'));
+            if (empty($category)) {
+                Flash::error(__('Category').' '.__('not found.'));
+
+                return redirect(route('categories.index'));
+            }
+
+            $this->categoryRepository->delete($id);
+
+            Flash::success(__('Category').' '.__('deleted successfully.'));
 
             return redirect(route('categories.index'));
         }
-
-        $this->categoryRepository->delete($id);
-
-        Flash::success(__('Category').' '.__('deleted successfully.'));
-
-        return redirect(route('categories.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

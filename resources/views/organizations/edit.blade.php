@@ -18,7 +18,7 @@
                               <strong>@lang('Edit Organization')</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($organization, ['route' => ['organizations.update', $organization->id], 'method' => 'patch']) !!}
+                              {!! Form::model($organization, ['route' => ['organizations.update', $organization], 'method' => 'patch']) !!}
 
                               @include('organizations.fields')
 

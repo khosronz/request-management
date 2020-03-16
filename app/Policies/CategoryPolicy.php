@@ -11,6 +11,13 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
+//    public function before($user, $ability)
+//    {
+//        if ($user->isSuperAdmin()) {
+//            return true;
+//        }
+//    }
+
     /**
      * Determine whether the user can view any categories.
      *
@@ -28,10 +35,11 @@ class CategoryPolicy
      * Determine whether the user can view the category.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function view(User $user, Category $category)
+//    public function view(User $user, Category $category)
+    public function view(User $user)
     {
         return $user->isSuperadmin()
             ? Response::allow()
@@ -55,10 +63,11 @@ class CategoryPolicy
      * Determine whether the user can update the category.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function update(User $user, Category $category)
+//    public function update(User $user, Category $category)
+    public function update(User $user)
     {
         return $user->isSuperadmin()
             ? Response::allow()
@@ -69,10 +78,11 @@ class CategoryPolicy
      * Determine whether the user can delete the category.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function delete(User $user, Category $category)
+//    public function delete(User $user, Category $category)
+    public function delete(User $user)
     {
         return $user->isSuperadmin()
             ? Response::allow()
@@ -83,10 +93,11 @@ class CategoryPolicy
      * Determine whether the user can restore the category.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function restore(User $user, Category $category)
+//    public function restore(User $user, Category $category)
+    public function restore(User $user)
     {
         return $user->isSuperadmin()
             ? Response::allow()
@@ -97,10 +108,11 @@ class CategoryPolicy
      * Determine whether the user can permanently delete the category.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function forceDelete(User $user, Category $category)
+//    public function forceDelete(User $user, Category $category)
+    public function forceDelete(User $user)
     {
         return $user->isSuperadmin()
             ? Response::allow()

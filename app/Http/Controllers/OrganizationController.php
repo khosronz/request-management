@@ -7,8 +7,10 @@ use App\Http\Requests\UpdateOrganizationRequest;
 use App\Models\Organization;
 use App\Repositories\OrganizationRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class OrganizationController extends AppBaseController
@@ -18,7 +20,8 @@ class OrganizationController extends AppBaseController
 
     public function __construct(OrganizationRepository $organizationRepo)
     {
-        $this->authorizeResource(Organization::class,'organizations');
+//        $this->authorizeResource(Organization::class,'organization');
+//        $this->middleware('can:viewAny,organization');
         $this->organizationRepository = $organizationRepo;
     }
 
@@ -31,10 +34,14 @@ class OrganizationController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $organizations = $this->organizationRepository->paginate(5);
+        if(Auth::user()->can('viewAny',Organization::class)){
+            $organizations = $this->organizationRepository->paginate(5);
 
-        return view('organizations.index')
-            ->with('organizations', $organizations);
+            return view('organizations.index')
+                ->with('organizations', $organizations);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -44,7 +51,11 @@ class OrganizationController extends AppBaseController
      */
     public function create()
     {
-        return view('organizations.create');
+        if(Auth::user()->can('create',Organization::class)){
+            return view('organizations.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -56,13 +67,18 @@ class OrganizationController extends AppBaseController
      */
     public function store(CreateOrganizationRequest $request)
     {
-        $input = $request->all();
+        if(Auth::user()->can('create',Organization::class)){
 
-        $organization = $this->organizationRepository->create($input);
+            $input = $request->all();
 
-        Flash::success(__('Organization').' '.__('saved successfully.'));
+            $organization = $this->organizationRepository->create($input);
 
-        return redirect(route('organizations.index'));
+            Flash::success(__('Organization').' '.__('saved successfully.'));
+
+            return redirect(route('organizations.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -74,15 +90,20 @@ class OrganizationController extends AppBaseController
      */
     public function show($id)
     {
-        $organization = $this->organizationRepository->find($id);
+        if(Auth::user()->can('view',Organization::class)){
 
-        if (empty($organization)) {
-            Flash::error(__('Organization not found'));
+            $organization = $this->organizationRepository->find($id);
 
-            return redirect(route('organizations.index'));
+            if (empty($organization)) {
+                Flash::error(__('Organization not found'));
+
+                return redirect(route('organizations.index'));
+            }
+
+            return view('organizations.show')->with('organization', $organization);
         }
-
-        return view('organizations.show')->with('organization', $organization);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -94,15 +115,19 @@ class OrganizationController extends AppBaseController
      */
     public function edit($id)
     {
-        $organization = $this->organizationRepository->find($id);
+        if(Auth::user()->can('update',Organization::class)){
+            $organization = $this->organizationRepository->find($id);
 
-        if (empty($organization)) {
-            Flash::error(__('Organization not found'));
+            if (empty($organization)) {
+                Flash::error(__('Organization not found'));
 
-            return redirect(route('organizations.index'));
+                return redirect(route('organizations.index'));
+            }
+
+            return view('organizations.edit')->with('organization', $organization);
         }
-
-        return view('organizations.edit')->with('organization', $organization);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -115,19 +140,24 @@ class OrganizationController extends AppBaseController
      */
     public function update($id, UpdateOrganizationRequest $request)
     {
-        $organization = $this->organizationRepository->find($id);
+        if(Auth::user()->can('update',Organization::class)){
 
-        if (empty($organization)) {
-            Flash::error('Organization not found');
+            $organization = $this->organizationRepository->find($id);
+
+            if (empty($organization)) {
+                Flash::error('Organization not found');
+
+                return redirect(route('organizations.index'));
+            }
+
+            $organization = $this->organizationRepository->update($request->all(), $id);
+
+            Flash::success(__('Organization updated successfully.'));
 
             return redirect(route('organizations.index'));
         }
-
-        $organization = $this->organizationRepository->update($request->all(), $id);
-
-        Flash::success(__('Organization updated successfully.'));
-
-        return redirect(route('organizations.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -141,18 +171,23 @@ class OrganizationController extends AppBaseController
      */
     public function destroy($id)
     {
-        $organization = $this->organizationRepository->find($id);
+        if(Auth::user()->can('viewAny',Organization::class)){
 
-        if (empty($organization)) {
-            Flash::error(__('Organization not found'));
+            $organization = $this->organizationRepository->find($id);
+
+            if (empty($organization)) {
+                Flash::error(__('Organization not found'));
+
+                return redirect(route('organizations.index'));
+            }
+
+            $this->organizationRepository->delete($id);
+
+            Flash::success(__('Organization deleted successfully.'));
 
             return redirect(route('organizations.index'));
         }
-
-        $this->organizationRepository->delete($id);
-
-        Flash::success(__('Organization deleted successfully.'));
-
-        return redirect(route('organizations.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

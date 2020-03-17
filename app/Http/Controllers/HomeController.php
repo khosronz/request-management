@@ -191,8 +191,6 @@ class HomeController extends Controller
 
     public function protectionindex()
     {
-
-
         if (Gate::allows('protection-dashboard')) {
             $orders = Order::where('verified', '=', VerifiedType::protection_waite)
                 ->orWhere('verified', '=', VerifiedType::protection_waite)
@@ -226,6 +224,11 @@ class HomeController extends Controller
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
 
+    }
+
+    public function profile()
+    {
+        return view('homes.profile.index');
     }
 
 

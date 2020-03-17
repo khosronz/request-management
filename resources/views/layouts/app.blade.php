@@ -39,7 +39,7 @@
         <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
 {{--                <i class="icon-bell"></i>--}}
-                <span class="badge badge-pill badge-danger">5</span>
+                <span class="badge badge-pill badge-danger">{{count(Auth::user()->messages->where('status', \App\Enums\MessageStatus::NOTREAD))}}</span>
             </a>
         </li>
         <li class="nav-item dropdown">
@@ -52,15 +52,15 @@
                 <div class="dropdown-header text-center">
                     <strong>@lang('Account')</strong>
                 </div>
-                <a class="dropdown-item" href="#">
-                    <i class="fa fa-envelope-o"></i> @lang('Messages')
+                <a class="dropdown-item" href="{!! route('tickets.index') !!}">
+                    <i class="fa fa-envelope-o"></i> @lang('Tickets')
                     <span
-                        class="badge badge-success">{{count(\App\Models\Message::where('status',\App\Enums\StatusType::enabled)->get())}}</span>
+                        class="badge badge-success">{{count(Auth::user()->tickets)}}</span>
                 </a>
                 <div class="dropdown-header text-center">
                     <strong>@lang('Settings')</strong>
                 </div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{route('profile')}}">
                     <i class="fa fa-user"></i> @lang('Profile')</a>
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-wrench"></i> @lang('Settings')</a>

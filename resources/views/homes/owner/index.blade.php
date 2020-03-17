@@ -28,7 +28,7 @@
                          </div>
                          <div>
                              <div class="animated fadeIn">
-                             @include('homes.profile')
+                             @include('homes.profile.profile')
                              </div>
                          </div>
 

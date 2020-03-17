@@ -9,7 +9,7 @@ $factory->define(Message::class, function (Faker $faker) {
 
     return [
         'title' => \Ybazli\Faker\Facades\Faker::sentence(),
-        'status' => rand(0,1),
+        'status' => rand(\App\Enums\MessageStatus::READED,\App\Enums\MessageStatus::NOTREAD),
         'ticket_id' => rand(1,100),
         'user_id' => rand(1,7),
         'desc' => \Ybazli\Faker\Facades\Faker::paragraph(),

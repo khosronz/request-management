@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('pre_phone')->nullable();
             $table->string('country')->nullable();
-            $table->string('desc')->nullable();
+            $table->text('desc')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

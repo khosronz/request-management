@@ -1,34 +1,32 @@
-
-
 <div class="row clearfix">
     <div class="col-lg-4 col-md-12">
         <div class="card">
             <div class="m-b-20">
                 <div class="contact-grid">
                     <div class="profile-header bg-dark">
-                        <div class="user-name">{!! Auth::user()->name !!}</div>
-                        <div class="name-center">{!! Auth::user()->fname !!} {!! Auth::user()->lname !!}</div>
+                        <div class="user-name">{!! \Illuminate\Support\Facades\Auth::user()->name !!}</div>
+                        <div class="name-center">{!! \Illuminate\Support\Facades\Auth::user()->fname !!} {!! \Illuminate\Support\Facades\Auth::user()->lname !!}</div>
 
                     </div>
                     <img src="{{asset('images/Userpic/profile.png')}}" class="user-img" alt="">
                     <p>
-                    <div class="name-center"> {!! Auth::user()->email !!}</div>
+                    <div class="name-center"> {!! \Illuminate\Support\Facades\Auth::user()->email !!}</div>
                     </p>
                     <div>
                                     <span class="phone">
-                                        <i class="material-icons">phone</i>{!! Auth::user()->phone !!}</span>
+                                        <i class="material-icons">phone</i>{!! \Illuminate\Support\Facades\Auth::user()->phone !!}</span>
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            <h5>{!! jdate(Auth::user()->created_at) !!}</h5>
+                            <h5>{!! jdate(\Illuminate\Support\Facades\Auth::user()->created_at) !!}</h5>
                             <small>@lang('Membership history')</small>
                         </div>
                         <div class="col-4">
-                            <h5>{!! Auth::user()->country !!}</h5>
+                            <h5>{!! \Illuminate\Support\Facades\Auth::user()->country !!}</h5>
                             <small>@lang('Country')</small>
                         </div>
                         <div class="col-4">
-                            <h5>{!! jdate(Auth::user()->update_at) !!}</h5>
+                            <h5>{!! jdate(\Illuminate\Support\Facades\Auth::user()->update_at) !!}</h5>
                             <small>@lang('Date Update date')</small>
                         </div>
                     </div>
@@ -48,10 +46,10 @@
                 <div class="tab-pane body active" id="about">
                     <p class="text-default">لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است. لورم ایپسوم از سالهای متمادی استاندارد استاندارد صنعت بوده است، زمانی که یک چاپگر ناشناخته با یک نوع کابین از آن استفاده کرد و آن را برای ساختن یک نمونه از نوع نمونه آماده کرد. این نه تنها پنج قرن زنده مانده است، بلکه جهش به شکل گیری الکترونیکی نیز باقی مانده است.</p>
                     <small class="text-muted">آدرس ایمیل: </small>
-                    <p>john@gmail.com</p>
+                    <p>{{\Illuminate\Support\Facades\Auth::user()->email}}</p>
                     <hr>
                     <small class="text-muted">تلفن: </small>
-                    <p>+91 1234567890</p>
+                    <p>{{\Illuminate\Support\Facades\Auth::user()->pre_phone}}{{\Illuminate\Support\Facades\Auth::user()->phone}}</p>
                     <hr>
                 </div>
                 <div class="tab-pane body" id="skills">
@@ -117,22 +115,22 @@
                                     <div class="col-md-3 col-6 b-r">
                                         <strong>@lang('name_family')</strong>
                                         <br>
-                                        <p class="text-muted">{!! Auth::user()->fname !!} {!! Auth::user()->lname !!}</p>
+                                        <p class="text-muted">{!! \Illuminate\Support\Facades\Auth::user()->fname !!} {!! \Illuminate\Support\Facades\Auth::user()->lname !!}</p>
                                     </div>
                                     <div class="col-md-3 col-6 b-r">
                                         <strong>@lang('phone mobile')</strong>
                                         <br>
-                                        <p class="text-muted">{!! Auth::user()->phone !!}</p>
+                                        <p class="text-muted">{!! \Illuminate\Support\Facades\Auth::user()->phone !!}</p>
                                     </div>
                                     <div class="col-md-3 col-6 b-r">
                                         <strong>@lang('Email')</strong>
                                         <br>
-                                        <p class="text-muted">{!! Auth::user()->email !!}</p>
+                                        <p class="text-muted">{!! \Illuminate\Support\Facades\Auth::user()->email !!}</p>
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <strong>@lang('Country')</strong>
                                         <br>
-                                        <p class="text-muted">{!! Auth::user()->country !!}</p>
+                                        <p class="text-muted">{!! \Illuminate\Support\Facades\Auth::user()->country !!}</p>
                                     </div>
                                 </div>
                                 <p class="m-t-30">من فارغ التحصیل شدم در هنر از موسسه شناخته شده و مشهور هند - 2000-01، که به دانشگاه وابسته است. من در آزمون های دانشگاهی از همان دانشگاه از سال 1996 تاکنون رتبه بندی کردم.</p>

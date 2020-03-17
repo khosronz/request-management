@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrganizationCategoryRequest;
 use App\Http\Requests\UpdateOrganizationCategoryRequest;
+use App\Models\OrganizationCategory;
 use App\Repositories\OrganizationCategoryRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class OrganizationCategoryController extends AppBaseController
@@ -29,10 +31,14 @@ class OrganizationCategoryController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $organizationCategories = $this->organizationCategoryRepository->paginate(10);
+        if(Auth::user()->can('viewAny',OrganizationCategory::class)){
+            $organizationCategories = $this->organizationCategoryRepository->paginate(10);
 
-        return view('organization_categories.index')
-            ->with('organizationCategories', $organizationCategories);
+            return view('organization_categories.index')
+                ->with('organizationCategories', $organizationCategories);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -42,7 +48,11 @@ class OrganizationCategoryController extends AppBaseController
      */
     public function create()
     {
-        return view('organization_categories.create');
+        if(Auth::user()->can('create',OrganizationCategory::class)){
+            return view('organization_categories.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -54,13 +64,17 @@ class OrganizationCategoryController extends AppBaseController
      */
     public function store(CreateOrganizationCategoryRequest $request)
     {
-        $input = $request->all();
+        if(Auth::user()->can('create',OrganizationCategory::class)){
+            $input = $request->all();
 
-        $organizationCategory = $this->organizationCategoryRepository->create($input);
+            $organizationCategory = $this->organizationCategoryRepository->create($input);
 
-        Flash::success(__('Organization Category').' '.__('saved successfully.'));
+            Flash::success(__('Organization Category').' '.__('saved successfully.'));
 
-        return redirect(route('organizationCategories.index'));
+            return redirect(route('organizationCategories.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -72,15 +86,19 @@ class OrganizationCategoryController extends AppBaseController
      */
     public function show($id)
     {
-        $organizationCategory = $this->organizationCategoryRepository->find($id);
+        if(Auth::user()->can('view',OrganizationCategory::class)){
+            $organizationCategory = $this->organizationCategoryRepository->find($id);
 
-        if (empty($organizationCategory)) {
-            Flash::error(__('Organization Category').' '.__('not found.'));
+            if (empty($organizationCategory)) {
+                Flash::error(__('Organization Category').' '.__('not found.'));
 
-            return redirect(route('organizationCategories.index'));
+                return redirect(route('organizationCategories.index'));
+            }
+
+            return view('organization_categories.show')->with('organizationCategory', $organizationCategory);
         }
-
-        return view('organization_categories.show')->with('organizationCategory', $organizationCategory);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -92,15 +110,19 @@ class OrganizationCategoryController extends AppBaseController
      */
     public function edit($id)
     {
-        $organizationCategory = $this->organizationCategoryRepository->find($id);
+        if(Auth::user()->can('update',OrganizationCategory::class)){
+            $organizationCategory = $this->organizationCategoryRepository->find($id);
 
-        if (empty($organizationCategory)) {
-            Flash::error(__('Organization Category').' '.__('not found.'));
+            if (empty($organizationCategory)) {
+                Flash::error(__('Organization Category').' '.__('not found.'));
 
-            return redirect(route('organizationCategories.index'));
+                return redirect(route('organizationCategories.index'));
+            }
+
+            return view('organization_categories.edit')->with('organizationCategory', $organizationCategory);
         }
-
-        return view('organization_categories.edit')->with('organizationCategory', $organizationCategory);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -113,19 +135,23 @@ class OrganizationCategoryController extends AppBaseController
      */
     public function update($id, UpdateOrganizationCategoryRequest $request)
     {
-        $organizationCategory = $this->organizationCategoryRepository->find($id);
+        if(Auth::user()->can('update',OrganizationCategory::class)){
+            $organizationCategory = $this->organizationCategoryRepository->find($id);
 
-        if (empty($organizationCategory)) {
-            Flash::error(__('Organization Category').' '.__('not found.'));
+            if (empty($organizationCategory)) {
+                Flash::error(__('Organization Category').' '.__('not found.'));
+
+                return redirect(route('organizationCategories.index'));
+            }
+
+            $organizationCategory = $this->organizationCategoryRepository->update($request->all(), $id);
+
+            Flash::success(__('Organization Category').' '.__('updated successfully.'));
 
             return redirect(route('organizationCategories.index'));
         }
-
-        $organizationCategory = $this->organizationCategoryRepository->update($request->all(), $id);
-
-        Flash::success(__('Organization Category').' '.__('updated successfully.'));
-
-        return redirect(route('organizationCategories.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -139,18 +165,22 @@ class OrganizationCategoryController extends AppBaseController
      */
     public function destroy($id)
     {
-        $organizationCategory = $this->organizationCategoryRepository->find($id);
+        if(Auth::user()->can('delete',OrganizationCategory::class)){
+            $organizationCategory = $this->organizationCategoryRepository->find($id);
 
-        if (empty($organizationCategory)) {
-            Flash::error(__('Organization Category').' '.__('not found.'));
+            if (empty($organizationCategory)) {
+                Flash::error(__('Organization Category').' '.__('not found.'));
+
+                return redirect(route('organizationCategories.index'));
+            }
+
+            $this->organizationCategoryRepository->delete($id);
+
+            Flash::success(__('Organization Category').' '.__('deleted successfully.'));
 
             return redirect(route('organizationCategories.index'));
         }
-
-        $this->organizationCategoryRepository->delete($id);
-
-        Flash::success(__('Organization Category').' '.__('deleted successfully.'));
-
-        return redirect(route('organizationCategories.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

@@ -1,31 +1,34 @@
- {{--Initial Information--}}
+{{--Initial Information--}}
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-cogs"></i>
         @lang('Initial Information')
     </a>
     <ul class="nav-dropdown-items">
         @can('viewAny',\App\Models\Organization::class)
-        <li class="nav-item {{ Request::is('organizations*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('organizations.index') !!}">
-                <i class="nav-icon fa fa-university"></i>
-                <span>@lang('Organizations')</span>
-            </a>
-        </li>
+            <li class="nav-item {{ Request::is('organizations*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('organizations.index') !!}">
+                    <i class="nav-icon fa fa-university"></i>
+                    <span>@lang('Organizations')</span>
+                </a>
+            </li>
         @endcan
         @can('viewAny',\App\Models\Category::class)
-                <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{!! route('categories.index') !!}">
-                        <i class="nav-icon fa fa-list-alt"></i>
-                        <span>@lang('Categories')</span>
-                    </a>
-                </li>
+            <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('categories.index') !!}">
+                    <i class="nav-icon fa fa-list-alt"></i>
+                    <span>@lang('Categories')</span>
+                </a>
+            </li>
         @endcan
-        <li class="nav-item {{ Request::is('organizationCategories*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('organizationCategories.index') !!}">
-                <i class="nav-icon icon-cursor"></i>
-                <span>@lang('Organization Categories')</span>
-            </a>
-        </li>
+        @can('viewAny',\App\Models\OrganizationCategory::class)
+            <li class="nav-item {{ Request::is('organizationCategories*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('organizationCategories.index') !!}">
+                    <i class="nav-icon icon-cursor"></i>
+                    <span>@lang('Organization Categories')</span>
+                </a>
+            </li>
+        @endcan
+
         <li class="nav-item {{ Request::is('equipment*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('equipment.index') !!}">
                 <i class="nav-icon fa fa-desktop"></i>
@@ -33,19 +36,22 @@
             </a>
         </li>
         @can('viewAny',\App\Models\Role::class)
-                <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{!! route('roles.index') !!}">
-                        <i class="nav-icon icon-people"></i>
-                        <span>@lang('Roles')</span>
-                    </a>
-                </li>
+            <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('roles.index') !!}">
+                    <i class="nav-icon icon-people"></i>
+                    <span>@lang('Roles')</span>
+                </a>
+            </li>
         @endcan
-        <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('users.index') !!}">
-                <i class="nav-icon fa fa-university"></i>
-                <span>@lang('Users')</span>
-            </a>
-        </li>
+        @can('viewAny',\App\User::class)
+            <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('users.index') !!}">
+                    <i class="nav-icon fa fa-university"></i>
+                    <span>@lang('Users')</span>
+                </a>
+            </li>
+        @endcan
+
         <li class="nav-item {{ Request::is('severities*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('severities.index') !!}">
                 <i class="nav-icon icon-layers"></i>
@@ -60,16 +66,16 @@
             </a>
         </li>
         {{--<li class="nav-item {{ Request::is('factorytells*') ? 'active' : '' }}">--}}
-            {{--<a class="nav-link" href="{!! route('factorytells.index') !!}">--}}
-                {{--<i class="nav-icon fa fa-phone-square"></i>--}}
-                {{--<span>@lang('Factorytells')</span>--}}
-            {{--</a>--}}
+        {{--<a class="nav-link" href="{!! route('factorytells.index') !!}">--}}
+        {{--<i class="nav-icon fa fa-phone-square"></i>--}}
+        {{--<span>@lang('Factorytells')</span>--}}
+        {{--</a>--}}
         {{--</li>--}}
         {{--<li class="nav-item {{ Request::is('factoryaddresses*') ? 'active' : '' }}">--}}
-            {{--<a class="nav-link" href="{!! route('factoryaddresses.index') !!}">--}}
-                {{--<i class="nav-icon fa  fa-map-marker"></i>--}}
-                {{--<span>@lang('Factoryaddresses')</span>--}}
-            {{--</a>--}}
+        {{--<a class="nav-link" href="{!! route('factoryaddresses.index') !!}">--}}
+        {{--<i class="nav-icon fa  fa-map-marker"></i>--}}
+        {{--<span>@lang('Factoryaddresses')</span>--}}
+        {{--</a>--}}
         {{--</li>--}}
         <li class="nav-item {{ Request::is('factories*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('factories.index') !!}">
@@ -84,14 +90,14 @@
             </a>
         </li>
         {{--<li class="nav-item {{ Request::is('organizationUsers*') ? 'active' : '' }}">--}}
-            {{--<a class="nav-link" href="{!! route('organizationUsers.index') !!}">--}}
-                {{--<i class="nav-icon icon-cursor"></i>--}}
-                {{--<span>@lang('Organization Users')</span>--}}
-            {{--</a>--}}
+        {{--<a class="nav-link" href="{!! route('organizationUsers.index') !!}">--}}
+        {{--<i class="nav-icon icon-cursor"></i>--}}
+        {{--<span>@lang('Organization Users')</span>--}}
+        {{--</a>--}}
         {{--</li>--}}
     </ul>
 </li>
- {{--Dashboards--}}
+{{--Dashboards--}}
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer"></i>
         @lang('Dashboards')
@@ -143,65 +149,66 @@
     </ul>
 </li>
 
- <li class="nav-item nav-dropdown">
-     <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer"></i>
-         @lang('Orders')
-     </a>
-     <ul class="nav-dropdown-items">
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer"></i>
+        @lang('Orders')
+    </a>
+    <ul class="nav-dropdown-items">
 
-         <li class="nav-item {{ Request::is('orders*') ? 'active' : '' }}">
-             <a class="nav-link" href="{!! route('orders.index') !!}">
-                 <i class="nav-icon fa fa-cart-arrow-down"></i>
-                 <span>@lang('Orders')</span>
-             </a>
-         </li>
-         <li class="nav-item {{ Request::is('owners/create*') ? 'active' : '' }}">
-             <a class="nav-link" href="{!! route('cards.index') !!}">
-                 <i class="nav-icon fa fa-cart-arrow-down"></i>
-                 <span>@lang('New Orders')</span>
-             </a>
-         </li>
-     </ul>
- </li>
+        <li class="nav-item {{ Request::is('orders*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('orders.index') !!}">
+                <i class="nav-icon fa fa-cart-arrow-down"></i>
+                <span>@lang('Orders')</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Request::is('owners/create*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('cards.index') !!}">
+                <i class="nav-icon fa fa-cart-arrow-down"></i>
+                <span>@lang('New Orders')</span>
+            </a>
+        </li>
+    </ul>
+</li>
 
 
- <li class="nav-item {{ Request::is('tickets*') ? 'active' : '' }}">
-     <a class="nav-link" href="{!! route('tickets.index') !!}">
-         <i class="nav-icon fa fa-comments-o"></i>
-         <span>@lang('Tickets')</span>
-     </a>
- </li>
+<li class="nav-item {{ Request::is('tickets*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('tickets.index') !!}">
+        <i class="nav-icon fa fa-comments-o"></i>
+        <span>@lang('Tickets')</span>
+    </a>
+</li>
 {{--<li class="nav-item {{ Request::is('messages*') ? 'active' : '' }}">--}}
-    {{--<a class="nav-link" href="{!! route('messages.index') !!}">--}}
-        {{--<i class="nav-icon cui-paper-plane"></i>--}}
-        {{--<span>@lang('Messages')</span>--}}
-    {{--</a>--}}
+{{--<a class="nav-link" href="{!! route('messages.index') !!}">--}}
+{{--<i class="nav-icon cui-paper-plane"></i>--}}
+{{--<span>@lang('Messages')</span>--}}
+{{--</a>--}}
 {{--</li>--}}
 {{--<li class="nav-item {{ Request::is('orderdetails*') ? 'active' : '' }}">--}}
-    {{--<a class="nav-link" href="{!! route('orderdetails.index') !!}">--}}
-        {{--<i class="nav-icon icon-cursor"></i>--}}
-        {{--<span>@lang('Orderdetails')</span>--}}
-    {{--</a>--}}
+{{--<a class="nav-link" href="{!! route('orderdetails.index') !!}">--}}
+{{--<i class="nav-icon icon-cursor"></i>--}}
+{{--<span>@lang('Orderdetails')</span>--}}
+{{--</a>--}}
 {{--</li>--}}
 {{--<li class="nav-item {{ Request::is('cards*') ? 'active' : '' }}">--}}
-    {{--<a class="nav-link" href="{!! route('cards.index') !!}">--}}
-        {{--<i class="nav-icon icon-cursor"></i>--}}
-        {{--<span>@lang('Cards')</span>--}}
-    {{--</a>--}}
+{{--<a class="nav-link" href="{!! route('cards.index') !!}">--}}
+{{--<i class="nav-icon icon-cursor"></i>--}}
+{{--<span>@lang('Cards')</span>--}}
+{{--</a>--}}
 {{--</li>--}}
 
 {{--<li class="nav-item {{ Request::is('roleUsers*') ? 'active' : '' }}">--}}
-    {{--<a class="nav-link" href="{!! route('roleUsers.index') !!}">--}}
-        {{--<i class="nav-icon icon-cursor"></i>--}}
-        {{--<span>@lang('Role Users')</span>--}}
-    {{--</a>--}}
+{{--<a class="nav-link" href="{!! route('roleUsers.index') !!}">--}}
+{{--<i class="nav-icon icon-cursor"></i>--}}
+{{--<span>@lang('Role Users')</span>--}}
+{{--</a>--}}
 {{--</li>--}}
 {{--<li class="nav-item {{ Request::is('protectionCategories*') ? 'active' : '' }}">--}}
-    {{--<a class="nav-link" href="{!! route('protectionCategories.index') !!}">--}}
-        {{--<i class="nav-icon icon-cursor"></i>--}}
-        {{--<span>@lang('Protection Categories')</span>--}}
-    {{--</a>--}}
-{{--</li>--}}<li class="nav-item {{ Request::is('prefactors*') ? 'active' : '' }}">
+{{--<a class="nav-link" href="{!! route('protectionCategories.index') !!}">--}}
+{{--<i class="nav-icon icon-cursor"></i>--}}
+{{--<span>@lang('Protection Categories')</span>--}}
+{{--</a>--}}
+{{--</li>--}}
+<li class="nav-item {{ Request::is('prefactors*') ? 'active' : '' }}">
     <a class="nav-link" href="{!! route('prefactors.index') !!}">
         <i class="nav-icon icon-cursor"></i>
         <span>@lang('Prefactors')</span>

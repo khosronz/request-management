@@ -52,19 +52,22 @@
             </li>
         @endcan
         @can('viewAny',\App\Models\Severity::class)
-        <li class="nav-item {{ Request::is('severities*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('severities.index') !!}">
-                <i class="nav-icon icon-layers"></i>
-                <span>@lang('Severities')</span>
-            </a>
-        </li>
+            <li class="nav-item {{ Request::is('severities*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('severities.index') !!}">
+                    <i class="nav-icon icon-layers"></i>
+                    <span>@lang('Severities')</span>
+                </a>
+            </li>
         @endcan
-        <li class="nav-item {{ Request::is('telltypes*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('telltypes.index') !!}">
-                <i class="nav-icon fa fa-address-card-o"></i>
-                <span>@lang('Telltypes')</span>
-            </a>
-        </li>
+        @can('viewAny',\App\Models\Telltype::class)
+            <li class="nav-item {{ Request::is('telltypes*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('telltypes.index') !!}">
+                    <i class="nav-icon fa fa-address-card-o"></i>
+                    <span>@lang('Telltypes')</span>
+                </a>
+            </li>
+
+        @endcan
         {{--<li class="nav-item {{ Request::is('factorytells*') ? 'active' : '' }}">--}}
         {{--<a class="nav-link" href="{!! route('factorytells.index') !!}">--}}
         {{--<i class="nav-icon fa fa-phone-square"></i>--}}
@@ -77,12 +80,15 @@
         {{--<span>@lang('Factoryaddresses')</span>--}}
         {{--</a>--}}
         {{--</li>--}}
-        <li class="nav-item {{ Request::is('factories*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('factories.index') !!}">
-                <i class="nav-icon fa fa-briefcase"></i>
-                <span>@lang('Factories')</span>
-            </a>
-        </li>
+        @can('viewAny',\App\Models\Factory::class)
+            <li class="nav-item {{ Request::is('factories*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('factories.index') !!}">
+                    <i class="nav-icon fa fa-briefcase"></i>
+                    <span>@lang('Factories')</span>
+                </a>
+            </li>
+        @endcan
+
         <li class="nav-item {{ Request::is('media*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('media.index') !!}">
                 <i class="nav-icon fa fa-file-text-o"></i>

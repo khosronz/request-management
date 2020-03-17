@@ -31,7 +31,7 @@ class SeverityController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if(Auth::user()->can('viewAny')){
+        if(Auth::user()->can('viewAny',Severity::class)){
             $severities = $this->severityRepository->paginate(5);
 
             return view('severities.index')
@@ -49,7 +49,7 @@ class SeverityController extends AppBaseController
      */
     public function create()
     {
-        if(Auth::user()->can('create')){
+        if(Auth::user()->can('create',Severity::class)){
             return view('severities.create');
         }
         Flash::error(__('You do not permission to this section.'));
@@ -65,7 +65,7 @@ class SeverityController extends AppBaseController
      */
     public function store(CreateSeverityRequest $request)
     {
-        if(Auth::user()->can('create')){
+        if(Auth::user()->can('create',Severity::class)){
             $input = $request->all();
 
             $severity = $this->severityRepository->create($input);
@@ -87,7 +87,7 @@ class SeverityController extends AppBaseController
      */
     public function show($id)
     {
-        if(Auth::user()->can('view')){
+        if(Auth::user()->can('view',Severity::class)){
             $severity = $this->severityRepository->find($id);
 
             if (empty($severity)) {
@@ -111,7 +111,7 @@ class SeverityController extends AppBaseController
      */
     public function edit($id)
     {
-        if(Auth::user()->can('update')){
+        if(Auth::user()->can('update',Severity::class)){
             $severity = $this->severityRepository->find($id);
 
             if (empty($severity)) {
@@ -137,7 +137,8 @@ class SeverityController extends AppBaseController
      */
     public function update($id, UpdateSeverityRequest $request)
     {
-        if(Auth::user()->can('update')){
+
+        if(Auth::user()->can('update',Severity::class)){
             $severity = $this->severityRepository->find($id);
 
             if (empty($severity)) {
@@ -167,7 +168,7 @@ class SeverityController extends AppBaseController
      */
     public function destroy($id)
     {
-        if(Auth::user()->can('delete')){
+        if(Auth::user()->can('delete',Severity::class)){
             $severity = $this->severityRepository->find($id);
 
             if (empty($severity)) {

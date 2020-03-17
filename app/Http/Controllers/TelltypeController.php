@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTelltypeRequest;
 use App\Http\Requests\UpdateTelltypeRequest;
+use App\Models\Telltype;
 use App\Repositories\TelltypeRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class TelltypeController extends AppBaseController
@@ -29,10 +31,14 @@ class TelltypeController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $telltypes = $this->telltypeRepository->paginate(10);
+        if (Auth::user()->can('viewAny', Telltype::class)) {
+            $telltypes = $this->telltypeRepository->paginate(10);
 
-        return view('telltypes.index')
-            ->with('telltypes', $telltypes);
+            return view('telltypes.index')
+                ->with('telltypes', $telltypes);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -42,7 +48,11 @@ class TelltypeController extends AppBaseController
      */
     public function create()
     {
-        return view('telltypes.create');
+        if (Auth::user()->can('create', Telltype::class)) {
+            return view('telltypes.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -54,13 +64,17 @@ class TelltypeController extends AppBaseController
      */
     public function store(CreateTelltypeRequest $request)
     {
-        $input = $request->all();
+        if(Auth::user()->can('create',Telltype::class)){
+            $input = $request->all();
 
-        $telltype = $this->telltypeRepository->create($input);
+            $telltype = $this->telltypeRepository->create($input);
 
-        Flash::success(__('Telltype').' '.__('saved successfully.'));
+            Flash::success(__('Telltype') . ' ' . __('saved successfully.'));
 
-        return redirect(route('telltypes.index'));
+            return redirect(route('telltypes.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -72,15 +86,19 @@ class TelltypeController extends AppBaseController
      */
     public function show($id)
     {
-        $telltype = $this->telltypeRepository->find($id);
+        if(Auth::user()->can('view',Telltype::class)){
+            $telltype = $this->telltypeRepository->find($id);
 
-        if (empty($telltype)) {
-            Flash::error(__('Telltype').' '.__('not found.'));
+            if (empty($telltype)) {
+                Flash::error(__('Telltype') . ' ' . __('not found.'));
 
-            return redirect(route('telltypes.index'));
+                return redirect(route('telltypes.index'));
+            }
+
+            return view('telltypes.show')->with('telltype', $telltype);
         }
-
-        return view('telltypes.show')->with('telltype', $telltype);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -92,15 +110,20 @@ class TelltypeController extends AppBaseController
      */
     public function edit($id)
     {
-        $telltype = $this->telltypeRepository->find($id);
 
-        if (empty($telltype)) {
-            Flash::error(__('Telltype').' '.__('not found.'));
+        if(Auth::user()->can('update',Telltype::class)){
+            $telltype = $this->telltypeRepository->find($id);
 
-            return redirect(route('telltypes.index'));
+            if (empty($telltype)) {
+                Flash::error(__('Telltype') . ' ' . __('not found.'));
+
+                return redirect(route('telltypes.index'));
+            }
+
+            return view('telltypes.edit')->with('telltype', $telltype);
         }
-
-        return view('telltypes.edit')->with('telltype', $telltype);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -113,19 +136,24 @@ class TelltypeController extends AppBaseController
      */
     public function update($id, UpdateTelltypeRequest $request)
     {
-        $telltype = $this->telltypeRepository->find($id);
 
-        if (empty($telltype)) {
-            Flash::error(__('Telltype').' '.__('not found.'));
+        if(Auth::user()->can('update',Telltype::class)){
+            $telltype = $this->telltypeRepository->find($id);
+
+            if (empty($telltype)) {
+                Flash::error(__('Telltype') . ' ' . __('not found.'));
+
+                return redirect(route('telltypes.index'));
+            }
+
+            $telltype = $this->telltypeRepository->update($request->all(), $id);
+
+            Flash::success(__('Telltype') . ' ' . __('updated successfully.'));
 
             return redirect(route('telltypes.index'));
         }
-
-        $telltype = $this->telltypeRepository->update($request->all(), $id);
-
-        Flash::success(__('Telltype').' '.__('updated successfully.'));
-
-        return redirect(route('telltypes.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -139,18 +167,23 @@ class TelltypeController extends AppBaseController
      */
     public function destroy($id)
     {
-        $telltype = $this->telltypeRepository->find($id);
 
-        if (empty($telltype)) {
-            Flash::error(__('Telltype').' '.__('not found.'));
+        if(Auth::user()->can('delete',Telltype::class)){
+            $telltype = $this->telltypeRepository->find($id);
+
+            if (empty($telltype)) {
+                Flash::error(__('Telltype') . ' ' . __('not found.'));
+
+                return redirect(route('telltypes.index'));
+            }
+
+            $this->telltypeRepository->delete($id);
+
+            Flash::success(__('Telltype') . ' ' . __('deleted successfully.'));
 
             return redirect(route('telltypes.index'));
         }
-
-        $this->telltypeRepository->delete($id);
-
-        Flash::success(__('Telltype').' '.__('deleted successfully.'));
-
-        return redirect(route('telltypes.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

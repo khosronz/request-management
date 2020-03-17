@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFactoryRequest;
 use App\Http\Requests\UpdateFactoryRequest;
+use App\Models\Factory;
 use App\Repositories\FactoryRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class FactoryController extends AppBaseController
@@ -29,10 +31,14 @@ class FactoryController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $factories = $this->factoryRepository->paginate(10);
+        if(Auth::user()->can('viewAny',Factory::class)){
+            $factories = $this->factoryRepository->paginate(10);
 
-        return view('factories.index')
-            ->with('factories', $factories);
+            return view('factories.index')
+                ->with('factories', $factories);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -42,7 +48,11 @@ class FactoryController extends AppBaseController
      */
     public function create()
     {
-        return view('factories.create');
+        if(Auth::user()->can('create',Factory::class)){
+            return view('factories.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -54,13 +64,19 @@ class FactoryController extends AppBaseController
      */
     public function store(CreateFactoryRequest $request)
     {
-        $input = $request->all();
+        if(Auth::user()->can('create',Factory::class)){
 
-        $factory = $this->factoryRepository->create($input);
+            $input = $request->all();
 
-        Flash::success(__('Factory').' '.__('saved successfully.'));
+            $factory = $this->factoryRepository->create($input);
 
-        return redirect(route('factories.index'));
+            Flash::success(__('Factory').' '.__('saved successfully.'));
+
+            return redirect(route('factories.index'));
+
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -72,15 +88,20 @@ class FactoryController extends AppBaseController
      */
     public function show($id)
     {
-        $factory = $this->factoryRepository->find($id);
 
-        if (empty($factory)) {
-            Flash::error(__('Factory').' '.__('not found.'));
+        if(Auth::user()->can('view',Factory::class)){
+            $factory = $this->factoryRepository->find($id);
 
-            return redirect(route('factories.index'));
+            if (empty($factory)) {
+                Flash::error(__('Factory').' '.__('not found.'));
+
+                return redirect(route('factories.index'));
+            }
+
+            return view('factories.show')->with('factory', $factory);
         }
-
-        return view('factories.show')->with('factory', $factory);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -92,15 +113,19 @@ class FactoryController extends AppBaseController
      */
     public function edit($id)
     {
-        $factory = $this->factoryRepository->find($id);
+        if(Auth::user()->can('update',Factory::class)){
+            $factory = $this->factoryRepository->find($id);
 
-        if (empty($factory)) {
-            Flash::error(__('Factory').' '.__('not found.'));
+            if (empty($factory)) {
+                Flash::error(__('Factory').' '.__('not found.'));
 
-            return redirect(route('factories.index'));
+                return redirect(route('factories.index'));
+            }
+
+            return view('factories.edit')->with('factory', $factory);
         }
-
-        return view('factories.edit')->with('factory', $factory);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -113,19 +138,24 @@ class FactoryController extends AppBaseController
      */
     public function update($id, UpdateFactoryRequest $request)
     {
-        $factory = $this->factoryRepository->find($id);
 
-        if (empty($factory)) {
-            Flash::error(__('Factory').' '.__('not found.'));
+        if(Auth::user()->can('update',Factory::class)){
+            $factory = $this->factoryRepository->find($id);
+
+            if (empty($factory)) {
+                Flash::error(__('Factory').' '.__('not found.'));
+
+                return redirect(route('factories.index'));
+            }
+
+            $factory = $this->factoryRepository->update($request->all(), $id);
+
+            Flash::success(__('Factory').' '.__('updated successfully.'));
 
             return redirect(route('factories.index'));
         }
-
-        $factory = $this->factoryRepository->update($request->all(), $id);
-
-        Flash::success(__('Factory').' '.__('updated successfully.'));
-
-        return redirect(route('factories.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -139,18 +169,23 @@ class FactoryController extends AppBaseController
      */
     public function destroy($id)
     {
-        $factory = $this->factoryRepository->find($id);
+        if(Auth::user()->can('delete',Factory::class)){
+            $factory = $this->factoryRepository->find($id);
 
-        if (empty($factory)) {
-            Flash::error(__('Factory').' '.__('not found.'));
+            if (empty($factory)) {
+                Flash::error(__('Factory').' '.__('not found.'));
+
+                return redirect(route('factories.index'));
+            }
+
+            $this->factoryRepository->delete($id);
+
+            Flash::success(__('Factory').' '.__('deleted successfully.'));
 
             return redirect(route('factories.index'));
+
         }
-
-        $this->factoryRepository->delete($id);
-
-        Flash::success(__('Factory').' '.__('deleted successfully.'));
-
-        return redirect(route('factories.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

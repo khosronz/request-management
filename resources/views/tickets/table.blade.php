@@ -5,11 +5,11 @@
         <th>@lang('Title')</th>
         <th>@lang('Status')</th>
         <th>@lang('Severity Id')</th>
+        <th>@lang('New Messages')</th>
         <th>@lang('Organization Id')</th>
         <th>@lang('User Id')</th>
         <th>@lang('date')</th>
         <th>@lang('Desc')</th>
-        <th>@lang('New Messages')</th>
         <th colspan="3">@lang('Action')</th>
         </thead>
         <tbody>
@@ -18,11 +18,11 @@
                 <td>{!! $ticket->title !!}</td>
                 <td>{!! $ticket->status ? 'باز' : 'بسته' !!}</td>
                 <td>{!! $ticket->severity->title !!}</td>
+                <td>{!! count($ticket->messages->where('status',\App\Enums\StatusType::enabled)) !!}</td>
                 <td>{!! $ticket->organization->title !!}</td>
                 <td>{!! $ticket->user->name !!}</td>
                 <td>{!! jdate($ticket->created_at) !!}</td>
                 <td>{!! $ticket->desc !!}</td>
-                <td>{!! count($ticket->messages->where('status',\App\Enums\StatusType::enabled)) !!}</td>
                 <td>
                     {!! Form::open(['route' => ['tickets.destroy', $ticket->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

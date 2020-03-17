@@ -17,7 +17,7 @@
                              @lang('Tickets')
                          </div>
                          <div class="card-body">
-                             <main-ticket-table-filtered-component :user_id="{{\Illuminate\Support\Facades\Auth::id()}}"></main-ticket-table-filtered-component>
+                             {{--<main-ticket-table-filtered-component :user_id="{{\Illuminate\Support\Facades\Auth::id()}}"></main-ticket-table-filtered-component>--}}
                              @include('tickets.table')
                               <div class="pull-left mr-3" dir="ltr">
 

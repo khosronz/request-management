@@ -15,7 +15,7 @@
                          <div class="card">
                              <div class="card-header">
                                  <strong>@lang('Details')</strong>
-                                  <a href="{!! route('prefactorDetails.index') !!}" class="btn btn-ghost-light">@lang('Back')</a>
+                                  <a href="{!! route('prefactorDetails.index') !!}" class="btn btn-ghost-info">@lang('Back')</a>
                              </div>
                              <div class="card-body">
                                  @include('prefactor_details.show_fields')

@@ -109,48 +109,73 @@
         @lang('Dashboards')
     </a>
     <ul class="nav-dropdown-items">
-        <li class="nav-item {{ Request::is('financial*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('financial.index') !!}">
-                <i class="nav-icon fa fa-angle-double-left"></i>
-                <span>@lang('Financial Dashboard')</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Request::is('protection*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('protection.index') !!}">
-                <i class="nav-icon fa fa-angle-double-left"></i>
-                <span>@lang('Protection Dashboard')</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Request::is('owner*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('owner.index') !!}">
-                <i class="nav-icon fa fa-angle-double-left"></i>
-                <span>@lang('Owner Dashboard')</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Request::is('support*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('support.index') !!}">
-                <i class="nav-icon fa fa-angle-double-left"></i>
-                <span>@lang('Support Dashboard')</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Request::is('successor*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('successor.index') !!}">
-                <i class="nav-icon fa fa-angle-double-left"></i>
-                <span>@lang('Successor Dashboard')</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Request::is('master*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('master.index') !!}">
-                <i class="nav-icon fa fa-angle-double-left"></i>
-                <span>@lang('Master Dashboard')</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Request::is('supplier*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('supplier.index') !!}">
-                <i class="nav-icon fa fa-angle-double-left"></i>
-                <span>@lang('Supplier Dashboard')</span>
-            </a>
-        </li>
+        @if (\Illuminate\Support\Facades\Gate::allows('supperadmin-dashboard'))
+            <li class="nav-item {{ Request::is('superadmin*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('superadmin.index') !!}">
+                    <i class="nav-icon fa fa-angle-double-left"></i>
+                    <span>@lang('Super Admin Dashboard')</span>
+                </a>
+            </li>
+        @endif
+        @if (\Illuminate\Support\Facades\Gate::allows('financial-dashboard'))
+                <li class="nav-item {{ Request::is('financial*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{!! route('financial.index') !!}">
+                        <i class="nav-icon fa fa-angle-double-left"></i>
+                        <span>@lang('Financial Dashboard')</span>
+                    </a>
+                </li>
+        @endif
+        @if (\Illuminate\Support\Facades\Gate::allows('protection-dashboard'))
+                <li class="nav-item {{ Request::is('protection*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{!! route('protection.index') !!}">
+                        <i class="nav-icon fa fa-angle-double-left"></i>
+                        <span>@lang('Protection Dashboard')</span>
+                    </a>
+                </li>
+        @endif
+        @if (\Illuminate\Support\Facades\Gate::allows('owner-dashboard'))
+            <li class="nav-item {{ Request::is('owner*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('owner.index') !!}">
+                    <i class="nav-icon fa fa-angle-double-left"></i>
+                    <span>@lang('Owner Dashboard')</span>
+                </a>
+            </li>
+        @endif
+        @if (\Illuminate\Support\Facades\Gate::allows('support-dashboard'))
+            <li class="nav-item {{ Request::is('support*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('support.index') !!}">
+                    <i class="nav-icon fa fa-angle-double-left"></i>
+                    <span>@lang('Support Dashboard')</span>
+                </a>
+            </li>
+        @endif
+
+        @if (\Illuminate\Support\Facades\Gate::allows('successor-dashboard'))
+            <li class="nav-item {{ Request::is('successor*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('successor.index') !!}">
+                    <i class="nav-icon fa fa-angle-double-left"></i>
+                    <span>@lang('Successor Dashboard')</span>
+                </a>
+            </li>
+        @endif
+
+        @if (\Illuminate\Support\Facades\Gate::allows('master-dashboard'))
+            <li class="nav-item {{ Request::is('master*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('master.index') !!}">
+                    <i class="nav-icon fa fa-angle-double-left"></i>
+                    <span>@lang('Master Dashboard')</span>
+                </a>
+            </li>
+        @endif
+        @if (\Illuminate\Support\Facades\Gate::allows('supplier-dashboard'))
+            <li class="nav-item {{ Request::is('supplier*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('supplier.index') !!}">
+                    <i class="nav-icon fa fa-angle-double-left"></i>
+                    <span>@lang('Supplier Dashboard')</span>
+                </a>
+            </li>
+        @endif
+
 
     </ul>
 </li>

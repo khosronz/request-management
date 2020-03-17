@@ -49,6 +49,29 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('supperadmin-dashboard', function ($user) {
+            return $user->isSuperadmin();
+        });
+        Gate::define('financial-dashboard', function ($user) {
+            return $user->isFinancial();
+        });
+        Gate::define('master-dashboard', function ($user) {
+            return $user->isMaster();
+        });
+        Gate::define('owner-dashboard', function ($user) {
+            return $user->isOwner();
+        });
+        Gate::define('protection-dashboard', function ($user) {
+            return $user->isProtection();
+        });
+        Gate::define('successor-dashboard', function ($user) {
+            return $user->isSuccessor();
+        });
+        Gate::define('support-dashboard', function ($user) {
+            return $user->isSupport();
+        });
+        Gate::define('supplier-dashboard', function ($user) {
+            return $user->isSupplier();
+        });
     }
 }

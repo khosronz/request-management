@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Models\Role;
 use App\Repositories\RoleRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class RoleController extends AppBaseController
@@ -29,10 +31,14 @@ class RoleController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $roles = $this->roleRepository->paginate(5);
+        if(Auth::user()->can('viewAny',Role::class)){
+            $roles = $this->roleRepository->paginate(5);
 
-        return view('roles.index')
-            ->with('roles', $roles);
+            return view('roles.index')
+                ->with('roles', $roles);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -42,7 +48,11 @@ class RoleController extends AppBaseController
      */
     public function create()
     {
-        return view('roles.create');
+        if(Auth::user()->can('create',Role::class)){
+            return view('roles.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -54,13 +64,18 @@ class RoleController extends AppBaseController
      */
     public function store(CreateRoleRequest $request)
     {
-        $input = $request->all();
 
-        $role = $this->roleRepository->create($input);
+        if(Auth::user()->can('create',Role::class)){
+            $input = $request->all();
 
-        Flash::success(__('Role').' '.__('saved successfully.'));
+            $role = $this->roleRepository->create($input);
 
-        return redirect(route('roles.index'));
+            Flash::success(__('Role').' '.__('saved successfully.'));
+
+            return redirect(route('roles.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -72,15 +87,19 @@ class RoleController extends AppBaseController
      */
     public function show($id)
     {
-        $role = $this->roleRepository->find($id);
+        if(Auth::user()->can('view',Role::class)){
+            $role = $this->roleRepository->find($id);
 
-        if (empty($role)) {
-            Flash::error(__('Role').' '.__('not found.'));
+            if (empty($role)) {
+                Flash::error(__('Role').' '.__('not found.'));
 
-            return redirect(route('roles.index'));
+                return redirect(route('roles.index'));
+            }
+
+            return view('roles.show')->with('role', $role);
         }
-
-        return view('roles.show')->with('role', $role);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -92,15 +111,19 @@ class RoleController extends AppBaseController
      */
     public function edit($id)
     {
-        $role = $this->roleRepository->find($id);
+        if(Auth::user()->can('update',Role::class)){
+            $role = $this->roleRepository->find($id);
 
-        if (empty($role)) {
-            Flash::error(__('Role').' '.__('not found.'));
+            if (empty($role)) {
+                Flash::error(__('Role').' '.__('not found.'));
 
-            return redirect(route('roles.index'));
+                return redirect(route('roles.index'));
+            }
+
+            return view('roles.edit')->with('role', $role);
         }
-
-        return view('roles.edit')->with('role', $role);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -113,19 +136,23 @@ class RoleController extends AppBaseController
      */
     public function update($id, UpdateRoleRequest $request)
     {
-        $role = $this->roleRepository->find($id);
+        if(Auth::user()->can('update',Role::class)){
+            $role = $this->roleRepository->find($id);
 
-        if (empty($role)) {
-            Flash::error(__('Role').' '.__('not found.'));
+            if (empty($role)) {
+                Flash::error(__('Role').' '.__('not found.'));
+
+                return redirect(route('roles.index'));
+            }
+
+            $role = $this->roleRepository->update($request->all(), $id);
+
+            Flash::success(__('Role').' '.__('updated successfully.'));
 
             return redirect(route('roles.index'));
         }
-
-        $role = $this->roleRepository->update($request->all(), $id);
-
-        Flash::success(__('Role').' '.__('updated successfully.'));
-
-        return redirect(route('roles.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -139,18 +166,22 @@ class RoleController extends AppBaseController
      */
     public function destroy($id)
     {
-        $role = $this->roleRepository->find($id);
+        if(Auth::user()->can('delete',Role::class)){
+            $role = $this->roleRepository->find($id);
 
-        if (empty($role)) {
-            Flash::error(__('Role').' '.__('not found.'));
+            if (empty($role)) {
+                Flash::error(__('Role').' '.__('not found.'));
+
+                return redirect(route('roles.index'));
+            }
+
+            $this->roleRepository->delete($id);
+
+            Flash::success(__('Role').' '.__('deleted successfully.'));
 
             return redirect(route('roles.index'));
         }
-
-        $this->roleRepository->delete($id);
-
-        Flash::success(__('Role').' '.__('deleted successfully.'));
-
-        return redirect(route('roles.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

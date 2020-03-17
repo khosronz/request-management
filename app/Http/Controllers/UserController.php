@@ -6,6 +6,7 @@ use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laracasts\Flash\Flash;
@@ -27,10 +28,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->userRepository->paginate(5);
+        if(Auth::user()->can('viewAny',User::class)){
 
-        return view('users.index')
-            ->with('users', $users);
+            $users = $this->userRepository->paginate(5);
+
+            return view('users.index')
+                ->with('users', $users);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -40,7 +46,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        if(Auth::user()->can('create',User::class)){
+            return view('users.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -51,14 +61,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $input['password']=Hash::make($input['password']);
+        if(Auth::user()->can('create',User::class)){
+            $input = $request->all();
+            $input['password']=Hash::make($input['password']);
 
-        $user = $this->userRepository->create($input);
+            $user = $this->userRepository->create($input);
 
-        Flash::success(__('User').' '.__('saved successfully.'));
+            Flash::success(__('User').' '.__('saved successfully.'));
 
-        return redirect(route('users.index'));
+            return redirect(route('users.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -69,15 +83,19 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->userRepository->find($id);
+        if(Auth::user()->can('view',User::class)){
+            $user = $this->userRepository->find($id);
 
-        if (empty($user)) {
-            Flash::error(__('User').' '.__('not found.'));
+            if (empty($user)) {
+                Flash::error(__('User').' '.__('not found.'));
 
-            return redirect(route('users.index'));
+                return redirect(route('users.index'));
+            }
+
+            return view('users.show')->with('user', $user);
         }
-
-        return view('users.show')->with('user', $user);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -88,15 +106,20 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->userRepository->find($id);
+        if(Auth::user()->can('update',User::class)){
+            $user = $this->userRepository->find($id);
 
-        if (empty($user)) {
-            Flash::error(__('User').' '.__('not found.'));
+            if (empty($user)) {
+                Flash::error(__('User').' '.__('not found.'));
 
-            return redirect(route('users.index'));
+                return redirect(route('users.index'));
+            }
+
+            return view('users.edit')->with('user', $user);
         }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
 
-        return view('users.edit')->with('user', $user);
     }
 
     /**
@@ -108,23 +131,27 @@ class UserController extends Controller
      */
     public function update($id, Request $request)
     {
-        $user = $this->userRepository->find($id);
+        if(Auth::user()->can('update',User::class)){
+            $user = $this->userRepository->find($id);
 
-        if (empty($user)) {
-            Flash::error(__('User').' '.__('not found.'));
+            if (empty($user)) {
+                Flash::error(__('User').' '.__('not found.'));
+
+                return redirect(route('users.index'));
+            }
+            $input = $request->all();
+            if (!empty($input['password'])){
+                $input['password']=Hash::make($input['password']);
+            }
+
+            $user = $this->userRepository->update($input, $id);
+
+            Flash::success(__('User').' '.__('updated successfully.'));
 
             return redirect(route('users.index'));
         }
-        $input = $request->all();
-        if (!empty($input['password'])){
-            $input['password']=Hash::make($input['password']);
-        }
-
-        $user = $this->userRepository->update($input, $id);
-
-        Flash::success(__('User').' '.__('updated successfully.'));
-
-        return redirect(route('users.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     public function updatePassword($id, Request $request)
@@ -156,18 +183,22 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = $this->userRepository->find($id);
+        if(Auth::user()->can('delete',User::class)){
+            $user = $this->userRepository->find($id);
 
-        if (empty($user)) {
-            Flash::error(__('User').' '.__('not found.'));
+            if (empty($user)) {
+                Flash::error(__('User').' '.__('not found.'));
+
+                return redirect(route('users.index'));
+            }
+
+            $this->userRepository->delete($id);
+
+            Flash::success(__('User').' '.__('deleted successfully.'));
 
             return redirect(route('users.index'));
         }
-
-        $this->userRepository->delete($id);
-
-        Flash::success(__('User').' '.__('deleted successfully.'));
-
-        return redirect(route('users.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

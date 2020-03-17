@@ -82,7 +82,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public
     function isMaster()
     {
-        foreach ($this->roles as $role) {
+        $roles = $this->roles;
+        foreach ($roles as $role) {
             if ($role->id === UserType::master) {
                 return true;
             }
@@ -93,7 +94,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public
     function isOwner()
     {
-        foreach ($this->roles as $role) {
+        $roles = $this->roles;
+        foreach ($roles as $role) {
             if ($role->id === UserType::owner) {
                 return true;
             }
@@ -104,7 +106,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public
     function isFinancial()
     {
-        foreach ($this->roles as $role) {
+        $roles = $this->roles;
+        foreach ($roles as $role) {
             if ($role->id === UserType::financial) {
                 return true;
             }
@@ -115,7 +118,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public
     function isProtection()
     {
-        foreach ($this->roles as $role) {
+        $roles = $this->roles;
+        foreach ($roles as $role) {
             if ($role->id === UserType::protection) {
                 return true;
             }
@@ -126,7 +130,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public
     function isSuccessor()
     {
-        foreach ($this->roles as $role) {
+        $roles = $this->roles;
+        foreach ($roles as $role) {
             if ($role->id === UserType::successor) {
                 return true;
             }
@@ -137,7 +142,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public
     function isSupport()
     {
-        foreach ($this->roles as $role) {
+        $roles = $this->roles;
+        foreach ($roles as $role) {
             if ($role->id === UserType::support) {
                 return true;
             }
@@ -148,7 +154,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public
     function isSupplier()
     {
-        foreach ($this->roles as $role) {
+        $roles = $this->roles;
+        foreach ($roles as $role) {
             if ($role->id === UserType::supplier) {
                 return true;
             }

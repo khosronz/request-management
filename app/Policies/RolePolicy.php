@@ -2,24 +2,17 @@
 
 namespace App\Policies;
 
-use App\Models\Category;
+use App\Models\Role;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class CategoryPolicy
+class RolePolicy
 {
     use HandlesAuthorization;
 
-//    public function before($user, $ability)
-//    {
-//        if ($user->isSuperAdmin()) {
-//            return true;
-//        }
-//    }
-
     /**
-     * Determine whether the user can view any categories.
+     * Determine whether the user can view any roles.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -32,13 +25,12 @@ class CategoryPolicy
     }
 
     /**
-     * Determine whether the user can view the category.
+     * Determine whether the user can view the role.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-//    public function view(User $user, Category $category)
     public function view(User $user)
     {
         return $user->isSuperadmin()
@@ -47,7 +39,7 @@ class CategoryPolicy
     }
 
     /**
-     * Determine whether the user can create categories.
+     * Determine whether the user can create roles.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -60,13 +52,12 @@ class CategoryPolicy
     }
 
     /**
-     * Determine whether the user can update the category.
+     * Determine whether the user can update the role.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-//    public function update(User $user, Category $category)
     public function update(User $user)
     {
         return $user->isSuperadmin()
@@ -75,13 +66,12 @@ class CategoryPolicy
     }
 
     /**
-     * Determine whether the user can delete the category.
+     * Determine whether the user can delete the role.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-//    public function delete(User $user, Category $category)
     public function delete(User $user)
     {
         return $user->isSuperadmin()
@@ -90,13 +80,12 @@ class CategoryPolicy
     }
 
     /**
-     * Determine whether the user can restore the category.
+     * Determine whether the user can restore the role.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-//    public function restore(User $user, Category $category)
     public function restore(User $user)
     {
         return $user->isSuperadmin()
@@ -105,13 +94,12 @@ class CategoryPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the category.
+     * Determine whether the user can permanently delete the role.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Role  $role
      * @return mixed
      */
-//    public function forceDelete(User $user, Category $category)
     public function forceDelete(User $user)
     {
         return $user->isSuperadmin()

@@ -6,10 +6,12 @@ use App\Models\Category;
 use App\Models\Organization;
 use App\Models\OrganizationCategory;
 use App\Models\Role;
+use App\Models\Severity;
 use App\Policies\CategoryPolicy;
 use App\Policies\OrganizationCategoryPolicy;
 use App\Policies\OrganizationPolicy;
 use App\Policies\RolePolicy;
+use App\Policies\SeverityPolicy;
 use App\Policies\UserPolicy;
 use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -29,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         Role::class => RolePolicy::class,
         User::class => UserPolicy::class,
         OrganizationCategory::class => OrganizationCategoryPolicy::class,
+        Severity::class => SeverityPolicy::class,
     ];
 
     /**

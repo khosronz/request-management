@@ -51,14 +51,14 @@
                 </a>
             </li>
         @endcan
-
+        @can('viewAny',\App\Models\Severity::class)
         <li class="nav-item {{ Request::is('severities*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('severities.index') !!}">
                 <i class="nav-icon icon-layers"></i>
                 <span>@lang('Severities')</span>
             </a>
         </li>
-
+        @endcan
         <li class="nav-item {{ Request::is('telltypes*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('telltypes.index') !!}">
                 <i class="nav-icon fa fa-address-card-o"></i>

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSeverityRequest;
 use App\Http\Requests\UpdateSeverityRequest;
+use App\Models\Severity;
 use App\Repositories\SeverityRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class SeverityController extends AppBaseController
@@ -29,10 +31,15 @@ class SeverityController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $severities = $this->severityRepository->paginate(5);
+        if(Auth::user()->can('viewAny')){
+            $severities = $this->severityRepository->paginate(5);
 
-        return view('severities.index')
-            ->with('severities', $severities);
+            return view('severities.index')
+                ->with('severities', $severities);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
+
     }
 
     /**
@@ -42,7 +49,11 @@ class SeverityController extends AppBaseController
      */
     public function create()
     {
-        return view('severities.create');
+        if(Auth::user()->can('create')){
+            return view('severities.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -54,13 +65,17 @@ class SeverityController extends AppBaseController
      */
     public function store(CreateSeverityRequest $request)
     {
-        $input = $request->all();
+        if(Auth::user()->can('create')){
+            $input = $request->all();
 
-        $severity = $this->severityRepository->create($input);
+            $severity = $this->severityRepository->create($input);
 
-        Flash::success(__('Severity').' '.__('saved successfully.'));
+            Flash::success(__('Severity').' '.__('saved successfully.'));
 
-        return redirect(route('severities.index'));
+            return redirect(route('severities.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -72,15 +87,19 @@ class SeverityController extends AppBaseController
      */
     public function show($id)
     {
-        $severity = $this->severityRepository->find($id);
+        if(Auth::user()->can('view')){
+            $severity = $this->severityRepository->find($id);
 
-        if (empty($severity)) {
-            Flash::error(__('Severity').' '.__('not found.'));
+            if (empty($severity)) {
+                Flash::error(__('Severity').' '.__('not found.'));
 
-            return redirect(route('severities.index'));
+                return redirect(route('severities.index'));
+            }
+
+            return view('severities.show')->with('severity', $severity);
         }
-
-        return view('severities.show')->with('severity', $severity);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -92,15 +111,20 @@ class SeverityController extends AppBaseController
      */
     public function edit($id)
     {
-        $severity = $this->severityRepository->find($id);
+        if(Auth::user()->can('update')){
+            $severity = $this->severityRepository->find($id);
 
-        if (empty($severity)) {
-            Flash::error(__('Severity').' '.__('not found.'));
+            if (empty($severity)) {
+                Flash::error(__('Severity').' '.__('not found.'));
 
-            return redirect(route('severities.index'));
+                return redirect(route('severities.index'));
+            }
+
+            return view('severities.edit')->with('severity', $severity);
         }
 
-        return view('severities.edit')->with('severity', $severity);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -113,19 +137,23 @@ class SeverityController extends AppBaseController
      */
     public function update($id, UpdateSeverityRequest $request)
     {
-        $severity = $this->severityRepository->find($id);
+        if(Auth::user()->can('update')){
+            $severity = $this->severityRepository->find($id);
 
-        if (empty($severity)) {
-            Flash::error(__('Severity').' '.__('not found.'));
+            if (empty($severity)) {
+                Flash::error(__('Severity').' '.__('not found.'));
+
+                return redirect(route('severities.index'));
+            }
+
+            $severity = $this->severityRepository->update($request->all(), $id);
+
+            Flash::success(__('Severity').' '.__('updated successfully.'));
 
             return redirect(route('severities.index'));
         }
-
-        $severity = $this->severityRepository->update($request->all(), $id);
-
-        Flash::success(__('Severity').' '.__('updated successfully.'));
-
-        return redirect(route('severities.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -139,18 +167,22 @@ class SeverityController extends AppBaseController
      */
     public function destroy($id)
     {
-        $severity = $this->severityRepository->find($id);
+        if(Auth::user()->can('delete')){
+            $severity = $this->severityRepository->find($id);
 
-        if (empty($severity)) {
-            Flash::error(__('Severity').' '.__('not found.'));
+            if (empty($severity)) {
+                Flash::error(__('Severity').' '.__('not found.'));
+
+                return redirect(route('severities.index'));
+            }
+
+            $this->severityRepository->delete($id);
+
+            Flash::success(__('Severity').' '.__('deleted successfully.'));
 
             return redirect(route('severities.index'));
         }
-
-        $this->severityRepository->delete($id);
-
-        Flash::success(__('Severity').' '.__('deleted successfully.'));
-
-        return redirect(route('severities.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

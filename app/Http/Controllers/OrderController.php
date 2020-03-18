@@ -227,4 +227,16 @@ class OrderController extends AppBaseController
 
         return redirect(route('orders.index'));
     }
+
+    public function block(Request $request)
+    {
+        $input=$request->all();
+        dd($input);
+    }
+
+    public function success(Request $request)
+    {
+        $input=$request->all();
+        dd($input);
+    }
 }

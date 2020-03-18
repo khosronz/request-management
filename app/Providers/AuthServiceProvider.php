@@ -9,6 +9,7 @@ use App\Models\OrganizationCategory;
 use App\Models\Role;
 use App\Models\Severity;
 use App\Models\Telltype;
+use App\Models\Ticket;
 use App\Policies\CategoryPolicy;
 use App\Policies\FactoryPolicy;
 use App\Policies\OrganizationCategoryPolicy;
@@ -16,6 +17,7 @@ use App\Policies\OrganizationPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\SeverityPolicy;
 use App\Policies\TelltypePolicy;
+use App\Policies\TicketPolicy;
 use App\Policies\UserPolicy;
 use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -38,6 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         Severity::class => SeverityPolicy::class,
         Factory::class => FactoryPolicy::class,
         Telltype::class => TelltypePolicy::class,
+        Ticket::class => TicketPolicy::class,
     ];
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\TicketStatus;
 use App\Http\Requests\CreateTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Models\Ticket;
 use App\Repositories\TicketRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -87,14 +88,19 @@ class TicketController extends AppBaseController
     public function show($id)
     {
         $ticket = $this->ticketRepository->find($id);
+        if(Auth::user()->can('view',$ticket)){
 
-        if (empty($ticket)) {
-            Flash::error(__('Ticket').' '.__('not found.'));
+            if (empty($ticket)) {
+                Flash::error(__('Ticket').' '.__('not found.'));
 
-            return redirect(route('tickets.index'));
+                return redirect(route('tickets.index'));
+            }
+
+            return view('tickets.show')->with('ticket', $ticket);
         }
 
-        return view('tickets.show')->with('ticket', $ticket);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -107,14 +113,19 @@ class TicketController extends AppBaseController
     public function edit($id)
     {
         $ticket = $this->ticketRepository->find($id);
+        if(Auth::user()->can('update',$ticket)){
 
-        if (empty($ticket)) {
-            Flash::error(__('Ticket').' '.__('not found.'));
+            if (empty($ticket)) {
+                Flash::error(__('Ticket').' '.__('not found.'));
 
-            return redirect(route('tickets.index'));
+                return redirect(route('tickets.index'));
+            }
+
+            return view('tickets.edit')->with('ticket', $ticket);
         }
 
-        return view('tickets.edit')->with('ticket', $ticket);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -128,18 +139,22 @@ class TicketController extends AppBaseController
     public function update($id, UpdateTicketRequest $request)
     {
         $ticket = $this->ticketRepository->find($id);
+        if(Auth::user()->can('update',$ticket)){
+            if (empty($ticket)) {
+                Flash::error(__('Ticket').' '.__('not found.'));
 
-        if (empty($ticket)) {
-            Flash::error(__('Ticket').' '.__('not found.'));
+                return redirect(route('tickets.index'));
+            }
+
+            $ticket = $this->ticketRepository->update($request->all(), $id);
+
+            Flash::success(__('Ticket').' '.__('updated successfully.'));
 
             return redirect(route('tickets.index'));
         }
 
-        $ticket = $this->ticketRepository->update($request->all(), $id);
-
-        Flash::success(__('Ticket').' '.__('updated successfully.'));
-
-        return redirect(route('tickets.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -154,19 +169,24 @@ class TicketController extends AppBaseController
     public function destroy($id)
     {
         $ticket = $this->ticketRepository->find($id);
+        if(Auth::user()->can('delete',$ticket)){
 
-        if (empty($ticket)) {
-            Flash::error(__('Ticket').' '.__('not found.'));
+            if (empty($ticket)) {
+                Flash::error(__('Ticket').' '.__('not found.'));
+
+                return redirect(route('tickets.index'));
+            }
+
+            $ticket = $this->ticketRepository->update(['status'=>TicketStatus::close], $id);
+
+//        $this->ticketRepository->delete($id);
+
+            Flash::success(__('Ticket').' '.__('Closed successfully.'));
 
             return redirect(route('tickets.index'));
         }
 
-        $ticket = $this->ticketRepository->update(['status'=>TicketStatus::close], $id);
-
-//        $this->ticketRepository->delete($id);
-
-        Flash::success(__('Ticket').' '.__('Closed successfully.'));
-
-        return redirect(route('tickets.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

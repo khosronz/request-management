@@ -172,6 +172,7 @@ return [
 
         Logger\Laravel\Providers\MonologMysqlHandlerServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */

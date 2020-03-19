@@ -25,11 +25,6 @@
         {!! Form::label('lname', __('Lname').':') !!}
         {!! Form::text('lname', null, ['class' => 'form-control']) !!}
     </div>
-    <!-- Desc Field -->
-    <div class="form-group col-sm-12">
-        {!! Form::label('desc', __('Desc').':') !!}
-        {!! Form::textarea('desc', null, ['class' => 'form-control']) !!}
-    </div>
     <!-- Factory Field -->
     <div class="form-group col-sm-3">
         {!! Form::label('factory', __('Factory').':') !!}
@@ -60,10 +55,23 @@
         {!! Form::label('country', __('Country').':') !!}
         {!! Form::text('country', null, ['class' => 'form-control']) !!}
     </div>
+    <!-- Visible to everyone -->
+    <div class="form-group col-md-4">
+        {!! Form::label('visible_to_everyone', __('Visibility').':') !!}
+        {!! Form::select('visible_to_everyone', [
+            '0'=>__('Do not visible to everyone'),
+            '1'=>__('Visible to everyone')
+        ] ,null, ['class' => 'form-control']) !!}
+    </div>
     <!-- Address1 Field -->
     <div class="form-group col-sm-12">
         {!! Form::label('address1', __('Address1').':') !!}
         {!! Form::textarea('address1', null, ['class' => 'form-control']) !!}
+    </div>
+    <!-- Biography Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('desc', __('Biography').':') !!}
+        {!! Form::textarea('desc', null, ['class' => 'form-control']) !!}
     </div>
     <!-- Address2 Field -->
     <div class="form-group col-sm-12">

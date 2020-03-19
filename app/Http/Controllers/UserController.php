@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if(Auth::user()->can('viewAny',User::class)){
+        if (Auth::user()->can('viewAny', User::class)) {
 
             $users = $this->userRepository->paginate(5);
 
@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->can('create',User::class)){
+        if (Auth::user()->can('create', User::class)) {
             return view('users.create');
         }
         Flash::error(__('You do not permission to this section.'));
@@ -61,13 +61,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->can('create',User::class)){
+        if (Auth::user()->can('create', User::class)) {
             $input = $request->all();
-            $input['password']=Hash::make($input['password']);
+            $input['password'] = Hash::make($input['password']);
 
             $user = $this->userRepository->create($input);
 
-            Flash::success(__('User').' '.__('saved successfully.'));
+            Flash::success(__('User') . ' ' . __('saved successfully.'));
 
             return redirect(route('users.index'));
         }
@@ -83,11 +83,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        if(Auth::user()->can('view',User::class)){
+        if (Auth::user()->can('view', User::class)) {
             $user = $this->userRepository->find($id);
 
             if (empty($user)) {
-                Flash::error(__('User').' '.__('not found.'));
+                Flash::error(__('User') . ' ' . __('not found.'));
 
                 return redirect(route('users.index'));
             }
@@ -106,11 +106,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->can('update',User::class)){
+        if (Auth::user()->can('update', User::class)) {
             $user = $this->userRepository->find($id);
 
             if (empty($user)) {
-                Flash::error(__('User').' '.__('not found.'));
+                Flash::error(__('User') . ' ' . __('not found.'));
 
                 return redirect(route('users.index'));
             }
@@ -131,24 +131,30 @@ class UserController extends Controller
      */
     public function update($id, Request $request)
     {
-        if(Auth::user()->can('update',User::class)){
-            $user = $this->userRepository->find($id);
+        $user = $this->userRepository->find($id);
+
+        if (Auth::user()->can('update', $user)) {
 
             if (empty($user)) {
-                Flash::error(__('User').' '.__('not found.'));
+                Flash::error(__('User') . ' ' . __('not found.'));
 
                 return redirect(route('users.index'));
             }
             $input = $request->all();
-            if (!empty($input['password'])){
-                $input['password']=Hash::make($input['password']);
+            if (!empty($input['password']) || !empty($input['password_confirmation'])) {
+
+                $input['password'] = Hash::make($input['password']);
+            }
+
+            if (empty($input['visible_to_everyone'])) {
+                $input['visible_to_everyone'] = '0';
             }
 
             $user = $this->userRepository->update($input, $id);
 
-            Flash::success(__('User').' '.__('updated successfully.'));
+            Flash::success(__('User') . ' ' . __('updated successfully.'));
 
-            return redirect(route('users.index'));
+            return back();
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
@@ -158,21 +164,39 @@ class UserController extends Controller
     {
         $user = $this->userRepository->find($id);
 
-        if (empty($user)) {
-            Flash::error(__('User').' '.__('not found.'));
+        if (Auth::user()->can('update', $user)) {
+
+            if (empty($user)) {
+                Flash::error(__('User') . ' ' . __('not found.'));
+
+                return back();
+            }
+
+            $input = $request->all();
+            if ($input['password'] == $input['password_confirmation']) {
+                if (!empty($input['password'])) {
+                    $input['password'] = Hash::make($input['password']);
+                    $user = $this->userRepository->update($input, $id);
+                    Flash::success(__('password updated successfully.'));
+                    return back();
+                } else {
+                    Flash::error(__('password is empty'));
+                    return back();
+                }
+            } else {
+                Flash::error(__('User password and confirm not equals!'));
+            }
+
+
+//            $user = $this->userRepository->update($input, $id);
+//
+//            Flash::success(__('User') . ' ' . __('updated successfully.'));
 
             return back();
         }
-        $input = $request->all();
-        if (!empty($input['password'])){
-            $input['password']=Hash::make($input['password']);
-        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
 
-        $user = $this->userRepository->update($input, $id);
-
-        Flash::success(__('User').' '.__('updated successfully.'));
-
-        return back();
     }
 
     /**
@@ -183,18 +207,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::user()->can('delete',User::class)){
+        if (Auth::user()->can('delete', User::class)) {
             $user = $this->userRepository->find($id);
 
             if (empty($user)) {
-                Flash::error(__('User').' '.__('not found.'));
+                Flash::error(__('User') . ' ' . __('not found.'));
 
                 return redirect(route('users.index'));
             }
 
             $this->userRepository->delete($id);
 
-            Flash::success(__('User').' '.__('deleted successfully.'));
+            Flash::success(__('User') . ' ' . __('deleted successfully.'));
 
             return redirect(route('users.index'));
         }

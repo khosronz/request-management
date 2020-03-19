@@ -59,11 +59,14 @@ class UserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function update(User $user)
+    public function update(User $user, User $user2)
     {
-        return $user->isSuperadmin()
-            ? Response::allow()
-            : Response::deny(__('You do not permission to this section.'));
+        if ($user->isSuperadmin() || $user->id == $user2->id){
+            return Response::allow();
+        }
+        else {
+            return Response::deny(__('You do not permission to this section.'));
+        }
     }
 
     /**

@@ -1,4 +1,5 @@
 <div class="row clearfix">
+    @include('flash::message')
     <div class="col-lg-4 col-md-12">
         <div class="card">
             <div class="m-b-20">
@@ -106,10 +107,10 @@
                                 <input name="name" type="text" value="{{$user->name}}" class="form-control" placeholder="نام کاربری" disabled/>
                             </div>
                             <div class="form-group">
-                                <input name="password" type="password" class="form-control" placeholder="رمزعبور فعلی"/>
+                                <input name="password" type="password" class="form-control" placeholder="رمزعبور جدید"/>
                             </div>
                             <div class="form-group">
-                                <input name="password_confirmation" type="password" class="form-control" placeholder="رمزعبور جذید"/>
+                                <input name="password_confirmation" type="password" class="form-control" placeholder="تکرار رمز عبور جدید"/>
                             </div>
                             <button type="submit" class="btn btn-primary btn-round">@lang('Save')</button>
 
@@ -123,60 +124,63 @@
                             <strong>@lang('Settings')</strong> @lang('Account')</h2>
                     </div>
                     <div class="body">
+                        @php
+                            $user=\Illuminate\Support\Facades\Auth::user();
+                        @endphp
                         {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
-                        <div class="row clearfix">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="fname" placeholder="{{__('Fname')}}" value="{{\Illuminate\Support\Facades\Auth::user()->fname}}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="lname" placeholder="{{__('Lname')}}" value="{{\Illuminate\Support\Facades\Auth::user()->lname}}">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="city" placeholder="{{__('City')}}" value="{{\Illuminate\Support\Facades\Auth::user()->city}}">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="email" placeholder="{{__('Email')}}" value="{{\Illuminate\Support\Facades\Auth::user()->email}}">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="country" placeholder="{{__('Country')}}" value="{{\Illuminate\Support\Facades\Auth::user()->country}}">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea rows="4" class="form-control no-resize" name="address1" placeholder="{{__('Address 1')}}" value="{{\Illuminate\Support\Facades\Auth::user()->address1}}"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea rows="4" class="form-control no-resize" name="address2" placeholder="{{__('Address 2')}}" value="{{\Illuminate\Support\Facades\Auth::user()->address2}}"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="form-check m-l-10">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" id="checkbox"
-                                                   name="visible_to_everyone"> @lang('Visible to everyone')
-                                            <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                        </label>
+                            <div class="row clearfix">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="fname" placeholder="{{__('Fname')}}" value="{{\Illuminate\Support\Facades\Auth::user()->fname}}">
                                     </div>
                                 </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="lname" placeholder="{{__('Lname')}}" value="{{\Illuminate\Support\Facades\Auth::user()->lname}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="city" placeholder="{{__('City')}}" value="{{\Illuminate\Support\Facades\Auth::user()->city}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="email" placeholder="{{__('Email')}}" value="{{\Illuminate\Support\Facades\Auth::user()->email}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="country" placeholder="{{__('Country')}}" value="{{\Illuminate\Support\Facades\Auth::user()->country}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea rows="4" class="form-control no-resize" name="address1" placeholder="{{__('Address 1')}}">{{\Illuminate\Support\Facades\Auth::user()->address1}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea rows="4" class="form-control no-resize" name="address2" placeholder="{{__('Address 2')}}">{{\Illuminate\Support\Facades\Auth::user()->address2}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-check m-l-10">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" value="1" type="checkbox" id="checkbox" {{\Illuminate\Support\Facades\Auth::user()->visible_to_everyone=='1'?'checked':''}}
+                                                       name="visible_to_everyone"> @lang('Visible to everyone')
+                                                <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-round" type="submit">@lang('Save')</button>
+                                </div>
                             </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-primary btn-round" type="submit">@lang('Save')</button>
-                            </div>
-                        </div>
                         {!! Form::close() !!}
 
                     </div>

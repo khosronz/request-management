@@ -49,6 +49,10 @@
         {!! Form::label('country', __('Country').':') !!}
         <p>{!! $user->country!!}</p>
     </div>
+    <div class="form-group col-sm-3">
+        {!! Form::label('Visibility', __('Visibility').':') !!}
+        <p>{!! $user->visible_to_everyone ? __('Visible to everyone') : __('Do not visible to everyone') !!}</p>
+    </div>
     <div class="form-group col-sm-12">
         {!! Form::label('address1', __('Address1').':') !!}
         <p>{!! $user->address1!!}</p>

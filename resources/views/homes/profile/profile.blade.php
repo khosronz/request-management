@@ -33,59 +33,6 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <ul class="nav nav-tabs">
-                <li class="nav-item m-l-10">
-                    <a class="nav-link active" data-toggle="tab" href="#about">درباره</a>
-                </li>
-                <li class="nav-item m-l-10">
-                    <a class="nav-link" data-toggle="tab" href="#skills">مهارت ها</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane body active" id="about">
-                    <p class="text-default">لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است. لورم ایپسوم از سالهای متمادی استاندارد استاندارد صنعت بوده است، زمانی که یک چاپگر ناشناخته با یک نوع کابین از آن استفاده کرد و آن را برای ساختن یک نمونه از نوع نمونه آماده کرد. این نه تنها پنج قرن زنده مانده است، بلکه جهش به شکل گیری الکترونیکی نیز باقی مانده است.</p>
-                    <small class="text-muted">آدرس ایمیل: </small>
-                    <p>{{\Illuminate\Support\Facades\Auth::user()->email}}</p>
-                    <hr>
-                    <small class="text-muted">تلفن: </small>
-                    <p>{{\Illuminate\Support\Facades\Auth::user()->pre_phone}}{{\Illuminate\Support\Facades\Auth::user()->phone}}</p>
-                    <hr>
-                </div>
-                <div class="tab-pane body" id="skills">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div>فتوشاپ</div>
-                            <div class="progress skill-progress m-t-20">
-                                <div class="progress-bar l-bg-green width-per-45" role="progressbar"
-                                     aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div>وردپرس</div>
-                            <div class="progress skill-progress m-b-20">
-                                <div class="progress-bar l-bg-orange width-per-38" role="progressbar"
-                                     aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div>HTML</div>
-                            <div class="progress skill-progress m-b-20">
-                                <div class="progress-bar l-bg-cyan width-per-39" role="progressbar"
-                                     aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div>آنگولار</div>
-                            <div class="progress skill-progress m-b-20">
-                                <div class="progress-bar l-bg-purple width-per-70" role="progressbar"
-                                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="col-lg-8 col-md-12">
         <div class="card">
@@ -133,70 +80,9 @@
                                         <p class="text-muted">{!! \Illuminate\Support\Facades\Auth::user()->country !!}</p>
                                     </div>
                                 </div>
-                                <p class="m-t-30">من فارغ التحصیل شدم در هنر از موسسه شناخته شده و مشهور هند - 2000-01، که به دانشگاه وابسته است. من در آزمون های دانشگاهی از همان دانشگاه از سال 1996 تاکنون رتبه بندی کردم.</p>
-                                <p>من فارغ التحصیل شدم در هنر از موسسه شناخته شده و مشهور هند - 2000-01، که به دانشگاه وابسته است. من در آزمون های دانشگاهی از همان دانشگاه از سال 1996 تاکنون رتبه بندی کردم </p>
-                                <p>من فارغ التحصیل شدم در هنر از موسسه شناخته شده و مشهور هند - 2000-01، که به دانشگاه وابسته است. من در آزمون های دانشگاهی از همان دانشگاه از سال 1996 تاکنون رتبه بندی کردم.</p>
+                                <strong>@lang('Biography'):</strong>
+                                <p class="m-t-30">{!! \Illuminate\Support\Facades\Auth::user()->desc !!}</p>
                                 <br>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="card project_widget">
-                            <div class="header">
-                                <h2>تحصیلات</h2>
-                            </div>
-                            <div class="body">
-                                <ul>
-                                    <li>مدرک کارشناسی ارشد کامپیوتر.</li>
-                                    <li>مدرک کارشناسی ارشد کامپیوتر.</li>
-                                    <li>مدرک کارشناسی ارشد کامپیوتر</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="card project_widget">
-                            <div class="header">
-                                <h2>تجربه</h2>
-                            </div>
-                            <div class="body">
-                                <ul>
-                                    <li>یک سال تجربه به عنوان کارشناسی ارشد استاد از آوریل 2009 تا مارس 2010 در دانشگاه تهران.</li>
-                                    <li>یک سال تجربه به عنوان کارشناسی ارشد استاد از آوریل 2009 تا مارس 2010 در دانشگاه تهران.</li>
-                                    <li>یک سال تجربه به عنوان کارشناسی ارشد استاد از آوریل 2009 تا مارس 2010 در دانشگاه تهران
-                                    </li>
-                                    <li>یک سال تجربه به عنوان کارشناسی ارشد استاد از آوریل 2009 تا مارس 2010 در دانشگاه تهران
-                                    </li>
-                                    <li>یک سال تجربه به عنوان کارشناسی ارشد استاد از آوریل 2009 تا مارس 2010 در دانشگاه تهران
-                                    </li>
-                                    <li>یک سال تجربه به عنوان کارشناسی ارشد استاد از آوریل 2009 تا مارس 2010 در دانشگاه تهران
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="card project_widget">
-                            <div class="header">
-                                <h2>کنفرانس ها، دوره ها و کارگاه شرکت کردند</h2>
-                            </div>
-                            <div class="body">
-                                <ul>
-                                    <li>لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است.
-                                    </li>
-                                    <li>لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است
-                                    </li>
-                                    <li>لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است
-                                    </li>
-                                    <li>لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است
-                                    </li>
-                                    <li>لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است
-                                    </li>
-                                    <li>لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است.
-                                    </li>
-                                    <li>لورم ایپسوم به راحتی متن ساختاری چاپ و نشر صنعت است
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -225,7 +111,7 @@
                             <div class="form-group">
                                 <input name="password_confirmation" type="password" class="form-control" placeholder="رمزعبور جذید"/>
                             </div>
-                            <button type="submit" class="btn btn-info btn-round">ذخیره تغییرات</button>
+                            <button type="submit" class="btn btn-primary btn-round">@lang('Save')</button>
 
                         {!! Form::close() !!}
 
@@ -234,38 +120,44 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            <strong>تنظیمات</strong> حساب</h2>
+                            <strong>@lang('Settings')</strong> @lang('Account')</h2>
                     </div>
                     <div class="body">
+                        {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
                         <div class="row clearfix">
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="نام اصلی">
+                                    <input type="text" class="form-control" name="fname" placeholder="{{__('Fname')}}" value="{{\Illuminate\Support\Facades\Auth::user()->fname}}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="نام خانوادگی">
+                                    <input type="text" class="form-control" name="lname" placeholder="{{__('Lname')}}" value="{{\Illuminate\Support\Facades\Auth::user()->lname}}">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="شهر">
+                                    <input type="text" class="form-control" name="city" placeholder="{{__('City')}}" value="{{\Illuminate\Support\Facades\Auth::user()->city}}">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="ایمیل">
+                                    <input type="text" class="form-control" name="email" placeholder="{{__('Email')}}" value="{{\Illuminate\Support\Facades\Auth::user()->email}}">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="کشور">
+                                    <input type="text" class="form-control" name="country" placeholder="{{__('Country')}}" value="{{\Illuminate\Support\Facades\Auth::user()->country}}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea rows="4" class="form-control no-resize" placeholder="خط آدرس 1"></textarea>
+                                    <textarea rows="4" class="form-control no-resize" name="address1" placeholder="{{__('Address 1')}}" value="{{\Illuminate\Support\Facades\Auth::user()->address1}}"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea rows="4" class="form-control no-resize" name="address2" placeholder="{{__('Address 2')}}" value="{{\Illuminate\Support\Facades\Auth::user()->address2}}"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -273,29 +165,7 @@
                                     <div class="form-check m-l-10">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" id="checkbox"
-                                                   name="checkbox"> قابلیت مشاهده برای همه
-                                            <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check m-l-10">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" id="checkbox1"
-                                                   name="checkbox"> اعلان های کار جدید
-                                            <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check m-l-10">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" id="checkbox2"
-                                                   name="checkbox"> اعلان درخواست دوست جدید
+                                                   name="visible_to_everyone"> @lang('Visible to everyone')
                                             <span class="form-check-sign">
                                                             <span class="check"></span>
                                                         </span>
@@ -304,9 +174,11 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <button class="btn btn-primary btn-round">ذخیره تغییرات</button>
+                                <button class="btn btn-primary btn-round" type="submit">@lang('Save')</button>
                             </div>
                         </div>
+                        {!! Form::close() !!}
+
                     </div>
                 </div>
             </div>

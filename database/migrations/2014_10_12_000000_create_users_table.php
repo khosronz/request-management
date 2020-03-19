@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('pre_phone')->nullable();
             $table->string('country')->nullable();
             $table->text('desc')->nullable();
+            $table->string('visible_to_everyone')->default('0');
 
             $table->rememberToken();
             $table->timestamps();

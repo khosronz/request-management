@@ -15,25 +15,6 @@
 
                      </div>
                      <div class="row">
-                         <div id="accordion" class="col-sm-6">
-                             <div class="animated fadeIn">
-
-                                 @include('homes.owner.status.profile')
-                             </div>
-                         </div>
-                         <div id="accordion" class="col-sm-6">
-                             <div class="animated fadeIn">
-                                 @include('homes.owner.status.notation')
-                             </div>
-                         </div>
-                         <div>
-                             <div class="animated fadeIn">
-                             @include('homes.profile.profile')
-                             </div>
-                         </div>
-
-                     </div>
-                     <div class="row">
                          <div class="col-lg-12">
 
                              <div class="card">

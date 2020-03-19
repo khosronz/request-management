@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Factory;
+use App\Models\Message;
 use App\Models\Organization;
 use App\Models\OrganizationCategory;
 use App\Models\Role;
@@ -12,6 +13,7 @@ use App\Models\Telltype;
 use App\Models\Ticket;
 use App\Policies\CategoryPolicy;
 use App\Policies\FactoryPolicy;
+use App\Policies\MessagePolicy;
 use App\Policies\OrganizationCategoryPolicy;
 use App\Policies\OrganizationPolicy;
 use App\Policies\RolePolicy;
@@ -41,6 +43,7 @@ class AuthServiceProvider extends ServiceProvider
         Factory::class => FactoryPolicy::class,
         Telltype::class => TelltypePolicy::class,
         Ticket::class => TicketPolicy::class,
+//        Message::class => MessagePolicy::class,
     ];
 
     /**

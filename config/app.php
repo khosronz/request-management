@@ -170,8 +170,7 @@ return [
         Becker\Zabbix\ZabbixServiceProvider::class,
         Ybazli\Faker\FakerServiceProvider::class,
 
-
-        // Ybazli\Faker\FakerServiceProvider::class,
+        Logger\Laravel\Providers\MonologMysqlHandlerServiceProvider::class,
 
         /*
          * Application Service Providers...

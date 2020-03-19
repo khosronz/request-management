@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f162ee5c79785c01f3fd74f0d419853a",
+    "content-hash": "f4519227c145871a9458f4d2c36f0bc7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1221,6 +1221,57 @@
                 "view"
             ],
             "time": "2020-03-14T07:03:11+00:00"
+        },
+        {
+            "name": "itelmenko/laravel-mysql-logger",
+            "version": "v0.1.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itelmenko/laravel-mysql-logger.git",
+                "reference": "824b16660b65f673489a63a799f26c7044834af1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itelmenko/laravel-mysql-logger/zipball/824b16660b65f673489a63a799f26c7044834af1",
+                "reference": "824b16660b65f673489a63a799f26c7044834af1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Logger\\Laravel\\Providers\\MonologMysqlHandlerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Logger": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Telmenko",
+                    "email": "igor.telmenko@gmail.com"
+                }
+            ],
+            "description": "Laravel 5.6+ MySQL driver for Monolog",
+            "homepage": "https://github.com/itelmenko/laravel-mysql-logger",
+            "keywords": [
+                "laravel",
+                "laravel5.6",
+                "log",
+                "monolog",
+                "mysql"
+            ],
+            "time": "2020-02-25T05:56:55+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

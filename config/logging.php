@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['mysql'],
             'ignore_exceptions' => false,
         ],
 
@@ -94,6 +94,13 @@ return [
         'null' => [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
+        ],
+        'mysql' => [
+            'driver' => 'custom',
+            'via' => Logger\Laravel\Logging\MySQLLogger::class,
+            'connection' => env('DB_LOG_CONNECTION'),
+            'table' => env('DB_LOG_TABLE'),
+            'name' => 'my.channel' // optional
         ],
     ],
 

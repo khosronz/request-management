@@ -17,6 +17,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "infyomlabs/coreui-templates": "6.0.x-dev",
         "infyomlabs/laravel-generator": "6.0.x-dev",
+        "itelmenko/laravel-mysql-logger": "^0.1.14",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^6.0",

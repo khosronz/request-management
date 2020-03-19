@@ -14,7 +14,7 @@ class CategoriesTableSeeder extends Seeder
 //        \Illuminate\Support\Facades\DB::table('categories')->delete();
 
         \Illuminate\Support\Facades\DB::table('categories')->insert([
-            ['title' => 'دسته مادر',
+            ['title' => 'دسته ریشه',
                 'desc' => 'همه ی دسته ها در این دسته قرار می گیرند.',
                 'user_id' => \App\Enums\UserType::master,
                 'parent_id' => 0,

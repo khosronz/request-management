@@ -12,7 +12,7 @@ class OrganizationsTableSeeder extends Seeder
     public function run()
     {
         \Illuminate\Support\Facades\DB::table('organizations')->insert([
-            ['title' => 'دسته مادر','desc' => 'همه ی دسته ها در این دسته قرار می گیرند.', 'parent_id'=>0,'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'دسته ریشه','desc' => 'همه ی دسته ها در این دسته قرار می گیرند.', 'parent_id'=>0,'created_at' => now(), 'updated_at' => now()],
             ['title' => 'فروش','desc' => 'سوالات مربوط به فروش', 'parent_id'=>1,'created_at' => now(), 'updated_at' => now()],
             ['title' => 'پشتیبانی', 'desc' => 'پشتیبانی فنی','parent_id'=>1,'created_at' => now(), 'updated_at' => now()],
             ['title' => 'لایسنس', 'desc' => 'مشکلات و خطاهای مربوط به لایسنس','parent_id'=>1,'created_at' => now(), 'updated_at' => now()],

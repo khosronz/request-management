@@ -32,7 +32,8 @@ class LogFailedLogin
 //        dd($event);
 //        Log::critical($event->credentials['email'].' want to login to your system. but Failed in this action.');
 //        Log::channel('mysql')->critical($event->credentials['email'].' want to login to your system. but Failed in this action.',['id' => Auth::id()]);
-        Log::channel('mysql')->critical($event->credentials['email'].' want to login to your system. but Failed in this action.',[
+
+        Log::channel('mysql')->alert($event->credentials['email'].' want to login to your system. but Failed in this action.',[
             'ip_address'=>Request::ip(),
             'is_mobile'=>Browser::isMobile(),
             'is_tablet'=>Browser::isTablet(),

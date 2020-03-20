@@ -87,3 +87,6 @@ Route::resource('prefactors', 'PrefactorController');
 
 
 Route::resource('prefactorDetails', 'PrefactorDetailController');
+
+Route::get('logs', 'LogController@index')->name('logs.index');
+Route::get('logs/{id}/user', 'LogController@logsUser')->name('logs.user');

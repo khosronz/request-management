@@ -45,6 +45,7 @@ Vue.component('order-table-filtered-component', require('./components/OrderTable
 Vue.component('main-order-table-filtered-component', require('./components/MainOrderTableFilteredComponent.vue').default);
 Vue.component('main-ticket-table-filtered-component', require('./components/MainTicketTableFilteredComponent.vue').default);
 Vue.component('create-order-table-filtered-component', require('./components/CreateOrderTableFilteredComponent.vue').default);
+Vue.component('main-logger-table-filtered-component', require('./components/MainLoggerTableFilteredComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

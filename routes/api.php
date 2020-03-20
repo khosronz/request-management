@@ -74,3 +74,6 @@ Route::resource('prefactors', 'PrefactorAPIController');
 
 
 Route::resource('prefactor_details', 'PrefactorDetailAPIController');
+
+Route::get('logs', 'LogAPIController@index')->name('logs.api.index');
+Route::get('logs/{id}/user', 'LogAPIController@logsUser')->name('logs.api.user');

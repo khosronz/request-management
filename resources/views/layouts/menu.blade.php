@@ -208,6 +208,22 @@
         <span>@lang('Tickets')</span>
     </a>
 </li>
+
+{{--Logs--}}
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-history"></i>
+        @lang('Logs')
+    </a>
+    <ul class="nav-dropdown-items">
+        <li class="nav-item {{ Request::is('logs*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('logs.index') !!}">
+                <i class="nav-icon fa fa-history"></i>
+                <span>@lang('All Authentication Logs')</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
 {{--<li class="nav-item {{ Request::is('messages*') ? 'active' : '' }}">--}}
 {{--<a class="nav-link" href="{!! route('messages.index') !!}">--}}
 {{--<i class="nav-icon cui-paper-plane"></i>--}}

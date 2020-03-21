@@ -191,9 +191,9 @@
                 items: [],
                 cardItems: [],
                 fields: [
-                    {key: 'level', label: 'عنوان سفارش', sortable: true, sortDirection: 'desc'},
-                    {key: 'message', label: 'تاریخ ایجاد سفارش', sortable: true, class: 'text-center'},
-                    {key: 'created_at', label: 'آخرین تاریخ بررسی سفارش', sortable: true, class: 'text-center'},
+                    {key: 'level', label: 'سطح اهمیت لاگ', sortable: true, sortDirection: 'desc'},
+                    {key: 'message', label: 'پیام لاگ', sortable: true, class: 'text-center'},
+                    {key: 'created_at', label: 'تاریخ ایجاد لاگ', sortable: true, class: 'text-center'},
                     {key: 'actions', label: 'عملیات'}
                 ],
                 totalRows: 1,

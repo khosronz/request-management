@@ -9,7 +9,7 @@
                     </div>
                     <div class="card-body">
                         @php
-                            $logs = DB::table('logs')
+                            $logs = \Illuminate\Support\Facades\DB::table('logs')
                                 ->where('level', '!=', 'ERROR')
                                 ->where('message', 'LIKE', '%'.\Illuminate\Support\Facades\Auth::user()->email.'%')
                                 ->orderByDesc('created_at')->get();

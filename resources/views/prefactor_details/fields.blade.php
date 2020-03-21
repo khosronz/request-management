@@ -1,17 +1,17 @@
 <!-- Status Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('status', __('Status').':') !!}
     {!! Form::text('status', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Equipment Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('equipment_id', __('Equipment Id').':') !!}
     {!! Form::text('equipment_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Num Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('num', __('Num').':') !!}
     {!! Form::text('num', null, ['class' => 'form-control']) !!}
 </div>
@@ -23,13 +23,13 @@
 </div>
 
 <!-- Prefactor Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('prefactor_id', __('Prefactor Id').':') !!}
     {!! Form::text('prefactor_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('user_id', __('User Id').':') !!}
     {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
 </div>

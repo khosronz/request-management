@@ -18,4 +18,5 @@ final class VerifiedType extends Enum
     const financial_waite = '5';
     const support_waite = '6';
     const supplier_waite = '7';
+    const completed = '8';
 }

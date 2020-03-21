@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\VerifiedType;
+use App\Enums\VerifiedWaiteStatus;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Card;
@@ -11,6 +12,7 @@ use App\Repositories\CardRepository;
 use App\Repositories\OrderdetailRepository;
 use App\Repositories\OrderRepository;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
 use Flash;
 use Illuminate\Support\Facades\Auth;
@@ -73,7 +75,7 @@ class OrderController extends AppBaseController
 
         $order = $this->orderRepository->create($input);
 
-        Flash::success(__('Order').' '.__('saved successfully.'));
+        Flash::success(__('Order') . ' ' . __('saved successfully.'));
 
         return redirect(route('orders.index'));
     }
@@ -87,49 +89,48 @@ class OrderController extends AppBaseController
      */
     public function convertCardOrder()
     {
-        $cards=Card::where('user_id','=',Auth::id())->get();
+        $cards = Card::where('user_id', '=', Auth::id())->get();
 
-        if (empty($cards)){
-            Flash::error(__('Cards').' '.__('Not is empty.|'));
+        if (empty($cards)) {
+            Flash::error(__('Cards') . ' ' . __('Not is empty.|'));
             return back();
         } else {
             DB::beginTransaction();
             $order = [
-                'title'=>Str::uuid()->toString(),
-                'verified'=>VerifiedType::owner_waite,
-                'desc'=>'',
-                'user_id'=> Auth::id(),
-                'created_at'=> Date::now()->toString(),
-                'updated_at'=> Date::now()->toString(),
+                'title' => Str::uuid()->toString(),
+                'verified' => VerifiedType::owner_waite,
+                'desc' => '',
+                'user_id' => Auth::id(),
+                'created_at' => Date::now()->toString(),
+                'updated_at' => Date::now()->toString(),
             ];
 
             $order = $this->orderRepository->create($order);
 
 
-
-            foreach ($cards as $card){
+            foreach ($cards as $card) {
 
                 $orderDetail = [
-                    'status'=>'1',
-                    'equipment_id'=>$card->equipment_id,
-                    'num'=>$card->num,
-                    'unit_price'=>null,
-                    'order_id'=>$order->id,
-                    'user_id'=>Auth::id(),
-                    'created_at'=> Date::now()->toString(),
-                    'updated_at'=> Date::now()->toString(),
+                    'status' => '1',
+                    'equipment_id' => $card->equipment_id,
+                    'num' => $card->num,
+                    'unit_price' => null,
+                    'order_id' => $order->id,
+                    'user_id' => Auth::id(),
+                    'created_at' => Date::now()->toString(),
+                    'updated_at' => Date::now()->toString(),
                 ];
 
                 $orderDetail = $this->orderdetailRepository->create($orderDetail);
 
             }
 
-            foreach ($cards as $card){
+            foreach ($cards as $card) {
                 $this->cardRepository->delete($card->id);
             }
 
 
-            Flash::success(__('Order').' '.__('saved successfully.'));
+            Flash::success(__('Order') . ' ' . __('saved successfully.'));
             DB::commit();
         }
 
@@ -149,7 +150,7 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->find($id);
 
         if (empty($order)) {
-            Flash::error(__('Order').' '.__('not found.'));
+            Flash::error(__('Order') . ' ' . __('not found.'));
 
             return redirect(route('orders.index'));
         }
@@ -169,7 +170,7 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->find($id);
 
         if (empty($order)) {
-            Flash::error(__('Order').' '.__('not found.'));
+            Flash::error(__('Order') . ' ' . __('not found.'));
 
             return redirect(route('orders.index'));
         }
@@ -190,14 +191,14 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->find($id);
 
         if (empty($order)) {
-            Flash::error(__('Order').' '.__('not found.'));
+            Flash::error(__('Order') . ' ' . __('not found.'));
 
             return redirect(route('orders.index'));
         }
 
         $order = $this->orderRepository->update($request->all(), $id);
 
-        Flash::success(__('Order').' '.__('updated successfully.'));
+        Flash::success(__('Order') . ' ' . __('updated successfully.'));
 
         return redirect(route('orders.index'));
     }
@@ -216,27 +217,135 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->find($id);
 
         if (empty($order)) {
-            Flash::error(__('Order').' '.__('not found.'));
+            Flash::error(__('Order') . ' ' . __('not found.'));
 
             return redirect(route('orders.index'));
         }
 
         $this->orderRepository->delete($id);
 
-        Flash::success(__('Order').' '.__('deleted successfully.'));
+        Flash::success(__('Order') . ' ' . __('deleted successfully.'));
 
         return redirect(route('orders.index'));
     }
 
-    public function block(Request $request)
+    public function block($id, Request $request)
     {
-        $input=$request->all();
-        dd($input);
+        $input = $request->all();
+
+        $order = $this->orderRepository->find($id);
+
+        if (empty($order)) {
+            Flash::error(__('Order') . ' ' . __('not found.'));
+
+            return redirect(route('orders.index'));
+        }
+
+        $order = $this->change_status_block($order, Auth::user());
+        $input=$order->toArray();
+//        dd($order->toArray(),$input);
+        $order = $this->orderRepository->update($input, $id);
+
+        Flash::success(__('Order') . ' ' . __('updated successfully.'));
+
+        return back();
     }
 
-    public function success(Request $request)
+    public function success($id, Request $request)
     {
-        $input=$request->all();
-        dd($input);
+        $input = $request->all();
+
+        $order = $this->orderRepository->find($id);
+
+        if (empty($order)) {
+            Flash::error(__('Order') . ' ' . __('not found.'));
+
+            return redirect(route('orders.index'));
+        }
+
+        $order = $this->change_status_wait($order, Auth::user());
+        $input=$order->toArray();
+//        dd($order->toArray(),$input);
+        $order = $this->orderRepository->update($input, $id);
+
+        Flash::success(__('Order') . ' ' . __('updated successfully.'));
+
+        return back();
+    }
+
+    public function change_status_wait($order, $user)
+    {
+        if ($user->isMaster()){
+            // protection or supplier
+
+            // if we have protection category in the order details send to the protection
+            // if we have not protection category in the order details send to the supplier
+
+            // for waite you must change two fields
+                // 1 -> verified        (protection_wait,supplier_wait)
+                // 2 -> waite_status    (wait)
+            $order->verified=VerifiedType::supplier_waite;
+            $order->waite_status=VerifiedWaiteStatus::waite;
+        }
+        if ($user->isOwner()){
+            // Successor
+            $order->verified=VerifiedType::successor_waite;
+            $order->waite_status=VerifiedWaiteStatus::waite;
+        }
+        if ($user->isFinancial()){
+            // Completed
+            // Support and master and owner
+            $order->verified=VerifiedType::completed;
+            $order->waite_status=VerifiedWaiteStatus::waite;
+        }
+        if ($user->isProtection()){
+            // supplier
+            $order->verified=VerifiedType::successor_waite;
+            $order->waite_status=VerifiedWaiteStatus::waite;
+        }
+        if ($user->isSuccessor()){
+            // Master
+            $order->verified=VerifiedType::master_waite;
+            $order->waite_status=VerifiedWaiteStatus::waite;
+        }
+
+        return $order;
+    }
+
+    public function change_status_block($order, $user)
+    {
+        if ($user->isMaster()){
+            // owner and successor
+
+            // for waite you must change two fields
+            // 1 -> verified        (master_wait)
+            // 2 -> waite_status    (block)
+
+            $order->verified=VerifiedType::master_waite;
+            $order->waite_status=VerifiedWaiteStatus::blocked;
+        }
+        if ($user->isOwner()){
+            // Successor
+            $order->verified=VerifiedType::owner_waite;
+            $order->waite_status=VerifiedWaiteStatus::blocked;
+        }
+        if ($user->isFinancial()){
+            // Completed
+            // Support and master and owner
+            $order->verified=VerifiedType::financial_waite;
+            $order->waite_status=VerifiedWaiteStatus::blocked;
+        }
+        if ($user->isProtection()){
+            // supplier
+            $order->verified=VerifiedType::protection_waite;
+            $order->waite_status=VerifiedWaiteStatus::blocked;
+        }
+        if ($user->isSuccessor()){
+            // Master
+            $order->verified=VerifiedType::successor_waite;
+            $order->waite_status=VerifiedWaiteStatus::blocked;
+        }
+
+        return $order;
     }
 }

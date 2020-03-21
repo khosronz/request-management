@@ -77,4 +77,13 @@ class Prefactor extends Model
     {
         return $this->belongsTo(\App\Models\Factory::class, 'factory_id', 'id');
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function prefactor_details()
+    {
+        return $this->hasMany('\App\Models\PrefactorDetail');
+    }
 }

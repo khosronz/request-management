@@ -268,9 +268,9 @@
     </a>
 </li>
 
-<li class="nav-item {{ Request::is('prefactorDetails*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('prefactorDetails.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>@lang('Prefactor Details')</span>
-    </a>
-</li>
+{{--<li class="nav-item {{ Request::is('prefactorDetails*') ? 'active' : '' }}">--}}
+    {{--<a class="nav-link" href="{!! route('prefactorDetails.index') !!}">--}}
+        {{--<i class="nav-icon icon-cursor"></i>--}}
+        {{--<span>@lang('Prefactor Details')</span>--}}
+    {{--</a>--}}
+{{--</li>--}}

@@ -15,7 +15,7 @@ class CreatePrefactorDetailsTable extends Migration
     {
         Schema::create('prefactor_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status');
+            $table->string('status')->default('1');
             $table->bigInteger('equipment_id')->unsigned()->default(0);
             $table->integer('num')->unsigned()->default(0);
             $table->string('unit_price');

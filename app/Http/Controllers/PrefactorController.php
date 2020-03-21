@@ -4,22 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePrefactorRequest;
 use App\Http\Requests\UpdatePrefactorRequest;
+use App\Models\Prefactor;
 use App\Repositories\OrderRepository;
+use App\Repositories\PrefactorDetailRepository;
 use App\Repositories\PrefactorRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class PrefactorController extends AppBaseController
 {
     /** @var  PrefactorRepository */
     private $prefactorRepository;
+    private $prefactorDetailRepository;
     private $orderRepository;
 
-    public function __construct(PrefactorRepository $prefactorRepo,OrderRepository $orderRepo)
+    public function __construct(PrefactorRepository $prefactorRepo,
+                                PrefactorDetailRepository $prefactorDetailRepo,
+                                OrderRepository $orderRepo)
     {
         $this->prefactorRepository = $prefactorRepo;
+        $this->prefactorDetailRepository = $prefactorDetailRepo;
         $this->orderRepository = $orderRepo;
     }
 
@@ -32,7 +40,8 @@ class PrefactorController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $prefactors = $this->prefactorRepository->paginate(10);
+//        $prefactors = $this->prefactorRepository->paginate(10);
+        $prefactors = Prefactor::where('user_id',Auth::id())->paginate(10);
 
         return view('prefactors.index')
             ->with('prefactors', $prefactors);
@@ -74,7 +83,26 @@ class PrefactorController extends AppBaseController
     {
         $input = $request->all();
 
+        DB::beginTransaction();
         $prefactor = $this->prefactorRepository->create($input);
+
+        $order=$this->orderRepository->find($input['order_id']);
+        $orderDetails=$order->orderdetails()->get();
+//        dd($orderDetails);
+
+        foreach ($orderDetails as $orderDetail) {
+//            $input=$orderDetail->toArray();
+            $input['status']=$orderDetail->status;
+            $input['equipment_id']=$orderDetail->equipment_id;
+            $input['num']=$orderDetail->num;
+            $input['unit_price']=$orderDetail->unit_price;
+            $input['prefactor_id']=$prefactor->id;
+            $input['user_id']=$orderDetail->user_id;
+
+            $this->prefactorDetailRepository->create($input);
+        }
+
+        DB::commit();
 
         Flash::success(__('Prefactor').' '.__('saved successfully.'));
 

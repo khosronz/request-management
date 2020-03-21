@@ -5,9 +5,10 @@
 </div>
 
 <!-- Order Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('order_id', __('Order Id').':') !!}
-    {!! Form::select('order_id', \App\Models\Order::pluck('title','id'), null, ['class' => 'form-control']) !!}
+    {!! Form::text('order_id', $order->id, ['class' => 'form-control']) !!}
+{{--    {!! Form::select('order_id', \App\Models\Order::pluck('title','id'), null, ['class' => 'form-control']) !!}--}}
 </div>
 
 <!-- Factory Id Field -->

@@ -18,7 +18,8 @@ class RolesTableSeeder extends Seeder
             ['id'=>\App\Enums\UserType::protection,'title' => 'protection', 'desc' => 'Protection user', 'created_at' => now(), 'updated_at' => now()],
             ['id'=>\App\Enums\UserType::successor,'title' => 'successor', 'desc' => 'Successor user', 'created_at' => now(), 'updated_at' => now()],
             ['id'=>\App\Enums\UserType::master,'title' => 'master', 'desc' => 'Master user', 'created_at' => now(), 'updated_at' => now()],
-            ['id'=>\App\Enums\UserType::support,'title' => 'support', 'desc' => 'Support user', 'created_at' => now(), 'updated_at' => now()]
+            ['id'=>\App\Enums\UserType::support,'title' => 'support', 'desc' => 'Support user', 'created_at' => now(), 'updated_at' => now()],
+            ['id'=>\App\Enums\UserType::supplier,'title' => 'supplier', 'desc' => 'Supplier user', 'created_at' => now(), 'updated_at' => now()]
         ]);
 
         \Illuminate\Support\Facades\DB::table('role_users')->insert([
@@ -28,7 +29,8 @@ class RolesTableSeeder extends Seeder
             ['role_id' => \App\Enums\UserType::financial, 'user_id' => \App\User::where('id',\App\Enums\UserType::financial)->first()->id],
             ['role_id' => \App\Enums\UserType::support, 'user_id' => \App\User::where('id',\App\Enums\UserType::support)->first()->id],
             ['role_id' => \App\Enums\UserType::protection, 'user_id' => \App\User::where('id',\App\Enums\UserType::protection)->first()->id],
-            ['role_id' => \App\Enums\UserType::successor, 'user_id' => \App\User::where('id',\App\Enums\UserType::successor)->first()->id]
+            ['role_id' => \App\Enums\UserType::successor, 'user_id' => \App\User::where('id',\App\Enums\UserType::successor)->first()->id],
+            ['role_id' => \App\Enums\UserType::supplier, 'user_id' => \App\User::where('id',\App\Enums\UserType::supplier)->first()->id]
         ]);
 
     }

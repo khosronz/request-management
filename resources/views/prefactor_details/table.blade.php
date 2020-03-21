@@ -1,7 +1,6 @@
 <div class="table-responsive-sm">
     <table class="table table-responsive table-bordered table-striped" id="prefactorDetails-table" style="display: block;overflow-x: auto; white-space: nowrap;">
         <thead>
-            <th>@lang('Status')</th>
         <th>@lang('Equipment Id')</th>
         <th>@lang('Num')</th>
         <th>@lang('Unit Price')</th>
@@ -12,12 +11,11 @@
         <tbody>
         @foreach($prefactorDetails as $prefactorDetail)
             <tr>
-                <td>{!! $prefactorDetail->status !!}</td>
-            <td>{!! $prefactorDetail->equipment_id !!}</td>
+            <td>{!! $prefactorDetail->equipment->title !!}</td>
             <td>{!! $prefactorDetail->num !!}</td>
             <td>{!! $prefactorDetail->unit_price !!}</td>
             <td>{!! $prefactorDetail->prefactor_id !!}</td>
-            <td>{!! $prefactorDetail->user_id !!}</td>
+            <td>{!! $prefactorDetail->user->name !!}</td>
                 <td>
                     {!! Form::open(['route' => ['prefactorDetails.destroy', $prefactorDetail->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

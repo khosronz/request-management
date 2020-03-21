@@ -22,5 +22,6 @@
              </div>
          </div>
     </div>
+    @include('homes.profile.logs.index')
 @endsection
 

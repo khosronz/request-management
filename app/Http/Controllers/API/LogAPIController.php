@@ -22,7 +22,7 @@ class LogAPIController extends AppBaseController
     /**
      * Back all logs
      */
-    public function index()
+    public function index(Request $request)
     {
         $logs=DB::table('logs')->where('level','!=','ERROR')->orderByDesc('created_at')->get();
 

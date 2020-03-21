@@ -17,11 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return new UserResource($request->user());
 });
 
-Route::post('changeHostStatus','ZabbixDashboardAPIController@changeHostStatus');
-Route::post('gethosts/em','ZabbixDashboardAPIController@gethostsbyemail');
-Route::post('geteventsbyhost','ZabbixDashboardAPIController@geteventsbyhost');
-Route::resource('dashboards','ZabbixDashboardAPIController');
-
 Route::post('login', 'UserAPIController@login');
 Route::post('signup', 'UserAPIController@signup');
 Route::post('saveProfile/{id}', 'UserAPIController@saveProfile');
@@ -76,4 +71,4 @@ Route::resource('prefactors', 'PrefactorAPIController');
 Route::resource('prefactor_details', 'PrefactorDetailAPIController');
 
 Route::get('logs/{id}/user', 'LogAPIController@logsUser')->name('logs.api.user');
-Route::get('logs', 'LogAPIController@index')->name('logs.api.index');
+Route::get('logs', 'LogAPIController@index')->name('logs.api.index')->middleware('auth:api');

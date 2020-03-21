@@ -221,6 +221,12 @@
                 <span>@lang('All Authentication Logs')</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('logs/*/user*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('logs.user',[\Illuminate\Support\Facades\Auth::id()]) !!}">
+                <i class="nav-icon fa fa-history"></i>
+                <span>@lang('User Authentication Logs')</span>
+            </a>
+        </li>
     </ul>
 </li>
 

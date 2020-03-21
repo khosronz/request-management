@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Laracasts\Flash\Flash;
 
 class LogController extends Controller
 {
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepo)
+    {
+        $this->userRepository = $userRepo;
+    }
+
     public function index()
     {
-        $logs=DB::table('logs')->where('level','!=','ERROR')->orderByDesc('created_at')->get();
+        $logs = DB::table('logs')->where('level', '!=', 'ERROR')->orderByDesc('created_at')->get();
 
         return view('logs.index')
-            ->with('logs',$logs);
+            ->with('logs', $logs);
     }
 
     /**
@@ -20,6 +29,20 @@ class LogController extends Controller
      */
     public function logsUser($id)
     {
+        $user = $this->userRepository->find($id);
 
+        if (empty($user)) {
+            Flash::error(__('User') . ' ' . __('not found.'));
+
+            return redirect(route('organizationUsers.index'));
+        }
+
+        $logs = DB::table('logs')
+            ->where('level', '!=', 'ERROR')
+            ->where('message', 'LIKE', '%'.$user->email.'%')
+            ->orderByDesc('created_at')->get();
+
+        return view('logs.users.index')
+            ->with('logs', $logs);
     }
 }

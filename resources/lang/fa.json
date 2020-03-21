@@ -710,7 +710,9 @@
   "About me": "درباره من",
   "phone mobile": "موبایل",
   "All Authentication Logs": "تمام لاگهای ورود و خروج",
+  "User Authentication Logs": "لاگهای ورود و خروج کاربر",
   "Logs": "لاگها",
   "Log": "لاگ",
+  "User": "کاربر",
   "security": "امنیتی"
 }

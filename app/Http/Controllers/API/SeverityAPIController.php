@@ -22,6 +22,7 @@ class SeverityAPIController extends AppBaseController
 
     public function __construct(SeverityRepository $severityRepo)
     {
+        $this->middleware('auth:api');
         $this->severityRepository = $severityRepo;
     }
 

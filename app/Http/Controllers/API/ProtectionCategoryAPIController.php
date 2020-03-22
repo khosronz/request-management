@@ -22,6 +22,7 @@ class ProtectionCategoryAPIController extends AppBaseController
 
     public function __construct(ProtectionCategoryRepository $protectionCategoryRepo)
     {
+        $this->middleware('auth:api');
         $this->protectionCategoryRepository = $protectionCategoryRepo;
     }
 

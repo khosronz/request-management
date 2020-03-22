@@ -181,7 +181,6 @@ if (!function_exists('getEndDate')) {
     }
 
 
-
 //    Verification Order
     if (!function_exists('verificationStatus')) {
         function verificationStatus($status)
@@ -218,13 +217,92 @@ if (!function_exists('getEndDate')) {
         function getVerificationStatusArray()
         {
             return [
-                '1'=> 'مالک',
-                '2'=> 'مسئول مالک',
-                '3'=> 'کارشناس',
-                '4'=> 'بازرس',
-                '5'=> 'مالی',
-                '6'=> 'پشتیبانی'
+                '1' => 'مالک',
+                '2' => 'مسئول مالک',
+                '3' => 'کارشناس',
+                '4' => 'بازرس',
+                '5' => 'مالی',
+                '6' => 'پشتیبانی'
             ];
+        }
+    }
+
+    if (!function_exists('change_status_wait')) {
+        function change_status_wait($order, $user)
+        {
+            if ($user->isMaster()) {
+                // protection or supplier
+
+                // if we have protection category in the order details send to the protection
+                // if we have not protection category in the order details send to the supplier
+
+                // for waite you must change two fields
+                // 1 -> verified        (protection_wait,supplier_wait)
+                // 2 -> waite_status    (wait)
+                $order->verified = \App\Enums\VerifiedType::supplier_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::waite;
+            }
+            if ($user->isOwner()) {
+                // Successor
+                $order->verified = \App\Enums\VerifiedType::successor_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::waite;
+            }
+            if ($user->isFinancial()) {
+                // Completed
+                // Support and master and owner
+                $order->verified = \App\Enums\VerifiedType::completed;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::waite;
+            }
+            if ($user->isProtection()) {
+                // supplier
+                $order->verified = \App\Enums\VerifiedType::supplier_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::waite;
+            }
+            if ($user->isSuccessor()) {
+                // Master
+                $order->verified = \App\Enums\VerifiedType::master_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::waite;
+            }
+
+            return $order;
+        }
+    }
+    if (!function_exists('change_status_block')) {
+        function change_status_block($order, $user)
+        {
+            if ($user->isMaster()) {
+                // owner and successor
+
+                // for waite you must change two fields
+                // 1 -> verified        (master_wait)
+                // 2 -> waite_status    (block)
+
+                $order->verified = \App\Enums\VerifiedType::master_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::blocked;
+            }
+            if ($user->isOwner()) {
+                // Successor
+                $order->verified = \App\Enums\VerifiedType::owner_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::blocked;
+            }
+            if ($user->isFinancial()) {
+                // Completed
+                // Support and master and owner
+                $order->verified = \App\Enums\VerifiedType::financial_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::blocked;
+            }
+            if ($user->isProtection()) {
+                // supplier
+                $order->verified = \App\Enums\VerifiedType::protection_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::blocked;
+            }
+            if ($user->isSuccessor()) {
+                // Master
+                $order->verified = \App\Enums\VerifiedType::successor_waite;
+                $order->waite_status = \App\Enums\VerifiedWaiteStatus::blocked;
+            }
+
+            return $order;
         }
     }
 

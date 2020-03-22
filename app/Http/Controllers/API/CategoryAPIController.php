@@ -26,6 +26,7 @@ class CategoryAPIController extends AppBaseController
 
     public function __construct(CategoryRepository $categoryRepo,EquipmentRepository $equipmentRepo )
     {
+        $this->middleware('auth:api');
         $this->categoryRepository = $categoryRepo;
         $this->equipmentRepository = $equipmentRepo;
     }

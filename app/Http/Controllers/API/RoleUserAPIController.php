@@ -22,6 +22,7 @@ class RoleUserAPIController extends AppBaseController
 
     public function __construct(RoleUserRepository $roleUserRepo)
     {
+        $this->middleware('auth:api');
         $this->roleUserRepository = $roleUserRepo;
     }
 

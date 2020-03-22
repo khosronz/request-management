@@ -22,6 +22,7 @@ class MessageAPIController extends AppBaseController
 
     public function __construct(MessageRepository $messageRepo)
     {
+        $this->middleware('auth:api');
         $this->messageRepository = $messageRepo;
     }
 

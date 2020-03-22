@@ -14,6 +14,10 @@ use \App\Http\Resources\User as UserResource;
 
 class UserApiController extends AppBaseController
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *

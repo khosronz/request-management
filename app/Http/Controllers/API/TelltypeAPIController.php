@@ -22,6 +22,7 @@ class TelltypeAPIController extends AppBaseController
 
     public function __construct(TelltypeRepository $telltypeRepo)
     {
+        $this->middleware('auth:api');
         $this->telltypeRepository = $telltypeRepo;
     }
 

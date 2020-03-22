@@ -22,6 +22,7 @@ class FactoryaddressAPIController extends AppBaseController
 
     public function __construct(FactoryaddressRepository $factoryaddressRepo)
     {
+        $this->middleware('auth:api');
         $this->factoryaddressRepository = $factoryaddressRepo;
     }
 

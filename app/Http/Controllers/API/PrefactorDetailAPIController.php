@@ -22,6 +22,7 @@ class PrefactorDetailAPIController extends AppBaseController
 
     public function __construct(PrefactorDetailRepository $prefactorDetailRepo)
     {
+        $this->middleware('auth:api');
         $this->prefactorDetailRepository = $prefactorDetailRepo;
     }
 

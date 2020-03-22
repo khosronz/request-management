@@ -22,6 +22,7 @@ class OrderAPIController extends AppBaseController
 
     public function __construct(OrderRepository $orderRepo)
     {
+        $this->middleware('auth:api');
         $this->orderRepository = $orderRepo;
     }
 

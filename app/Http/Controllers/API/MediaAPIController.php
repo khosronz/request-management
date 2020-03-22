@@ -22,6 +22,7 @@ class MediaAPIController extends AppBaseController
 
     public function __construct(MediaRepository $mediaRepo)
     {
+        $this->middleware('auth:api');
         $this->mediaRepository = $mediaRepo;
     }
 

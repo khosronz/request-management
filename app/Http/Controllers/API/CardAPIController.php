@@ -21,6 +21,7 @@ class CardAPIController extends AppBaseController
 
     public function __construct(CardRepository $cardRepo)
     {
+        $this->middleware('auth:api');
         $this->cardRepository = $cardRepo;
     }
 

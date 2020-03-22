@@ -25,6 +25,7 @@ class LogAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        $this->middleware('auth:api');
         $logs=DB::table('logs')->where('level','!=','ERROR')->orderByDesc('created_at')->get();
 
         return $this->sendResponse($logs->toArray(), 'Logs retrieved successfully');

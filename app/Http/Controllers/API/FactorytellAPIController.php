@@ -22,6 +22,7 @@ class FactorytellAPIController extends AppBaseController
 
     public function __construct(FactorytellRepository $factorytellRepo)
     {
+        $this->middleware('auth:api');
         $this->factorytellRepository = $factorytellRepo;
     }
 

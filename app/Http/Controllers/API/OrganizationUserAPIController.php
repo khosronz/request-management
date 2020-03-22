@@ -22,6 +22,7 @@ class OrganizationUserAPIController extends AppBaseController
 
     public function __construct(OrganizationUserRepository $organizationUserRepo)
     {
+        $this->middleware('auth:api');
         $this->organizationUserRepository = $organizationUserRepo;
     }
 

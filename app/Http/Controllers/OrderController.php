@@ -241,7 +241,7 @@ class OrderController extends AppBaseController
             return redirect(route('orders.index'));
         }
 
-        $order = $this->change_status_block($order, Auth::user());
+        $order = change_status_block($order, Auth::user());
         $input=$order->toArray();
 //        dd($order->toArray(),$input);
         $order = $this->orderRepository->update($input, $id);
@@ -263,7 +263,7 @@ class OrderController extends AppBaseController
             return redirect(route('orders.index'));
         }
 
-        $order = $this->change_status_wait($order, Auth::user());
+        $order = change_status_wait($order, Auth::user());
         $input=$order->toArray();
 //        dd($order->toArray(),$input);
         $order = $this->orderRepository->update($input, $id);
@@ -273,79 +273,5 @@ class OrderController extends AppBaseController
         return back();
     }
 
-    public function change_status_wait($order, $user)
-    {
-        if ($user->isMaster()){
-            // protection or supplier
 
-            // if we have protection category in the order details send to the protection
-            // if we have not protection category in the order details send to the supplier
-
-            // for waite you must change two fields
-                // 1 -> verified        (protection_wait,supplier_wait)
-                // 2 -> waite_status    (wait)
-            $order->verified=VerifiedType::supplier_waite;
-            $order->waite_status=VerifiedWaiteStatus::waite;
-        }
-        if ($user->isOwner()){
-            // Successor
-            $order->verified=VerifiedType::successor_waite;
-            $order->waite_status=VerifiedWaiteStatus::waite;
-        }
-        if ($user->isFinancial()){
-            // Completed
-            // Support and master and owner
-            $order->verified=VerifiedType::completed;
-            $order->waite_status=VerifiedWaiteStatus::waite;
-        }
-        if ($user->isProtection()){
-            // supplier
-            $order->verified=VerifiedType::supplier_waite;
-            $order->waite_status=VerifiedWaiteStatus::waite;
-        }
-        if ($user->isSuccessor()){
-            // Master
-            $order->verified=VerifiedType::master_waite;
-            $order->waite_status=VerifiedWaiteStatus::waite;
-        }
-
-        return $order;
-    }
-
-    public function change_status_block($order, $user)
-    {
-        if ($user->isMaster()){
-            // owner and successor
-
-            // for waite you must change two fields
-            // 1 -> verified        (master_wait)
-            // 2 -> waite_status    (block)
-
-            $order->verified=VerifiedType::master_waite;
-            $order->waite_status=VerifiedWaiteStatus::blocked;
-        }
-        if ($user->isOwner()){
-            // Successor
-            $order->verified=VerifiedType::owner_waite;
-            $order->waite_status=VerifiedWaiteStatus::blocked;
-        }
-        if ($user->isFinancial()){
-            // Completed
-            // Support and master and owner
-            $order->verified=VerifiedType::financial_waite;
-            $order->waite_status=VerifiedWaiteStatus::blocked;
-        }
-        if ($user->isProtection()){
-            // supplier
-            $order->verified=VerifiedType::protection_waite;
-            $order->waite_status=VerifiedWaiteStatus::blocked;
-        }
-        if ($user->isSuccessor()){
-            // Master
-            $order->verified=VerifiedType::successor_waite;
-            $order->waite_status=VerifiedWaiteStatus::blocked;
-        }
-
-        return $order;
-    }
 }

@@ -152,9 +152,13 @@ class HomeController extends Controller
             $orders = Order::where('user_id', '=', Auth::id())
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-//        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
+            $orders_not_paginate = Order::where('user_id', '=', Auth::id())
+                ->orderBy('created_at', 'desc')
+                ->get();
+
             return view('homes.owner.index')
-                ->with('orders', $orders);
+                ->with('orders', $orders)
+                ->with('orders_not_paginate', $orders_not_paginate);
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));

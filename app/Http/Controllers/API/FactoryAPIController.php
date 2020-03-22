@@ -22,6 +22,7 @@ class FactoryAPIController extends AppBaseController
 
     public function __construct(FactoryRepository $factoryRepo)
     {
+        $this->middleware('auth:api');
         $this->factoryRepository = $factoryRepo;
     }
 

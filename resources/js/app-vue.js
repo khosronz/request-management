@@ -36,6 +36,7 @@ Vue.component('main-logger-user-table-filtered-component', require('./components
 window.Vue = Vue;
 axios.defaults.headers.common = {
     'X-CSRF-TOKEN': Laravel.csrfToken,
+    'XSRF-TOKEN': Laravel.csrfToken,
     'X-Requested-With': 'XMLHttpRequest',
     'Authorization': 'Bearer ' + Laravel.apiToken,
 };

@@ -22,6 +22,7 @@ class TicketAPIController extends AppBaseController
 
     public function __construct(TicketRepository $ticketRepo)
     {
+        $this->middleware('auth:api');
         $this->ticketRepository = $ticketRepo;
     }
 

@@ -22,6 +22,7 @@ class PrefactorAPIController extends AppBaseController
 
     public function __construct(PrefactorRepository $prefactorRepo)
     {
+        $this->middleware('auth:api');
         $this->prefactorRepository = $prefactorRepo;
     }
 

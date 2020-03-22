@@ -177,7 +177,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    // import axios from 'axios';
     export default {
 //        props: ['category_id'],
         data() {
@@ -230,7 +230,7 @@
         },
         methods: {
             onChange(event){
-                console.log(this.selected);
+                // console.log(this.selected);
                 this.getItems(this.selected);
 
             },
@@ -238,7 +238,7 @@
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                 axios.get('http://project7.test/api/categories')
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.options = response.data.data;
                         this.selected=null;
                     })
@@ -251,7 +251,7 @@
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                 axios.get('http://project7.test/api/categories/' + category_id+'/equipment')
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.items = response.data.data;
                         // Trigger pagination to update the number of buttons/pages due to filtering
                         this.onFiltered(this.items);

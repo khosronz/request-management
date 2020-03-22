@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{{config('app.name')}}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap 4.1.1 -->
 {{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">--}}
 {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">--}}
@@ -94,6 +95,13 @@
         <span>@lang('PoweredBy')</span>
         <a href="https://tahlilyar.com">{{config('app.name')}}</a>
     </div>
+
+    <script>
+        window.Laravel={!! json_encode([
+       'csrfToken' => csrf_token(),
+       'apiToken' => \Illuminate\Support\Facades\Auth::user()->api_token ?? null,
+        ]) !!};
+    </script>
 </footer>
 </body>
 <!-- jQuery 3.1.1 -->

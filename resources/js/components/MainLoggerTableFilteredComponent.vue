@@ -182,7 +182,6 @@
 </template>
 
 <script>
-    import axios from 'axios';
 
     export default {
         props: ['logs'],
@@ -233,14 +232,14 @@
                 this.getItems();
             },
             getItems() {
-                axios.get('http://project7.test/api/logs')
+                axios.get('/api/logs')
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.items = response.data.data;
                         // Trigger pagination to update the number of buttons/pages due to filtering
                         this.onFiltered(this.items);
 
-                        console.log(this.items)
+                        // console.log(this.items);
                     })
                     .catch(e => {
                         // this.errors.push(e)
@@ -262,7 +261,15 @@
                 // Trigger pagination to update the number of buttons/pages due to filtering
                 this.totalRows = filteredItems.length;
                 this.currentPage = 1
-            }
+            },
+            // setApiToken(api_token) {
+            //     this.api_token = api_token;
+            // },
+            // getApiToken() {
+            //     this.api_token = localStorage.getItem('user-token');
+            //
+            //     return this.api_token;
+            // }
         }
     }
 </script>

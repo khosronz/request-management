@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    // import axios from 'axios';
     export default {
         data() {
             return {
@@ -23,7 +23,7 @@
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                 axios.get('http://project7.test/api/categories')
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.items = response.data.data;
                     })
                     .catch(e => {

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    // import axios from 'axios'
 
     export default {
         props: ['product_id'],
@@ -37,7 +37,7 @@
             getProductAttribetes() {
                 axios.get('http://project3.test/api/products/' + this.product_id + '/attributes')
                     .then(response => {
-                        console.log(response.data)
+                        // console.log(response.data)
                         this.selected = response.data.data;
                     })
                     .catch(e => {

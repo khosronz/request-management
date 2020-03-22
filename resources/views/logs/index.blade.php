@@ -16,6 +16,10 @@
                         </div>
                         <div class="card-body">
                             {{--@dd($logs)--}}
+                            @php
+                                $user=\Illuminate\Support\Facades\Auth::user();
+                                //dd($api_token);
+                            @endphp
 
                             <main-logger-table-filtered-component :logs="{{$logs}}"></main-logger-table-filtered-component>
 

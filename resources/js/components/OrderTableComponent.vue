@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    // import axios from 'axios';
     export default {
         props: ['category_id'],
         data() {
@@ -38,7 +38,7 @@
                 })
                 .catch(e => {
                     // this.errors.push(e);
-                    console.log(response.data);
+                    console.log(e);
                 });
 
             this.getEquipments();
@@ -48,12 +48,12 @@
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                 axios.get('http://project7.test/api/categories/' + 1+'/equipment')
                     .then(response => {
-                        console.log(response.data);
+                        // console.log(response.data);
                         this.equipments = response.data.data;
                     })
                     .catch(e => {
                         // this.errors.push(e)
-                        console.log(response.data);
+                        console.log(e);
                     })
             },
         }

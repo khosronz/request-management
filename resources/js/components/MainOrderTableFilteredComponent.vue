@@ -199,7 +199,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    // import axios from 'axios';
 
     export default {
         props: ['orders', 'user_id'],
@@ -299,7 +299,7 @@
                 axios.get('http://project7.test/api/orders/' + this.user_id + '/user')
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.items = response.data.data;
                         // Trigger pagination to update the number of buttons/pages due to filtering
                         this.onFiltered(this.items);

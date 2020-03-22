@@ -64,7 +64,7 @@ class UserController extends Controller
         if (Auth::user()->can('create', User::class)) {
             $input = $request->all();
             $input['password'] = Hash::make($input['password']);
-            $input['api_token'] = \Illuminate\Support\Str::random(80);
+            $input['api_token'] = hash('sha256', Str::random(80));
 
             $user = $this->userRepository->create($input);
 

@@ -212,7 +212,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    // import axios from 'axios';
 
     export default {
         props: ['user_id'],
@@ -277,7 +277,7 @@
             },
             addToCart(equipment_id) {
                 // this.getItems();
-                console.log('Added to cart');
+                // console.log('Added to cart');
                 this.addCartItems(equipment_id);
                 this.showAlert();
             },
@@ -289,7 +289,7 @@
                 };
                 axios.post('http://project7.test/api/cards/',this.dataSend)
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.cardItems = response.data.data;
                         // Trigger pagination to update the number of buttons/pages due to filtering
                         // this.onFiltered(this.items);
@@ -301,14 +301,14 @@
             },
             updateCart() {
                 // this.getItems();
-                console.log('Added to cart');
+                // console.log('Added to cart');
                 this.getCartItems();
             },
             getCartItems() {
                 axios.get('http://project7.test/api/cards/' + this.user_id + '/user')
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.cardItems = response.data.data;
                         // Trigger pagination to update the number of buttons/pages due to filtering
                         // this.onFiltered(this.items);
@@ -319,7 +319,7 @@
                     });
             },
             onChange(event) {
-                console.log(this.selected);
+                // console.log(this.selected);
                 this.getItems(this.selected);
 
             },
@@ -327,7 +327,7 @@
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                 axios.get('http://project7.test/api/categories')
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.options = response.data.data;
                         this.selected = null;
                     })
@@ -340,7 +340,7 @@
                 // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
                 axios.get('http://project7.test/api/categories/' + category_id + '/equipment')
                     .then(response => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
                         this.items = response.data.data;
                         // Trigger pagination to update the number of buttons/pages due to filtering
                         this.onFiltered(this.items);

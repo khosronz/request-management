@@ -2240,6 +2240,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2423,6 +2425,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['logs'],
   data: function data() {
@@ -2490,7 +2493,7 @@ __webpack_require__.r(__webpack_exports__);
     getItems: function getItems() {
       var _this = this;
 
-      axios.get('/api/logs').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/logs').then(function (response) {
         // console.log(response.data.data);
         _this.items = response.data.data; // Trigger pagination to update the number of buttons/pages due to filtering
 
@@ -2538,6 +2541,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2721,7 +2726,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import axios from 'axios';
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['logs', 'user_id'],
   data: function data() {
@@ -2789,7 +2794,7 @@ __webpack_require__.r(__webpack_exports__);
     getItems: function getItems() {
       var _this = this;
 
-      axios.get('http://project7.test/api/logs/' + this.user_id + '/user').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://project7.test/api/logs/' + this.user_id + '/user').then(function (response) {
         // console.log(response.data.data);
         _this.items = response.data.data; // Trigger pagination to update the number of buttons/pages due to filtering
 
@@ -3160,7 +3165,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://project7.test/api/orders/' + this.user_id + '/user') // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
       .then(function (response) {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         _this.items = response.data.data; // Trigger pagination to update the number of buttons/pages due to filtering
 
         _this.onFiltered(_this.items);
@@ -3199,6 +3204,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3375,7 +3382,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import axios from 'axios';
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id'],
   data: function data() {
@@ -3449,7 +3456,7 @@ __webpack_require__.r(__webpack_exports__);
     getItems: function getItems() {
       var _this = this;
 
-      axios.get('http://project7.test/api/tickets/' + this.user_id + '/user').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://project7.test/api/tickets/' + this.user_id + '/user').then(function (response) {
         // console.log(response.data.data);
         _this.items = response.data.data; // Trigger pagination to update the number of buttons/pages due to filtering
 
@@ -3489,6 +3496,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3667,7 +3676,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import axios from 'axios';
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   //        props: ['category_id'],
   data: function data() {
@@ -3746,7 +3755,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
-      axios.get('http://project7.test/api/categories').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://project7.test/api/categories').then(function (response) {
         // console.log(response.data.data);
         _this.options = response.data.data;
         _this.selected = null;
@@ -3759,7 +3768,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
-      axios.get('http://project7.test/api/categories/' + category_id + '/equipment').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://project7.test/api/categories/' + category_id + '/equipment').then(function (response) {
         // console.log(response.data.data);
         _this2.items = response.data.data; // Trigger pagination to update the number of buttons/pages due to filtering
 

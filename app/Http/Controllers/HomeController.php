@@ -68,12 +68,8 @@ class HomeController extends Controller
         $orders = Order::where('user_id', '=', Auth::id())
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-        $orders_not_paginate = Order::where('user_id', '=', Auth::id())
-            ->orderBy('created_at', 'desc')
-            ->get();
         return view('homes.owner.create-orders')
-            ->with('orders', $orders)
-            ->with('orders_not_paginate', $orders_not_paginate);
+            ->with('orders', $orders);
     }
 
     public function superadminindex()
@@ -84,11 +80,8 @@ class HomeController extends Controller
             $orders = Order::where('user_id', '=', Auth::id())
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $orders_not_paginate = Order::where('user_id', '=', Auth::id())
-                ->orderBy('created_at', 'desc')
-                ->get();
-            return view('homes.superadmin.index')->with('orders', $orders)
-                ->with('orders_not_paginate', $orders_not_paginate);
+            return view('homes.superadmin.index')
+                ->with('orders', $orders);
 
         }
         Flash::error(__('You do not permission to this section.'));
@@ -99,16 +92,14 @@ class HomeController extends Controller
     public function masterindex()
     {
         if (Gate::allows('master-dashboard')) {
-            $orders = Order::where('verified', '=', VerifiedType::master_waite)
-                ->orWhere('verified', '=', VerifiedType::master_waite)
+            $orders = Order::whereOr('verified', '=', VerifiedType::master_waite)
+                ->whereOr('verified', '=', VerifiedType::financial_waite)
+                ->whereOr('verified', '=', VerifiedType::protection_waite)
+                ->whereOr('verified', '=', VerifiedType::completed)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $orders_not_paginate = Order::where('verified', '=', VerifiedType::master_waite)
-                ->orWhere('verified', '=', VerifiedType::master_waite)
-                ->orderBy('created_at', 'desc')
-                ->get();
-            return view('homes.master.index')->with('orders', $orders)
-                ->with('orders_not_paginate', $orders_not_paginate);
+
+            return view('homes.master.index')->with('orders', $orders);
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
@@ -119,15 +110,10 @@ class HomeController extends Controller
     {
         if (Gate::allows('successor-dashboard')) {
             $orders = Order::where('verified', '=', VerifiedType::successor_waite)
-                ->orWhere('verified', '=', VerifiedType::successor_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $orders_not_paginate = Order::where('verified', '=', VerifiedType::successor_waite)
-                ->orWhere('verified', '=', VerifiedType::successor_waite)
-                ->orderBy('created_at', 'desc')
-                ->get();
-            return view('homes.successor.index')->with('orders', $orders)
-                ->with('orders_not_paginate', $orders_not_paginate);
+            return view('homes.successor.index')
+                ->with('orders', $orders);
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
@@ -137,15 +123,10 @@ class HomeController extends Controller
     {
         if (Gate::allows('support-dashboard')) {
             $orders = Order::where('verified', '=', VerifiedType::support_waite)
-                ->orWhere('verified', '=', VerifiedType::support_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $orders_not_paginate = Order::where('verified', '=', VerifiedType::support_waite)
-                ->orWhere('verified', '=', VerifiedType::support_waite)
-                ->orderBy('created_at', 'desc')
-                ->get();
-            return view('homes.support.index')->with('orders', $orders)
-                ->with('orders_not_paginate', $orders_not_paginate);
+            return view('homes.support.index')
+                ->with('orders', $orders);
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
@@ -156,15 +137,10 @@ class HomeController extends Controller
     {
         if (Gate::allows('supplier-dashboard')) {
             $orders = Order::where('verified', '=', VerifiedType::supplier_waite)
-                ->orWhere('verified', '=', VerifiedType::supplier_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $orders_not_paginate = Order::where('verified', '=', VerifiedType::supplier_waite)
-                ->orWhere('verified', '=', VerifiedType::supplier_waite)
-                ->orderBy('created_at', 'desc')
-                ->get();
-            return view('homes.supplier.index')->with('orders', $orders)
-                ->with('orders_not_paginate', $orders_not_paginate);
+            return view('homes.supplier.index')
+                ->with('orders', $orders);
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
@@ -176,12 +152,9 @@ class HomeController extends Controller
             $orders = Order::where('user_id', '=', Auth::id())
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $orders_not_paginate = Order::where('user_id', '=', Auth::id())
-                ->orderBy('created_at', 'desc')
-                ->get();
 //        $orders = Order::where('user_id','=',Auth::id())->paginate(10);
-            return view('homes.owner.index')->with('orders', $orders)
-                ->with('orders_not_paginate', $orders_not_paginate);
+            return view('homes.owner.index')
+                ->with('orders', $orders);
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
@@ -193,15 +166,10 @@ class HomeController extends Controller
     {
         if (Gate::allows('protection-dashboard')) {
             $orders = Order::where('verified', '=', VerifiedType::protection_waite)
-                ->orWhere('verified', '=', VerifiedType::protection_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $orders_not_paginate=Order::where('verified', '=', VerifiedType::protection_waite)
-                ->orWhere('verified', '=', VerifiedType::protection_waite)
-                ->orderBy('created_at', 'desc')
-                ->get();
-            return view('homes.protection.index')->with('orders', $orders)
-                ->with('orders_not_paginate', $orders_not_paginate);
+            return view('homes.protection.index')
+                ->with('orders', $orders);
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
@@ -211,15 +179,10 @@ class HomeController extends Controller
     {
         if (Gate::allows('financial-dashboard')) {
             $orders = Order::where('verified', '=', VerifiedType::financial_waite)
-                ->orWhere('verified', '=', VerifiedType::financial_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $orders_not_paginate = Order::where('verified', '=', VerifiedType::financial_waite)
-                ->orWhere('verified', '=', VerifiedType::financial_waite)
-                ->orderBy('created_at', 'desc')
-                ->get();
-            return view('homes.financial.index')->with('orders', $orders)
-                ->with('orders_not_paginate', $orders_not_paginate);
+            return view('homes.financial.index')
+                ->with('orders', $orders);
         }
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));

@@ -16,16 +16,17 @@
                     <div class='btn-group'>
                         <a href="{!! route('orders.show', [$order->id]) !!}" class='btn btn-ghost-info'><i
                                     class="fa fa-eye"></i></a>
-
-                        {!! Form::open(['route' => ['orders.success', $order->id], 'method' => 'delete']) !!}
+                        @if($order->verified===\App\Enums\VerifiedType::master_waite)
+                            {!! Form::open(['route' => ['orders.success', $order->id], 'method' => 'delete']) !!}
                             <input value="{{$order->id}}" name="id" class="sr-only">
                             {!! Form::button('<i class="fa fa-check"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-success']) !!}
-                        {!! Form::close() !!}
+                            {!! Form::close() !!}
 
-                        {!! Form::open(['route' => ['orders.block', $order->id], 'method' => 'delete']) !!}
+                            {!! Form::open(['route' => ['orders.block', $order->id], 'method' => 'delete']) !!}
                             <input value="{{$order->id}}" name="id" class="sr-only">
                             {!! Form::button('<i class="fa fa-close"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger']) !!}
-                        {!! Form::close() !!}
+                            {!! Form::close() !!}
+                        @endif
                     </div>
                 </td>
                 <td>{!! $order->title !!}</td>

@@ -3,6 +3,7 @@
     "/js/app.js": "/js/app.js",
     "/css/datatables_css.css": "/css/datatables_css.css",
     "/css/app.css": "/css/app.css",
+    "/js/app-vue.js": "/js/app-vue.js",
     "/js/datatables_js.js": "/js/datatables_js.js",
     "/js/jquery.min.js": "/js/jquery.min.js",
     "/js/perfect-scrollbar.js": "/js/perfect-scrollbar.js",

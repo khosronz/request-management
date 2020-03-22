@@ -113,4 +113,5 @@
 {{--<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>--}}
 @yield('scripts')
 <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/app-vue.js')}}"></script>
 </html>

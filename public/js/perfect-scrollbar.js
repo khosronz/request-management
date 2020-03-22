@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1420,7 +1420,7 @@ return PerfectScrollbar;
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!************************************************************************!*\
   !*** multi ./node_modules/perfect-scrollbar/dist/perfect-scrollbar.js ***!
   \************************************************************************/

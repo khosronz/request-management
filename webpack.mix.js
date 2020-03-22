@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/app-vue.js', 'public/js')
     .js('node_modules/chart.js/dist/Chart.js', 'public/js/')
     .js('node_modules/perfect-scrollbar/dist/perfect-scrollbar.js', 'public/js/')
     .js('node_modules/jquery/dist/jquery.min.js', 'public/js/')

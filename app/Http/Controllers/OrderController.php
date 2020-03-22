@@ -300,7 +300,7 @@ class OrderController extends AppBaseController
         }
         if ($user->isProtection()){
             // supplier
-            $order->verified=VerifiedType::successor_waite;
+            $order->verified=VerifiedType::supplier_waite;
             $order->waite_status=VerifiedWaiteStatus::waite;
         }
         if ($user->isSuccessor()){

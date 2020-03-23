@@ -1,4 +1,5 @@
 @extends('layouts.app')
+{{--@extends('layouts.all-custom')--}}
 
 @section('content')
     <ol class="breadcrumb">

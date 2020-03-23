@@ -1,4 +1,5 @@
 @extends('layouts.app')
+{{--@extends('layouts.all-custom')--}}
 
 @section('content')
     <ol class="breadcrumb">
@@ -20,6 +21,7 @@
                              @lang('Protection wait or block Orders')
                          </div>
                          <div class="card-body">
+                             {{--<main-order-table-filtered-without-user-id-component :orders="{{$orders}}"></main-order-table-filtered-without-user-id-component>--}}
                             @include('homes.protection.orders.table')
                              <div class="pull-left mr-3" dir="ltr">
 

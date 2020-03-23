@@ -28,8 +28,9 @@ Vue.use(BootstrapVue);
 // Vue.component('order-table-component', require('./components/OrderTableComponent.vue').default);
 Vue.component('order-table-filtered-component', require('./components/OrderTableFilteredComponent.vue').default);
 Vue.component('main-order-table-filtered-component', require('./components/MainOrderTableFilteredComponent.vue').default);
-Vue.component('main-ticket-table-filtered-component', require('./components/MainTicketTableFilteredComponent.vue').default);
+Vue.component('main-order-table-filtered-without-user-id-component', require('./components/MainOrderTableFilteredWithoutUserIdComponent.vue').default);
 Vue.component('create-order-table-filtered-component', require('./components/CreateOrderTableFilteredComponent.vue').default);
+Vue.component('main-ticket-table-filtered-component', require('./components/MainTicketTableFilteredComponent.vue').default);
 Vue.component('main-logger-table-filtered-component', require('./components/MainLoggerTableFilteredComponent.vue').default);
 Vue.component('main-logger-user-table-filtered-component', require('./components/MainLoggerUserTableFilteredComponent.vue').default);
 

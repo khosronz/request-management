@@ -169,9 +169,12 @@ class HomeController extends Controller
     public function protectionindex()
     {
         if (Gate::allows('protection-dashboard')) {
-            $orders = Order::where('verified', '=', VerifiedType::protection_waite)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
+//            $orders = Order::whereOr('verified', '=', VerifiedType::protection_waite)
+//                ->orderBy('created_at', 'desc')
+//                ->paginate(10);
+
+            $orders=$this->orderRepository->ordersByProtectionCategoryEquipment()->paginate(10);
+
             return view('homes.protection.index')
                 ->with('orders', $orders);
         }

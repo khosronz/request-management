@@ -17,7 +17,7 @@
                      <div class="card">
                          <div class="card-header">
                              <i class="fa fa-align-justify ml-1"></i>
-                             @lang('Protection Dashboard')
+                             @lang('Protection wait or block Orders')
                          </div>
                          <div class="card-body">
                             @include('homes.protection.orders.table')

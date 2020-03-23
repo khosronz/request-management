@@ -682,6 +682,7 @@
   "Successor Dashboard": "داشبورد مدیر مسئول",
   "Supplier Dashboard": "داشبورد تامین کننده",
   "Master wait or block Orders": "سفارشهای در انتظار تایید یا رد شده توسط کارشناس",
+  "Protection wait or block Orders": "سفارشهای در انتظار تایید یا رد شده توسط بازرس",
   "Dns": "آدرس وبسایت",
   "Email_num": "تعداد ایمیل",
   "Submit a Ticket": "ارسال گفتگو",

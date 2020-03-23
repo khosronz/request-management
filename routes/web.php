@@ -48,6 +48,8 @@ Route::resource('equipment', 'EquipmentController');
 
 Route::delete('orders/{id}/block', 'OrderController@block')->name('orders.block');
 Route::delete('orders/{id}/success', 'OrderController@success')->name('orders.success');
+Route::get('orders/{id}/blockGet', 'OrderController@blockGet')->name('orders.block.get');
+Route::get('orders/{id}/successGet', 'OrderController@successGet')->name('orders.success.get');
 Route::get('orders/convertCardOrder', 'OrderController@convertCardOrder')->name('orders.convertCardOrder');
 Route::resource('orders', 'OrderController');
 

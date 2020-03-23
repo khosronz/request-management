@@ -191,11 +191,19 @@
             <p>{{infoModal.item.created_at}}</p>
             <p>{{infoModal.item.updated_at}}</p>
             <!--<button @click="updateCart" class="alert alert-info" ><i class="fa fa-plus"></i> افزودن به سبد درخواست </button>-->
-            <a :href="'/orders/'+infoModal.item.id" :class="'btn btn-success'">
-                <i class="fa fa-eye"></i> مشاهده تمام جزئیات سفارش
+
+            <a :href="'/orders/'+infoModal.item.id" :class="'btn btn-info'">
+                <i class="fa fa-eye"></i>مشاهده تما جزئیات سفارش
             </a>
-            <a :href="'/orders/'+infoModal.item.id" :class="'btn btn-success'">
-                <i class="fa fa-eye"></i> مشاهده تمام جزئیات سفارش
+            <!--<a :href="'/orders/'+infoModal.item.id" :class="'btn btn-danger'">-->
+                <!--<i class="fa fa-close"></i> لغو سفارش-->
+            <!--</a>-->
+
+            <a :href="'/orders/'+infoModal.item.id+'/successGet'" :class="'btn btn-success'">
+                <i class="fa fa-check"></i>تایید نهایی سفارش
+            </a>
+            <a :href="'/orders/'+infoModal.item.id+'/blockGet'" :class="'btn btn-danger'">
+                <i class="fa fa-close"></i>لغو سفارش سفارش
             </a>
         </b-modal>
     </b-container>
@@ -284,11 +292,11 @@
                 }
                 return title;
             },
-            getStatusColor(verified,value,waite_status) {
+            getStatusColor(verified, value, waite_status) {
                 let colorClass = '';
-                if ((verified==value) &&(waite_status==1 || waite_status=='1')) {
+                if ((verified == value) && (waite_status == 1 || waite_status == '1')) {
                     colorClass = ' bg-primary text-white';
-                } else if ((verified==value) &&(waite_status==2 || waite_status=='2')) {
+                } else if ((verified == value) && (waite_status == 2 || waite_status == '2')) {
                     colorClass = ' bg-danger text-white';
                 } else {
                     colorClass = ' bg-secondary text-white';
@@ -327,7 +335,7 @@
                 // Trigger pagination to update the number of buttons/pages due to filtering
                 this.totalRows = filteredItems.length;
                 this.currentPage = 1
-            }
+            },
         }
     }
 </script>

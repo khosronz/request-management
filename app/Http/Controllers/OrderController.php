@@ -273,5 +273,49 @@ class OrderController extends AppBaseController
         return back();
     }
 
+    public function blockGet($id, Request $request)
+    {
+        $input = $request->all();
+
+        $order = $this->orderRepository->find($id);
+
+        if (empty($order)) {
+            Flash::error(__('Order') . ' ' . __('not found.'));
+
+            return redirect(route('orders.index'));
+        }
+
+        $order = change_status_block($order, Auth::user());
+        $input=$order->toArray();
+//        dd($order->toArray(),$input);
+        $order = $this->orderRepository->update($input, $id);
+
+        Flash::success(__('Order') . ' ' . __('updated successfully.'));
+
+        return back();
+    }
+
+    public function successGet($id, Request $request)
+    {
+        $input = $request->all();
+
+        $order = $this->orderRepository->find($id);
+
+        if (empty($order)) {
+            Flash::error(__('Order') . ' ' . __('not found.'));
+
+            return redirect(route('orders.index'));
+        }
+
+        $order = change_status_wait($order, Auth::user());
+        $input=$order->toArray();
+//        dd($order->toArray(),$input);
+        $order = $this->orderRepository->update($input, $id);
+
+        Flash::success(__('Order') . ' ' . __('updated successfully.'));
+
+        return back();
+    }
+
 
 }

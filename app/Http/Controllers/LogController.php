@@ -18,10 +18,16 @@ class LogController extends Controller
 
     public function index()
     {
-        $logs = DB::table('logs')->where('level', '!=', 'ERROR')->orderByDesc('created_at')->get();
+        if (\Illuminate\Support\Facades\Gate::allows('all-auth-logs')){
+            $logs = DB::table('logs')->where('level', '!=', 'ERROR')->orderByDesc('created_at')->get();
 
-        return view('logs.index')
-            ->with('logs', $logs);
+            return view('logs.index')
+                ->with('logs', $logs);
+        }
+
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
+
     }
 
     /**

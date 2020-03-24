@@ -85,5 +85,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('supplier-dashboard', function ($user) {
             return $user->isSupplier();
         });
+        Gate::define('all-auth-logs', function ($user) {
+            return $user->isSuperadmin();
+        });
     }
 }

@@ -217,12 +217,15 @@
         @lang('Logs')
     </a>
     <ul class="nav-dropdown-items">
-        <li class="nav-item {{ Request::is('logs*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('logs.index') !!}">
-                <i class="nav-icon fa fa-history"></i>
-                <span>@lang('All Authentication Logs')</span>
-            </a>
-        </li>
+        @if (\Illuminate\Support\Facades\Gate::allows('all-auth-logs'))
+            <li class="nav-item {{ Request::is('logs*') ? 'active' : '' }}">
+                <a class="nav-link" href="{!! route('logs.index') !!}">
+                    <i class="nav-icon fa fa-history"></i>
+                    <span>@lang('All Authentication Logs')</span>
+                </a>
+            </li>
+        @endif
+
         <li class="nav-item {{ Request::is('logs/*/user*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('logs.user',[\Illuminate\Support\Facades\Auth::id()]) !!}">
                 <i class="nav-icon fa fa-history"></i>

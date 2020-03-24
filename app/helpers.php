@@ -247,7 +247,7 @@ if (!function_exists('getEndDate')) {
             if ($user->isFinancial()) {
                 // Completed
                 // Support and master and owner
-                $order->verified = \App\Enums\VerifiedType::completed;
+                $order->verified = \App\Enums\VerifiedType::completed_wait;
                 $order->waite_status = \App\Enums\VerifiedWaiteStatus::waite;
             }
             if ($user->isProtection()) {

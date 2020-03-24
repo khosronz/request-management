@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateEquipmentRequest;
 use App\Http\Requests\UpdateEquipmentRequest;
+use App\Models\Equipment;
 use App\Repositories\EquipmentRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class EquipmentController extends AppBaseController
@@ -29,10 +31,15 @@ class EquipmentController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $equipment = $this->equipmentRepository->paginate(10);
+        if(Auth::user()->can('viewAny',Equipment::class)){
+            $equipment = $this->equipmentRepository->paginate(10);
 
-        return view('equipment.index')
-            ->with('equipment', $equipment);
+            return view('equipment.index')
+                ->with('equipment', $equipment);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
+
     }
 
     /**
@@ -42,7 +49,11 @@ class EquipmentController extends AppBaseController
      */
     public function create()
     {
-        return view('equipment.create');
+        if(Auth::user()->can('create',Equipment::class)){
+            return view('equipment.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -54,13 +65,17 @@ class EquipmentController extends AppBaseController
      */
     public function store(CreateEquipmentRequest $request)
     {
-        $input = $request->all();
+        if(Auth::user()->can('create',Equipment::class)){
+            $input = $request->all();
 
-        $equipment = $this->equipmentRepository->create($input);
+            $equipment = $this->equipmentRepository->create($input);
 
-        Flash::success(__('Equipment').' '.__('saved successfully.'));
+            Flash::success(__('Equipment').' '.__('saved successfully.'));
 
-        return redirect(route('equipment.index'));
+            return redirect(route('equipment.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -72,15 +87,20 @@ class EquipmentController extends AppBaseController
      */
     public function show($id)
     {
-        $equipment = $this->equipmentRepository->find($id);
+        if(Auth::user()->can('view',Equipment::class)){
+            $equipment = $this->equipmentRepository->find($id);
 
-        if (empty($equipment)) {
-            Flash::error(__('Equipment').' '.__('not found.'));
+            if (empty($equipment)) {
+                Flash::error(__('Equipment').' '.__('not found.'));
 
-            return redirect(route('equipment.index'));
+                return redirect(route('equipment.index'));
+            }
+
+            return view('equipment.show')->with('equipment', $equipment);
         }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
 
-        return view('equipment.show')->with('equipment', $equipment);
     }
 
     /**
@@ -92,15 +112,19 @@ class EquipmentController extends AppBaseController
      */
     public function edit($id)
     {
-        $equipment = $this->equipmentRepository->find($id);
+        if(Auth::user()->can('update',Equipment::class)){
+            $equipment = $this->equipmentRepository->find($id);
 
-        if (empty($equipment)) {
-            Flash::error(__('Equipment').' '.__('not found.'));
+            if (empty($equipment)) {
+                Flash::error(__('Equipment').' '.__('not found.'));
 
-            return redirect(route('equipment.index'));
+                return redirect(route('equipment.index'));
+            }
+
+            return view('equipment.edit')->with('equipment', $equipment);
         }
-
-        return view('equipment.edit')->with('equipment', $equipment);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -113,19 +137,23 @@ class EquipmentController extends AppBaseController
      */
     public function update($id, UpdateEquipmentRequest $request)
     {
-        $equipment = $this->equipmentRepository->find($id);
+        if(Auth::user()->can('update',Equipment::class)){
+            $equipment = $this->equipmentRepository->find($id);
 
-        if (empty($equipment)) {
-            Flash::error(__('Equipment').' '.__('not found.'));
+            if (empty($equipment)) {
+                Flash::error(__('Equipment').' '.__('not found.'));
+
+                return redirect(route('equipment.index'));
+            }
+
+            $equipment = $this->equipmentRepository->update($request->all(), $id);
+
+            Flash::success(__('Equipment').' '.__('updated successfully.'));
 
             return redirect(route('equipment.index'));
         }
-
-        $equipment = $this->equipmentRepository->update($request->all(), $id);
-
-        Flash::success(__('Equipment').' '.__('updated successfully.'));
-
-        return redirect(route('equipment.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -139,18 +167,22 @@ class EquipmentController extends AppBaseController
      */
     public function destroy($id)
     {
-        $equipment = $this->equipmentRepository->find($id);
+        if(Auth::user()->can('delete',Equipment::class)){
+            $equipment = $this->equipmentRepository->find($id);
 
-        if (empty($equipment)) {
-            Flash::error(__('Equipment').' '.__('not found.'));
+            if (empty($equipment)) {
+                Flash::error(__('Equipment').' '.__('not found.'));
+
+                return redirect(route('equipment.index'));
+            }
+
+            $this->equipmentRepository->delete($id);
+
+            Flash::success(__('Equipment').' '.__('deleted successfully.'));
 
             return redirect(route('equipment.index'));
         }
-
-        $this->equipmentRepository->delete($id);
-
-        Flash::success(__('Equipment').' '.__('deleted successfully.'));
-
-        return redirect(route('equipment.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

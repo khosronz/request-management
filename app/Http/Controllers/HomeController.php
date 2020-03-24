@@ -95,7 +95,7 @@ class HomeController extends Controller
             $orders = Order::whereOr('verified', '=', VerifiedType::master_waite)
                 ->whereOr('verified', '=', VerifiedType::financial_waite)
                 ->whereOr('verified', '=', VerifiedType::protection_waite)
-                ->whereOr('verified', '=', VerifiedType::completed)
+                ->whereOr('verified', '=', VerifiedType::completed_wait)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
 

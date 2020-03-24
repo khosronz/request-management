@@ -34,7 +34,7 @@ class MediaController extends AppBaseController
     {
 //        $medias = $this->mediaRepository->paginate(10);
 //        $medias = Auth::user()->medias;
-        $medias = Media::where('user_id','=',Auth::id())->paginate(10);
+        $medias = Media::where('user_id', '=', Auth::id())->paginate(10);
 
         return view('media.index')
             ->with('medias', $medias);
@@ -65,14 +65,14 @@ class MediaController extends AppBaseController
             $filename = $media_file->getClientOriginalName();
             $extension = $media_file->getClientOriginalExtension();
             $media_file->move(public_path('img'), $filename);
-            $input['url'] = '/img/'.$filename;
+            $input['url'] = '/img/' . $filename;
             echo 'Image Uploaded Successfully';
         } else {
-            $input['url']=isset($input['url']) ? $input['url'] : '';
+            $input['url'] = isset($input['url']) ? $input['url'] : '';
         }
         $media = $this->mediaRepository->create($input);
 
-        Flash::success(__('Media').' '.__('saved successfully.'));
+        Flash::success(__('Media') . ' ' . __('saved successfully.'));
 
         return redirect(route('media.index'));
     }
@@ -87,11 +87,17 @@ class MediaController extends AppBaseController
     public function show($id)
     {
         $media = $this->mediaRepository->find($id);
-        if (empty($media)) {
-            Flash::error(__('Media').' '.__('not found.'));
-            return redirect(route('media.index'));
+        if (Auth::user()->can('view', $media)) {
+
+            if (empty($media)) {
+                Flash::error(__('Media') . ' ' . __('not found.'));
+                return redirect(route('media.index'));
+            }
+            return view('media.show')->with('media', $media);
         }
-        return view('media.show')->with('media', $media);
+
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
 
     }
 
@@ -105,14 +111,16 @@ class MediaController extends AppBaseController
     public function edit($id)
     {
         $media = $this->mediaRepository->find($id);
+        if (Auth::user()->can('update', $media)) {
+            if (empty($media)) {
+                Flash::error(__('Media') . ' ' . __('not found.'));
 
-        if (empty($media)) {
-            Flash::error(__('Media').' '.__('not found.'));
-
-            return redirect(route('media.index'));
+                return redirect(route('media.index'));
+            }
+            return view('media.edit')->with('media', $media);
         }
-
-        return view('media.edit')->with('media', $media);
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -126,33 +134,37 @@ class MediaController extends AppBaseController
     public function update($id, UpdateMediaRequest $request)
     {
         $media = $this->mediaRepository->find($id);
+        if(Auth::user()->can('update',$media)){
+            if (empty($media)) {
+                Flash::error(__('Media') . ' ' . __('not found.'));
 
-        if (empty($media)) {
-            Flash::error(__('Media') . ' ' . __('not found.'));
-
+                return redirect(route('media.index'));
+            }
+            $old_filename = $media->url;
+            $input = $request->all();
+            if (file_exists(public_path() . $old_filename)) {
+                if ($request->hasFile('media_file')) {
+                    $media_file = $request->file('media_file');
+                    $filename = $media_file->getClientOriginalName();
+                    $media_file->move(public_path('img'), $filename);
+                    $input['url'] = '/img/' . $filename;
+                    echo 'Image Uploaded Successfully';
+                }
+            } else {
+                if ($request->hasFile('media_file')) {
+                    $media_file = $request->file('media_file');
+                    $filename = $media_file->getClientOriginalName();
+                    $media_file->move(public_path('img'), $filename);
+                    $input['url'] = '/img/' . $filename;
+                    echo 'Image Uploaded Successfully';
+                }
+            }
+            $this->mediaRepository->update($input, $id);
             return redirect(route('media.index'));
         }
-        $old_filename = $media->url;
-        $input = $request->all();
-        if (file_exists(public_path() . $old_filename)) {
-            if ($request->hasFile('media_file')) {
-                $media_file = $request->file('media_file');
-                $filename = $media_file->getClientOriginalName();
-                $media_file->move(public_path('img'), $filename);
-                $input['url'] = '/img/' . $filename;
-                echo 'Image Uploaded Successfully';
-            }
-        }else{
-            if ($request->hasFile('media_file')) {
-                $media_file = $request->file('media_file');
-                $filename = $media_file->getClientOriginalName();
-                $media_file->move(public_path('img'), $filename);
-                $input['url'] = '/img/' . $filename;
-                echo 'Image Uploaded Successfully';
-            }
-        }
-        $this->mediaRepository->update($input,$id);
-        return redirect(route('media.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
+
     }
 
 
@@ -168,17 +180,21 @@ class MediaController extends AppBaseController
     public function destroy($id)
     {
         $media = $this->mediaRepository->find($id);
+        if(Auth::user()->can('delete',$media)){
+            if (empty($media)) {
+                Flash::error(__('Media') . ' ' . __('not found.'));
 
-        if (empty($media)) {
-            Flash::error(__('Media').' '.__('not found.'));
+                return redirect(route('media.index'));
+            }
+
+            $this->mediaRepository->delete($id);
+
+            Flash::success(__('Media') . ' ' . __('deleted successfully.'));
 
             return redirect(route('media.index'));
         }
 
-        $this->mediaRepository->delete($id);
-
-        Flash::success(__('Media').' '.__('deleted successfully.'));
-
-        return redirect(route('media.index'));
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

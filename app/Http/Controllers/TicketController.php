@@ -120,10 +120,8 @@ class TicketController extends AppBaseController
 
                 return redirect(route('tickets.index'));
             }
-
             return view('tickets.edit')->with('ticket', $ticket);
         }
-
         Flash::error(__('You do not permission to this section.'));
         return redirect(route('home'));
     }

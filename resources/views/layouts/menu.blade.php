@@ -28,13 +28,15 @@
                 </a>
             </li>
         @endcan
+        @can('viewAny',\App\Models\Equipment::class)
+                <li class="nav-item {{ Request::is('equipment*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{!! route('equipment.index') !!}">
+                        <i class="nav-icon fa fa-desktop"></i>
+                        <span>@lang('Equipment')</span>
+                    </a>
+                </li>
+        @endcan
 
-        <li class="nav-item {{ Request::is('equipment*') ? 'active' : '' }}">
-            <a class="nav-link" href="{!! route('equipment.index') !!}">
-                <i class="nav-icon fa fa-desktop"></i>
-                <span>@lang('Equipment')</span>
-            </a>
-        </li>
         @can('viewAny',\App\Models\Role::class)
             <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
                 <a class="nav-link" href="{!! route('roles.index') !!}">

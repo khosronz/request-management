@@ -42,9 +42,22 @@ class PrefactorController extends AppBaseController
     {
 //        $prefactors = $this->prefactorRepository->paginate(10);
         if (Auth::user()->isMaster() || Auth::user()->isSuperadmin()){
-            $prefactors = Prefactor::paginate(10);
+            $prefactors = Prefactor::where('factor_status','=','0')->paginate(10);
         }else{
-            $prefactors = Prefactor::where('user_id',Auth::id())->paginate(10);
+            $prefactors = Prefactor::where('factor_status','=','0')->where('user_id',Auth::id())->paginate(10);
+        }
+
+        return view('prefactors.index')
+            ->with('prefactors', $prefactors);
+    }
+
+    public function factorIndex(Request $request)
+    {
+//        $prefactors = $this->prefactorRepository->paginate(10);
+        if (Auth::user()->isMaster() || Auth::user()->isSuperadmin()){
+            $prefactors = Prefactor::where('factor_status','=','1')->paginate(10);
+        }else{
+            $prefactors = Prefactor::where('factor_status','=','1')->where('user_id',Auth::id())->paginate(10);
         }
 
         return view('prefactors.index')
@@ -196,10 +209,33 @@ class PrefactorController extends AppBaseController
 
             return redirect(route('prefactors.index'));
         }
+        $input=[
+            'status' => '0',
+            'factor_status' => '0'
+        ];
+        $this->prefactorRepository->update($input,$id);
 
-        $this->prefactorRepository->delete($id);
+        Flash::success(__('Prefactor').' '.__('rejected successfully.'));
 
-        Flash::success(__('Prefactor').' '.__('deleted successfully.'));
+        return redirect(route('prefactors.index'));
+    }
+
+    public function success($id)
+    {
+        $prefactor = $this->prefactorRepository->find($id);
+
+        if (empty($prefactor)) {
+            Flash::error(__('Prefactor').' '.__('not found.'));
+
+            return redirect(route('prefactors.index'));
+        }
+        $input=[
+            'status' => '1',
+            'factor_status' => '1'
+        ];
+        $this->prefactorRepository->update($input,$id);
+
+        Flash::success(__('Prefactor').' '.__('accept successfully.'));
 
         return redirect(route('prefactors.index'));
     }

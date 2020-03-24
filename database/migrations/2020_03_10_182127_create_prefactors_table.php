@@ -18,6 +18,8 @@ class CreatePrefactorsTable extends Migration
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->bigInteger('order_id')->unsigned()->default(0);
             $table->bigInteger('factory_id')->unsigned()->default(0);
+            $table->string('status')->default('1');
+            $table->string('factor_status')->default('0');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');

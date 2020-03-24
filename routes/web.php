@@ -83,6 +83,8 @@ Route::resource('protectionCategories', 'ProtectionCategoryController');
 
 Route::resource('organizationCategories', 'OrganizationCategoryController');
 
+Route::get('prefactors/{id}/success', 'PrefactorController@success')->name('prefactors.success');;
+Route::get('prefactors/factorIndex', 'PrefactorController@factorIndex')->name('prefactors.factorIndex');;
 Route::get('prefactors/{id}/createByOrder', 'PrefactorController@createByOrder')->name('prefactors.createByOrder');
 Route::resource('prefactors', 'PrefactorController');
 

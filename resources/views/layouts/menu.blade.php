@@ -261,12 +261,27 @@
 {{--<span>@lang('Protection Categories')</span>--}}
 {{--</a>--}}
 {{--</li>--}}
-<li class="nav-item {{ Request::is('prefactors*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('prefactors.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>@lang('Prefactors')</span>
+{{--Logs--}}
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-history"></i>
+        @lang('Prefactor and Factors')
     </a>
+    <ul class="nav-dropdown-items">
+        <li class="nav-item {{ Request::is('prefactors*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('prefactors.index') !!}">
+                <i class="nav-icon icon-cursor"></i>
+                <span>@lang('Prefactors')</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Request::is('prefactors.factorIndex*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('prefactors.factorIndex') !!}">
+                <i class="nav-icon icon-cursor"></i>
+                <span>@lang('Factors')</span>
+            </a>
+        </li>
+    </ul>
 </li>
+
 
 {{--<li class="nav-item {{ Request::is('prefactorDetails*') ? 'active' : '' }}">--}}
     {{--<a class="nav-link" href="{!! route('prefactorDetails.index') !!}">--}}

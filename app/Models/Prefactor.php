@@ -28,12 +28,6 @@ class Prefactor extends Model
 
 
 
-    public $fillable = [
-        'user_id',
-        'order_id',
-        'factory_id'
-    ];
-
     /**
      * The attributes that should be casted to native types.
      *
@@ -43,6 +37,14 @@ class Prefactor extends Model
         'user_id' => 'integer',
         'order_id' => 'integer',
         'factory_id' => 'integer'
+    ];
+
+    public $fillable = [
+        'user_id',
+        'order_id',
+        'factory_id',
+        'status',
+        'factor_status'
     ];
 
     /**

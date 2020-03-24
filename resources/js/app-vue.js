@@ -1,19 +1,16 @@
 // app.js
 import Vue from 'vue'
-import enums from 'vue-enums'
-import axios from "axios";
+import axios from "axios"
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-// use enums directly in template
-Vue.use(enums)
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
 // Vue.use(require('vue-jalali-moment'));
-Vue.use(BootstrapVue);
+Vue.use(BootstrapVue)
 
 
 /**

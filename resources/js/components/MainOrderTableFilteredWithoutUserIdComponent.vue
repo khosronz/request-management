@@ -203,7 +203,6 @@
 
 <script>
     import axios from 'axios';
-    import Status from './enums/Status';
 
     export default {
         props: ['orders', 'user_id'],
@@ -254,28 +253,28 @@
                 let title = '';
                 let color = '';
                 switch (status) {
-                    case Status.owner_waite:
+                    case '1':
                         title = 'توسط ثبت کننده';
                         break;
-                    case Status.protection_waite:
+                    case '2':
                         title = 'بازرس';
                         break;
-                    case Status.successor_waite:
+                    case '3':
                         title = 'توسط مسئول';
                         break;
-                    case Status.master_waite:
+                    case '4':
                         title = 'کارشناس';
                         break;
-                    case Status.financial_waite:
+                    case '5':
                         title = 'کاربر مالی';
                         break;
-                    case Status.support_waite:
+                    case '6':
                         title = 'کاربر پشتیبانی';
                         break;
-                    case Status.supplier_waite:
+                    case '7':
                         title = 'تامین کننده';
                         break;
-                    case Status.completed_wait:
+                    case '8':
                         title = 'تکمیل شده';
                         break;
                 }

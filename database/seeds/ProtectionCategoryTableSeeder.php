@@ -11,6 +11,6 @@ class ProtectionCategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $protection_categories = factory(App\Models\ProtectionCategory::class, 10)->create();
+        $protection_categories = factory(App\Models\ProtectionCategory::class, 3)->create();
     }
 }

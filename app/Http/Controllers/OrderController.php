@@ -306,8 +306,10 @@ class OrderController extends AppBaseController
 
             return redirect(route('orders.index'));
         }
+        $orderProtectionStatus=$this->orderRepository->orderByProtectionCategoryEquipment($id);
+//        dd($orderProtectionStatus);
 
-        $order = change_status_wait($order, Auth::user());
+        $order = change_status_wait($order, Auth::user(),$orderProtectionStatus);
         $input=$order->toArray();
 //        dd($order->toArray(),$input);
         $order = $this->orderRepository->update($input, $id);

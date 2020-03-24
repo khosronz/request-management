@@ -41,7 +41,11 @@ class PrefactorController extends AppBaseController
     public function index(Request $request)
     {
 //        $prefactors = $this->prefactorRepository->paginate(10);
-        $prefactors = Prefactor::where('user_id',Auth::id())->paginate(10);
+        if (Auth::user()->isMaster() || Auth::user()->isSuperadmin()){
+            $prefactors = Prefactor::paginate(10);
+        }else{
+            $prefactors = Prefactor::where('user_id',Auth::id())->paginate(10);
+        }
 
         return view('prefactors.index')
             ->with('prefactors', $prefactors);

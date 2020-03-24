@@ -81,4 +81,22 @@ class OrderRepository extends BaseRepository
 
         return $orders;
     }
+
+    public function orderByProtectionCategoryEquipment($id)
+    {
+        $order=Order::where('orders.id','=',$id)
+            ->join('orderdetails', 'orderdetails.order_id', '=', 'orders.id')
+            ->join('equipment', 'orderdetails.equipment_id', '=', 'equipment.id')
+            ->join('categories', 'equipment.category_id', '=', 'categories.id')
+            ->join('protection_categories', 'protection_categories.category_id', '=', 'categories.id')
+            ->select('orders.*','categories.title as category_title')
+            ->first();
+        if (empty($order)){
+            return false;
+        } else {
+            return true;
+        }
+//        return $result;
+    }
+
 }

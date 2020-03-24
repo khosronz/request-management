@@ -72,6 +72,7 @@ PreFactors and Factors owner role.
 * [Vuejs](https://vuejs.org/) - Java script framework
 * [BootstrapVue](https://bootstrap-vue.js.org/) - Useful frontedn packages created by vuejs and Boostrap
 * [Axios](https://github.com/axios/axios) - A javascript package for use ajax in the project
+* [Coreui-free](https://coreui.io/) - This is a frontend (UI) for free projects.
 
 <!-- ## Contributing
 

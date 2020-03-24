@@ -22,6 +22,7 @@ class SettingAPIController extends AppBaseController
 
     public function __construct(SettingRepository $settingRepo)
     {
+        $this->middleware('auth:api');
         $this->settingRepository = $settingRepo;
     }
 

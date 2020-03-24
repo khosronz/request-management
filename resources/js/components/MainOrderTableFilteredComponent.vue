@@ -162,7 +162,7 @@
 
                     <div id="wizard" class="form_wizard wizard_horizontal">
                         <ul class="wizard_steps">
-                            <li v-for="(value, key) in [0,1,2,3,4,5,6]" :key="key">
+                            <li v-for="(value, key) in [0,1,2,3,4,5,6,7]" :key="key">
                                 <a :href="'#step-'+value+1">
                                     <span :class="'step_no'+getStatusColor(row.item.verified,value+1,row.item.waite_status)">{{value+1}}</span>
                                     <span class="step_descr">{{getStatus(value + 1)}}</span>
@@ -261,42 +261,40 @@
                 let title = '';
                 let color = '';
                 switch (status) {
-                    case 1:
-                    case '1':
+                    case Status.owner_waite:
                         title = 'توسط ثبت کننده';
                         break;
-                    case 2:
-                    case '2':
-                        title = 'توسط مسئول';
-                        break;
-                    case 3:
-                    case '3':
-                        title = 'کارشناس';
-                        break;
-                    case 4:
-                    case '4':
+                    case Status.protection_waite:
                         title = 'بازرس';
                         break;
-                    case 5:
-                    case '5':
+                    case Status.successor_waite:
+                        title = 'توسط مسئول';
+                        break;
+                    case Status.master_waite:
+                        title = 'کارشناس';
+                        break;
+                    case Status.financial_waite:
                         title = 'کاربر مالی';
                         break;
-                    case 6:
-                    case '6':
+                    case Status.support_waite:
                         title = 'کاربر پشتیبانی';
                         break;
-                    case 7:
-                    case '7':
+                    case Status.supplier_waite:
                         title = 'تامین کننده';
                         break;
-                }
-                return title;
+                    case Status.completed_wait:
+                        title = 'تکمیل شده';
+                        break;
+                }                return title;
             },
             getStatusColor(verified, value, waite_status) {
                 let colorClass = '';
                 if ((verified == value) && (waite_status == 1 || waite_status == '1')) {
                     colorClass = ' bg-primary text-white';
-                } else if ((verified == value) && (waite_status == 2 || waite_status == '2')) {
+                    if (verified==8||verified=='8'){
+                        colorClass = ' bg-success text-white';
+                    }
+                }else if ((verified == value) && (waite_status == 2 || waite_status == '2')) {
                     colorClass = ' bg-danger text-white';
                 } else {
                     colorClass = ' bg-secondary text-white';

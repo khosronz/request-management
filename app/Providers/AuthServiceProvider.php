@@ -10,6 +10,7 @@ use App\Models\Message;
 use App\Models\Organization;
 use App\Models\OrganizationCategory;
 use App\Models\Role;
+use App\Models\Setting;
 use App\Models\Severity;
 use App\Models\Telltype;
 use App\Models\Ticket;
@@ -21,6 +22,7 @@ use App\Policies\MessagePolicy;
 use App\Policies\OrganizationCategoryPolicy;
 use App\Policies\OrganizationPolicy;
 use App\Policies\RolePolicy;
+use App\Policies\SettingPolicy;
 use App\Policies\SeverityPolicy;
 use App\Policies\TelltypePolicy;
 use App\Policies\TicketPolicy;
@@ -50,6 +52,7 @@ class AuthServiceProvider extends ServiceProvider
 //        Message::class => MessagePolicy::class,
         Equipment::class => EquipmentPolicy::class,
         Media::class => MediaPolicy::class,
+        Setting::class => SettingPolicy::class,
     ];
 
     /**

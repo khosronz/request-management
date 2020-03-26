@@ -6,6 +6,8 @@ use App\Enums\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -165,5 +167,12 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         }
         return false;
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany('App\Session');
+//        return $this->hasMany('App\Session');
+//        return DB::table('sessions')->where('user_id','=',$this->id)->get();
     }
 }

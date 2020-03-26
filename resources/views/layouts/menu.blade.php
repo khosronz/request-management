@@ -232,6 +232,12 @@
                 <span>@lang('User Authentication Logs')</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('logs/sessions*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('logs.sessions') !!}">
+                <i class="nav-icon fa fa-history"></i>
+                <span>@lang('User Session Logs')</span>
+            </a>
+        </li>
     </ul>
 </li>
 

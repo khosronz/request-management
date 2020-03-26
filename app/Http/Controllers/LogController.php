@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\UserRepository;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laracasts\Flash\Flash;
 
@@ -50,5 +52,14 @@ class LogController extends Controller
 
         return view('logs.users.index')
             ->with('logs', $logs);
+    }
+
+    public function logSessions()
+    {
+        $sessions=Auth::user()->sessions;
+//        dd($sessions);
+//        dd($sessions);
+        return view('homes.superadmin.sessions.index')
+            ->with('sessions',$sessions);
     }
 }

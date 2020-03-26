@@ -3115,22 +3115,27 @@ __webpack_require__.r(__webpack_exports__);
 
       switch (status) {
         case '1':
+        case 1:
           title = 'توسط ثبت کننده';
           break;
 
         case '2':
+        case 2:
           title = 'بازرس';
           break;
 
         case '3':
+        case 3:
           title = 'توسط مسئول';
           break;
 
         case '4':
+        case 4:
           title = 'کارشناس';
           break;
 
         case '5':
+        case 5:
           title = 'کاربر مالی';
           break;
 
@@ -3139,10 +3144,12 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case '7':
+        case 7:
           title = 'تامین کننده';
           break;
 
         case '8':
+        case 8:
           title = 'تکمیل شده';
           break;
       }
@@ -3486,22 +3493,27 @@ __webpack_require__.r(__webpack_exports__);
 
       switch (status) {
         case '1':
+        case 1:
           title = 'توسط ثبت کننده';
           break;
 
         case '2':
+        case 2:
           title = 'بازرس';
           break;
 
         case '3':
+        case 3:
           title = 'توسط مسئول';
           break;
 
         case '4':
+        case 4:
           title = 'کارشناس';
           break;
 
         case '5':
+        case 5:
           title = 'کاربر مالی';
           break;
 
@@ -3510,10 +3522,12 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case '7':
+        case 7:
           title = 'تامین کننده';
           break;
 
         case '8':
+        case 8:
           title = 'تکمیل شده';
           break;
       }

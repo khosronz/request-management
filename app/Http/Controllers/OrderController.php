@@ -107,7 +107,6 @@ class OrderController extends AppBaseController
 
             $order = $this->orderRepository->create($order);
 
-
             foreach ($cards as $card) {
 
                 $orderDetail = [
@@ -130,8 +129,9 @@ class OrderController extends AppBaseController
             }
 
 
-            Flash::success(__('Order') . ' ' . __('saved successfully.'));
             DB::commit();
+            Flash::success(__('Order') . ' ' . __('saved successfully.'));
+            \Illuminate\Support\Facades\Auth::user()->notify(new \App\Notifications\OrderCreate($order));
         }
 
 

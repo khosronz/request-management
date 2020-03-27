@@ -20,11 +20,11 @@
                                  </div>
                                  <div class="card-body">
                                      @include('homes.owner.notifications.table')
-                                     <div class="pull-left mr-3" dir="ltr">
+                                     {{--<div class="pull-left mr-3" dir="ltr">--}}
 
-                                         @include('coreui-templates::common.paginate', ['records' => $notifications])
+                                         {{--@include('coreui-templates::common.paginate', ['records' => $notifications])--}}
 
-                                     </div>
+                                     {{--</div>--}}
                                  </div>
                              </div>
                          </div>

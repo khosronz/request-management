@@ -102,3 +102,7 @@ Route::get('logs', 'LogController@index')->name('logs.index');
 Route::resource('settings', 'SettingController');
 
 Route::resource('notifications', 'NotificationController');
+
+
+
+Route::resource('comments', 'CommentController');

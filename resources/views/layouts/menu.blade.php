@@ -307,3 +307,10 @@
         <span>@lang('Settings')</span>
     </a>
 </li>
+
+<li class="nav-item {{ Request::is('comments*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('comments.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Comments')</span>
+    </a>
+</li>

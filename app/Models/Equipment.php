@@ -31,6 +31,7 @@ class Equipment extends Model
         'title',
         'desc',
         'product_visits',
+        'status',
         'user_id',
         'category_id'
     ];
@@ -70,5 +71,12 @@ class Equipment extends Model
     public function category()
     {
         return $this->belongsTo(\App\Models\Category::class, 'category_id', 'id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function comments()
+    {
+        return $this->hasMany('\App\Models\Comment')->orderBy('created_at','DESC');
     }
 }

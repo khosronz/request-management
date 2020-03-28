@@ -18,6 +18,7 @@ class CreateEquipmentTable extends Migration
             $table->string('title');
             $table->text('desc')->nullable();
             $table->integer('product_visits');
+            $table->string('status')->default('1');
             $table->bigInteger('category_id')->unsigned()->default(0);
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->timestamps();

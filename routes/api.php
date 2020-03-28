@@ -75,3 +75,7 @@ Route::get('logs', 'LogAPIController@index')->name('logs.api.index');
 
 
 Route::resource('settings', 'SettingAPIController');
+
+
+
+Route::resource('comments', 'CommentAPIController');

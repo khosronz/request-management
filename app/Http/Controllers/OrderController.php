@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Repositories\CardRepository;
 use App\Repositories\OrderdetailRepository;
 use App\Repositories\OrderRepository;
+use App\Repositories\UserRepository;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
@@ -25,12 +26,14 @@ class OrderController extends AppBaseController
 {
     /** @var  OrderRepository */
     private $orderRepository;
+    private $userRepository;
     private $orderdetailRepository;
     private $cardRepository;
 
-    public function __construct(OrderRepository $orderRepo, OrderdetailRepository $orderdetailRepo, CardRepository $cardRepo)
+    public function __construct(OrderRepository $orderRepo,UserRepository $userRepo, OrderdetailRepository $orderdetailRepo, CardRepository $cardRepo)
     {
         $this->orderRepository = $orderRepo;
+        $this->userRepository = $userRepo;
         $this->orderdetailRepository = $orderdetailRepo;
         $this->cardRepository = $cardRepo;
     }
@@ -248,6 +251,15 @@ class OrderController extends AppBaseController
 
         Flash::success(__('Order') . ' ' . __('updated successfully.'));
 
+        // Notification Order Blocked for order owner
+        $user=$this->userRepository->find($order->user_id);
+        if (empty($user)) {
+            Flash::error(__('User') . ' ' . __('not found.'));
+
+            return redirect(route('orders.index'));
+        }
+        $user->notify(new \App\Notifications\OrderBlocked($order));
+
         return back();
     }
 
@@ -270,6 +282,15 @@ class OrderController extends AppBaseController
 
         Flash::success(__('Order') . ' ' . __('updated successfully.'));
 
+        // Notification Order Verified for order owner
+        $user=$this->userRepository->find($order->user_id);
+        if (empty($user)) {
+            Flash::error(__('User') . ' ' . __('not found.'));
+
+            return redirect(route('orders.index'));
+        }
+        $user->notify(new \App\Notifications\OrderVerified($order));
+
         return back();
     }
 
@@ -291,6 +312,15 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->update($input, $id);
 
         Flash::success(__('Order') . ' ' . __('updated successfully.'));
+
+        // Notification Order Blocked for order owner
+        $user=$this->userRepository->find($order->user_id);
+        if (empty($user)) {
+            Flash::error(__('User') . ' ' . __('not found.'));
+
+            return redirect(route('orders.index'));
+        }
+        $user->notify(new \App\Notifications\OrderBlocked($order));
 
         return back();
     }
@@ -315,6 +345,15 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->update($input, $id);
 
         Flash::success(__('Order') . ' ' . __('updated successfully.'));
+
+        // Notification Order Verified for order owner
+        $user=$this->userRepository->find($order->user_id);
+        if (empty($user)) {
+            Flash::error(__('User') . ' ' . __('not found.'));
+
+            return redirect(route('orders.index'));
+        }
+        $user->notify(new \App\Notifications\OrderVerified($order));
 
         return back();
     }

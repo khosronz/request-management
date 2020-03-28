@@ -17,7 +17,7 @@
             @endphp
             <tr>
                 <td colspan="3">
-                    <a href="#" class="text-success"><i class="fa fa-eye"></i></a>
+                    <a href="{!! route('notifications.show', [$notification->id]) !!}" class="text-success"><i class="fa fa-eye"></i></a>
                 </td>
                 {{--<td>{!! $notification->id !!}</td>--}}
                 {{--<td>{!! $notification->type !!}</td>--}}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use foo\bar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +50,16 @@ class NotificationController extends Controller
      */
     public function show($id)
     {
-        //
+        $notifications=Auth::user()->notifications;
+
+        foreach ($notifications as $notification){
+            if ($notification->id===$id){
+                $notification->markAsRead();
+                return view('homes.owner.notifications.show')
+                    ->with('notification',$notification);
+            }
+        }
+        return back();
     }
 
     /**

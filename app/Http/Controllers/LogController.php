@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\UserRepository;
+use App\Session;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,4 +63,25 @@ class LogController extends Controller
         return view('homes.superadmin.sessions.index')
             ->with('sessions',$sessions);
     }
+    public function logAllSessions()
+    {
+//        $sessions=DB::table('sessions')->get();
+        $sessions=Session::all();
+//        dd($sessions);
+        return view('homes.superadmin.sessions.index')
+            ->with('sessions',$sessions);
+    }
+    public function deleteSession($id)
+    {
+        $session=Session::where('id','=',$id)->first();
+        if (empty($session)) {
+            Flash::error(__('Session') . ' ' . __('not found.'));
+
+            return back();
+        }
+        Session::destroy($id);
+        Flash::success(__('Session') . ' ' . __('closed successfully.'));
+        return back();
+    }
+
 }

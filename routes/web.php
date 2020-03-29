@@ -94,6 +94,8 @@ Route::resource('prefactorDetails', 'PrefactorDetailController');
 
 Route::get('logs/{id}/user', 'LogController@logsUser')->name('logs.user');
 Route::get('logs/sessions', 'LogController@logSessions')->name('logs.sessions');
+Route::get('logs/logAllSessions', 'LogController@logAllSessions')->name('logs.logAllSessions');
+Route::delete('logs/deleteSession/{id}', 'LogController@deleteSession')->name('logs.deleteSession');
 Route::get('logs', 'LogController@index')->name('logs.index');
 
 

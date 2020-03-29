@@ -604,6 +604,8 @@
   "Validation": "اعتبار",
   "Child Id": "پدر",
   "You do not permission to this section.": "شما به این قسمت دسترسی ندارید.",
+  "Comments retrieved successfully": "نظرات با موفقیت بازگردانی شدند.",
+  "Comment retrieved successfully": "نظر با موفقیت بازگردانی شد.",
   "Parent Id": "والد",
   "Parent Comment Id": "پاسخ به نظر",
   "Admin Name": "نام قابل مشاهده برای مدیر",

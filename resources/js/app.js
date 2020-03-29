@@ -6,9 +6,9 @@
 
 require('./bootstrap');
 
-import "jquery/dist/jquery.min";
-import "popper.js/dist/popper.min";
-import "bootstrap/dist/js/bootstrap.min";
-import "moment/moment";
-import "./bootstrap-datetimepicker.min";
-import "@coreui/coreui/dist/js/coreui.min";
+import "jquery/dist/jquery.min.js";
+import "popper.js/dist/popper.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "moment/moment.js";
+import "./bootstrap-datetimepicker.min.js";
+import "@coreui/coreui/dist/js/coreui.min.js";

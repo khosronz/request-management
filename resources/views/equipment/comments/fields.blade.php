@@ -1,8 +1,8 @@
 <div class="row">
     <!-- Equipment Id Field -->
-    <div class="form-group col-sm-3">
+    <div class="form-group col-sm-3 sr-only">
         {!! Form::label('equipment_id', __('Equipment Id').':') !!}
-        {!! Form::select('equipment_id', \App\Models\Equipment::pluck('title','id'), null , ['class' => 'form-control']) !!}
+        {!! Form::text('equipment_id', $equipment->id , ['class' => 'form-control']) !!}
     </div>
 
     <!-- User Id Field -->
@@ -30,25 +30,8 @@
     </div>
 
     <!-- Parent Id Field -->
-    {{--<meta name="csrf-token" content="{{ \Illuminate\Support\Facades\Session::token() }}">--}}
-
-    {{--<script>--}}
-        {{--$('#equipment_id').change(function () {--}}
-            {{--var id = $(this).val();--}}
-            {{--console.log(id);--}}
-            {{--$.post('listmine', {equipment_id: id,'_token': $('meta[name=csrf-token]').attr('content'),--}}
-            {{--}, function (data) {--}}
-                {{--$('#parent_id').empty();--}}
-                {{--$('#parent_id').append("<option value='0'>انتخاب کنید</option>");--}}
-                {{--var items = JSON.parse(data)--}}
-                {{--$.each(items, function (key, value) {--}}
-                    {{--$('#parent_id').append("<option value='" + key + "'>" + value + "</option>");--}}
-                {{--});--}}
-            {{--});--}}
-        {{--});--}}
-    {{--</script>--}}
     @php
-        $comments=\App\Models\Comment::pluck('title','id');
+        $comments=$equipment->comments->pluck('title','id');
         $comments->prepend('بدون انتخاب نظر',0);
     @endphp
     <div class="form-group col-sm-3">

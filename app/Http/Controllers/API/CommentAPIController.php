@@ -6,6 +6,7 @@ use App\Http\Requests\API\CreateCommentAPIRequest;
 use App\Http\Requests\API\UpdateCommentAPIRequest;
 use App\Models\Comment;
 use App\Repositories\CommentRepository;
+use App\Repositories\EquipmentRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -19,10 +20,13 @@ class CommentAPIController extends AppBaseController
 {
     /** @var  CommentRepository */
     private $commentRepository;
+    private $equipmentRepository;
 
-    public function __construct(CommentRepository $commentRepo)
+    public function __construct(CommentRepository $commentRepo,EquipmentRepository $equipmentRepo)
     {
+        $this->middleware('auth:api');
         $this->commentRepository = $commentRepo;
+        $this->equipmentRepository = $equipmentRepo;
     }
 
     /**
@@ -78,6 +82,20 @@ class CommentAPIController extends AppBaseController
         }
 
         return $this->sendResponse($comment->toArray(), 'Comment retrieved successfully');
+    }
+
+    public function showEquipmentComments($id)
+    {
+        /** @var Comment $comment */
+        $equipment = $this->equipmentRepository->find($id);
+
+        if (empty($equipment)) {
+            return $this->sendError('Equipment not found');
+        }
+
+        $comments = $equipment->comments;
+
+        return $this->sendResponse($comments->toArray(), 'Comments retrieved successfully');
     }
 
     /**

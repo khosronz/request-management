@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    @include('comments.index-create')
+    @include('equipment.comments.index-create')
 
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -40,7 +40,7 @@
                             $comments=$equipment->comments;
                         @endphp
                         <div class="card-body">
-                            @include('comments.table')
+                            @include('equipment.comments.table')
                         </div>
                     </div>
                 </div>

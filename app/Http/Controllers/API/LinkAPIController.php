@@ -14,7 +14,6 @@ use Response;
  * Class LinkController
  * @package App\Http\Controllers\API
  */
-
 class LinkAPIController extends AppBaseController
 {
     /** @var  LinkRepository */
@@ -127,5 +126,38 @@ class LinkAPIController extends AppBaseController
         $link->delete();
 
         return $this->sendResponse($id, 'Link deleted successfully');
+    }
+
+    public function crawlImages($id)
+    {
+        $link = Link::where('id', $id)->first();
+        $links = get_html_element_img_src($link->url, $link->expression);
+        $results = [];
+        foreach ($links as $index => $link) {
+            $results[$index] = ['content'=>$link];
+        }
+
+        return $this->sendResponse($results, 'Link retrieved successfully');
+//        return $this->sendResponse($links->toArray(), 'Link retrieved successfully');
+    }
+
+    public function crawlHeads($id)
+    {
+        $link = Link::where('id', $id)->first();
+        $links = get_html_element_titles($link->url, $link->expression);
+        $results = [];
+        foreach ($links as $index => $link) {
+            $results[$index] = ['content'=>$link];
+        }
+
+        return $this->sendResponse($results, 'Link retrieved successfully');
+    }
+
+    public function jsonToCsv(Request $request)
+    {
+        $input=$request->items;
+        $result=jsonToCsv($input);
+
+        return $this->sendResponse($result, 'Link retrieved successfully');
     }
 }

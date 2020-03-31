@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
+use App\Models\Link;
 use App\Repositories\LinkRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;

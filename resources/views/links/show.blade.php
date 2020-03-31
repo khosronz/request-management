@@ -19,6 +19,7 @@
                              </div>
                              <div class="card-body">
                                  @include('links.show_fields')
+                                 @include('links.show_crowls')
                              </div>
                          </div>
                      </div>

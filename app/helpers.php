@@ -298,14 +298,14 @@ if (!function_exists('getEndDate')) {
     }
 
     if (!function_exists('get_html_element_img_src')) {
-        function get_html_element_img_src($url)
+        function get_html_element_img_src($url,$expression)
         {
             $client = new Goutte\Client();
             // get html from URL
             $crawler = $client->request('GET', $url);
             $GLOBALS['results']=[];
             // get all images on laravel.com
-            $crawler->filter('img')->each(function ($node) {
+            $crawler->filter($expression)->each(function ($node) {
 //                print $node->attr('src')."\n";
                 array_push($GLOBALS['results'],$node->attr('src'));
             });
@@ -314,14 +314,14 @@ if (!function_exists('getEndDate')) {
         }
     }
     if (!function_exists('get_html_element_titles')) {
-        function get_html_element_titles($url,$head='h1')
+        function get_html_element_titles($url,$expression='h2')
         {
             $client = new Goutte\Client();
             // get html from URL
             $crawler = $client->request('GET', $url);
             $GLOBALS['results'] = [];
             // get all images on laravel.com
-            $crawler->filter($head)->each(function ($node) {
+            $crawler->filter($expression)->each(function ($node) {
 //                print $node->attr('src')."\n";
                 array_push($GLOBALS['results'], $node->text());
             });
@@ -329,6 +329,80 @@ if (!function_exists('getEndDate')) {
             return $GLOBALS['results'];
         }
     }
+
+    if (!function_exists('jsonToCSV')) {
+        function jsonToCSV($json, $csvFilePath = false, $boolOutputFile = false)
+        {
+            $result='';
+            // See if the string contains something
+            if (empty($json)) {
+                die("The JSON string is empty!");
+            }
+            // If passed a string, turn it into an array
+            if (is_array($json) === false) {
+                $json = json_decode($json, true);
+            }
+            // If a path is included, open that file for handling. Otherwise, use a temp file (for echoing CSV string)
+            if ($csvFilePath !== false) {
+                $f = fopen($csvFilePath,'w+');
+                if ($f === false) {
+                    die("Couldn't create the file to store the CSV, or the path is invalid. Make sure you're including the full path, INCLUDING the name of the output file (e.g. '../save/path/csvOutput.csv')");
+                }
+            }else {
+                $boolEchoCsv = true;
+                if ($boolOutputFile === true) {
+                    $boolEchoCsv = false;
+                }
+                $strTempFile = 'csvOutput' . date("U") . ".csv";
+                $f = fopen($strTempFile,"w+");
+            }
+            $firstLineKeys = false;
+            foreach ($json as $line) {
+                if (empty($firstLineKeys)) {
+                    $firstLineKeys = array_keys($line);
+                    fputcsv($f, $firstLineKeys);
+                    $firstLineKeys = array_flip($firstLineKeys);
+                }
+
+                // Using array_merge is important to maintain the order of keys acording to the first element
+                fputcsv($f, array_merge($firstLineKeys, $line));
+            }
+            fclose($f);
+            // Take the file and put it to a string/file for output (if no save path was included in function arguments)
+            if ($boolOutputFile === true) {
+                if ($csvFilePath !== false) {
+                    $file = $csvFilePath;
+                }
+                else {
+                    $file = $strTempFile;
+                }
+
+                // Output the file to the browser (for open/save)
+                if (file_exists($file)) {
+                    header('Content-Type: text/csv');
+                    header('Content-Disposition: attachment; filename='.basename($file));
+                    header('Content-Length: ' . filesize($file));
+                    readfile($file);
+                }
+            }
+            elseif ($boolEchoCsv === true) {
+                if (($handle = fopen($strTempFile, "r")) !== FALSE) {
+                    while (($data = fgetcsv($handle)) !== FALSE) {
+                        $result .= implode(",",$data);
+                        $result .= "<br />";
+                    }
+                    fclose($handle);
+                }
+            }
+
+
+            // Delete the temp file
+            unlink($strTempFile);
+            return $result;
+        }
+    }
+
+
 }
 
 

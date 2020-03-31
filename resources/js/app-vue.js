@@ -33,6 +33,7 @@ Vue.component('create-order-table-filtered-component', require('./components/Cre
 Vue.component('main-ticket-table-filtered-component', require('./components/MainTicketTableFilteredComponent.vue').default);
 Vue.component('main-logger-table-filtered-component', require('./components/MainLoggerTableFilteredComponent.vue').default);
 Vue.component('main-logger-user-table-filtered-component', require('./components/MainLoggerUserTableFilteredComponent.vue').default);
+Vue.component('main-crawller-images-table-filtered-component', require('./components/MainCrawllerImagesTableFilteredComponent.vue').default);
 
 window.Vue = Vue;
 axios.defaults.headers.common = {

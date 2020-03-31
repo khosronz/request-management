@@ -109,4 +109,6 @@ Route::resource('notifications', 'NotificationController');
 
 Route::resource('comments', 'CommentController');
 
+//Route::post('links/{id}/crawl/images', 'LinkAPIController@crawlImages')->name('links.crawlImages');
+//Route::post('links/{id}/crawl/heads', 'LinkAPIController@crawlHeads')->name('links.crawlHeads');
 Route::resource('links', 'LinkController');

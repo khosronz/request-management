@@ -14,7 +14,7 @@ class CreateMediaTable extends Migration
     public function up()
     {
         Schema::create('media', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->string('title');
             $table->text('desc');

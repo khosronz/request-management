@@ -13,6 +13,7 @@
         "becker/laravel-zabbix-api": "^0.3.0",
         "bensampo/laravel-enum": "^1.28",
         "doctrine/dbal": "~2.3",
+        "fabpot/goutte": "^4.0",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "hisorange/browser-detect": "^4.2",

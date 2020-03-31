@@ -32,6 +32,10 @@ class CategoryController extends AppBaseController
      */
     public function index(Request $request)
     {
+//        $images=get_html_element_img_src('https://www.digikala.com/');
+//        $titles=get_html_element_titles('tahlilyar','h2');
+////
+//        dd($images,$titles);
 
         if(Auth::user()->can('viewAny',Category::class)){
             $categories = $this->categoryRepository->paginate(10);

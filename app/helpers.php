@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: khosro
- * Date: 11/10/2019
- * Time: 01:27 PM
- */
 
 
 if (!function_exists('remove_http')) {
@@ -228,7 +222,7 @@ if (!function_exists('getEndDate')) {
     }
 
     if (!function_exists('change_status_wait')) {
-        function change_status_wait($order, $user, $protection=false)
+        function change_status_wait($order, $user, $protection = false)
         {
             if ($user->isMaster()) {
                 $order->verified = \App\Enums\VerifiedType::supplier_waite;
@@ -236,7 +230,7 @@ if (!function_exists('getEndDate')) {
             }
             if ($user->isOwner()) {
                 // Successor
-                if($protection){
+                if ($protection) {
                     $order->verified = \App\Enums\VerifiedType::protection_waite;
                     $order->waite_status = \App\Enums\VerifiedWaiteStatus::waite;
                 } else {
@@ -303,7 +297,38 @@ if (!function_exists('getEndDate')) {
         }
     }
 
+    if (!function_exists('get_html_element_img_src')) {
+        function get_html_element_img_src($url)
+        {
+            $client = new Goutte\Client();
+            // get html from URL
+            $crawler = $client->request('GET', $url);
+            $GLOBALS['results']=[];
+            // get all images on laravel.com
+            $crawler->filter('img')->each(function ($node) {
+//                print $node->attr('src')."\n";
+                array_push($GLOBALS['results'],$node->attr('src'));
+            });
 
+            return $GLOBALS['results'];
+        }
+    }
+    if (!function_exists('get_html_element_titles')) {
+        function get_html_element_titles($url,$head='h1')
+        {
+            $client = new Goutte\Client();
+            // get html from URL
+            $crawler = $client->request('GET', $url);
+            $GLOBALS['results'] = [];
+            // get all images on laravel.com
+            $crawler->filter($head)->each(function ($node) {
+//                print $node->attr('src')."\n";
+                array_push($GLOBALS['results'], $node->text());
+            });
+
+            return $GLOBALS['results'];
+        }
+    }
 }
 
 

@@ -32,7 +32,8 @@ class Category extends Model
         'desc',
         'category_visits',
         'user_id',
-        'parent_id'
+        'parent_id',
+        'status',
     ];
 
     /**

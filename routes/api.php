@@ -79,3 +79,5 @@ Route::resource('settings', 'SettingAPIController');
 
 
 Route::resource('comments', 'CommentAPIController');
+
+Route::resource('links', 'LinkAPIController');

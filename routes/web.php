@@ -108,3 +108,5 @@ Route::resource('notifications', 'NotificationController');
 
 
 Route::resource('comments', 'CommentController');
+
+Route::resource('links', 'LinkController');

@@ -314,3 +314,9 @@
         {{--<span>@lang('Comments')</span>--}}
     {{--</a>--}}
 {{--</li>--}}
+<li class="nav-item {{ Request::is('links*') ? 'active' : '' }}">
+    <a class="nav-link" href="{!! route('links.index') !!}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>@lang('Links')</span>
+    </a>
+</li>

@@ -11,16 +11,23 @@
         "inIndex": false
     },
     {
-        "name": "user_id",
-        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
-        "htmlType": "text",
-        "relation": "mt1,User,user_id,id"
-    },
-    {
         "name": "title",
         "dbType": "string",
         "htmlType": "text",
         "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "url",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "expression",
+        "dbType": "string",
+        "htmlType": "text",
         "searchable": true
     },
     {
@@ -29,14 +36,10 @@
         "htmlType": "textarea"
     },
     {
-        "name": "alt",
-        "dbType": "string",
-        "htmlType": "text"
-    },
-    {
-        "name": "url",
-        "dbType": "string",
-        "htmlType": "text"
+        "name": "user_id",
+        "dbType": "bigInteger:unsigned:default,0:foreign,users,id",
+        "htmlType": "text",
+        "relation": "mt1,User,user_id,id"
     },
     {
         "name": "created_at",

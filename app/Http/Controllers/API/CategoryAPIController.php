@@ -40,11 +40,17 @@ class CategoryAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $categories = $this->categoryRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+//        $categories = $this->categoryRepository->all(
+//            $request->except(['skip', 'limit']),
+//            $request->get('skip'),
+//            $request->get('limit')
+//        );
+
+        if (\Illuminate\Support\Facades\Auth::user()->isSuperadmin()){
+            $categories=\App\Models\Category::get();
+        }else{
+            $categories=\Illuminate\Support\Facades\Auth::user()->categories()->get();
+        }
 
         return $this->sendResponse($categories->toArray(), 'Categories retrieved successfully');
     }

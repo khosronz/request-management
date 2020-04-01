@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Enums\UserType;
+use App\Models\Category;
+use App\Models\OrganizationCategory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -72,6 +74,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function organizations()
     {
         return $this->belongsToMany('App\Models\Organization', 'organization_users', 'user_id', 'organization_id');
+    }
+    public function organizationCategories()
+    {
+        $organizations=$this->organizations()->pluck('organization_id');
+        return OrganizationCategory::whereIn('organization_id',$organizations);
+    }
+    public function categories()
+    {
+        $categories=$this->organizationCategories()->pluck('category_id');
+        return Category::whereIn('id',$categories);
     }
 
     public function isSuperadmin()

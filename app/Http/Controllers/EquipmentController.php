@@ -31,8 +31,21 @@ class EquipmentController extends AppBaseController
      */
     public function index(Request $request)
     {
+        $categories=Auth::user()->categories()->pluck('id');
+//        dd($categories->get());
         if(Auth::user()->can('viewAny',Equipment::class)){
-            $equipment = $this->equipmentRepository->paginate(10);
+//            $equipment = $this->equipmentRepository->paginate(10);
+
+            if (Auth::user()->isSuperadmin()){
+                $equipment = Equipment::where('status','=','1')
+                    ->paginate(10);
+            }else{
+                $equipment = Equipment::where('status','=','1')
+                    ->whereIn('category_id',$categories)
+                    ->paginate(10);
+            }
+
+//            dd($equipment);
 
             return view('equipment.index')
                 ->with('equipment', $equipment);

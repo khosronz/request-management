@@ -12,7 +12,7 @@ $factory->define(Equipment::class, function (Faker $faker) {
         'desc' => \Ybazli\Faker\Facades\Faker::paragraph(),
         'product_visits' => $faker->randomDigitNotNull,
         'user_id' => \App\Enums\UserType::master,
-        'category_id' => rand(1,10),
+        'category_id' => rand(1,13),
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

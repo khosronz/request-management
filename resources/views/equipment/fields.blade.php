@@ -12,8 +12,16 @@
 
 <!-- Category Id Field -->
 <div class="form-group col-sm-6">
+    @php
+        if (\Illuminate\Support\Facades\Auth::user()->isSuperadmin()){
+            $categories=\App\Models\Category::pluck('title','id');
+        }else{
+            $categories=\Illuminate\Support\Facades\Auth::user()->categories()->pluck('title','id');
+        }
+
+    @endphp
     {!! Form::label('category_id', __('Category Id').':') !!}
-    {!! Form::select('category_id', \App\Models\Category::Pluck('title','id'),null, ['class' => 'form-control']) !!}
+    {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Product Visits Field -->

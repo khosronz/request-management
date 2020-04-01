@@ -1,11 +1,14 @@
 <template>
     <b-container fluid>
         <b-row>
-            <b-col lg="6" class="my-1">
+            <b-col lg="3" class="my-1">
                 <b-button @click="updatecrowls()">بروزرسانی</b-button>
             </b-col>
-            <b-col lg="6" class="my-1">
+            <b-col lg="3" class="my-1">
                 <b-button @click="exportCsv()">خروجی CSV</b-button>
+            </b-col>
+            <b-col lg="3" class="my-1">
+                <b-button @click="linkToHtml()">خروجی پیوند به HTML</b-button>
             </b-col>
         </b-row>
         <!-- User Interface controls -->
@@ -240,6 +243,20 @@
                 };
                 // console.log(this.dataSend);
                 axios.post('/api/links/images/jsonToCSV',this.dataSend)
+                    .then(response => {
+                        console.log(response.data.data);
+                        this.CSV=response.data.data;
+                        // this.CSV = response.data.data;
+                        // Trigger pagination to update the number of buttons/pages due to filtering
+                        // this.onFiltered(this.items);
+                    })
+                    .catch(e => {
+                        // this.errors.push(e)
+                        console.log(e);
+                    });
+            },
+            linkToHtml(){
+                axios.get('/api/links/'+this.link_id+'/crawl/html')
                     .then(response => {
                         console.log(response.data.data);
                         this.CSV=response.data.data;

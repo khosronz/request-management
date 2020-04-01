@@ -2428,6 +2428,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['link_id'],
@@ -2501,14 +2504,27 @@ __webpack_require__.r(__webpack_exports__);
         console.log(e);
       });
     },
-    getItems: function getItems() {
+    linkToHtml: function linkToHtml() {
       var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/links/' + this.link_id + '/crawl/html').then(function (response) {
+        console.log(response.data.data);
+        _this2.CSV = response.data.data; // this.CSV = response.data.data;
+        // Trigger pagination to update the number of buttons/pages due to filtering
+        // this.onFiltered(this.items);
+      })["catch"](function (e) {
+        // this.errors.push(e)
+        console.log(e);
+      });
+    },
+    getItems: function getItems() {
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/links/' + this.link_id + '/crawl/images').then(function (response) {
         console.log(response.data.data);
-        _this2.items = response.data.data; // Trigger pagination to update the number of buttons/pages due to filtering
+        _this3.items = response.data.data; // Trigger pagination to update the number of buttons/pages due to filtering
 
-        _this2.onFiltered(_this2.items); // console.log(this.items)
+        _this3.onFiltered(_this3.items); // console.log(this.items)
 
       })["catch"](function (e) {
         // this.errors.push(e)
@@ -45978,7 +45994,7 @@ var render = function() {
         [
           _c(
             "b-col",
-            { staticClass: "my-1", attrs: { lg: "6" } },
+            { staticClass: "my-1", attrs: { lg: "3" } },
             [
               _c(
                 "b-button",
@@ -45997,7 +46013,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-col",
-            { staticClass: "my-1", attrs: { lg: "6" } },
+            { staticClass: "my-1", attrs: { lg: "3" } },
             [
               _c(
                 "b-button",
@@ -46009,6 +46025,25 @@ var render = function() {
                   }
                 },
                 [_vm._v("خروجی CSV")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { lg: "3" } },
+            [
+              _c(
+                "b-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.linkToHtml()
+                    }
+                  }
+                },
+                [_vm._v("خروجی پیوند به HTML")]
               )
             ],
             1

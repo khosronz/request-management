@@ -131,7 +131,12 @@ class LinkAPIController extends AppBaseController
     public function crawlImages($id)
     {
         $link = Link::where('id', $id)->first();
-        $links = get_html_element_img_src($link->url, $link->expression);
+        if ($link->expression==='img'){
+            $links = get_html_element_img_src($link->url, $link->expression);
+        } else {
+            $links = get_html_element_titles($link->url, $link->expression);
+        }
+
         $results = [];
         foreach ($links as $index => $link) {
             $results[$index] = ['content'=>$link];
@@ -153,6 +158,30 @@ class LinkAPIController extends AppBaseController
         return $this->sendResponse($results, 'Link retrieved successfully');
     }
 
+    public function crawlGetHtml($id)
+    {
+        $link = Link::where('id', $id)->first();
+        $links = get_html_element_html($link->url, $link->expression);
+        $results = [];
+        foreach ($links as $index => $link) {
+            $results[$index] = ['content'=>$link];
+        }
+
+        return $this->sendResponse($results, 'Link retrieved successfully');
+    }
+
+//    public function crawlHeads($id)
+//    {
+//        $link = Link::where('id', $id)->first();
+//        $links = get_html_element_titles($link->url, $link->expression);
+//        $results = [];
+//        foreach ($links as $index => $link) {
+//            $results[$index] = ['content'=>$link];
+//        }
+//
+//        return $this->sendResponse($results, 'Link retrieved successfully');
+//    }
+
     public function jsonToCsv(Request $request)
     {
         $input=$request->items;
@@ -160,4 +189,5 @@ class LinkAPIController extends AppBaseController
 
         return $this->sendResponse($result, 'Link retrieved successfully');
     }
+
 }

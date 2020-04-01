@@ -81,6 +81,7 @@ Route::resource('settings', 'SettingAPIController');
 Route::resource('comments', 'CommentAPIController');
 
 Route::post('/links/images/jsonToCSV', 'LinkAPIController@jsonToCsv')->name('links.api.jsonToCsv');
+Route::get('links/{id}/crawl/html', 'LinkAPIController@crawlGetHtml')->name('links.api.crawlGetHtml');
 Route::get('links/{id}/crawl/images', 'LinkAPIController@crawlImages')->name('links.api.crawlImages');
 Route::get('links/{id}/crawl/heads', 'LinkAPIController@crawlHeads')->name('links.api.crawlHeads');
 Route::resource('links', 'LinkAPIController');

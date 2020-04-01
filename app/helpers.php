@@ -330,6 +330,23 @@ if (!function_exists('getEndDate')) {
         }
     }
 
+    if (!function_exists('get_html_element_html')) {
+        function get_html_element_html($url,$expression='h2')
+        {
+            $client = new Goutte\Client();
+            // get html from URL
+            $crawler = $client->request('GET', $url);
+            $GLOBALS['results'] = [];
+            // get all images on laravel.com
+            $crawler->filter($expression)->each(function ($node) {
+//                print $node->attr('src')."\n";
+                array_push($GLOBALS['results'], $node->html());
+            });
+
+            return $GLOBALS['results'];
+        }
+    }
+
     if (!function_exists('jsonToCSV')) {
         function jsonToCSV($json, $csvFilePath = false, $boolOutputFile = false)
         {
@@ -401,6 +418,7 @@ if (!function_exists('getEndDate')) {
             return $result;
         }
     }
+
 
 
 }

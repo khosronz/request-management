@@ -19,11 +19,28 @@
                              </div>
                              <div class="card-body">
                                  @include('links.show_fields')
-                                 @include('links.show_crowls')
                              </div>
                          </div>
                      </div>
                  </div>
           </div>
     </div>
+     <div class="container-fluid">
+         <div class="animated fadeIn">
+             <div class="row">
+                 <div class="col-lg-12">
+                     <div class="card">
+                         <div class="card-header">
+                             <strong>@lang('Crawler')</strong>
+                         </div>
+                         <div class="card-body">
+                             @include('links.show_crowls')
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+
 @endsection

@@ -127,10 +127,10 @@ class HomeController extends Controller
 
     public function supportindex()
     {
-        $order_ids = Auth::user()->orderCategories()->pluck('id');
+//        $order_ids = Auth::user()->orderCategories()->pluck('id');
         if (Gate::allows('support-dashboard')) {
-            $orders = Order::whereIn('id',$order_ids)
-                ->where('verified', '=', VerifiedType::support_waite)
+//            $orders = Order::whereIn('id',$order_ids)
+            $orders = Order::where('verified', '=', VerifiedType::support_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             return view('homes.support.index')
@@ -143,10 +143,10 @@ class HomeController extends Controller
 
     public function supplierindex()
     {
-        $order_ids = Auth::user()->orderCategories()->pluck('id');
+//        $order_ids = Auth::user()->orderCategories()->pluck('id');
         if (Gate::allows('supplier-dashboard')) {
-            $orders = Order::whereIn('id',$order_ids)
-                ->where('verified', '=', VerifiedType::supplier_waite)
+//            $orders = Order::whereIn('id',$order_ids)
+            $orders = Order::where('verified', '=', VerifiedType::supplier_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             return view('homes.supplier.index')
@@ -194,11 +194,11 @@ class HomeController extends Controller
 
     public function financialindex()
     {
-        $order_ids = Auth::user()->orderCategories()->pluck('id');
+//        $order_ids = Auth::user()->orderCategories()->pluck('id');
 
         if (Gate::allows('financial-dashboard')) {
-            $orders = Order::whereIn('id',$order_ids)
-                ->where('verified', '=', VerifiedType::financial_waite)
+//            $orders = Order::whereIn('id',$order_ids)
+            $orders = Order::where('verified', '=', VerifiedType::financial_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             return view('homes.financial.index')

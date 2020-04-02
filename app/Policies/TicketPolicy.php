@@ -30,7 +30,8 @@ class TicketPolicy
      */
     public function view(User $user, Ticket $ticket)
     {
-        return $user->id === $ticket->user_id;
+        $user_organizations=$user->organizations();
+        return $user->id === $ticket->user_id || $user_organizations->where('organization_id','=',$ticket->organization_id)->get()->isNotEmpty();
     }
 
     /**

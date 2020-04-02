@@ -91,8 +91,12 @@ class HomeController extends Controller
 
     public function masterindex()
     {
+        $order_ids = Auth::user()->orderCategories()->pluck('id');
+//        dd($order_ids);
+
         if (Gate::allows('master-dashboard')) {
-            $orders = Order::whereOr('verified', '=', VerifiedType::master_waite)
+            $orders = Order::whereIn('id',$order_ids)
+                ->whereOr('verified', '=', VerifiedType::master_waite)
                 ->whereOr('verified', '=', VerifiedType::financial_waite)
                 ->whereOr('verified', '=', VerifiedType::protection_waite)
                 ->whereOr('verified', '=', VerifiedType::completed_wait)
@@ -108,8 +112,10 @@ class HomeController extends Controller
 
     public function successorindex()
     {
+        $order_ids = Auth::user()->orderCategories()->pluck('id');
         if (Gate::allows('successor-dashboard')) {
-            $orders = Order::where('verified', '=', VerifiedType::successor_waite)
+            $orders = Order::whereIn('id',$order_ids)
+                ->where('verified', '=', VerifiedType::successor_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             return view('homes.successor.index')
@@ -121,8 +127,10 @@ class HomeController extends Controller
 
     public function supportindex()
     {
+        $order_ids = Auth::user()->orderCategories()->pluck('id');
         if (Gate::allows('support-dashboard')) {
-            $orders = Order::where('verified', '=', VerifiedType::support_waite)
+            $orders = Order::whereIn('id',$order_ids)
+                ->where('verified', '=', VerifiedType::support_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             return view('homes.support.index')
@@ -135,8 +143,10 @@ class HomeController extends Controller
 
     public function supplierindex()
     {
+        $order_ids = Auth::user()->orderCategories()->pluck('id');
         if (Gate::allows('supplier-dashboard')) {
-            $orders = Order::where('verified', '=', VerifiedType::supplier_waite)
+            $orders = Order::whereIn('id',$order_ids)
+                ->where('verified', '=', VerifiedType::supplier_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             return view('homes.supplier.index')
@@ -173,7 +183,7 @@ class HomeController extends Controller
 //                ->orderBy('created_at', 'desc')
 //                ->paginate(10);
 
-            $orders=$this->orderRepository->ordersByProtectionCategoryEquipment()->paginate(10);
+            $orders = $this->orderRepository->ordersByProtectionCategoryEquipment()->paginate(10);
 
             return view('homes.protection.index')
                 ->with('orders', $orders);
@@ -184,8 +194,11 @@ class HomeController extends Controller
 
     public function financialindex()
     {
+        $order_ids = Auth::user()->orderCategories()->pluck('id');
+
         if (Gate::allows('financial-dashboard')) {
-            $orders = Order::where('verified', '=', VerifiedType::financial_waite)
+            $orders = Order::whereIn('id',$order_ids)
+                ->where('verified', '=', VerifiedType::financial_waite)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             return view('homes.financial.index')

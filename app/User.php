@@ -4,6 +4,7 @@ namespace App;
 
 use App\Enums\UserType;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\OrganizationCategory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'fname', 'lname', 'factory', 'province', 'city', 'address1', 'address2', 'phone', 'pre_phone', 'country', 'desc', 'visible_to_everyone','api_token'
+        'name', 'email', 'password', 'fname', 'lname', 'factory', 'province', 'city', 'address1', 'address2', 'phone', 'pre_phone', 'country', 'desc', 'visible_to_everyone', 'api_token'
     ];
 
     /**
@@ -46,6 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Models\Ticket');
     }
+
     public function messages()
     {
         return $this->hasMany('App\Models\Message');
@@ -75,15 +77,29 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany('App\Models\Organization', 'organization_users', 'user_id', 'organization_id');
     }
+
     public function organizationCategories()
     {
-        $organizations=$this->organizations()->pluck('organization_id');
-        return OrganizationCategory::whereIn('organization_id',$organizations);
+        $organizations = $this->organizations()->pluck('organization_id');
+        return OrganizationCategory::whereIn('organization_id', $organizations);
     }
+
     public function categories()
     {
-        $categories=$this->organizationCategories()->pluck('category_id');
-        return Category::whereIn('id',$categories);
+        $categories = $this->organizationCategories()->pluck('category_id');
+        return Category::whereIn('id', $categories);
+    }
+
+    public function orderCategories()
+    {
+        $categories = $this->categories()->pluck('id');
+        $orders = Order::join('orderdetails', 'orderdetails.order_id', '=', 'orders.id')
+            ->leftjoin('equipment', 'orderdetails.equipment_id', '=', 'equipment.id')
+            ->leftjoin('categories', 'equipment.category_id', '=', 'categories.id')
+            ->whereIn('categories.id', $categories)
+            ->pluck('orders.id')->unique();
+//        dd($orders->orderBy('orders.id')->pluck('orders.id')->unique());
+        return Order::whereIn('id', $orders);
     }
 
     public function isSuperadmin()

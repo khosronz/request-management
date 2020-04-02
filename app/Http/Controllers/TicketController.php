@@ -34,10 +34,7 @@ class TicketController extends AppBaseController
     {
 //        $tickets = $this->ticketRepository->find()->paginate(5);
         $organizations = Auth::user()->organizations;
-        $organization_ids=[];
-        foreach ($organizations as $organization){
-            array_push($organization_ids,$organization->id);
-        }
+        $organization_ids=$organizations->pluck('id');
 
 //        dd($organization_ids);
         $tickets = $this->ticketRepository->findByUserId(Auth::id())->paginate(5);

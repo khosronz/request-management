@@ -73,10 +73,13 @@ class OrderRepository extends BaseRepository
 
     public function ordersByProtectionCategoryEquipment()
     {
+        $order_ids = Auth::user()->orderCategories()->pluck('id');
+
         $orders=Order::join('orderdetails', 'orderdetails.order_id', '=', 'orders.id')
             ->join('equipment', 'orderdetails.equipment_id', '=', 'equipment.id')
             ->join('categories', 'equipment.category_id', '=', 'categories.id')
             ->join('protection_categories', 'protection_categories.category_id', '=', 'categories.id')
+            ->whereIn('orders.id',$order_ids)
             ->select('orders.*','categories.title as category_title');
 
         return $orders;

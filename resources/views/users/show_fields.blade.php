@@ -21,7 +21,7 @@
         {!! Form::label('lname', __('Lname').':') !!}
         <p>{!! $user->lname!!}</p>
     </div>
-    <div class="form-group col-sm-3">
+    <div class="form-group col-sm-12">
         {!! Form::label('desc', __('Desc').':') !!}
         <p>{!! $user->desc!!}</p>
     </div>
@@ -61,6 +61,15 @@
         {!! Form::label('address2', __('Address2').':') !!}
         <p>{!! $user->address2!!}</p>
     </div>
+    <div class="form-group col-sm-12">
+        {!! Form::label('roles', __('Roles').':') !!}
+        <p>
+            @foreach($user->roles->pluck('title') as $title)
+                {!! __($title) . '/' !!}
+            @endforeach
+        </p>
+    </div>
+
 
 
     <!-- Created At Field -->

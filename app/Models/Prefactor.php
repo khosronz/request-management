@@ -36,13 +36,15 @@ class Prefactor extends Model
     protected $casts = [
         'user_id' => 'integer',
         'order_id' => 'integer',
-        'factory_id' => 'integer'
+        'factory_id' => 'integer',
+        'media_id' => 'integer'
     ];
 
     public $fillable = [
         'user_id',
         'order_id',
         'factory_id',
+        'media_id',
         'status',
         'factor_status'
     ];
@@ -87,5 +89,13 @@ class Prefactor extends Model
     public function prefactor_details()
     {
         return $this->hasMany('\App\Models\PrefactorDetail');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function media()
+    {
+        return $this->belongsTo(\App\Models\Media::class, 'media_id', 'id');
     }
 }

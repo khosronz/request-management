@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@indexa');
+Route::get('/', 'HomeController@index');
 
 
 Auth::routes(['verify' => true]);

@@ -17,6 +17,12 @@
     {!! Form::select('factory_id',\App\Models\Factory::pluck('title','id'), null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Media Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('media_id', __('Media Id').':') !!}
+    {!! Form::select('media_id',\Illuminate\Support\Facades\Auth::user()->medias->pluck('title','id'), null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}

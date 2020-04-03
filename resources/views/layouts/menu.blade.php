@@ -183,7 +183,7 @@
 </li>
 
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-first-order"></i>
         @lang('Orders')
     </a>
     <ul class="nav-dropdown-items">
@@ -204,7 +204,7 @@
 </li>
 
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-comment-o"></i>
         @lang('Tickets')
     </a>
     <ul class="nav-dropdown-items">
@@ -287,19 +287,19 @@
 {{--</li>--}}
 {{--Logs--}}
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-history"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-note"></i>
         @lang('Prefactor and Factors')
     </a>
     <ul class="nav-dropdown-items">
         <li class="nav-item {{ Request::is('prefactors*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('prefactors.index') !!}">
-                <i class="nav-icon icon-cursor"></i>
+                <i class="nav-icon icon-note"></i>
                 <span>@lang('Prefactors')</span>
             </a>
         </li>
         <li class="nav-item {{ Request::is('prefactors.factorIndex*') ? 'active' : '' }}">
             <a class="nav-link" href="{!! route('prefactors.factorIndex') !!}">
-                <i class="nav-icon icon-cursor"></i>
+                <i class="nav-icon icon-notebook"></i>
                 <span>@lang('Factors')</span>
             </a>
         </li>
@@ -316,7 +316,7 @@
 
 <li class="nav-item {{ Request::is('settings*') ? 'active' : '' }}">
     <a class="nav-link" href="{!! route('settings.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
+        <i class="nav-icon icon-settings"></i>
         <span>@lang('Settings')</span>
     </a>
 </li>
@@ -327,9 +327,9 @@
         {{--<span>@lang('Comments')</span>--}}
     {{--</a>--}}
 {{--</li>--}}
-<li class="nav-item {{ Request::is('links*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('links.index') !!}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>@lang('Links')</span>
-    </a>
-</li>
+{{--<li class="nav-item {{ Request::is('links*') ? 'active' : '' }}">--}}
+    {{--<a class="nav-link" href="{!! route('links.index') !!}">--}}
+        {{--<i class="nav-icon icon-link"></i>--}}
+        {{--<span>@lang('Links')</span>--}}
+    {{--</a>--}}
+{{--</li>--}}

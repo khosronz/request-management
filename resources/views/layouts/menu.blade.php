@@ -1,6 +1,6 @@
 {{--Initial Information--}}
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-cogs"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon fa  fa-cogs"></i>
         @lang('Initial Information')
     </a>
     <ul class="nav-dropdown-items">
@@ -107,7 +107,7 @@
 </li>
 {{--Dashboards--}}
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-tachometer"></i>
         @lang('Dashboards')
     </a>
     <ul class="nav-dropdown-items">
@@ -183,7 +183,7 @@
 </li>
 
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-first-order"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-first-order"></i>
         @lang('Orders')
     </a>
     <ul class="nav-dropdown-items">
@@ -204,7 +204,7 @@
 </li>
 
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-comment-o"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-comment-o"></i>
         @lang('Tickets')
     </a>
     <ul class="nav-dropdown-items">
@@ -226,7 +226,7 @@
 
 {{--Logs--}}
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-history"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon fa  fa-history"></i>
         @lang('Logs')
     </a>
     <ul class="nav-dropdown-items">
@@ -287,7 +287,7 @@
 {{--</li>--}}
 {{--Logs--}}
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-note"></i>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon nav-icon icon-note"></i>
         @lang('Prefactor and Factors')
     </a>
     <ul class="nav-dropdown-items">

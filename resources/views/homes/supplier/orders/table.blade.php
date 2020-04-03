@@ -14,7 +14,33 @@
             <tr>
                 <td colspan="3">
                     <div class="btn-group">
-                        <a href="{!! route('prefactors.createByOrder', [$order->id]) !!}" class='btn btn-ghost-success'><i class="fa fa-paypal"></i></a>
+                        {{-- <a href="{!! route('prefactors.createByOrder', [$order->id]) !!}" class='btn btn-ghost-success'><i class="fa fa-paypal"></i></a>--}}
+                        <button class='btn btn-ghost-info' data-toggle="modal" data-target="#myModal"><i
+                                    class="fa fa-paypal"></i></button>
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">@lang('Create prefactor')</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        @include('prefactors.modal-create')
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </td>
                 <td>{!! $order->title !!}</td>

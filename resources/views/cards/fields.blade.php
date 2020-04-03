@@ -1,13 +1,13 @@
 <!-- Equipment Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('equipment_id', __('Equipment Id').':') !!}
-    {!! Form::select('equipment_id', \App\Models\Equipment::pluck('title','id'), null, ['class' => 'form-control']) !!}
+    {!! Form::text('equipment_id', $card->equipment_id, ['class' => 'form-control']) !!}
 </div>
 
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 sr-only">
     {!! Form::label('user_id', __('User Id').':') !!}
-    {!! Form::select('user_id', \App\User::pluck('name','id'), null, ['class' => 'form-control']) !!}
+    {!! Form::text('user_id', \Illuminate\Support\Facades\Auth::id(), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Num Field -->

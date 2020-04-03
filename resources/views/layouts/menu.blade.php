@@ -313,13 +313,15 @@
         {{--<span>@lang('Prefactor Details')</span>--}}
     {{--</a>--}}
 {{--</li>--}}
+@if (\Illuminate\Support\Facades\Gate::allows('supperadmin-dashboard'))
+    <li class="nav-item {{ Request::is('settings*') ? 'active' : '' }}">
+        <a class="nav-link" href="{!! route('settings.index') !!}">
+            <i class="nav-icon icon-settings"></i>
+            <span>@lang('Settings')</span>
+        </a>
+    </li>
+@endif
 
-<li class="nav-item {{ Request::is('settings*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('settings.index') !!}">
-        <i class="nav-icon icon-settings"></i>
-        <span>@lang('Settings')</span>
-    </a>
-</li>
 
 {{--<li class="nav-item {{ Request::is('comments*') ? 'active' : '' }}">--}}
     {{--<a class="nav-link" href="{!! route('comments.index') !!}">--}}

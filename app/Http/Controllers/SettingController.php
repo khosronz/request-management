@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSettingRequest;
 use App\Http\Requests\UpdateSettingRequest;
+use App\Models\Setting;
 use App\Repositories\SettingRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class SettingController extends AppBaseController
@@ -29,10 +31,15 @@ class SettingController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $settings = $this->settingRepository->paginate(10);
+        if (Auth::user()->can('viewAny', Setting::class)) {
+            $settings = $this->settingRepository->paginate(10);
 
-        return view('settings.index')
-            ->with('settings', $settings);
+            return view('settings.index')
+                ->with('settings', $settings);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
+
     }
 
     /**
@@ -42,7 +49,11 @@ class SettingController extends AppBaseController
      */
     public function create()
     {
-        return view('settings.create');
+        if (Auth::user()->can('create', Setting::class)) {
+            return view('settings.create');
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -58,9 +69,13 @@ class SettingController extends AppBaseController
 
         $setting = $this->settingRepository->create($input);
 
-        Flash::success(__('Setting').' '.__('saved successfully.'));
+        if (Auth::user()->can('create', $setting)) {
+            Flash::success(__('Setting') . ' ' . __('saved successfully.'));
 
-        return redirect(route('settings.index'));
+            return redirect(route('settings.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -73,14 +88,16 @@ class SettingController extends AppBaseController
     public function show($id)
     {
         $setting = $this->settingRepository->find($id);
-
         if (empty($setting)) {
-            Flash::error(__('Setting').' '.__('not found.'));
+            Flash::error(__('Setting') . ' ' . __('not found.'));
 
             return redirect(route('settings.index'));
         }
-
-        return view('settings.show')->with('setting', $setting);
+        if (Auth::user()->can('view', $setting)) {
+            return view('settings.show')->with('setting', $setting);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -95,12 +112,16 @@ class SettingController extends AppBaseController
         $setting = $this->settingRepository->find($id);
 
         if (empty($setting)) {
-            Flash::error(__('Setting').' '.__('not found.'));
+            Flash::error(__('Setting') . ' ' . __('not found.'));
 
             return redirect(route('settings.index'));
         }
 
-        return view('settings.edit')->with('setting', $setting);
+        if(Auth::user()->can('update',$setting)){
+            return view('settings.edit')->with('setting', $setting);
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -116,16 +137,20 @@ class SettingController extends AppBaseController
         $setting = $this->settingRepository->find($id);
 
         if (empty($setting)) {
-            Flash::error(__('Setting').' '.__('not found.'));
+            Flash::error(__('Setting') . ' ' . __('not found.'));
 
             return redirect(route('settings.index'));
         }
 
-        $setting = $this->settingRepository->update($request->all(), $id);
+        if(Auth::user()->can('update',$setting)){
+            $setting = $this->settingRepository->update($request->all(), $id);
 
-        Flash::success(__('Setting').' '.__('updated successfully.'));
+            Flash::success(__('Setting') . ' ' . __('updated successfully.'));
 
-        return redirect(route('settings.index'));
+            return redirect(route('settings.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 
     /**
@@ -142,15 +167,19 @@ class SettingController extends AppBaseController
         $setting = $this->settingRepository->find($id);
 
         if (empty($setting)) {
-            Flash::error(__('Setting').' '.__('not found.'));
+            Flash::error(__('Setting') . ' ' . __('not found.'));
 
             return redirect(route('settings.index'));
         }
 
-        $this->settingRepository->delete($id);
+        if(Auth::user()->can('delete',$setting)){
+            $this->settingRepository->delete($id);
 
-        Flash::success(__('Setting').' '.__('deleted successfully.'));
+            Flash::success(__('Setting') . ' ' . __('deleted successfully.'));
 
-        return redirect(route('settings.index'));
+            return redirect(route('settings.index'));
+        }
+        Flash::error(__('You do not permission to this section.'));
+        return redirect(route('home'));
     }
 }

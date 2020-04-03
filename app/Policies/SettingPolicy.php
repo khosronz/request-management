@@ -18,7 +18,7 @@ class SettingPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->isSuperadmin();
     }
 
     /**
@@ -28,9 +28,9 @@ class SettingPolicy
      * @param  \App\Models\Setting  $setting
      * @return mixed
      */
-    public function view(User $user, Setting $setting)
+    public function view(User $user)
     {
-        //
+        return $user->isSuperadmin();
     }
 
     /**
@@ -41,7 +41,7 @@ class SettingPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->isSuperadmin();
     }
 
     /**
@@ -51,9 +51,9 @@ class SettingPolicy
      * @param  \App\Models\Setting  $setting
      * @return mixed
      */
-    public function update(User $user, Setting $setting)
+    public function update(User $user)
     {
-        //
+        return $user->isSuperadmin();
     }
 
     /**
@@ -63,9 +63,9 @@ class SettingPolicy
      * @param  \App\Models\Setting  $setting
      * @return mixed
      */
-    public function delete(User $user, Setting $setting)
+    public function delete(User $user)
     {
-        //
+        return $user->isSuperadmin();
     }
 
     /**
@@ -75,9 +75,9 @@ class SettingPolicy
      * @param  \App\Models\Setting  $setting
      * @return mixed
      */
-    public function restore(User $user, Setting $setting)
+    public function restore(User $user)
     {
-        //
+        return $user->isSuperadmin();
     }
 
     /**
@@ -87,8 +87,8 @@ class SettingPolicy
      * @param  \App\Models\Setting  $setting
      * @return mixed
      */
-    public function forceDelete(User $user, Setting $setting)
+    public function forceDelete(User $user)
     {
-        //
+        return $user->isSuperadmin();
     }
 }

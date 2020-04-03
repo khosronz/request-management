@@ -6,6 +6,7 @@
         <th>@lang('Category Visits')</th>
         <th>@lang('Parent Id')</th>
         <th>@lang('User Id')</th>
+        <th>@lang('Status')</th>
         <th>@lang('Desc')</th>
         <th colspan="3">@lang('Action')</th>
         </thead>
@@ -15,6 +16,7 @@
                 <td>{!! $category->title !!}</td>
                 <td>{!! $category->category_visits !!}</td>
                 <td>{!! $category->parent['title'] !!}</td>
+                <td style="text-align: center"><span class="badge {{ $category->status ? 'badge-success' : 'badge-danger' }}">{!! $category->status ? 'فعال' : 'غیرفعال' !!}</span></td>
                 <td>{!! $category->user->name !!}</td>
                 <td>{!! $category->desc !!}</td>
                 <td>

@@ -39,6 +39,7 @@ Route::get('products/{id}/attributes', 'ProductController@attributes')->name('pr
 Route::get('categories/{id}/showproducts', 'CategoryController@showproducts')->name('categories.showproducts');
 Route::resource('categories', 'CategoryController');
 
+Route::get('tickets/toanswer', 'TicketController@toanswer')->name('tickets.toanswer');
 Route::resource('tickets', 'TicketController');
 
 Route::resource('messages', 'MessageController');

@@ -202,6 +202,9 @@ if (!function_exists('getEndDate')) {
                 case \App\Enums\VerifiedType::supplier_waite:
                     $verify_status = 'تامین کننده';
                     break;
+                case \App\Enums\VerifiedType::completed_wait:
+                    $verify_status = 'تامین کننده';
+                    break;
             }
             return $verify_status;
         }

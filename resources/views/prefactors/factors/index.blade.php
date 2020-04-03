@@ -30,8 +30,8 @@
                     {!! Form::close() !!}
                 </td>
                 <td>{!! $prefactor->user->name !!}</td>
-                <td>{!! $prefactor->status  === '0' ? 'مردود':'تایید' !!}</td>
-                <td>{!! $prefactor->factor_status === '1' ? 'فاکتور':'پیشفاکتور' !!}</td>
+                <td style="text-align: center"><span class="badge {{ $prefactor->status  === '0' ? 'badge-danger' : 'badge-success' }}">{!! $prefactor->status  === '0' ? 'مردود':'تایید' !!}</span></td>
+                <td style="text-align: center"><span class="badge {{ $prefactor->factor_status === '1' ? 'badge-success' : 'badge-info' }}">{!! $prefactor->factor_status === '1' ? 'فاکتور':'پیشفاکتور' !!}</span></td>
                 <td>{!! $prefactor->order->title !!}</td>
                 <td>{!! $prefactor->factory->title !!}</td>
             </tr>

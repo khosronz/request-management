@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingTableSeeder::class);
         $this->call(OrganizationUserTableSeeder::class);
         $this->call(OrganizationCategoryTableSeeder::class);
+//        $this->call(PrefactorTableSeeder::class);
     }
 }

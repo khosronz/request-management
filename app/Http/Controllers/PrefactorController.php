@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\VerifiedType;
+use App\Enums\VerifiedWaiteStatus;
 use App\Http\Requests\CreatePrefactorRequest;
 use App\Http\Requests\UpdatePrefactorRequest;
 use App\Models\Prefactor;
@@ -233,8 +235,22 @@ class PrefactorController extends AppBaseController
             'status' => '1',
             'factor_status' => '1'
         ];
-        $this->prefactorRepository->update($input,$id);
 
+        $order = $this->orderRepository->find($prefactor->order_id);
+        if (empty($order)) {
+            Flash::error(__('Order').' '.__('not found.'));
+
+            return redirect(route('prefactors.index'));
+        }
+        $inputOrder=[
+            'verified' => VerifiedType::completed_wait,
+            'waite_status' => VerifiedWaiteStatus::waite
+        ];
+        DB::beginTransaction();
+            $this->prefactorRepository->update($input,$id);
+
+            $this->orderRepository->update($inputOrder,$order->id);
+        DB::commit();
         Flash::success(__('Prefactor').' '.__('accept successfully.'));
 
         return redirect(route('prefactors.index'));

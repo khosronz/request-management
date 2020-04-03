@@ -32,18 +32,27 @@ class TicketController extends AppBaseController
      */
     public function index(Request $request)
     {
-//        $tickets = $this->ticketRepository->find()->paginate(5);
+        $tickets = $this->ticketRepository->findByUserId(Auth::id())->paginate(5);
+
+        return view('tickets.index')
+            ->with('tickets', $tickets);
+    }
+
+    /**
+     * Display a listing of the Ticket that you must answer to those.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function toanswer(Request $request)
+    {
         $organizations = Auth::user()->organizations;
         $organization_ids=$organizations->pluck('id');
 
-//        dd($organization_ids);
-        $tickets = $this->ticketRepository->findByUserId(Auth::id())->paginate(5);
         $orgtickets = $this->ticketRepository->findByOrganizationId($organization_ids)->paginate(5);
-//        dd($orgtickets);
 
-
-        return view('tickets.index')
-            ->with('tickets', $tickets)
+        return view('tickets.toanswer-index')
             ->with('orgtickets', $orgtickets);
     }
 

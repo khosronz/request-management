@@ -8,9 +8,9 @@ use Faker\Generator as Faker;
 $factory->define(Prefactor::class, function (Faker $faker) {
 
     return [
-        'user_id' => $faker->word,
-        'order_id' => $faker->word,
-        'factory_id' => $faker->word,
+        'user_id' => \App\Enums\UserType::supplier,
+        'order_id' => rand(1,100),
+        'factory_id' => rand(1,10),
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

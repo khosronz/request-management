@@ -555,6 +555,7 @@
   "Ticket not found": "گفتگو موجود نیست",
   "Ticket created at": "گفتگو ایجاد شده در",
   "Last answer to this ticket at": "آخرین پاسخ به این گفتگو در",
+  "Tickets to answer": "گفتگو های رسیده",
   "Trigger disabled successfully.": "اخطار مورد نظر با موفقیت غیر فعال گردید.",
   "Item disabled successfully.": "مورد (آیتم) نظر با موفقیت غیر فعال گردید.",
   "Create": "افزودن",

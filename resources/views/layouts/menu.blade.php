@@ -203,13 +203,26 @@
     </ul>
 </li>
 
-
-<li class="nav-item {{ Request::is('tickets*') ? 'active' : '' }}">
-    <a class="nav-link" href="{!! route('tickets.index') !!}">
-        <i class="nav-icon fa fa-comments-o"></i>
-        <span>@lang('Tickets')</span>
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tachometer"></i>
+        @lang('Tickets')
     </a>
+    <ul class="nav-dropdown-items">
+        <li class="nav-item {{ Request::is('tickets*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('tickets.index') !!}">
+                <i class="nav-icon fa fa-comments-o"></i>
+                <span>@lang('Tickets')</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Request::is('tickets/toanswer*') ? 'active' : '' }}">
+            <a class="nav-link" href="{!! route('tickets.toanswer') !!}">
+                <i class="nav-icon fa fa-comments-o"></i>
+                <span>@lang('Tickets to answer')</span>
+            </a>
+        </li>
+    </ul>
 </li>
+
 
 {{--Logs--}}
 <li class="nav-item nav-dropdown">

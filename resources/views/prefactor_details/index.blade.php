@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">@lang('Prefactor Details')</li>
     </ol>
-    @include('prefactor_details.index-create')
+    {{--@include('prefactor_details.index-create')--}}
 
     <div class="container-fluid">
         <div class="animated fadeIn">

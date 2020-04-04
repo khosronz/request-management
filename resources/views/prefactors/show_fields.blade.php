@@ -32,10 +32,10 @@
     <!-- Media Field -->
     <div class="form-group col-sm-4">
         {!! Form::label('media', __('Media').':') !!}
-        <button  class='btn btn-ghost-success' data-toggle="modal" data-target="#myModal"><img src="{{asset($prefactor->media->url)}}" alt="{{$prefactor->media->alt}}" width="100px" height="110px" >
+        <button  class='btn btn-ghost-success' data-toggle="modal" data-target="#myModal-image"><img src="{{asset($prefactor->media->url)}}" alt="{{$prefactor->media->alt}}" width="100px" height="110px" >
         <i class="fa fa-eye"></i></button>
         <!-- The Modal -->
-        <div class="modal" id="myModal">
+        <div class="modal" id="myModal-image">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -52,7 +52,7 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">@lang('Close')</button>
                     </div>
 
                 </div>

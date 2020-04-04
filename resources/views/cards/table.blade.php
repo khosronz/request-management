@@ -18,10 +18,10 @@
                     <div class='btn-group'>
                         {{--<a href="{!! route('cards.show', [$card->id]) !!}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>--}}
                         {{--<a href="{!! route('cards.edit', [$card->id]) !!}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>--}}
-                        <button class='btn btn-ghost-info' data-toggle="modal" data-target="#myModal"><i
+                        <button class='btn btn-ghost-info' data-toggle="modal" data-target="#myModal-{{$card->id}}"><i
                                     class="fa fa-edit"></i></button>
                         <!-- The Modal -->
-                        <div class="modal" id="myModal">
+                        <div class="modal" id="myModal-{{$card->id}}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
@@ -38,7 +38,7 @@
 
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">@lang('Close')</button>
                                     </div>
 
                                 </div>

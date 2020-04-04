@@ -33892,7 +33892,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Homestead\code\project7\node_modules\chart.js\dist\Chart.js */"./node_modules/chart.js/dist/Chart.js");
+module.exports = __webpack_require__(/*! C:\Users\khosro\Desktop\request-management\node_modules\chart.js\dist\Chart.js */"./node_modules/chart.js/dist/Chart.js");
 
 
 /***/ })

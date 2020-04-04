@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePrefactorDetailRequest;
 use App\Http\Requests\UpdatePrefactorDetailRequest;
 use App\Repositories\PrefactorDetailRepository;
 use App\Http\Controllers\AppBaseController;
+use foo\bar;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -125,7 +126,8 @@ class PrefactorDetailController extends AppBaseController
 
         Flash::success(__('Prefactor Detail').' '.__('updated successfully.'));
 
-        return redirect(route('prefactorDetails.index'));
+        return back();
+//        return redirect(route('prefactorDetails.index'));
     }
 
     /**

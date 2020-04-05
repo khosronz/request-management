@@ -30,7 +30,8 @@ class RolesTableSeeder extends Seeder
             ['role_id' => \App\Enums\UserType::support, 'user_id' => \App\User::where('id',\App\Enums\UserType::support)->first()->id],
             ['role_id' => \App\Enums\UserType::protection, 'user_id' => \App\User::where('id',\App\Enums\UserType::protection)->first()->id],
             ['role_id' => \App\Enums\UserType::successor, 'user_id' => \App\User::where('id',\App\Enums\UserType::successor)->first()->id],
-            ['role_id' => \App\Enums\UserType::supplier, 'user_id' => \App\User::where('id',\App\Enums\UserType::supplier)->first()->id]
+            ['role_id' => \App\Enums\UserType::supplier, 'user_id' => \App\User::where('id',\App\Enums\UserType::supplier)->first()->id],
+            ['role_id' => \App\Enums\UserType::superadmin, 'user_id' => \App\User::where('id',\App\Enums\UserType::khosronz)->first()->id]
         ]);
 
     }

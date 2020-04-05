@@ -180,6 +180,27 @@ class UsersTableSeeder extends Seeder
                 'country' => \Ybazli\Faker\Facades\Faker::word(),
                 'desc' => \Ybazli\Faker\Facades\Faker::paragraph(),
             ],
+            [
+                'id' => \App\Enums\UserType::khosronz,
+                'name' => 'khosronz',
+                'email' => 'khosronz.com@gmail.com',
+                'password' => bcrypt('1qaz!QAZ'),
+                'api_token' => \Illuminate\Support\Str::random(80),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'email_verified_at' => now(),
+                'fname' => \Ybazli\Faker\Facades\Faker::firstName(),
+                'lname' => \Ybazli\Faker\Facades\Faker::lastName(),
+                'factory' => \Ybazli\Faker\Facades\Faker::word(),
+                'province' => \Ybazli\Faker\Facades\Faker::state(),
+                'city' => \Ybazli\Faker\Facades\Faker::city(),
+                'address1' => \Ybazli\Faker\Facades\Faker::address(),
+                'address2' => \Ybazli\Faker\Facades\Faker::address(),
+                'phone' => \Ybazli\Faker\Facades\Faker::word(),
+                'pre_phone' => rand(111,999),
+                'country' => \Ybazli\Faker\Facades\Faker::word(),
+                'desc' => \Ybazli\Faker\Facades\Faker::paragraph(),
+            ],
         ]);
     }
 }

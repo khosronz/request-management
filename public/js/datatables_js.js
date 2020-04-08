@@ -43976,7 +43976,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\khosro\Desktop\request-management\resources\js\datatables_js.js */"./resources/js/datatables_js.js");
+module.exports = __webpack_require__(/*! C:\Homestead\code\project7\resources\js\datatables_js.js */"./resources/js/datatables_js.js");
 
 
 /***/ })

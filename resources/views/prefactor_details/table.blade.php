@@ -19,10 +19,10 @@
                            class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
                         {{--<a href="{!! route('prefactorDetails.edit', [$prefactorDetail->id]) !!}"--}}
                            {{--class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>--}}
-                        <button class='btn btn-ghost-info' data-toggle="modal" data-target="#myModal-"><i
+                        <button class='btn btn-ghost-info' data-toggle="modal" data-target="#myModal-{{$prefactorDetail->id}}"><i
                                     class="fa fa-edit"></i></button>
                         <!-- The Modal -->
-                        <div class="modal" id="myModal">
+                        <div class="modal" id="myModal-{{$prefactorDetail->id}}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
 

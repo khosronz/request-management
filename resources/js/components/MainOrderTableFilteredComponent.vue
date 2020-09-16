@@ -280,6 +280,7 @@
                     case 5:
                         title = 'کاربر مالی';
                         break;
+                    case 6:
                     case '6':
                         title = 'کاربر پشتیبانی';
                         break;
@@ -312,8 +313,8 @@
                 this.getItems();
             },
             getItems() {
-                axios.get('http://project7.test/api/orders/' + this.user_id + '/user')
-                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
+                axios.get('/api/orders/' + this.user_id + '/user')
+                // axios.get('/api/category/' + this.category_id+'/equipment')
                     .then(response => {
                         // console.log(response.data.data);
                         this.items = response.data.data;

@@ -227,7 +227,7 @@
                 this.getItems();
             },
             getItems() {
-                axios.get('http://project7.test/api/tickets/' + this.user_id+'/user')
+                axios.get('/api/tickets/' + this.user_id+'/user')
                     .then(response => {
                         // console.log(response.data.data);
                         this.items = response.data.data;

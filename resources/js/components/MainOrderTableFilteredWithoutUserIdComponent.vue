@@ -307,8 +307,8 @@
             //     this.getItems();
             // },
             // getItems() {
-            //     axios.get('http://project7.test/api/orders/')
-            //     // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
+            //     axios.get('/api/orders/')
+            //     // axios.get('/api/category/' + this.category_id+'/equipment')
             //         .then(response => {
             //             // console.log(response.data.data);
             //             this.items = response.data.data;

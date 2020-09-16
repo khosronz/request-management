@@ -287,7 +287,7 @@
                     'equipment_id': equipment_id,
                     'num': 1
                 };
-                axios.post('http://project7.test/api/cards/',this.dataSend)
+                axios.post('/api/cards/',this.dataSend)
                     .then(response => {
                         // console.log(response.data.data);
                         this.cardItems = response.data.data;
@@ -305,8 +305,8 @@
                 this.getCartItems();
             },
             getCartItems() {
-                axios.get('http://project7.test/api/cards/' + this.user_id + '/user')
-                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
+                axios.get('/api/cards/' + this.user_id + '/user')
+                // axios.get('/api/category/' + this.category_id+'/equipment')
                     .then(response => {
                         // console.log(response.data.data);
                         this.cardItems = response.data.data;
@@ -324,8 +324,8 @@
 
             },
             getCategories() {
-                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
-                axios.get('http://project7.test/api/categories')
+                // axios.get('/api/category/' + this.category_id+'/equipment')
+                axios.get('/api/categories')
                     .then(response => {
                         // console.log(response.data.data);
                         this.options = response.data.data;
@@ -337,8 +337,8 @@
                     });
             },
             getItems(category_id) {
-                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
-                axios.get('http://project7.test/api/categories/' + category_id + '/equipment')
+                // axios.get('/api/category/' + this.category_id+'/equipment')
+                axios.get('/api/categories/' + category_id + '/equipment')
                     .then(response => {
                         // console.log(response.data.data);
                         this.items = response.data.data;

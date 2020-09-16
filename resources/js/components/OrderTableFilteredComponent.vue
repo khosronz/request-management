@@ -235,8 +235,8 @@
 
             },
             getCategories() {
-                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
-                axios.get('http://project7.test/api/categories')
+                // axios.get('/api/category/' + this.category_id+'/equipment')
+                axios.get('/api/categories')
                     .then(response => {
                         // console.log(response.data.data);
                         this.options = response.data.data;
@@ -248,8 +248,8 @@
                     });
             },
             getItems(category_id) {
-                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
-                axios.get('http://project7.test/api/categories/' + category_id+'/equipment')
+                // axios.get('/api/category/' + this.category_id+'/equipment')
+                axios.get('/api/categories/' + category_id+'/equipment')
                     .then(response => {
                         // console.log(response.data.data);
                         this.items = response.data.data;

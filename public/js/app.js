@@ -52677,9 +52677,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Homestead\code\project7\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Homestead\code\project7\resources\sass\datatables_css.scss */"./resources/sass/datatables_css.scss");
-module.exports = __webpack_require__(/*! C:\Homestead\code\project7\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/khosronz/request-management/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/khosronz/request-management/resources/sass/datatables_css.scss */"./resources/sass/datatables_css.scss");
+module.exports = __webpack_require__(/*! /home/khosronz/request-management/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

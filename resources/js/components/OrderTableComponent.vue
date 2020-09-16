@@ -31,7 +31,7 @@
             }
         },
         mounted() {
-            axios.get('http://project7.test/api/equipment')
+            axios.get('/api/equipment')
                 .then(response => {
                     // JSON responses are automatically parsed.
                     this.equipments = response.data.data;
@@ -45,8 +45,8 @@
         },
         methods: {
             getEquipments() {
-                // axios.get('http://project7.test/api/category/' + this.category_id+'/equipment')
-                axios.get('http://project7.test/api/categories/' + 1+'/equipment')
+                // axios.get('/api/category/' + this.category_id+'/equipment')
+                axios.get('/api/categories/' + 1+'/equipment')
                     .then(response => {
                         // console.log(response.data);
                         this.equipments = response.data.data;

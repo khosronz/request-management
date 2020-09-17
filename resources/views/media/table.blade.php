@@ -28,10 +28,10 @@
                     <p></p>
                 </td>
                 {{--<td>{!! $media->user->name !!}</td>--}}
-                <td>{!! $media->title !!}</td>
-                <td>{!! $media->alt !!}</td>
+                <td>{!! limit_text($media->title) !!}</td>
+                <td>{!! limit_text($media->alt) !!}</td>
                 <td>{!! $media->url !!}</td>
-                <td>{!! $media->desc !!}</td>
+                <td>{!! limit_text($media->desc) !!}</td>
                 <td>
                     {!! Form::open(['route' => ['media.destroy', $media->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

@@ -26,11 +26,3 @@
     <label for="media_file">{{__('Media file').':'}}</label>
     <input id="media_file"  name="media_file" type="file" class="form-control-file">
 </div>
-
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('media.index') !!}" class="btn btn-default">@lang('Cancel')</a>
-</div>
-

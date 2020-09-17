@@ -20,6 +20,15 @@
                           <div class="card-body">
                              {!! Form::model($media, ['route' => ['media.update', $media->id],'enctype'=>"multipart/form-data", 'method' => 'patch']) !!}
                               @include('media.fields')
+
+
+
+                                <!-- Submit Field -->
+                                <div class="form-group col-sm-12">
+                                    {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}
+                                    <a href="{!! route('media.index') !!}" class="btn btn-default">@lang('Cancel')</a>
+                                </div>
+
                               {!! Form::close() !!}
                             </div>
                         </div>

@@ -22,9 +22,3 @@
     {!! Form::label('media_id', __('Media Id').':') !!}
     {!! Form::select('media_id',\Illuminate\Support\Facades\Auth::user()->medias->pluck('title','id'), null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('prefactors.index') !!}" class="btn btn-default">@lang('Cancel')</a>
-</div>

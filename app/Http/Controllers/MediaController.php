@@ -59,22 +59,13 @@ class MediaController extends AppBaseController
      */
     public function store(CreateMediaRequest $request)
     {
-        $input = $request->all();
-        if ($request->hasFile('media_file')) {
-            $media_file = $request->file('media_file');
-            $filename = $media_file->getClientOriginalName();
-            $extension = $media_file->getClientOriginalExtension();
-            $media_file->move(public_path('img'), $filename);
-            $input['url'] = '/img/' . $filename;
-            echo 'Image Uploaded Successfully';
-        } else {
-            $input['url'] = isset($input['url']) ? $input['url'] : '';
-        }
-        $media = $this->mediaRepository->create($input);
+        // $input = $request->all();
+        
+        $media = $this->mediaRepository->create($request);
 
         Flash::success(__('Media') . ' ' . __('saved successfully.'));
 
-        return redirect(route('media.index'));
+        return back()->with('media',$media);
     }
 
     /**
@@ -141,25 +132,8 @@ class MediaController extends AppBaseController
                 return redirect(route('media.index'));
             }
             $old_filename = $media->url;
-            $input = $request->all();
-            if (file_exists(public_path() . $old_filename)) {
-                if ($request->hasFile('media_file')) {
-                    $media_file = $request->file('media_file');
-                    $filename = $media_file->getClientOriginalName();
-                    $media_file->move(public_path('img'), $filename);
-                    $input['url'] = '/img/' . $filename;
-                    echo 'Image Uploaded Successfully';
-                }
-            } else {
-                if ($request->hasFile('media_file')) {
-                    $media_file = $request->file('media_file');
-                    $filename = $media_file->getClientOriginalName();
-                    $media_file->move(public_path('img'), $filename);
-                    $input['url'] = '/img/' . $filename;
-                    echo 'Image Uploaded Successfully';
-                }
-            }
-            $this->mediaRepository->update($input, $id);
+            
+            $this->mediaRepository->updateFile($request, $id,$old_filename);
             return redirect(route('media.index'));
         }
         Flash::error(__('You do not permission to this section.'));
